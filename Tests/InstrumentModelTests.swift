@@ -11,12 +11,12 @@ final class SynthBridge {
     var parameters: [Int:Float] = [:]
     var master: Float = 0
     var velocitySensitive = false
-    var monoMode = false
+    var monoOutput = false
     func selectEngine(_ id: Int) { engine = id; parameters = [:] }
     func setParameter(_ id: Int, value: Float) { parameters[id] = value }
     func setMasterVolume(_ value: Float) { master = value }
     func setVelocitySensitive(_ enabled: Bool) { velocitySensitive = enabled }
-    func setMonoMode(_ enabled: Bool) { monoMode = enabled }
+    func setMonoOutput(_ enabled: Bool) { monoOutput = enabled }
     func sendStatus(_ status: UInt8, data1: UInt8, data2: UInt8) {}
     func panic() {}
     func start() -> Bool { running = true; return true }
@@ -36,14 +36,14 @@ final class SynthBridge {
                     model.select(e.id)
                     for p in e.params { model.set(p,p.value(0.31 + Double(e.id)*0.13)) }
                 }
-                model.select(2); model.volume = 0.37; model.velocitySensitive = false; model.monoMode = true
+                model.select(2); model.volume = 0.37; model.velocitySensitive = false; model.monoOutput = true
                 // Only the test forces a flush so a separate process can check disk state.
                 assert(defaults.synchronize())
             } else {
                 assert(mode == "verify")
                 assert(model.selected == 2 && model.volume == 0.37)
                 assert(!model.velocitySensitive && !model.bridge.velocitySensitive)
-                assert(model.monoMode && model.bridge.monoMode && model.voiceCount == 1)
+                assert(model.monoOutput && model.bridge.monoOutput && model.voiceCount == 1)
                 for e in definitions {
                     model.select(e.id)
                     assert(model.patchName == "Edited")
@@ -59,9 +59,9 @@ final class SynthBridge {
         defer { defaults.removePersistentDomain(forName:suite) }
         let model = InstrumentModel(defaults:defaults,definitions:definitions)
         assert(model.velocitySensitive && model.bridge.velocitySensitive, "New installs keep velocity response enabled")
-        assert(!model.monoMode && !model.bridge.monoMode && model.voiceCount == 5)
-        model.sustain = true; model.monoMode = true
-        assert(model.bridge.monoMode && !model.sustain)
+        assert(!model.monoOutput && !model.bridge.monoOutput && model.voiceCount == 5)
+        model.sustain = true; model.monoOutput = true
+        assert(model.bridge.monoOutput && model.sustain && model.voiceCount == 5, "Mono output must not release sustain or reduce polyphony")
         model.velocitySensitive = false
         assert(!model.bridge.velocitySensitive)
         var expected: [Int:[Int:Double]] = [:]
@@ -76,7 +76,7 @@ final class SynthBridge {
             assert(model.patchName == "Edited")
             for p in e.params { assert(model.bridge.parameters[p.id] == Float(expected[e.id]![p.id]!)) }
             assert(!model.velocitySensitive && !model.bridge.velocitySensitive, "Engine switching must keep the global option")
-            assert(model.monoMode && model.bridge.monoMode && model.voiceCount == 1)
+            assert(model.monoOutput && model.bridge.monoOutput && model.voiceCount == e.voices)
         }
         model.select(2); model.volume = 0.37
         // A fresh model uses a new defaults handle, like an app relaunch.
@@ -84,7 +84,7 @@ final class SynthBridge {
         assert(restored.selected == 2 && restored.bridge.engine == 2)
         assert(restored.volume == 0.37 && restored.bridge.master == Float(0.37))
         assert(!restored.velocitySensitive && !restored.bridge.velocitySensitive)
-        assert(restored.monoMode && restored.bridge.monoMode && restored.voiceCount == 1)
+        assert(restored.monoOutput && restored.bridge.monoOutput && restored.voiceCount == 1)
         assert(restored.values == expected, "All four engines must survive relaunch")
         assert(!restored.running && !restored.sustain, "Do not restore held notes or start audio")
         for p in restored.engine.params { assert(restored.bridge.parameters[p.id] == Float(expected[2]![p.id]!)) }
@@ -104,26 +104,47 @@ final class SynthBridge {
         final.preset(final.engine.presets[0]); final.select(3); final.select(2)
         assert(final.patchName == presetName, "Preset labels belong to each engine")
         assert(!final.velocitySensitive && !final.bridge.velocitySensitive, "Presets, Init, Save/Load and Panic must preserve velocity preference")
-        assert(final.monoMode && final.bridge.monoMode, "Presets and Init must preserve mono mode")
+        assert(final.monoOutput && final.bridge.monoOutput, "Presets and Init must preserve mono output")
 
         final.velocitySensitive = true
         let enabled = InstrumentModel(defaults:defaults,definitions:definitions)
         assert(enabled.velocitySensitive && enabled.bridge.velocitySensitive, "Both toggle positions must restore")
-        enabled.monoMode = false
-        let poly = InstrumentModel(defaults:defaults,definitions:definitions)
-        assert(!poly.monoMode && !poly.bridge.monoMode)
-        for e in definitions { poly.select(e.id); assert(poly.voiceCount == e.voices) }
-        final.select(poly.selected)
+        enabled.monoOutput = false
+        let stereo = InstrumentModel(defaults:defaults,definitions:definitions)
+        assert(!stereo.monoOutput && !stereo.bridge.monoOutput)
+        for e in definitions { stereo.select(e.id); assert(stereo.voiceCount == e.voices) }
+        final.select(stereo.selected)
+
+        // Migrate the old switch into mono audio without reducing voice allocation.
+        let stateKey = "mdlr-last-instrument-state-v1"
+        let baseline = try JSONSerialization.jsonObject(with:defaults.data(forKey:stateKey)!) as! [String:Any]
+        for oldSetting in [false,true] {
+            var old = baseline
+            old.removeValue(forKey:"monoOutput"); old["monoMode"] = oldSetting
+            defaults.set(try JSONSerialization.data(withJSONObject:old),forKey:stateKey)
+            let migrated = InstrumentModel(defaults:defaults,definitions:definitions)
+            assert(migrated.monoOutput == oldSetting && migrated.bridge.monoOutput == oldSetting)
+            assert(migrated.values == final.values && migrated.volume == final.volume && migrated.selected == final.selected)
+            assert(migrated.patchName == final.patchName)
+            for e in definitions { migrated.select(e.id); assert(migrated.voiceCount == e.voices) }
+            migrated.monoOutput = oldSetting
+            let saved = try JSONSerialization.jsonObject(with:defaults.data(forKey:stateKey)!) as! [String:Any]
+            assert(saved["monoMode"] == nil && saved["monoOutput"] as? Bool == oldSetting)
+        }
+        var both = baseline
+        both["monoOutput"] = false; both["monoMode"] = true
+        defaults.set(try JSONSerialization.data(withJSONObject:both),forKey:stateKey)
+        assert(!InstrumentModel(defaults:defaults,definitions:definitions).monoOutput, "New output preference wins over legacy key")
 
         // Migrate the real pre-option JSON shape without discarding any patches.
-        let stateKey = "mdlr-last-instrument-state-v1"
-        var legacy = try JSONSerialization.jsonObject(with:defaults.data(forKey:stateKey)!) as! [String:Any]
+        var legacy = baseline
         legacy.removeValue(forKey:"velocitySensitive")
+        legacy.removeValue(forKey:"monoOutput")
         legacy.removeValue(forKey:"monoMode")
         defaults.set(try JSONSerialization.data(withJSONObject:legacy),forKey:stateKey)
         let migrated = InstrumentModel(defaults:defaults,definitions:definitions)
         assert(migrated.velocitySensitive && migrated.bridge.velocitySensitive)
-        assert(!migrated.monoMode && !migrated.bridge.monoMode)
+        assert(!migrated.monoOutput && !migrated.bridge.monoOutput)
         assert(migrated.values == final.values && migrated.selected == final.selected)
         assert(migrated.patchName == final.patchName && migrated.volume == final.volume)
 
@@ -131,8 +152,8 @@ final class SynthBridge {
         let fallback = InstrumentModel(defaults:defaults,definitions:definitions)
         assert(fallback.selected == 0 && fallback.patchName == "Init")
         assert(fallback.velocitySensitive && fallback.bridge.velocitySensitive)
-        assert(!fallback.monoMode && !fallback.bridge.monoMode)
+        assert(!fallback.monoOutput && !fallback.bridge.monoOutput)
         for e in definitions { for p in e.params { assert(fallback.values[e.id]?[p.id] == p.defaultValue) } }
-        print("PASS: all 122 parameters and global velocity/mono options survive switching and relaunch; legacy saves preserve patches; voice counts, Save/Load, Init and corrupt-data fallback passed.")
+        print("PASS: all 122 parameters and global velocity/mono-output options survive switching and relaunch; legacy saves preserve patches; normal voice counts, Save/Load, Init and corrupt-data fallback passed.")
     }
 }

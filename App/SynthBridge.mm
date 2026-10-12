@@ -42,6 +42,7 @@ struct RenderCore {
     NSString *_status;
     NSString *_midiSources;
     BOOL _wanted;
+    BOOL _monoOutput;
 }
 - (instancetype)init {
     if((self=[super init])) {
@@ -129,7 +130,7 @@ struct RenderCore {
 }
 #endif
 - (BOOL)running{return _audio.isRunning;}
-- (NSString *)status{return _status;}
+- (NSString *)status{if(_audio.isRunning)return _monoOutput ? @"Playing · 48 kHz mono":@"Playing · 48 kHz stereo";return _status;}
 - (NSString *)midiSources{return _midiSources;}
 - (float)peak{return _core->peak.load(std::memory_order_relaxed);}
 - (uint32_t)droppedEvents{return _core->commands.dropped.load();}
@@ -137,7 +138,7 @@ struct RenderCore {
 - (void)setParameter:(NSInteger)p value:(float)v{_core->commands.push({2,(uint32_t)p,0,v});}
 - (void)setMasterVolume:(float)v{_core->commands.push({3,0,0,v});}
 - (void)setVelocitySensitive:(BOOL)enabled{_core->commands.push({5,(uint32_t)enabled,0,0});}
-- (void)setMonoMode:(BOOL)enabled{_core->commands.push({6,(uint32_t)enabled,0,0});}
+- (void)setMonoOutput:(BOOL)enabled{_monoOutput=enabled;_core->commands.push({6,(uint32_t)enabled,0,0});}
 - (void)sendStatus:(uint8_t)s data1:(uint8_t)a data2:(uint8_t)b{_core->commands.push({0,s,a,float(b)});}
 - (void)panic{_core->commands.push({4,0,0,0});}
 - (void)dealloc{[[NSNotificationCenter defaultCenter] removeObserver:self];[_audio stop];if(_input)MIDIPortDispose(_input);if(_client)MIDIClientDispose(_client);}

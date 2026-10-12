@@ -13,7 +13,7 @@
     "Standalone port contract (15 inputs / 4 outputs)",
     "Global persisted velocity sensitivity switch; raw note velocities retained across toggles and mono fallback",
     "Audio starts automatically when the app becomes active, after restoring controls; manual start/stop remains available",
-    "Global persisted Mono mode with last-note priority, fixed processor port routing, sustained-note cleanup on mode changes and unchanged stereo audio"
+    "Global persisted Mono output averages left and right into both outputs with a short crossfade, preserving polyphony, held notes and effect tails; migrates the earlier mislabeled switch"
   ],
   "parameter_counts": [
     52,

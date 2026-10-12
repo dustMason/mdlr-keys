@@ -15,9 +15,11 @@ view. No web server or account is needed to play.
 | Six | 6 voices, with stereo chorus |
 
 One engine plays at a time. The app includes 122 parameters, 16 factory presets,
-automatic per-engine patch persistence, and global Mono and velocity-sensitivity
-options. Mono mode uses last-note priority. Audio starts when the app opens or
-becomes active.
+automatic per-engine patch persistence, and global Mono output and velocity-sensitivity
+options. Mono output averages left and right into both outputs, with a short
+crossfade when switching. It preserves each engine’s polyphony, held notes and
+effect tails. One remains monophonic with last-note priority. Audio starts when
+the app opens or becomes active.
 
 The piano keyboard is hidden by default to maximize panel space. Knobs and faders
 use relative vertical dragging with pointer capture; double-tap to reset a

@@ -63,7 +63,7 @@ struct InstrumentView: View {
                             .frame(width:48,height:44)
                             .foregroundStyle(model.selected==e.id ? .black:.white.opacity(0.6))
                             .background(model.selected==e.id ? accent:Color.clear,in:RoundedRectangle(cornerRadius:6))
-                    }.accessibilityLabel("Select \(e.name), \(model.monoMode || e.voices == 1 ? "monophonic":"\(e.voices) voices")")
+                    }.accessibilityLabel("Select \(e.name), \(e.voices == 1 ? "monophonic":"\(e.voices) voices")")
                 }
             }.background(Color.white.opacity(0.04),in:RoundedRectangle(cornerRadius:6))
             Menu {
@@ -92,8 +92,8 @@ struct InstrumentView: View {
             Text("\(model.engine.name) · \(model.voiceCount == 1 ? "monophonic":"\(model.voiceCount) voices")").font(.caption).foregroundStyle(.secondary)
             HStack {Text("Master");Slider(value:$model.volume,in:0...1).accessibilityLabel("Master volume")}
             VStack(alignment:.leading,spacing:4) {
-                Toggle("Mono mode",isOn:$model.monoMode).toggleStyle(.switch).frame(minHeight:44)
-                Text("All engines. Last-note priority. ONE is always mono.").font(.caption).foregroundStyle(.secondary)
+                Toggle("Mono output",isOn:$model.monoOutput).toggleStyle(.switch).frame(minHeight:44)
+                Text("Same sound in both outputs. Keeps each synth’s polyphony.").font(.caption).foregroundStyle(.secondary)
             }
             VStack(alignment:.leading,spacing:4) {
                 Toggle("Velocity sensitivity",isOn:$model.velocitySensitive).toggleStyle(.switch).frame(minHeight:44)

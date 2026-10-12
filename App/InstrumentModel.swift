@@ -41,6 +41,8 @@ private struct LastInstrumentState: Codable {
     let volume: Double
     // Optional so saved patches from earlier builds still decode unchanged.
     let velocitySensitive: Bool?
+    let monoOutput: Bool?
+    // Read the old mislabeled switch once; new saves only write monoOutput.
     let monoMode: Bool?
 }
 
@@ -57,8 +59,8 @@ private struct LastInstrumentState: Codable {
     @Published var velocitySensitive = true {
         didSet { bridge.setVelocitySensitive(velocitySensitive); persist() }
     }
-    @Published var monoMode = false {
-        didSet { bridge.setMonoMode(monoMode); sustain=false; persist() }
+    @Published var monoOutput = false {
+        didSet { bridge.setMonoOutput(monoOutput); persist() }
     }
     @Published var sustain = false
     @Published var running = false
@@ -72,7 +74,7 @@ private struct LastInstrumentState: Codable {
     private let stateKey = "mdlr-last-instrument-state-v1"
     private var patchNames: [Int:String] = [:]
     var engine: EngineDefinition { engines[selected] }
-    var voiceCount: Int { monoMode ? 1 : engine.voices }
+    var voiceCount: Int { engine.voices }
     var groups: [String] {
         ["Oscillators","Filter","Amplitude envelope","Filter envelope","Modulation","Output & character"].filter { g in engine.params.contains { $0.group == g } }
     }
@@ -100,7 +102,7 @@ private struct LastInstrumentState: Codable {
             if let index = engines.firstIndex(where:{$0.name == saved.selectedEngine}) { selected = index }
             if saved.volume.isFinite { volume = min(1,max(0,saved.volume)) }
             velocitySensitive = saved.velocitySensitive ?? true
-            monoMode = saved.monoMode ?? false
+            monoOutput = saved.monoOutput ?? saved.monoMode ?? false
         }
         patchName = patchNames[selected] ?? "Init"
         section = groups.first ?? section
@@ -108,7 +110,7 @@ private struct LastInstrumentState: Codable {
         pushParameters()
         bridge.setMasterVolume(Float(volume))
         bridge.setVelocitySensitive(velocitySensitive)
-        bridge.setMonoMode(monoMode)
+        bridge.setMonoOutput(monoOutput)
         poll = Timer.publish(every: 0.1, on: .main, in: .common).autoconnect().sink { [weak self] _ in
             guard let self else { return }
             self.running = self.bridge.running; self.status = self.bridge.status
@@ -125,7 +127,7 @@ private struct LastInstrumentState: Codable {
                 ($0.key, values[e.id]?[$0.id] ?? $0.defaultValue)
             }), name:patchNames[e.id] ?? "Init"))
         })
-        let state = LastInstrumentState(version:1,selectedEngine:engine.name,patches:patches,volume:volume,velocitySensitive:velocitySensitive,monoMode:monoMode)
+        let state = LastInstrumentState(version:1,selectedEngine:engine.name,patches:patches,volume:volume,velocitySensitive:velocitySensitive,monoOutput:monoOutput,monoMode:nil)
         if let data = try? JSONEncoder().encode(state) { defaults.set(data,forKey:stateKey) }
     }
     private func rememberPatch(_ name: String) {

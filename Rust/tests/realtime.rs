@@ -14,7 +14,7 @@ fn rendering_switching_and_midi_do_not_allocate(){
     let before=ALLOCATIONS.load(Ordering::Relaxed);
     for e in 0..4{
       for mono in [false,true] {
-        s.mono_mode(mono);
+        s.mono_output(mono);
         s.select(e);s.parameter(0,0.1);s.volume(0.5);
         for n in 48..60{s.midi(0x90,n,90);s.velocity_sensitivity(n%2==0);s.render(&mut l,&mut r,48000.0);}
         s.midi(0xb0,64,127);for n in 48..60{s.midi(0x80,n,0);}

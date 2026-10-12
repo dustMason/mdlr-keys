@@ -27,7 +27,8 @@ pub struct Synth {
     gain: f32,
     target_gain: f32,
     velocity_sensitive: bool,
-    mono_mode: bool,
+    mono_output: bool,
+    mono_mix: f32,
     inputs: modules::ModuleInputs,
     outputs: modules::ModuleOutputs,
     cursor: usize,
@@ -41,16 +42,14 @@ impl Synth {
             engines: [Box::new(modules::five::Five::new()), Box::new(modules::fm4::Fm4::new()), Box::new(modules::one::One::new()), Box::new(modules::six::Six::new())],
             selected: 0, voices: [Voice::default(); 6], held: [[0;128];16], order: [[0;128];16], velocities: [[0;128];16],
             sustain: [false;16], bends: [0.0;16], wheel: 0.0, channel_volume: 1.0, expression: 1.0, serial: 0,
-            gain: 0.65, target_gain: 0.65, velocity_sensitive: true, mono_mode: false, inputs: [[0.0;N];15], outputs: [[0.0;N];4], cursor: N, sample_rate: 48000.0, position: 0.0,
+            gain: 0.65, target_gain: 0.65, velocity_sensitive: true, mono_output: false, mono_mix: 0.0, inputs: [[0.0;N];15], outputs: [[0.0;N];4], cursor: N, sample_rate: 48000.0, position: 0.0,
         }
     }
     fn engine_voice_count(&self) -> usize { [5,4,1,6][self.selected] }
-    pub fn count(&self) -> usize { if self.mono_mode { 1 } else { self.engine_voice_count() } }
-    pub fn mono_mode(&mut self, enabled: bool) {
-        if self.mono_mode != enabled {
-            // Release the old allocation, including release tails and sustained notes.
-            self.panic(); self.mono_mode = enabled;
-        }
+    pub fn count(&self) -> usize { self.engine_voice_count() }
+    pub fn mono_output(&mut self, enabled: bool) {
+        // Only change the output mix; voices, held notes and effects keep running.
+        self.mono_output = enabled;
     }
     pub fn select(&mut self, id: usize) {
         if id < 4 { self.panic(); self.selected = id; self.engines[id].silence(); }
@@ -68,10 +67,7 @@ impl Synth {
     }
     fn update_velocity(&mut self, slot: usize) {
         let gain = if self.velocity_sensitive { self.voices[slot].velocity as f32 / 127.0 } else { 1.0 };
-        if self.count()==1 {
-            // FIVE may stack its internal voices in unison on the single MIDI note.
-            for voice in 0..self.engine_voice_count() { self.engines[self.selected].velocity(voice, gain); }
-        } else { self.engines[self.selected].velocity(slot, gain); }
+        self.engines[self.selected].velocity(slot, gain);
     }
     pub fn panic(&mut self) {
         self.engines[self.selected].silence(); self.voices.fill(Voice::default());
@@ -153,7 +149,7 @@ impl Synth {
     }
     fn block(&mut self) {
         self.inputs = [[0.0;N];15]; let count=self.count();
-        // Processor ports stay fixed even when MIDI allocation is monophonic.
+        // Gate ports follow each processor’s full set of pitch inputs.
         let gate_offset=self.engine_voice_count();
         for i in 0..count {
             let v=&mut self.voices[i];
@@ -170,13 +166,21 @@ impl Synth {
     pub fn render(&mut self,left:&mut [f32],right:&mut [f32],rate:f32) {
         if rate.is_finite() && rate>=8000.0 && rate!=self.sample_rate { self.sample_rate=rate; self.cursor=N; }
         let alpha=1.0-(-1.0/(0.01*self.sample_rate)).exp();
+        let mono_target=if self.mono_output {1.0} else {0.0};
+        let mono_step=1.0/(0.005*self.sample_rate);
         for (l,r) in left.iter_mut().zip(right.iter_mut()) {
             if self.cursor==N { self.block(); }
             self.gain+=(self.target_gain*self.channel_volume*self.expression-self.gain)*alpha;
             let x=self.outputs[0][self.cursor]*self.gain;
             let y=self.outputs[if self.selected==2 {0} else {1}][self.cursor]*self.gain;
-            *l=if x.is_finite(){x.clamp(-1.0,1.0)}else{0.0};
-            *r=if y.is_finite(){y.clamp(-1.0,1.0)}else{0.0};
+            let x=if x.is_finite(){x.clamp(-1.0,1.0)}else{0.0};
+            let y=if y.is_finite(){y.clamp(-1.0,1.0)}else{0.0};
+            // Average after output protection: no level doubling or channel loss.
+            // A 5 ms crossfade avoids abrupt stereo-width changes during playback.
+            self.mono_mix+=(mono_target-self.mono_mix).clamp(-mono_step,mono_step);
+            let mid=(x+y)*0.5;
+            *l=x*(1.0-self.mono_mix)+mid*self.mono_mix;
+            *r=y*(1.0-self.mono_mix)+mid*self.mono_mix;
             self.cursor+=1;
         }
     }
@@ -186,7 +190,7 @@ impl Synth {
 /// Caller must stop rendering and submitting commands before destroying.
 #[no_mangle] pub unsafe extern "C" fn mdlr_destroy(p:*mut Synth) { if !p.is_null(){drop(Box::from_raw(p));} }
 #[no_mangle] pub unsafe extern "C" fn mdlr_command(p:*mut Synth,kind:u32,a:u32,b:u32,value:f32) {
-    if let Some(s)=p.as_mut(){match kind {0=>s.midi(a as u8,b as u8,value as u8),1=>s.select(a as usize),2=>s.parameter(a,value),3=>s.volume(value),4=>s.panic(),5=>s.velocity_sensitivity(a!=0),6=>s.mono_mode(a!=0),_=>{}}}
+    if let Some(s)=p.as_mut(){match kind {0=>s.midi(a as u8,b as u8,value as u8),1=>s.select(a as usize),2=>s.parameter(a,value),3=>s.volume(value),4=>s.panic(),5=>s.velocity_sensitivity(a!=0),6=>s.mono_output(a!=0),_=>{}}}
 }
 #[no_mangle] pub unsafe extern "C" fn mdlr_render(p:*mut Synth,l:*mut f32,r:*mut f32,frames:u32,rate:f32) {
     if p.is_null()||l.is_null()||r.is_null(){return;}
@@ -204,56 +208,89 @@ impl Synth {
         let mut s=Synth::new(); s.select(engine); s.velocity_sensitivity(sensitive);
         s.midi(0x90,60,velocity); s
     }
-    #[test] fn mono_uses_one_note_with_last_note_priority_in_every_engine() {
-        for engine in 0..4 {
-            let mut s=Synth::new(); s.mono_mode(true); s.select(engine);
-            s.midi(0x90,60,32); s.midi(0x91,64,100); s.midi(0x90,67,80);
-            assert_eq!(s.count(),1);
-            assert_eq!(s.voices.iter().filter(|v|v.gate).count(),1);
-            assert_eq!(s.voices[0].note,67);
-            s.midi(0x90,67,0);
-            assert_eq!((s.voices[0].note,s.voices[0].channel,s.voices[0].velocity),(64,1,100));
-            s.midi(0xb1,123,0);
-            assert_eq!((s.voices[0].note,s.voices[0].channel,s.voices[0].velocity),(60,0,32));
-            s.midi(0x80,60,0); assert!(!s.voices[0].gate);
-        }
-    }
-    #[test] fn mono_keeps_processor_gate_ports_and_stereo_audio() {
-        for engine in 0..4 {
-            let mut s=Synth::new(); s.select(engine); s.mono_mode(true); s.midi(0x90,60,100);
-            let mono=audio(&mut s);
-            assert_eq!(mono,audio(&mut note_synth(engine,true,100)),"Mono must drive the same processor voice and stereo effects");
-            assert!(mono.iter().map(|x|x*x).sum::<f32>()>0.01);
-            for i in 1..s.engine_voice_count() { assert!(s.inputs[i+s.engine_voice_count()].iter().all(|x|*x==0.0)); }
-        }
-    }
-    #[test] fn mono_sustain_repeated_notes_and_bend_keep_working() {
-        for engine in 0..4 {
-            let mut s=Synth::new(); s.select(engine); s.mono_mode(true);
-            s.midi(0x90,60,40); s.midi(0x90,64,100); s.midi(0x90,64,100);
-            s.midi(0x80,64,0); assert_eq!(s.voices[0].note,64);
-            s.midi(0xb0,64,127); s.midi(0x90,64,0);
-            assert!(s.voices[0].gate); assert_eq!(s.voices[0].note,64);
-            s.midi(0xb0,64,0); assert_eq!(s.voices[0].note,60);
-            s.midi(0xe0,0,0); s.block(); assert_eq!(s.inputs[0][0],1.0-2.0/12.0);
-            s.midi(0x80,60,0); assert!(!s.voices[0].gate);
-        }
-    }
-    #[test] fn mono_toggle_clears_notes_and_restores_polyphony() {
-        for engine in 0..4 {
+    #[test] fn mono_output_preserves_polyphony_notes_sustain_and_bend() {
+        for (engine,count) in [5,4,1,6].into_iter().enumerate() {
             let mut s=Synth::new(); s.select(engine);
-            for n in 60..66 { s.midi(0x90,n,100); }
-            audio(&mut s); s.midi(0xb0,64,127);
-            unsafe { mdlr_command(&mut s,6,1,0,0.0); }
-            assert_eq!(s.count(),1);
-            assert!(s.voices.iter().all(|v|!v.gate)); assert!(s.held.iter().flatten().all(|n|*n==0));
-            assert!(audio(&mut s).iter().all(|x|x.abs()<0.00001));
-            s.midi(0x90,60,100); s.mono_mode(true);
-            assert!(s.voices[0].gate,"Reapplying the same mode must not cut notes");
-            unsafe { mdlr_command(&mut s,6,0,0,0.0); }
-            assert_eq!(s.count(),[5,4,1,6][engine]);
-            for n in 60..66 { s.midi(0x90,n,100); }
-            assert_eq!(s.voices.iter().filter(|v|v.gate).count(),[5,4,1,6][engine]);
+            for n in 60..60+count as u8 { s.midi(0x90,n,100); }
+            s.midi(0xb0,64,127); s.midi(0x80,60,0); s.midi(0xe0,0,0);
+            let held=s.held; let order=s.order; let velocities=s.velocities;
+            let voices:Vec<_>=s.voices.iter().map(|v|(v.note,v.channel,v.velocity,v.gate,v.age)).collect();
+            for enabled in [true,true,false] {
+                unsafe { mdlr_command(&mut s,6,enabled as u32,0,0.0); }
+                assert_eq!(s.count(),count);
+                assert_eq!(s.voices.iter().filter(|v|v.gate).count(),count);
+                assert_eq!(s.held,held); assert_eq!(s.order,order); assert_eq!(s.velocities,velocities);
+                assert_eq!(s.voices.iter().map(|v|(v.note,v.channel,v.velocity,v.gate,v.age)).collect::<Vec<_>>(),voices);
+                assert!(s.sustain[0]); assert_eq!(s.bends[0],-2.0/12.0);
+            }
+            s.midi(0xb0,64,0);
+            assert_eq!(s.voices.iter().filter(|v|v.gate).count(),count-1);
+        }
+    }
+    #[test] fn mono_output_is_the_average_of_stereo_for_all_engines() {
+        for engine in 0..4 {
+            let (mut stereo,mut mono)=(Synth::new(),Synth::new());
+            for s in [&mut stereo,&mut mono] {
+                s.select(engine);
+                for n in 60..60+s.count() as u8 { s.midi(0x90,n,100); }
+            }
+            mono.mono_output(true);
+            let (stereo,mono)=(audio(&mut stereo),audio(&mut mono));
+            assert!(mono.iter().map(|x|x*x).sum::<f32>()>0.01);
+            for i in 256..8192 {
+                assert_eq!(mono[i],mono[i+8192]);
+                assert!((mono[i]-(stereo[i]+stereo[i+8192])*0.5).abs()<1e-7);
+                assert!(mono[i].abs()<=stereo[i].abs().max(stereo[i+8192].abs())+1e-7);
+            }
+            if engine==3 {
+                assert!((256..8192).any(|i|(stereo[i]-stereo[i+8192]).abs()>0.001),"SIX fixture must exercise stereo chorus");
+            }
+        }
+    }
+    #[test] fn switching_mono_output_keeps_effect_tails_and_restores_stereo() {
+        let (mut reference,mut s)=(note_synth(3,true,100),note_synth(3,true,100));
+        assert_eq!(audio(&mut s),audio(&mut reference));
+        for synth in [&mut reference,&mut s] { synth.midi(0x80,60,0); }
+        s.mono_output(true);
+        let (stereo,mono)=(audio(&mut reference),audio(&mut s));
+        assert!(mono[256..8192].iter().map(|x|x*x).sum::<f32>()>0.01);
+        for i in 256..8192 { assert_eq!(mono[i],mono[i+8192]); assert!((mono[i]-(stereo[i]+stereo[i+8192])*0.5).abs()<1e-7); }
+        s.mono_output(false);
+        let (expected,actual)=(audio(&mut reference),audio(&mut s));
+        assert_eq!(&actual[256..8192],&expected[256..8192]);
+        assert_eq!(&actual[8192+256..],&expected[8192+256..]);
+    }
+    #[test] fn mono_crossfade_is_smooth_bounded_and_preserves_output_protection() {
+        let mut s=Synth::new(); s.gain=1.0; s.target_gain=1.0;
+        for rate in [44100.0,48000.0,96000.0] {
+            s.sample_rate=rate; s.mono_mix=0.0;
+            let (mut l,mut r)=([0.0;N],[0.0;N]);
+            let step=1.0/(0.005*rate);
+            for enabled in [true,false] {
+                s.mono_output(enabled);
+                let mut previous=1.0-s.mono_mix;
+                for _ in 0..8 {
+                    s.cursor=0; s.outputs[0].fill(10.0); s.outputs[1].fill(-10.0);
+                    s.render(&mut l,&mut r,rate);
+                    for (&x,&y) in l.iter().zip(&r) {
+                        assert!(x>=0.0 && x<=1.0); assert_eq!(x,-y);
+                        assert!((x-previous).abs()<=step+1e-6); previous=x;
+                    }
+                }
+                assert_eq!(s.mono_mix,if enabled {1.0} else {0.0});
+            }
+            s.mono_output(true); s.mono_mix=1.0;
+            s.cursor=0; s.outputs[0].fill(0.6); s.outputs[1].fill(f32::NAN);
+            s.render(&mut l,&mut r,rate); assert!(l.iter().all(|x|*x==0.3)); assert_eq!(l,r);
+        }
+    }
+    #[test] fn one_keeps_last_note_priority_in_both_output_modes() {
+        for enabled in [false,true] {
+            let mut s=note_synth(2,true,32); s.mono_output(enabled);
+            s.midi(0x91,64,100); s.midi(0x90,67,80);
+            s.midi(0x90,67,0); assert_eq!((s.voices[0].note,s.voices[0].channel),(64,1));
+            s.midi(0xb1,123,0); assert_eq!((s.voices[0].note,s.voices[0].velocity),(60,32));
+            s.midi(0x80,60,0); assert!(!s.voices[0].gate);
         }
     }
     #[test] fn global_velocity_controls_actual_audio_for_every_engine() {
