@@ -1,0 +1,147 @@
+.module-crisp .moduleHeader {
+}
+
+.module-crisp .moduleBody {
+  padding: 0;
+}
+
+.crispPanel {
+  display: grid;
+  grid-template-columns: 240px minmax(0, 1fr);
+  gap: 8px;
+  min-height: 0;
+  height: 100%;
+  padding: 8px 10px;
+}
+
+.crispDisplay {
+  display: grid;
+  grid-template-rows: 1fr auto;
+  min-height: 0;
+  border: 2px solid #111111;
+  overflow: hidden;
+}
+
+.crispNoiseBars {
+  display: grid;
+  grid-template-columns: repeat(21, minmax(0, 1fr));
+  align-items: center;
+  gap: 2px;
+  min-height: 0;
+  padding: 10px 8px 6px;
+}
+
+.crispNoiseBars span {
+  width: 100%;
+  min-height: 6px;
+  border: 1px solid rgba(17, 17, 17, 0.34);
+}
+
+.crispDisplayReadout {
+  display: grid;
+  grid-template-columns: 1fr auto auto;
+  gap: 8px;
+  align-items: center;
+  border-top: 1px solid rgba(17, 17, 17, 0.26);
+  padding: 5px 8px;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0;
+  text-transform: uppercase;
+}
+
+.crispControls {
+  display: grid;
+  grid-template-columns: 150px 174px minmax(0, 1fr);
+  gap: 8px;
+  min-width: 0;
+  min-height: 0;
+}
+
+.crispSwitchPanel {
+  display: grid;
+  align-content: start;
+  gap: 8px;
+  border: 1px solid rgba(17, 17, 17, 0.18);
+  padding: 7px;
+}
+
+.crispModeSwitches,
+.crispToggles {
+  display: grid;
+  gap: 5px;
+}
+
+.crispModeSwitches button,
+.crispToggles button {
+  height: 25px;
+  border: 2px solid #111111;
+  font: inherit;
+  font-size: 10px;
+  font-weight: 900;
+  letter-spacing: 0;
+  text-transform: uppercase;
+}
+
+.crispPrimaryBlock {
+  display: grid;
+  align-content: start;
+  gap: 7px;
+  border: 1px solid rgba(17, 17, 17, 0.18);
+  padding: 7px 6px 6px;
+}
+
+.crispPrimaryKnobs {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 6px;
+}
+
+.module-crisp .crispPrimaryKnobs .knobValue {
+  display: none;
+}
+
+.crispPrimaryBlock .crispToggles {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.module-crisp:not(.moduleConnectionView) .crispSections {
+  grid-template-columns: minmax(120px, 0.7fr) minmax(220px, 1fr);
+  align-content: start;
+  min-height: 0;
+}
+
+.module-crisp .productionSection {
+  padding: 6px;
+  border-top-width: 4px;
+}
+
+.module-crisp .productionSectionKnobs {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 5px 6px;
+}
+
+.module-crisp .productionSection:nth-child(2) .productionSectionKnobs {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.module-crisp .knob {
+  gap: 2px;
+}
+
+.module-crisp .knobFace {
+  --knob-face-size: 38px;
+  --knob-center-size: 9px;
+  --knob-needle-top: 6px;
+  --knob-needle-height: 14px;
+  --knob-needle-origin-y: 14px;
+}
+
+.module-crisp .knobLabel {
+  font-size: 9px;
+  line-height: 1;
+}
+
+.module-crisp .productionSection .knobValue {
+  display: none;
+}

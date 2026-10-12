@@ -1,0 +1,10 @@
+.module-r6.rackUnits-1 .tr606Voices {
+    grid-template-columns: 1fr 1fr 1fr 2fr 2fr 3fr;
+}
+
+.module-r6.rackUnits-1 .productionSection {
+    align-content: center;
+    align-self: center;
+    gap: 5px;
+    padding: 6px;
+}

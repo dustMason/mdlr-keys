@@ -1,0 +1,258 @@
+.module-r8:not(.moduleConnectionView) {
+    --r8-panel: #171817;
+    --r8-panel-soft: #20201d;
+    --r8-line: #b1a481;
+    --r8-line-soft: rgba(196, 183, 148, 0.5);
+    --r8-text: #cfc2a2;
+    --r8-muted: #a59a80;
+    --r8-orange: #5d2c11;
+    --r8-orange-hot: #e26b2d;
+    --r8-knob: #cfc6ab;
+    --r8-knob-dark: #746a52;
+    color: var(--r8-text);
+    background: #111212;
+}
+
+.module-r8:not(.moduleConnectionView) .rackFlange {
+    border-color: #050505;
+    background:
+        radial-gradient(
+            circle at 18% 18%,
+            rgba(255, 255, 255, 0.08),
+            transparent 20%
+        ),
+        #151716;
+}
+
+.module-r8:not(.moduleConnectionView) .rackScrew {
+    border-color: #080808;
+    background: radial-gradient(
+        circle at 42% 36%,
+        #797966 0 15%,
+        #2a2b25 30%,
+        #070707 68%
+    );
+}
+
+.module-r8:not(.moduleConnectionView) .moduleFace {
+    border-color: #070707;
+    background: var(--r8-panel);
+}
+
+.module-r8:not(.moduleConnectionView) .moduleHeader {
+    border-bottom-color: #2b211b;
+    background: #20201f;
+    color: var(--r8-text);
+}
+
+.module-r8:not(.moduleConnectionView) .moduleHeader::after {
+    content: "rhythm composer R8";
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    color: var(--r8-orange-hot);
+    font-size: 13px;
+    font-weight: 800;
+    letter-spacing: 0.14em;
+    line-height: 1;
+    pointer-events: none;
+    text-transform: uppercase;
+    transform: translate(-50%, -50%);
+}
+
+.module-r8:not(.moduleConnectionView) .moduleName {
+    color: var(--r8-orange-hot);
+}
+
+.module-r8:not(.moduleConnectionView) .moduleLabelInput {
+    border-color: #3a3a37;
+    background: #1a1b1a;
+    color: var(--r8-text);
+}
+
+.module-r8:not(.moduleConnectionView) .moduleActivityMeter span {
+    border-color: rgba(207, 194, 162, 0.45);
+    background: #141515;
+}
+
+.module-r8:not(.moduleConnectionView) .moduleActivityMeter span.isActive {
+    background: var(--r8-orange-hot);
+}
+
+.module-r8:not(.moduleConnectionView) .moduleDeleteButton {
+    border-color: var(--r8-orange);
+    background: transparent;
+    color: var(--r8-text);
+}
+
+.module-r8:not(.moduleConnectionView) .moduleBody {
+    padding: 0;
+    background:
+        radial-gradient(
+            circle at 40% 0%,
+            rgba(255, 255, 255, 0.035),
+            transparent 30%
+        ),
+        var(--r8-panel);
+}
+
+.r8Panel {
+    display: grid;
+    grid-template-rows: minmax(0, 1fr);
+    height: 100%;
+    min-height: 0;
+    padding: 12px 14px 10px;
+    background:
+        linear-gradient(90deg, rgba(255, 255, 255, 0.025) 1px, transparent 1px),
+        linear-gradient(
+            180deg,
+            rgba(255, 255, 255, 0.018) 1px,
+            transparent 1px
+        ),
+        var(--r8-panel);
+    background-size: 6px 6px;
+}
+
+.r8VoiceGrid {
+    display: grid;
+    align-items: stretch;
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+    grid-auto-rows: minmax(0, 1fr);
+    min-width: 0;
+    min-height: 0;
+    gap: 10px;
+}
+
+.r8Panel .productionSection {
+    display: grid;
+    grid-template-rows: auto auto minmax(0, 1fr);
+    align-content: start;
+    gap: 7px;
+    min-height: 0;
+    padding: 9px 12px 10px;
+    border: 1px solid rgba(209, 197, 160, 0.1);
+    background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.025), transparent 42%),
+        var(--r8-panel-soft);
+}
+
+.r8Panel .productionSectionTitle {
+    margin: 0;
+    border-bottom: 1px solid var(--r8-line-soft);
+    color: var(--r8-text);
+    text-align: center;
+    font-size: 12px;
+    line-height: 1.35;
+    letter-spacing: 0.08em;
+}
+
+.r8Panel .productionSectionAccessory {
+    min-width: 0;
+}
+
+.r8Segment > div {
+    display: grid;
+    grid-auto-flow: column;
+    grid-auto-columns: minmax(0, 1fr);
+    min-height: 33px;
+    border: 1px solid var(--r8-orange);
+}
+
+.r8Segment button {
+    min-height: 31px;
+    border: 0;
+    border-right: 1px solid var(--r8-orange);
+    cursor: pointer;
+    padding: 0 4px;
+    background: #191a18;
+    color: var(--r8-text);
+    text-transform: uppercase;
+    white-space: nowrap;
+    font-size: 11px;
+}
+
+.r8Segment button:last-child {
+    border-right: 0;
+}
+
+.r8Segment button.isActive {
+    background: #3a2117;
+    color: #f1d4aa;
+}
+
+.r8VoiceGrid .productionSectionKnobs {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    align-items: start;
+    gap: 8px 16px;
+    min-width: 0;
+}
+
+.r8VoiceGrid .knob {
+    gap: 4px;
+    color: var(--r8-text);
+}
+
+.r8VoiceGrid .productionSectionKnobs .knob:first-child:last-child,
+.r8VoiceGrid .productionSectionKnobs .knob:nth-child(3):last-child {
+    grid-column: 1 / -1;
+    justify-self: center;
+}
+
+.r8VoiceGrid .knobLabel {
+    color: var(--r8-text);
+    font-size: 11px;
+    line-height: 1;
+    letter-spacing: 0.04em;
+}
+
+.r8VoiceGrid .knobValue {
+    display: none;
+    color: var(--r8-text);
+    font-size: 11px;
+}
+
+.r8VoiceGrid .knobFace {
+    --knob-face-size: 37px;
+    --knob-center-size: 0px;
+    --knob-needle-width: 3px;
+    --knob-needle-offset: -1.5px;
+    --knob-needle-top: 4.5px;
+    --knob-needle-height: 14px;
+    --knob-needle-origin-y: 13px;
+    overflow: visible;
+    border: 1px solid #181818;
+    background: radial-gradient(
+        circle at 48% 38%,
+        rgba(255, 255, 255, 0.35) 0 9%,
+        transparent 70%
+    );
+}
+
+.r8VoiceGrid .knobFace::after {
+    content: "";
+    position: absolute;
+    inset: 6px;
+    border-radius: 50%;
+    background:
+        radial-gradient(
+            circle at 35% 25%,
+            rgba(255, 255, 255, 0.24),
+            transparent 28%
+        ),
+        #c6bda1;
+    pointer-events: none;
+    z-index: 1;
+}
+.r8VoiceGrid .knobFace::before {
+    display: none;
+}
+
+.r8VoiceGrid .knobNeedle {
+    background: var(--r8-knob-dark);
+}
+
+.r8VoiceGrid .knob:focus-within .knobFace {
+    outline: 1px solid var(--r8-knob-dark);
+    outline-offset: 2px;
+}

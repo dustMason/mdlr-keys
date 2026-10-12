@@ -1,0 +1,11 @@
+Generated using the built-in image_gen tool.
+Original artwork: app-icon-source.png (1254 x 1254, opaque RGB).
+Application sizes are exported by Scripts/build-icons.py using macOS sips.
+
+Use case: logo-brand.
+Asset type: finished square iPad app icon for the MDLR synthesizer, 1024 by 1024 pixels.
+Primary request: the four uppercase letters MDLR, arranged in a clean, tightly composed 2 by 2 grid. Top row M D. Bottom row L R. Exactly those four letters.
+Style: bold authentic bitmap pixel font, solid square pixels, strong chunky strokes, crisp right-angle edges and stair-step diagonals. Each letter has the same height and occupies an equal square cell. The M must read clearly as M, the D clearly as D, the L clearly as L, and the R clearly as R. Elegant retro digital instrument identity; simple, assertive and highly legible at small sizes.
+Composition: large centered letter grid, even horizontal and vertical gutters, generous equal outer safety margins about 16% on all sides. The letters together form a nearly square compact mark. No drawn grid lines or separators.
+Palette: warm off-white lettering on an opaque flat dark charcoal background to match the app's dark synth panels.
+Constraints: flat artwork only, full-bleed square background, no rounded icon container, no border, no additional symbols or text, no gradient, glow, texture, bevel, shadow, perspective, mockup or watermark. The OS will apply the icon mask.

@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 52">
+  <defs>
+    <filter id="faderShadow" x="-14%" y="-30%" width="128%" height="160%">
+      <feDropShadow dx="0" dy="3" stdDeviation="2" flood-color="#000000" flood-opacity=".32"/>
+    </filter>
+  </defs>
+  <rect x="12" y="7" width="96" height="36" rx="3" fill="#7d7c75" filter="url(#faderShadow)"/>
+  <rect x="15" y="6" width="90" height="32" rx="2" fill="#d8d6ca"/>
+  <path d="M17 8 H103 V14 H17Z" fill="#e4e2da" opacity=".22"/>
+  <rect x="18" y="14" width="84" height="1.5" fill="#7d7c75" opacity=".34"/>
+<rect x="18" y="18" width="84" height="1.5" fill="#7d7c75" opacity=".34"/>
+<rect x="18" y="22" width="84" height="1.5" fill="#7d7c75" opacity=".34"/>
+<rect x="18" y="26" width="84" height="1.5" fill="#7d7c75" opacity=".34"/>
+<rect x="18" y="30" width="84" height="1.5" fill="#7d7c75" opacity=".34"/>
+<rect x="18" y="34" width="84" height="1.5" fill="#7d7c75" opacity=".34"/>
+  <rect x="16" y="35" width="88" height="4" fill="#000000" opacity=".26"/>
+</svg>

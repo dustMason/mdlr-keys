@@ -1,0 +1,83 @@
+.curvePanel {
+  display: grid;
+  grid-template-columns: 152px minmax(0, 1fr);
+  gap: 10px;
+  height: 100%;
+  min-height: 0;
+}
+
+.curveControls {
+  display: grid;
+  align-content: start;
+  gap: 10px;
+  min-width: 0;
+  padding: 7px;
+  border: 1px solid rgba(17, 17, 17, 0.2);
+}
+
+.curveSegments,
+.curveTabs {
+  display: grid;
+  gap: 4px;
+}
+
+.curveSegments {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.curveTabs {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.curveSegments button,
+.curveTabs button {
+  min-width: 0;
+  height: 34px;
+  border: 1px solid rgba(17, 17, 17, 0.36);
+  cursor: pointer;
+  font: inherit;
+  font-size: 13px;
+  font-weight: 900;
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+
+
+
+.curveEditor {
+  width: 100%;
+  height: 100%;
+  min-height: 118px;
+  border: 2px solid #111111;
+  cursor: crosshair;
+  touch-action: none;
+}
+
+.curveEditor rect {
+  fill: #f7f7f3;
+}
+
+.curveGrid {
+  stroke: rgba(17, 17, 17, 0.16);
+  stroke-width: 1;
+  vector-effect: non-scaling-stroke;
+}
+
+.curveGridBeat,
+.curveGridHorizontal {
+  stroke: rgba(17, 17, 17, 0.28);
+}
+
+.curveTrace {
+  fill: none;
+  stroke: var(--curve-color);
+  stroke-width: 1.5;
+  opacity: 0.36;
+  vector-effect: non-scaling-stroke;
+}
+
+.curveTrace.isActive {
+  stroke-width: 3;
+  opacity: 1;
+}

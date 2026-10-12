@@ -1,0 +1,282 @@
+.module-rhythm-sequencer .moduleHeader {
+}
+
+.module-rhythm-sequencer .moduleBody {
+    padding: 0;
+}
+
+.rhythmSeqPanel {
+    display: grid;
+    gap: 5px;
+}
+
+.rhythmSeqTop {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 120px 132px 86px 108px 122px;
+    gap: 6px;
+    min-width: 0;
+}
+
+.rhythmSeqBanks {
+    display: grid;
+    grid-template-columns: auto repeat(8, minmax(0, 1fr));
+    gap: 3px;
+    padding: 5px;
+    border: 1px solid rgba(17, 17, 17, 0.22);
+    align-items: center;
+}
+
+.rhythmSeqBanksLabel {
+    padding: 0 8px 0 2px;
+    font-size: 10px;
+    font-weight: 800;
+    line-height: 24px;
+    text-transform: uppercase;
+    white-space: nowrap;
+}
+
+.rhythmSeqLength,
+.rhythmSeqPages,
+.rhythmSeqMeter {
+    display: grid;
+    min-width: 0;
+    padding: 5px;
+    border: 1px solid rgba(17, 17, 17, 0.22);
+}
+
+.rhythmSeqMeter {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.rhythmSeqLength {
+    grid-template-columns: auto repeat(3, minmax(0, 1fr));
+}
+
+.rhythmSeqPages {
+    grid-template-columns: auto repeat(4, minmax(0, 1fr));
+}
+
+.rhythmSeqActions {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    min-width: 0;
+    padding: 5px;
+    border: 1px solid rgba(17, 17, 17, 0.22);
+}
+
+.rhythmSeqShuffle {
+    display: grid;
+    min-width: 0;
+    padding: 3px 6px;
+    border: 1px solid rgba(17, 17, 17, 0.22);
+}
+
+.rhythmSeqShuffle .knob {
+    grid-template-columns: auto 24px 24px;
+    grid-template-rows: 24px;
+    justify-content: center;
+    align-items: center;
+    gap: 6px;
+    min-width: 0;
+}
+
+.rhythmSeqShuffle .knobLabel,
+.rhythmSeqShuffle .knobValue {
+    width: auto;
+    min-height: 0;
+    font-size: 10px;
+    line-height: 24px;
+}
+
+.rhythmSeqShuffle .knobFace {
+    --knob-face-size: 24px;
+    --knob-center-size: 5px;
+    --knob-needle-width: 2px;
+    --knob-needle-offset: -1px;
+    --knob-needle-top: 4px;
+    --knob-needle-height: 9px;
+    --knob-needle-origin-y: 8px;
+}
+
+.rhythmSeqBanks button,
+.rhythmSeqLength button,
+.rhythmSeqPages button,
+.rhythmSeqMeter button,
+.rhythmSeqActions button {
+    position: relative;
+    min-width: 0;
+    height: 24px;
+    border: 1px solid rgba(17, 17, 17, 0.28);
+    cursor: pointer;
+    padding: 0;
+    text-align: center;
+    font: inherit;
+    font-size: 10px;
+    font-weight: 800;
+    line-height: 22px;
+}
+
+.rhythmSeqLength button + button,
+.rhythmSeqPages button + button,
+.rhythmSeqMeter button + button {
+    border-left: 0;
+}
+
+.rhythmSeqActions button + button {
+    border-left: 0;
+}
+
+.rhythmSeqBanks button::after {
+    content: "";
+    position: absolute;
+    right: 4px;
+    bottom: 4px;
+    width: 4px;
+    height: 4px;
+    background: #111111;
+    opacity: 0;
+}
+
+.rhythmSeqBanks button.hasNotes::after {
+    opacity: 0.45;
+}
+
+.rhythmSeqBanks button.isActive::after {
+    opacity: 1;
+}
+
+.rhythmSeqBanks button.isActive,
+.rhythmSeqLength button.isActive,
+.rhythmSeqPages button.isActive,
+.rhythmSeqMeter button.isActive {
+    background: #111111;
+    color: #f3f3f3;
+    border-color: #111111;
+}
+
+.rhythmSeqPages button:disabled {
+    cursor: not-allowed;
+    opacity: 0.35;
+}
+
+.rhythmSeqGrid {
+    display: grid;
+    gap: 2px;
+    padding: 5px;
+    border: 1px solid rgba(17, 17, 17, 0.18);
+}
+
+.rhythmSeqRow {
+    display: grid;
+    grid-template-columns: 48px repeat(16, minmax(0, 1fr));
+    gap: 3px;
+    align-items: center;
+}
+
+.rhythmSeqTrack {
+    display: grid;
+    place-items: center;
+    height: 19px;
+    min-width: 0;
+    border: 1px solid #111111;
+    font: inherit;
+    font-size: 10px;
+    font-weight: 700;
+    cursor: pointer;
+    overflow: hidden;
+    padding: 0;
+    text-overflow: ellipsis;
+    text-transform: uppercase;
+    white-space: nowrap;
+}
+
+.rhythmSeqTrack.isActive {
+    background: #111111;
+    color: #f3f3f3;
+}
+
+.rhythmSeqTrack.isMuted {
+    background: rgba(17, 17, 17, 0.08);
+    color: rgba(17, 17, 17, 0.72);
+}
+
+.rhythmSeqStepCell {
+    --rhythm-on: #3b82f6;
+    --rhythm-accent: #ef4444;
+    position: relative;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 15px;
+    height: 19px;
+    min-width: 0;
+    border: 1px solid rgba(17, 17, 17, 0.26);
+    background: transparent;
+}
+
+.rhythmSeqStepCell.isOutsideMeter {
+    cursor: not-allowed;
+    opacity: 0.34;
+}
+
+.rhythmSeqStepCell button {
+    position: relative;
+    display: grid;
+    place-items: center;
+    min-width: 0;
+    height: 100%;
+    padding: 0;
+    border: 0;
+    cursor: pointer;
+    background: transparent;
+    color: inherit;
+    font: inherit;
+}
+
+.rhythmSeqStepCell button:disabled {
+    cursor: not-allowed;
+}
+
+.rhythmSeqStepState {
+    border-right: 1px solid rgba(17, 17, 17, 0.18);
+}
+
+.rhythmSeqStepCell.isOn .rhythmSeqStepState {
+    background: var(--rhythm-on);
+    color: #f7fbff;
+}
+
+.rhythmSeqStepCell.isAccented .rhythmSeqStepState {
+    background: var(--rhythm-accent);
+    color: #fff7f7;
+}
+
+.rhythmSeqStepCell .rhythmSeqStepRatchet {
+    color: rgba(17, 17, 17, 0.72);
+    font-size: 7px;
+    font-weight: 800;
+    line-height: 1;
+}
+
+.rhythmSeqStepCell.hasRatchet .rhythmSeqStepRatchet {
+    color: #111111;
+    background: rgba(17, 17, 17, 0.1);
+}
+
+.rhythmSeqStepCell.isPlayhead {
+    box-shadow: inset 0 0 0 1px #f3f3f3;
+}
+
+.rhythmSeqStepCell.isPlayhead.isOn,
+.rhythmSeqStepCell.isPlayhead.isAccented {
+    box-shadow:
+        inset 0 0 0 1px #f3f3f3,
+        0 0 0 1px #111111;
+}
+
+.rhythmSeqRow.isMuted .rhythmSeqStepCell.isOn,
+.rhythmSeqRow.isMuted .rhythmSeqStepCell.isAccented {
+    opacity: 0.5;
+}
+
+.rhythmSeqStepCell:nth-child(4n + 2) {
+    border-left-width: 2px;
+}

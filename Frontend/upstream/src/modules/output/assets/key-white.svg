@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 86 180" preserveAspectRatio="none">
+  <defs>
+    <filter id="whiteKeyGrain">
+      <feTurbulence type="fractalNoise" baseFrequency="0.86" numOctaves="2" seed="91" result="noise"/>
+      <feColorMatrix in="noise" type="matrix" values="0 0 0 0 .55 0 0 0 0 .55 0 0 0 0 .55 0 0 0 .12 0" result="grain"/>
+      <feBlend in="SourceGraphic" in2="grain" mode="multiply"/>
+    </filter>
+  </defs>
+  <rect x="2" y="0" width="82" height="178" rx="2" fill="#f3f2ea" filter="url(#whiteKeyGrain)"/>
+  <path d="M6 4 H80 V34 H6Z" fill="#f6f5ef" opacity=".2"/>
+  <path d="M5 148 H81 V177 H5Z" fill="#000000" opacity=".06"/>
+  <rect x="2" y="0" width="82" height="178" rx="2" fill="none" stroke="#afaea8" stroke-opacity=".42"/>
+</svg>

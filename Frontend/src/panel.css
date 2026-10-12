@@ -1,0 +1,210 @@
+:root {color-scheme:dark;background:#111315}
+html,body,#root {margin:0;width:100%;height:100%;min-width:0;overflow:hidden;background:#111315}
+main.nativeHost {height:100%}
+.panelScroll {width:100%;height:100%;overflow:auto;-webkit-overflow-scrolling:touch;padding:2px 0;box-sizing:border-box;min-height:0}
+.panelBounds {position:relative;margin:0 auto}
+.panelCanvas {position:absolute;left:0;top:0;width:1046px;transform-origin:top left}
+.panelCanvas .rackModule {position:relative;top:auto;left:auto;transition:none}
+.panelCanvas .moduleHeader.nativePanelHeader {display:flex;justify-content:space-between;align-items:center;padding:8px 16px;cursor:default}
+.originalLabel {opacity:.55;font-size:12px;font-weight:700;letter-spacing:2px}
+.panelCanvas .knobFace,.panelCanvas .fiveSwitchButton,.panelCanvas .sixFader,.panelCanvas .oneFader,.panelCanvas input[type=range] {touch-action:none}
+.previewToolbar {height:62px;padding:8px 16px;display:flex;gap:16px;align-items:center;color:#eee;background:#171b1d;font:12px ui-monospace,monospace;box-sizing:border-box}
+.previewToolbar nav {display:flex;gap:8px;margin-left:auto}
+.previewToolbar button {padding:8px 12px;border:1px solid #454d50;border-radius:5px;color:#ddd;background:#252b2e;font:inherit;cursor:pointer}
+.previewToolbar button[aria-pressed=true]{background:#d6e0da;color:#101416}
+.previewToolbar small{color:#8d969a}
+.browserPreview{height:100%;display:flex;flex-direction:column}
+.browserPreview .panelScroll{flex:1}
+@media(max-width:700px){.previewToolbar{height:auto;flex-wrap:wrap}.previewToolbar small{display:none}.previewToolbar nav{margin:0}}
+
+
+/* The standalone panel uses the screen, rather than a fixed-height rack slot. */
+.panelScroll {padding:0;overscroll-behavior:contain}
+.panelBounds {margin:0}
+.panelCanvas .rackModule {--rack-flange-width:0px;border:0}
+.panelCanvas .rackFlange,.panelCanvas .moduleHeader.nativePanelHeader {display:none}
+.panelCanvas .moduleFace {grid-template-rows:minmax(0,1fr)}
+.panelCanvas .moduleBody {height:100%}
+.panelCanvas .fivePanel {
+  grid-template-rows:repeat(4,minmax(0,1fr));
+  grid-template-areas:"osc1 mixer filter volume" "osc2 osc2 filter tune" "poly wheel wheel wheel" "lfo perform perform perform";
+  padding:16px 12px;gap:14px 10px;
+}
+.panelCanvas .moduleDefaultSkin.module-five .fivePanel .fiveKnob {--five-knob-size:52px;min-width:52px}
+.panelCanvas .moduleDefaultSkin.module-five .fivePanel .knobLabel {font-size:10px;line-height:1.2}
+.panelCanvas .fiveSectionTitle {font-size:11px;top:-7px}
+.panelCanvas .fiveSection {padding:20px 10px 12px}
+.panelCanvas .fiveFilterControls {align-items:center}
+.panelCanvas .fiveSwitch {min-height:48px!important;touch-action:manipulation}
+.panelCanvas .fiveSwitchLabel,.panelCanvas .fiveGroupLabel,.panelCanvas .fiveRouteLabel {font-size:10px}
+.panelCanvas .fiveOscControls {grid-template-columns:minmax(52px,.8fr) minmax(72px,1.1fr) minmax(60px,1fr) minmax(44px,.7fr)}
+.panelCanvas .fiveOsc2Controls {grid-template-columns:repeat(2,minmax(52px,.65fr)) minmax(110px,1.3fr) minmax(68px,1fr) minmax(96px,1.1fr)}
+.panelCanvas .fivePerformanceSection {padding:12px;transform:none}
+.panelCanvas .fivePerformanceSection > * {transform:none}
+.panelCanvas .knobFace {min-width:48px;min-height:48px;touch-action:none;cursor:ns-resize;-webkit-user-select:none;user-select:none}
+.panelCanvas .knobFace:focus-visible {outline:2px solid #ffd08a;outline-offset:4px}
+.panelCanvas .module-fm4 .fm4MovementKnobFace {transform:scale(1.5)}
+.panelCanvas .fm4MacroHeader {font-size:12px}
+.panelCanvas .fm4MacroValue {font-size:16px;bottom:10%}
+.panelCanvas .oneFaderInput,.panelCanvas .sixFaderInput {touch-action:none}
+.panelCanvas.compact .fivePanel {
+  grid-template-columns:1fr 1fr;grid-template-rows:150px 160px 220px 180px 140px 100px;
+  grid-template-areas:"osc1 mixer" "osc2 osc2" "filter filter" "poly wheel" "lfo perform" "volume tune";
+}
+.panelCanvas.compact .fiveWheelControls {grid-template-columns:64px minmax(0,1fr);gap:4px}
+.panelCanvas.compact .fiveWheelDestinations {gap:2px}
+.panelCanvas.compact .fiveWheelDestinations .fiveSwitchLabel {font-size:8px}
+.panelCanvas.compact .fm4Panel {grid-template-columns:repeat(2,minmax(0,1fr));grid-template-rows:repeat(4,minmax(0,1fr))}
+.touchReadout {position:fixed;bottom:20px;left:50%;transform:translateX(-50%);z-index:50;display:flex;gap:18px;align-items:center;padding:12px 20px;border:1px solid #697275;border-radius:10px;background:#13191ef2;color:#edf5f3;font:14px ui-monospace,monospace;box-shadow:0 4px 24px #0008;pointer-events:none;text-transform:uppercase}
+.touchReadout strong {font-size:20px;color:#ffcc91}
+
+/* Override the original ONE rack styles at the same specificity. */
+.panelCanvas .onePanel {
+  grid-template-columns:120px 180px minmax(320px,1fr) minmax(320px,1fr);
+  grid-template-rows:repeat(2,minmax(0,1fr));
+  grid-template-areas:"tune mod vco mixer" "perf vca filter env";
+  padding:0;overflow:hidden;
+}
+.panelCanvas .moduleDefaultSkin.module-one:not(.moduleConnectionView) .moduleBody .onePanel .productionSection {
+  padding:12px;gap:12px;grid-template-rows:24px minmax(0,1fr);
+}
+.panelCanvas .moduleDefaultSkin.module-one:not(.moduleConnectionView) .moduleBody .onePanel .productionSectionTitle {
+  font-size:16px;height:24px;line-height:22px;color:var(--one-text);letter-spacing:.04em;
+}
+.panelCanvas .moduleDefaultSkin.module-one:not(.moduleConnectionView) .moduleBody .onePanel .oneFaderLabel,
+.panelCanvas .moduleDefaultSkin.module-one:not(.moduleConnectionView) .moduleBody .onePanel .knobLabel,
+.panelCanvas .onePanel .oneMiniLabel {
+  font-size:14px;line-height:1.2;color:var(--one-text);white-space:normal;overflow:visible;
+}
+.panelCanvas .moduleDefaultSkin.module-one:not(.moduleConnectionView) .moduleBody .onePanel .oneFaderLabel {min-height:36px;align-items:center}
+.panelCanvas .onePanel .oneFaderLabelText {overflow:visible}
+.panelCanvas .moduleDefaultSkin.module-one:not(.moduleConnectionView) .moduleBody .onePanel .knob {gap:14px;min-width:72px}
+.panelCanvas .moduleDefaultSkin.module-one:not(.moduleConnectionView) .moduleBody .onePanel .knobFace {
+  width:64px;height:64px;--knob-face-size:64px;--knob-center-size:8px;
+  --knob-needle-top:8px;--knob-needle-height:23px;--knob-needle-origin-y:24px;
+}
+.panelCanvas .moduleDefaultSkin.module-one:not(.moduleConnectionView) .moduleBody .onePanel .oneTuneSection {
+  grid-template-rows:12px 1fr 1fr;align-content:stretch;
+}
+.panelCanvas .onePanel .oneTuneSection .knob {align-self:center}
+.panelCanvas .onePanel .oneFaderBank {gap:8px}
+.panelCanvas .onePanel .oneFader {min-width:48px;padding:0;gap:8px}
+.panelCanvas .onePanel .oneFaderTrack {width:48px;min-height:90px}
+.panelCanvas .moduleDefaultSkin.module-one:not(.moduleConnectionView) .moduleBody .onePanel .oneFaderTrack::before {width:18px;top:16px;bottom:16px}
+.panelCanvas .moduleDefaultSkin.module-one:not(.moduleConnectionView) .moduleBody .onePanel .oneFaderTrack::after {
+  left:2px;width:44px;top:18px;bottom:18px;
+  -webkit-mask:linear-gradient(90deg,#000 0 5px,transparent 5px 39px,#000 39px 44px);
+  mask:linear-gradient(90deg,#000 0 5px,transparent 5px 39px,#000 39px 44px);
+}
+.panelCanvas .moduleDefaultSkin.module-one:not(.moduleConnectionView) .moduleBody .onePanel .oneFaderCap {
+  width:38px;height:30px;bottom:clamp(16px,var(--one-fader-fill),calc(100% - 16px));border-radius:4px;
+  z-index:1;background:linear-gradient(#45413c,#171716 46%,#090a0a 52%,#292927);
+}
+.panelCanvas .onePanel .oneFaderCap::after {top:13px;width:24px;height:3px}
+.panelCanvas .onePanel .oneFaderInput {margin:0;z-index:2}
+.panelCanvas .onePanel .oneModGrid {grid-template-columns:minmax(68px,1fr) minmax(64px,1fr);gap:12px}
+.panelCanvas .onePanel .oneWaveColumn {gap:12px}
+.panelCanvas .onePanel .oneVcoGrid {grid-template-columns:1fr;grid-template-rows:minmax(140px,1fr) 96px;gap:12px}
+.panelCanvas .onePanel .oneVcoSelectors {grid-template-rows:44px 44px;gap:8px}
+.panelCanvas .onePanel .oneRangeSwitch,.panelCanvas .onePanel .onePwmSwitch {
+  grid-auto-flow:column;grid-auto-columns:minmax(48px,1fr);grid-auto-rows:minmax(44px,1fr);
+}
+.panelCanvas .onePanel .oneMixerGrid {grid-template-columns:minmax(160px,1fr) 64px 48px;gap:10px}
+.panelCanvas .onePanel .oneSegmented {gap:8px}
+.panelCanvas .moduleDefaultSkin.module-one:not(.moduleConnectionView) .moduleBody .onePanel .oneSegmented button {
+  min-width:48px;min-height:44px;padding:8px 4px;font-size:14px;line-height:1.2;border-radius:5px;
+  touch-action:manipulation;white-space:normal;color:var(--one-text);
+}
+.panelCanvas .moduleDefaultSkin.module-one:not(.moduleConnectionView) .moduleBody .onePanel .oneVcaSwitch button {writing-mode:horizontal-tb;transform:none}
+.panelCanvas .onePanel .onePortamentoMode {grid-auto-rows:44px;gap:4px}
+.panelCanvas .onePanel .onePerformanceGrid {gap:12px}
+.panelCanvas .onePanel button:focus-visible,.panelCanvas .onePanel .oneFader:focus-within {outline:2px solid var(--one-amber);outline-offset:-2px}
+.panelCanvas.compact .onePanel {
+  grid-template-columns:repeat(2,minmax(0,1fr));grid-template-rows:230px minmax(340px,1fr) minmax(280px,1fr) 230px;
+  grid-template-areas:"tune mod" "vco mixer" "filter env" "perf vca";
+}
+.panelCanvas.compact .moduleDefaultSkin.module-one:not(.moduleConnectionView) .moduleBody .onePanel .oneTuneSection {
+  grid-template-columns:repeat(2,minmax(0,1fr));grid-template-rows:12px 1fr;
+}
+.panelCanvas.compact .onePanel .onePilotLight {grid-column:1 / -1}
+.panelCanvas.compact .onePanel .oneTuneSection .oneKnobGrid {align-self:center}
+.panelCanvas.compact .onePanel .oneWaveSwitch {grid-template-columns:repeat(2,minmax(48px,1fr));grid-template-rows:repeat(2,minmax(44px,1fr));grid-auto-flow:row}
+.panelCanvas.compact .onePanel .onePerformanceGrid {grid-template-columns:repeat(2,minmax(0,1fr));grid-template-rows:1fr 44px}
+.panelCanvas.compact .onePanel .onePortamentoMode {grid-column:1 / -1}
+
+/* iPad touch revision: generous controls; scroll instead of shrinking the panel. */
+.panelCanvas .touchFader {
+  touch-action:none;user-select:none;-webkit-user-select:none;-webkit-touch-callout:none;
+  cursor:ns-resize;outline:none;border-radius:6px;
+}
+.panelCanvas .touchFader > * {pointer-events:none}
+.panelCanvas .touchFader:focus-visible {outline:2px solid #efbd79;outline-offset:-2px}
+.panelCanvas .knobInput {pointer-events:none}
+.panelCanvas .onePanel {grid-template-columns:128px 176px minmax(360px,1fr) minmax(360px,1fr)}
+.panelCanvas.compact .onePanel {grid-template-columns:repeat(2,minmax(0,1fr));grid-template-rows:250px minmax(360px,1fr) minmax(320px,1fr) 250px}
+.panelCanvas .onePanel .oneFader {min-width:56px;grid-template-rows:auto minmax(0,1fr)}
+.panelCanvas .onePanel .oneFaderTrack {width:56px}
+.panelCanvas .onePanel .oneMixerGrid {grid-template-columns:minmax(184px,1fr) 64px 56px;gap:10px}
+.panelCanvas .moduleDefaultSkin.module-one:not(.moduleConnectionView) .moduleBody .onePanel .knobFace {
+  width:72px;height:72px;--knob-face-size:72px;--knob-needle-height:27px;--knob-needle-origin-y:28px;
+}
+.panelCanvas .moduleDefaultSkin.module-one:not(.moduleConnectionView) .moduleBody .onePanel .oneFaderCap {width:46px;height:34px}
+.panelCanvas .onePanel .oneFaderCap::after {top:15px;width:30px}
+
+.panelCanvas .fivePanel {
+  grid-template-columns:repeat(12,minmax(0,1fr));grid-template-rows:repeat(4,minmax(0,1fr));
+  grid-template-areas:
+    "osc1 osc1 osc1 osc1 osc1 mixer mixer mixer volume volume tune tune"
+    "osc2 osc2 osc2 osc2 osc2 osc2 osc2 lfo lfo lfo lfo lfo"
+    "filter filter filter filter filter filter filter poly poly poly poly poly"
+    "perform perform perform perform wheel wheel wheel wheel wheel wheel wheel wheel";
+  padding:20px 12px;gap:24px 12px;
+}
+.panelCanvas .moduleDefaultSkin.module-five:not(.moduleConnectionView) .fivePanel .fiveKnob {--five-knob-size:72px;min-width:72px;gap:10px}
+.panelCanvas .moduleDefaultSkin.module-five:not(.moduleConnectionView) .fivePanel .knobFace {
+  width:72px;height:72px;--knob-needle-top:9px;--knob-needle-height:27px;--knob-needle-origin-y:27px;
+}
+.panelCanvas .moduleDefaultSkin.module-five:not(.moduleConnectionView) .fivePanel .knobLabel,
+.panelCanvas .fivePanel .fiveSwitchLabel,.panelCanvas .fivePanel .fiveGroupLabel,.panelCanvas .fivePanel .fiveRouteLabel {
+  font-size:14px;line-height:1.2;white-space:normal;overflow:visible;
+}
+.panelCanvas .fiveSectionTitle {font-size:16px;top:-10px;line-height:1.2}
+.panelCanvas .fiveSection {padding:24px 12px 14px}
+.panelCanvas .fiveOscControls {grid-template-columns:72px minmax(104px,1fr) minmax(96px,1fr) 56px;gap:10px}
+.panelCanvas .fiveOsc2Controls {grid-template-columns:72px 72px minmax(164px,1.4fr) 80px minmax(112px,1fr)}
+.panelCanvas .fiveLfoControls {grid-template-columns:72px 72px minmax(164px,1fr);gap:10px;transform:none}
+.panelCanvas .fivePolyControls {grid-template-columns:minmax(156px,1fr) minmax(176px,1.2fr);gap:12px}
+.panelCanvas .fiveWheelControls {grid-template-columns:84px minmax(0,1fr);gap:16px}
+.panelCanvas .fiveRouteGrid {grid-template-rows:minmax(0,1fr) auto;row-gap:12px}
+.panelCanvas .fivePanel .fiveWheelDestinations {gap:8px}
+.panelCanvas .fivePanel .fiveSwitchBank,.panelCanvas .fiveSegmented {gap:8px}
+.panelCanvas .moduleDefaultSkin.module-five:not(.moduleConnectionView) .moduleBody .fivePanel button.fiveSwitch {
+  min-width:48px;min-height:64px;grid-template-rows:36px auto;gap:8px;
+}
+.panelCanvas .fiveSwitchToggle {width:28px;height:36px}
+.panelCanvas .fiveSwitchToggle::after {width:8px;height:8px;top:6px}
+.panelCanvas .fivePerformanceSection {grid-template-columns:repeat(4,minmax(72px,1fr));gap:8px}
+.panelCanvas.compact .fivePanel {
+  grid-template-columns:repeat(6,minmax(0,1fr));grid-template-rows:200px 190px 240px 240px 200px 150px;
+  grid-template-areas:"osc1 osc1 osc1 mixer mixer mixer" "osc2 osc2 osc2 osc2 osc2 osc2"
+    "filter filter filter filter filter filter" "poly poly poly lfo lfo lfo"
+    "wheel wheel wheel wheel wheel wheel" "perform perform perform perform volume tune";
+}
+.panelCanvas.compact .fiveOscControls {grid-template-columns:72px minmax(100px,1fr) minmax(96px,1fr) 48px;gap:6px}
+.panelCanvas.compact .fiveOsc2Controls {grid-template-columns:72px 72px minmax(164px,1.4fr) 80px minmax(112px,1fr)}
+
+.panelCanvas .module-fm4:not(.moduleConnectionView) .fm4MovementKnobFace {
+  transform:none;--knob-face-size:112px;width:112px;height:112px;
+}
+.panelCanvas .module-fm4:not(.moduleConnectionView) .fm4MovementKnobArc {inset:20px}
+.panelCanvas .module-fm4:not(.moduleConnectionView) .fm4MovementKnobHub {width:32px;height:32px}
+.panelCanvas .module-fm4:not(.moduleConnectionView) .fm4MovementKnobNeedle {width:16px;height:14px;margin-left:-8px;transform-origin:50% 55px}
+.panelCanvas .fm4MacroHeader {font-size:18px;line-height:1.3}
+.panelCanvas .fm4MacroValue {font-size:20px;bottom:12px}
+.panelCanvas .fm4MacroPanel {padding:18px 12px}
+.panelCanvas .fm4DetentMap {width:min(100%,260px)}
+.panelCanvas .fm4TopologyMap {width:min(100%,280px)}
+.panelCanvas .fm4DetentLabel,.panelCanvas .fm4TopologyLabel {font-size:11px}
+
+.panelCanvas.wide .fivePanel {grid-template-rows:180px 200px minmax(280px,1fr) 220px}
+.panelCanvas.compact .fivePanel {grid-template-rows:200px 190px 280px 240px 200px 150px}

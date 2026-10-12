@@ -1,0 +1,110 @@
+.chordPanel {
+    display: grid;
+    grid-template-columns: minmax(118px, 1fr) 118px 100px;
+    gap: 7px;
+    min-height: 0;
+    height: 100%;
+    padding: 8px;
+}
+
+.chordTypeSelect {
+    display: grid;
+    align-content: start;
+    gap: 7px;
+    min-width: 0;
+    padding: 7px;
+    text-transform: uppercase;
+}
+
+.chordTypeSelect label {
+    display: grid;
+    gap: 4px;
+    min-width: 0;
+    font-size: 10px;
+    font-weight: 900;
+}
+
+.chordTypeSelect select {
+    width: 100%;
+    border-radius: 0;
+    font: inherit;
+    font-size: 13px;
+    text-transform: uppercase;
+    padding: 10px;
+}
+
+.chordSpreadControl {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 3px;
+}
+
+.chordSpreadControl button {
+    height: 28px;
+    min-width: 0;
+    border: 1px solid #111111;
+    font: inherit;
+    font-size: 9px;
+    font-weight: 900;
+    overflow: hidden;
+    padding: 0 2px;
+    text-overflow: ellipsis;
+    text-transform: uppercase;
+    white-space: nowrap;
+}
+
+.chordVoices {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 5px;
+    min-height: 0;
+}
+
+.chordVoices span {
+    display: grid;
+    place-items: center;
+    min-width: 0;
+    border: 1px solid rgba(17, 17, 17, 0.2);
+    font-size: 12px;
+    font-weight: 900;
+    line-height: 1;
+    text-transform: uppercase;
+}
+
+.chordVoices strong {
+    font-size: 10px;
+}
+
+.chordKnobs {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 4px;
+    align-content: start;
+    border: 1px solid rgba(17, 17, 17, 0.18);
+    padding: 6px 4px;
+}
+
+.module-chord .knob {
+    gap: 2px;
+}
+
+.module-chord .knobFace {
+    --knob-face-size: 38px;
+    --knob-center-size: 9px;
+    --knob-needle-top: 6px;
+    --knob-needle-height: 14px;
+    --knob-needle-origin-y: 14px;
+}
+
+.module-chord .knobLabel {
+    font-size: 9px;
+    line-height: 1;
+}
+
+.module-chord .knobValue {
+    display: none;
+}
+
+.moduleConnectionView .chordPanel {
+    display: none;
+}

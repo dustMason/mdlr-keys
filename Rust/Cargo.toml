@@ -1,0 +1,15 @@
+[package]
+name = "mdlr-ipad-dsp"
+version = "0.1.0"
+edition = "2021"
+license = "UNLICENSED"
+
+[lib]
+name = "mdlr_ipad_dsp"
+crate-type = ["staticlib", "rlib"]
+
+[profile.release]
+opt-level = 3
+lto = true
+codegen-units = 1
+panic = "abort"

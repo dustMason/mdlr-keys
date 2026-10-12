@@ -1,0 +1,250 @@
+.module-lfo .moduleHeader {
+}
+
+.module-lfo .moduleBody {
+  padding: 0;
+}
+
+.lfoPanel {
+  display: grid;
+  gap: 8px;
+}
+
+.lfoScope {
+  height: 86px;
+  border: 1px solid #111111;
+  padding: 6px;
+  overflow: hidden;
+}
+
+.lfoWave {
+  display: block;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+.lfoWave line {
+  stroke: rgba(17, 17, 17, 0.24);
+  stroke-width: 1;
+  vector-effect: non-scaling-stroke;
+}
+
+.lfoWave polyline {
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: square;
+  stroke-linejoin: miter;
+  stroke-width: 2;
+  vector-effect: non-scaling-stroke;
+}
+
+.lfoHighPreview line {
+  stroke: currentColor;
+  stroke-linecap: square;
+  stroke-width: 1.6;
+  vector-effect: non-scaling-stroke;
+}
+
+.lfoHighPreviewRing {
+  fill: none;
+  stroke: rgba(17, 17, 17, 0.26);
+  stroke-width: 1;
+  vector-effect: non-scaling-stroke;
+}
+
+.lfoWaveDot {
+  fill: #111111;
+  stroke: #ffffff;
+  stroke-width: 1.4;
+  vector-effect: non-scaling-stroke;
+}
+
+.lfoSegment {
+  display: grid;
+  gap: 6px;
+  text-transform: uppercase;
+}
+
+.lfoSegments {
+  display: grid;
+  gap: 8px;
+  padding: 7px;
+  border: 1px solid rgba(17, 17, 17, 0.2);
+}
+
+.lfoSegment > span {
+  font-size: 10px;
+}
+
+.lfoSegment > div {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  border: 1px solid #111111;
+}
+
+.lfoSegmentMode > div {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.lfoSegment button {
+  min-width: 0;
+  min-height: 30px;
+  border: 0;
+  border-right: 1px solid #111111;
+  cursor: pointer;
+  overflow: hidden;
+  padding: 0 4px;
+  text-overflow: ellipsis;
+  text-transform: uppercase;
+  white-space: nowrap;
+  font-size: 10px;
+}
+
+.lfoSegment button:last-child {
+  border-right: 0;
+}
+
+.lfoSegment button.isActive {
+  background: #111111;
+  color: #ffffff;
+}
+
+.lfoFaders {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  align-content: stretch;
+  gap: 6px;
+  border: 1px solid rgba(17, 17, 17, 0.18);
+  min-height: 0;
+  padding: 6px;
+}
+
+.lfoFader {
+  position: relative;
+  display: grid;
+  grid-template-rows: auto minmax(90px, 1fr) auto;
+  justify-items: center;
+  min-width: 0;
+  gap: 3px;
+  cursor: ns-resize;
+  text-transform: uppercase;
+}
+
+.lfoFaderLabel,
+.lfoFaderValue {
+  overflow: hidden;
+  max-width: 100%;
+  font-size: 8px;
+  line-height: 1;
+  text-align: center;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.lfoFaderTrack {
+  position: relative;
+  display: block;
+  width: 34px;
+  min-height: 90px;
+}
+
+.lfoFaderTrack::before,
+.lfoFaderFill {
+  position: absolute;
+  left: 50%;
+  width: 3px;
+  transform: translateX(-50%);
+}
+
+.lfoFaderTrack::before {
+  content: "";
+  top: 7px;
+  bottom: 7px;
+  background: #111111;
+}
+
+.lfoFaderFill {
+  bottom: 7px;
+  height: var(--lfo-fader-fill);
+  max-height: calc(100% - 14px);
+  background: #111111;
+}
+
+.lfoFaderCap {
+  position: absolute;
+  left: 50%;
+  bottom: clamp(7px, var(--lfo-fader-fill), calc(100% - 7px));
+  width: 24px;
+  height: 13px;
+  border: 1px solid #111111;
+  transform: translate(-50%, 50%);
+}
+
+.lfoFaderInput {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  cursor: ns-resize;
+  direction: rtl;
+  writing-mode: vertical-lr;
+}
+
+.module-lfo.rackUnits-1 .moduleBody {
+  padding: 0;
+}
+
+.module-lfo.rackUnits-1 .lfoPanel {
+  grid-template-columns: 150px minmax(0, 1fr);
+  grid-template-rows: auto auto;
+  align-items: start;
+  gap: 5px 8px;
+  min-height: 0;
+}
+
+.module-lfo.rackUnits-1 .lfoScope {
+  grid-column: 1;
+  height: 74px;
+  padding: 5px;
+}
+
+.module-lfo.rackUnits-1 .lfoSegment {
+  grid-column: 1;
+  gap: 3px;
+}
+
+.module-lfo.rackUnits-1 .lfoSegments {
+  grid-column: 1;
+  display: grid;
+  gap: 4px;
+  padding: 5px;
+}
+
+.module-lfo.rackUnits-1 .lfoSegment > span {
+  display: none;
+}
+
+.module-lfo.rackUnits-1 .lfoSegment button {
+  min-height: 22px;
+  padding: 0 2px;
+  font-size: 8px;
+}
+
+.module-lfo.rackUnits-1 .lfoFaders {
+  grid-column: 2;
+  grid-row: 1 / span 2;
+  align-content: stretch;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 5px;
+  padding: 6px;
+}
+
+.module-lfo.rackUnits-1 .lfoFader {
+  grid-template-rows: auto minmax(94px, 1fr) auto;
+}
+
+.module-lfo.rackUnits-1 .lfoFaderTrack {
+  min-height: 94px;
+}

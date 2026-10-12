@@ -1,0 +1,716 @@
+.module-six:not(.moduleConnectionView) {
+  --six-bg: #4f5050;
+  --six-panel: #606161;
+  --six-panel-dark: #595959;
+  --six-panel-deep: #434444;
+  --six-line: rgba(246, 246, 238, 0.52);
+  --six-title-red: #91261f;
+  --six-title-blue: #4f70aa;
+  --six-text: #f3f3ee;
+  --six-muted: #d0d0c9;
+  --six-black: #101111;
+  --six-led: #ff3f98;
+  color: var(--six-text);
+  background: #141818;
+}
+
+.rackModule.module-six:not(.moduleConnectionView) .rackFlange {
+  border-color: rgba(226, 229, 222, 0.34);
+  background: var(--six-panel);
+}
+
+.rackModule.module-six:not(.moduleConnectionView) .rackScrew {
+  border-color: rgba(226, 229, 222, 0.42);
+  background: var(--six-panel-dark);
+}
+
+.rackModule.module-six:not(.moduleConnectionView) .rackScrew::before,
+.rackModule.module-six:not(.moduleConnectionView) .rackScrew::after {
+  background: rgba(226, 229, 222, 0.44);
+}
+
+.rackModule.module-six:not(.moduleConnectionView) .moduleHeader {
+  border-bottom-color: rgba(226, 229, 222, 0.34);
+  background: var(--six-panel);
+  color: var(--six-text);
+}
+
+.rackModule.module-six:not(.moduleConnectionView) .moduleCollapseButton span {
+  border-left-color: var(--six-text);
+}
+
+.rackModule.module-six:not(.moduleConnectionView) .moduleLabelInput,
+.rackModule.module-six:not(.moduleConnectionView) .modulePresetSelect,
+.rackModule.module-six:not(.moduleConnectionView) .moduleDeleteButton,
+.rackModule.module-six:not(.moduleConnectionView) .moduleBypassButton {
+  border-color: rgba(226, 229, 222, 0.28);
+  background: var(--six-panel-dark);
+  color: var(--six-text);
+}
+
+.rackModule.module-six:not(.moduleConnectionView) .moduleBody {
+  padding: 0;
+  background: var(--six-bg);
+}
+
+.sixPanel {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  grid-template-rows: minmax(0, 1fr) minmax(0, 1fr);
+  grid-template-areas:
+    "lfo lfo dco dco dco dco dco dco dco chorus chorus chorus"
+    "hpf vcf vcf vcf vcf vcf env1 env1 env1 env2 env2 env2";
+  height: 100%;
+  min-height: 0;
+  overflow: hidden;
+  border: 1px solid #323333;
+  background:
+    radial-gradient(ellipse at 50% 46%, rgba(255, 255, 255, 0.025) 0%, transparent 52%),
+    radial-gradient(ellipse at 50% 50%, transparent 44%, rgba(0, 0, 0, 0.11) 100%),
+    #606161;
+}
+
+.sixSection {
+  display: grid;
+  grid-template-rows: 17px minmax(0, 1fr);
+  min-width: 0;
+  min-height: 0;
+  border-right: 2px solid var(--six-line);
+  background: transparent;
+}
+
+.sixSection h2 {
+  display: grid;
+  place-items: center;
+  height: 17px;
+  margin: 0;
+  overflow: hidden;
+  color: #ffffff;
+  font-size: 12px;
+  font-weight: 900;
+  letter-spacing: 0;
+  line-height: 1;
+  text-align: center;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.sixSection-red h2 {
+  background: var(--six-title-red);
+}
+
+.sixSection-blue h2 {
+  background: var(--six-title-blue);
+}
+
+.sixSection-white h2 {
+  background: #e8e6de;
+  color: #171918;
+}
+
+.sixSectionBody {
+  min-width: 0;
+  min-height: 0;
+  padding: 8px 10px 9px;
+}
+
+.sixLfoSection {
+  grid-area: lfo;
+}
+
+.sixDcoSection {
+  grid-area: dco;
+}
+
+.sixHpfSection {
+  grid-area: hpf;
+}
+
+.sixFilterSection {
+  grid-area: vcf;
+}
+
+.sixChorusSection {
+  grid-area: chorus;
+  border-right: 0;
+}
+
+.sixEnvOneSection {
+  grid-area: env1;
+}
+
+.sixEnvTwoSection {
+  grid-area: env2;
+  border-right: 0;
+}
+
+.sixDcoGrid {
+  display: grid;
+  grid-template-columns: 168px 142px minmax(0, 1fr);
+  align-items: stretch;
+  gap: 10px;
+  height: 100%;
+  min-height: 0;
+}
+
+.sixDcoMod,
+.sixDcoMix,
+.sixVcfGrid,
+.sixEnvGrid,
+.sixChorusFaders {
+  display: grid;
+  align-items: stretch;
+  min-height: 0;
+}
+
+.sixDcoMod {
+  grid-template-columns: 54px 80px;
+  gap: 8px;
+}
+
+.sixDcoMix {
+  grid-template-columns: repeat(2, minmax(96px, 1fr));
+  gap: 12px;
+}
+
+.sixVcfGrid {
+  grid-template-columns: minmax(40px, 0.8fr) minmax(86px, 2fr) minmax(128px, 3fr);
+  gap: 8px;
+  height: 100%;
+}
+
+.sixEnvGrid {
+  grid-template-columns: repeat(4, minmax(34px, 1fr));
+  gap: 8px;
+  height: 100%;
+}
+
+.sixSingleFader {
+  display: grid;
+  height: 100%;
+  place-items: stretch center;
+}
+
+.sixLfoControls {
+  display: grid;
+  grid-template-columns: minmax(38px, 0.72fr) minmax(56px, 1fr);
+  align-items: stretch;
+  gap: 8px;
+  height: 100%;
+  min-height: 0;
+}
+
+.sixLfoKnobs {
+  display: grid;
+  grid-template-rows: repeat(2, minmax(0, 1fr));
+  gap: 5px;
+  min-height: 0;
+}
+
+.module-six:not(.moduleConnectionView) .moduleBody .sixModKnob {
+  align-content: center;
+  gap: 2px;
+  min-height: 0;
+  cursor: ew-resize;
+}
+
+.module-six:not(.moduleConnectionView) .moduleBody .sixModKnob .knobLabel {
+  color: var(--six-text);
+  font-size: 8px;
+  font-weight: 900;
+  letter-spacing: 0;
+  line-height: 1;
+}
+
+.module-six:not(.moduleConnectionView) .moduleBody .sixModKnob .knobFace {
+  --knob-face-size: 36px;
+  --knob-center-size: 10px;
+  --knob-needle-width: 2px;
+  --knob-needle-offset: -1px;
+  --knob-needle-top: 5px;
+  --knob-needle-height: 16px;
+  --knob-needle-origin-y: 13px;
+  overflow: visible;
+  border: 0;
+  background:
+    radial-gradient(circle at 38% 30%, rgba(255, 255, 255, 0.2) 0 8%, transparent 20%),
+    radial-gradient(circle at 50% 54%, #444646 0 22%, #303232 52%, #191b1b 100%);
+  box-shadow:
+    0 3px 4px rgba(0, 0, 0, 0.42),
+    inset 0 1px 1px rgba(255, 255, 255, 0.18),
+    inset 0 -2px 3px rgba(0, 0, 0, 0.38);
+}
+
+.module-six:not(.moduleConnectionView) .moduleBody .sixModKnob .knobFace::after {
+  content: "";
+  position: absolute;
+  inset: -5px;
+  z-index: 1;
+  border-radius: 50%;
+  background: repeating-conic-gradient(
+    from -135deg,
+    rgba(245, 245, 237, 0.56) 0deg 2deg,
+    transparent 2deg 18deg
+  );
+  -webkit-mask: radial-gradient(circle, transparent 0 66%, #000000 68% 73%, transparent 75%);
+  mask: radial-gradient(circle, transparent 0 66%, #000000 68% 73%, transparent 75%);
+  pointer-events: none;
+}
+
+.module-six:not(.moduleConnectionView) .moduleBody .sixModKnob .knobFace::before {
+  border-color: rgba(0, 0, 0, 0.9);
+  background: #303333;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.12),
+    0 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+.module-six:not(.moduleConnectionView) .moduleBody .sixModKnob .knobNeedle {
+  background: #f3f3ee;
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0.7);
+}
+
+.module-six:not(.moduleConnectionView) .moduleBody .sixModKnob .knobValue {
+  display: none;
+}
+
+.module-six:not(.moduleConnectionView) .moduleBody .sixModKnob:focus-within .knobFace {
+  outline: 1px solid rgba(243, 243, 238, 0.75);
+  outline-offset: 2px;
+}
+
+.sixChorusPanel {
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr);
+  gap: 6px;
+  height: 100%;
+  min-height: 0;
+}
+
+.sixChorusFaders {
+  grid-template-columns: repeat(3, minmax(42px, 1fr));
+  gap: 8px;
+}
+
+.sixButtonGroup {
+  display: grid;
+  align-content: start;
+  gap: 8px;
+  min-width: 0;
+  text-transform: uppercase;
+}
+
+.sixButtonGroup > span,
+.sixVerticalSelector > span,
+.sixFaderLabel {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  overflow: hidden;
+  color: var(--six-muted);
+  font-size: 8px;
+  font-weight: 900;
+  letter-spacing: 0;
+  line-height: 1;
+  text-align: center;
+  text-overflow: ellipsis;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.sixButtonRow {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: minmax(0, 1fr);
+  gap: 5px;
+}
+
+.sixRangeGroup .sixButtonRow {
+  grid-auto-flow: row;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  row-gap: 14px;
+  column-gap: 6px;
+  transform: translateY(7px);
+}
+
+.module-six:not(.moduleConnectionView) .moduleBody .sixButtonRow button {
+  position: relative;
+  display: grid;
+  place-items: center;
+  min-width: 0;
+  height: 30px;
+  border: 1px solid #202221;
+  border-radius: 2px;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.3) 0%, transparent 34%),
+    linear-gradient(180deg, #e2e2d7 0%, #c4c6bb 100%);
+  color: #1b1c1c;
+  cursor: pointer;
+  font: inherit;
+  font-size: 9px;
+  font-weight: 900;
+  line-height: 1;
+  padding: 0 4px;
+  box-shadow:
+    0 2px 2px rgba(0, 0, 0, 0.34),
+    inset 0 1px 0 rgba(255, 255, 255, 0.45),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.18);
+  outline: 0;
+  text-transform: uppercase;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.26);
+}
+
+.module-six:not(.moduleConnectionView) .moduleBody .sixButtonRow button:hover,
+.module-six:not(.moduleConnectionView) .moduleBody .sixButtonRow button:focus-visible {
+  border-color: #202221;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.3) 0%, transparent 34%),
+    linear-gradient(180deg, #e2e2d7 0%, #c4c6bb 100%);
+  box-shadow:
+    0 2px 2px rgba(0, 0, 0, 0.34),
+    inset 0 1px 0 rgba(255, 255, 255, 0.45),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.18);
+  outline: 0;
+}
+
+.module-six:not(.moduleConnectionView) .moduleBody .sixButtonRow button::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: -11px;
+  width: 5px;
+  height: 5px;
+  border: 1px solid #333;
+  border-radius: 50%;
+  background: #2d2024;
+  transform: translateX(-50%);
+}
+
+.module-six:not(.moduleConnectionView) .moduleBody .sixButtonRow button.isActive,
+.module-six:not(.moduleConnectionView) .moduleBody .sixButtonRow button[aria-pressed="true"] {
+  border-color: #202221;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.24) 0%, transparent 32%),
+    linear-gradient(180deg, #fac553 0%, #d89a2e 100%);
+  color: #1b1c1c;
+  box-shadow:
+    0 1px 1px rgba(0, 0, 0, 0.38),
+    inset 0 1px 0 rgba(255, 255, 255, 0.38),
+    inset 0 -2px 0 rgba(91, 50, 15, 0.22);
+  transform: translateY(1px);
+}
+
+.module-six:not(.moduleConnectionView) .moduleBody .sixButtonRow button.isActive:hover,
+.module-six:not(.moduleConnectionView) .moduleBody .sixButtonRow button[aria-pressed="true"]:hover,
+.module-six:not(.moduleConnectionView) .moduleBody .sixButtonRow button.isActive:focus-visible,
+.module-six:not(.moduleConnectionView) .moduleBody .sixButtonRow button[aria-pressed="true"]:focus-visible {
+  border-color: #202221;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.24) 0%, transparent 32%),
+    linear-gradient(180deg, #fac553 0%, #d89a2e 100%);
+  box-shadow:
+    0 1px 1px rgba(0, 0, 0, 0.38),
+    inset 0 1px 0 rgba(255, 255, 255, 0.38),
+    inset 0 -2px 0 rgba(91, 50, 15, 0.22);
+  outline: 0;
+}
+
+.module-six:not(.moduleConnectionView) .moduleBody .sixButtonRow button.isActive::before,
+.module-six:not(.moduleConnectionView) .moduleBody .sixButtonRow button[aria-pressed="true"]::before {
+  border-color: #613044;
+  background: var(--six-led);
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.18);
+}
+
+.sixVerticalSelector {
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr);
+  gap: 6px;
+  min-height: 0;
+}
+
+.sixVerticalSwitch {
+  --six-selector-index: 0;
+  --six-selector-steps: 1;
+  position: relative;
+  display: grid;
+  min-height: 0;
+  padding-left: 24px;
+}
+
+.sixVerticalSwitch::before {
+  content: "";
+  position: absolute;
+  left: 4px;
+  top: 6px;
+  bottom: 6px;
+  width: 14px;
+  border-radius: 2px;
+  background: #242727;
+  box-shadow:
+    inset 0 1px 2px rgba(0, 0, 0, 0.55),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.1);
+}
+
+.module-six:not(.moduleConnectionView) .moduleBody .sixVerticalSwitch button {
+  position: relative;
+  z-index: 2;
+  border: 0;
+  background: transparent;
+  color: var(--six-muted);
+  cursor: pointer;
+  font: inherit;
+  font-size: 8px;
+  font-weight: 900;
+  line-height: 1;
+  padding: 0;
+  text-align: left;
+  text-transform: uppercase;
+}
+
+.module-six:not(.moduleConnectionView) .moduleBody .sixVerticalSwitch button.isActive,
+.module-six:not(.moduleConnectionView) .moduleBody .sixVerticalSwitch button[aria-pressed="true"] {
+  background: transparent;
+  color: #ffffff;
+}
+
+.sixVerticalSwitchCap {
+  position: absolute;
+  left: 5px;
+  top: calc((100% - 20px) * var(--six-selector-index) / var(--six-selector-steps));
+  z-index: 1;
+  width: 12px;
+  height: 20px;
+  border-radius: 2px;
+  background: #c8cac2;
+  box-shadow:
+    0 1px 2px rgba(0, 0, 0, 0.34),
+    inset 0 1px 0 rgba(255, 255, 255, 0.35),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.2);
+  pointer-events: none;
+}
+
+.sixFader {
+  position: relative;
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr);
+  justify-items: center;
+  min-width: 0;
+  min-height: 0;
+  gap: 6px;
+  cursor: ns-resize;
+}
+
+.sixFaderGroup {
+  --tick-color: rgba(239, 239, 231, 0.46);
+  --major-tick-color: rgba(250, 250, 244, 0.64);
+  position: relative;
+  display: grid;
+  align-items: stretch;
+  min-width: 0;
+  min-height: 0;
+}
+
+.sixFaderGroup::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 22px;
+  bottom: 8px;
+  z-index: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(var(--major-tick-color), var(--major-tick-color)),
+    linear-gradient(var(--major-tick-color), var(--major-tick-color)),
+    linear-gradient(var(--major-tick-color), var(--major-tick-color)),
+    repeating-linear-gradient(
+      180deg,
+      var(--tick-color) 0 1px,
+      transparent 1px 10%
+    );
+  background-position: 0 0, 0 50%, 0 100%, 0 0;
+  background-repeat: no-repeat;
+  background-size: 100% 2px, 100% 2px, 100% 2px, 100% 100%;
+}
+
+.sixFaderGroupTwo {
+  grid-template-columns: repeat(2, minmax(40px, 1fr));
+  gap: 7px;
+}
+
+.sixFaderGroupThree {
+  grid-template-columns: repeat(3, minmax(38px, 1fr));
+  gap: 7px;
+}
+
+.sixFaderGroupFour {
+  grid-template-columns: repeat(4, minmax(34px, 1fr));
+  gap: 8px;
+}
+
+.sixFaderGroup > .sixFader {
+  z-index: 1;
+}
+
+.sixFaderGroup > .sixFader .sixFaderTrack::after {
+  display: none;
+}
+
+.sixFaderTrack {
+  --tick-color: rgba(239, 239, 231, 0.46);
+  --major-tick-color: rgba(250, 250, 244, 0.64);
+  position: relative;
+  display: block;
+  width: 38px;
+  min-height: 0;
+  height: 100%;
+  pointer-events: none;
+}
+
+.sixFaderTrack::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 8px;
+  bottom: 8px;
+  z-index: 1;
+  width: 4px;
+  background: #101111;
+  transform: translateX(-50%);
+}
+
+.sixFaderTrack::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 8px;
+  bottom: 8px;
+  z-index: 0;
+  background-image:
+    linear-gradient(var(--major-tick-color), var(--major-tick-color)),
+    linear-gradient(var(--major-tick-color), var(--major-tick-color)),
+    linear-gradient(var(--major-tick-color), var(--major-tick-color)),
+    repeating-linear-gradient(
+      180deg,
+      var(--tick-color) 0 1px,
+      transparent 1px 10%
+    );
+  background-position: 0 0, 0 50%, 0 100%, 0 0;
+  background-repeat: no-repeat;
+  background-size: 100% 2px, 100% 2px, 100% 2px, 100% 100%;
+}
+
+.sixChorusFaders .sixFaderTrack {
+  --tick-color: transparent;
+}
+
+.sixFaderCap {
+  position: absolute;
+  left: 50%;
+  bottom: clamp(8px, var(--six-fader-fill), calc(100% - 8px));
+  z-index: 3;
+  width: 28px;
+  height: 11px;
+  border: 0;
+  border-radius: 2px;
+  background: #3e4242;
+  box-shadow:
+    0 3px 3px rgba(0, 0, 0, 0.36),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  transform: translate(-50%, 50%);
+  pointer-events: none;
+}
+
+.sixFaderCap::before,
+.sixFaderCap::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  width: 6px;
+  height: 2px;
+  background: rgba(255, 255, 255, 0.4);
+  transform: translateY(-50%);
+}
+
+.sixFaderCap::before {
+  left: 0;
+}
+
+.sixFaderCap::after {
+  right: 0;
+}
+
+.sixWaveIcon {
+  position: relative;
+  display: inline-block;
+  flex: 0 0 auto;
+  width: 18px;
+  height: 8px;
+  color: currentColor;
+}
+
+.sixWaveIcon-pulse::before,
+.sixWaveIcon-pulse::after,
+.sixWaveIcon-saw::before {
+  content: "";
+  position: absolute;
+}
+
+.sixWaveIcon-pulse::before {
+  left: 1px;
+  bottom: 1px;
+  width: 7px;
+  height: 2px;
+  background: currentColor;
+  box-shadow: 8px -5px 0 currentColor;
+}
+
+.sixWaveIcon-pulse::after {
+  left: 8px;
+  top: 1px;
+  width: 2px;
+  height: 6px;
+  background: currentColor;
+}
+
+.sixWaveIcon-saw::before {
+  inset: 1px 2px;
+  background: currentColor;
+  clip-path: polygon(0 100%, 100% 0, 100% 100%);
+}
+
+.sixFaderInput {
+  position: absolute;
+  inset: 18px 0 0;
+  z-index: 6;
+  width: 100%;
+  height: calc(100% - 18px);
+  opacity: 0;
+  cursor: ns-resize;
+  direction: rtl;
+  pointer-events: auto;
+  writing-mode: vertical-lr;
+}
+
+@media (max-width: 820px) {
+  .sixPanel {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto auto auto auto auto auto;
+    grid-template-areas:
+      "lfo"
+      "dco"
+      "hpf"
+      "vcf"
+      "chorus"
+      "env1"
+      "env2";
+    overflow: auto;
+  }
+
+  .sixDcoGrid {
+    grid-template-columns: 1fr;
+  }
+}

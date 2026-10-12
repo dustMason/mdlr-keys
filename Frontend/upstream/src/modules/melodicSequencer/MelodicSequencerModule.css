@@ -1,0 +1,348 @@
+.module-melodic-sequencer .moduleBody {
+  padding: 0;
+}
+
+.melodicSeqPanel {
+  display: grid;
+  grid-template-rows: auto auto minmax(0, 1fr);
+  gap: 10px;
+  min-height: 0;
+}
+
+.melodicSeqControls {
+  display: grid;
+  grid-template-columns: 156px 76px minmax(0, 1fr) 70px 46px;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+  padding: 6px;
+  border: 1px solid rgba(17, 17, 17, 0.18);
+}
+
+.melodicSeqMode,
+.melodicSeqMeter,
+.melodicSeqBanks {
+  display: grid;
+  min-width: 0;
+}
+
+.melodicSeqMode,
+.melodicSeqMeter {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.melodicSeqBanks {
+  grid-template-columns: repeat(8, minmax(0, 1fr));
+  gap: 3px;
+}
+
+.melodicSeqMode button,
+.melodicSeqMeter button,
+.melodicSeqBanks button,
+.melodicSeqRandom,
+.melodicSeqTranspose {
+  min-width: 0;
+  min-height: 28px;
+  border: 1px solid rgba(17, 17, 17, 0.28);
+  text-align: center;
+  text-transform: uppercase;
+  font-size: 10px;
+  font-weight: 800;
+  line-height: 26px;
+}
+
+.melodicSeqMode button,
+.melodicSeqMeter button,
+.melodicSeqBanks button,
+.melodicSeqRandom {
+  cursor: pointer;
+}
+
+.melodicSeqRandom {
+  padding: 0;
+}
+
+.melodicSeqMode button + button,
+.melodicSeqMeter button + button {
+  border-left: 0;
+}
+
+.melodicSeqBanks button {
+  position: relative;
+  padding: 0;
+}
+
+.melodicSeqMode button.isActive,
+.melodicSeqMeter button.isActive,
+.melodicSeqBanks button.isActive {
+  border-color: #111111;
+  background: #111111;
+  color: #ffffff;
+}
+
+.melodicSeqTranspose {
+  display: grid;
+  place-items: center;
+  font-weight: 900;
+}
+
+.melodicSeqSteps {
+  display: grid;
+  grid-template-columns: repeat(16, minmax(0, 1fr));
+  gap: 4px;
+}
+
+.melodicSeqStep {
+  position: relative;
+  display: grid;
+  grid-template-rows: 18px 18px;
+  min-width: 0;
+  min-height: 44px;
+  padding: 4px 3px 5px;
+  border: 1px solid rgba(17, 17, 17, 0.28);
+  cursor: pointer;
+  text-transform: uppercase;
+}
+
+.melodicSeqPanel.isPerformMode .melodicSeqStep {
+  cursor: default;
+}
+
+.melodicSeqStep strong {
+  display: grid;
+  place-items: center;
+  font-size: 9px;
+  line-height: 1;
+}
+
+.melodicSeqStep span {
+  min-width: 0;
+  overflow: hidden;
+  text-align: center;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 8px;
+  line-height: 18px;
+}
+
+.melodicSeqStep::after {
+  content: "";
+  position: absolute;
+  left: 5px;
+  right: 5px;
+  bottom: 3px;
+  height: 3px;
+}
+
+.melodicSeqStep.hasNote {
+  background: #e3e3e3;
+}
+
+.melodicSeqStep.hasNote::after {
+  background: #111111;
+}
+
+.melodicSeqStep.isActive {
+  border-color: #111111;
+  outline: 2px solid #111111;
+  outline-offset: -2px;
+}
+
+.melodicSeqStep.isOutsideMeter {
+  opacity: 0.36;
+  cursor: not-allowed;
+}
+
+
+
+
+
+
+.melodicSeqStep.hasNote span {
+  font-weight: 800;
+}
+
+.melodicSeqKeys {
+  display: grid;
+  grid-template-columns: 76px 1fr;
+  gap: 10px;
+  align-items: stretch;
+  min-height: 0;
+}
+
+.melodicSeqRest {
+  min-width: 0;
+  border: 1px solid #111111;
+  cursor: pointer;
+  text-transform: uppercase;
+  font-size: 13px;
+  font-weight: 800;
+}
+
+.melodicSeqRest.isActive {
+  background: #111111;
+  color: #ffffff;
+}
+
+.melodicKeyboard {
+  position: relative;
+  min-width: 0;
+  height: 132px;
+  border: 1px solid #111111;
+  overflow: hidden;
+}
+
+.melodicWhiteKeys {
+  display: grid;
+  grid-template-columns: repeat(14, minmax(0, 1fr));
+  height: 100%;
+}
+
+.melodicWhiteKey,
+.melodicBlackKey {
+  min-width: 0;
+  border: 0;
+  cursor: pointer;
+  font-family: inherit;
+  text-transform: uppercase;
+}
+
+.melodicWhiteKey {
+  display: grid;
+  align-items: end;
+  justify-items: center;
+  padding: 0 2px 9px;
+  border-right: 1px solid rgba(17, 17, 17, 0.22);
+  font-size: 9px;
+}
+
+.melodicWhiteKey.isRoot {
+  box-shadow: inset 0 -4px 0 #c7c7c7;
+}
+
+.melodicWhiteKey.isActive {
+  background: #111111;
+  color: #ffffff;
+}
+
+.melodicWhiteKey:last-child {
+  border-right: 0;
+}
+
+
+.melodicBlackKeys {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.melodicBlackKey {
+  position: absolute;
+  top: 0;
+  display: grid;
+  align-items: end;
+  justify-items: center;
+  width: calc(100% / 14 * 0.58);
+  height: 78px;
+  padding: 0 1px 7px;
+  border: 1px solid #111111;
+  background: #111111;
+  color: #ffffff;
+  transform: translateX(-50%);
+  pointer-events: auto;
+  font-size: 8px;
+}
+
+.melodicBlackKey.isActive {
+  background: #ffffff;
+  color: #111111;
+  outline: 2px solid #111111;
+  outline-offset: -3px;
+}
+
+
+.module-melodic-sequencer.rackUnits-1 .moduleBody {
+  padding: 0;
+}
+
+.module-melodic-sequencer.rackUnits-1 .melodicSeqPanel {
+  gap: 5px;
+  min-height: 0;
+}
+
+.module-melodic-sequencer.rackUnits-1 .melodicSeqControls {
+  grid-template-columns: 110px 72px minmax(0, 1fr) 52px 34px;
+  gap: 5px;
+  padding: 4px;
+}
+
+.module-melodic-sequencer.rackUnits-1 .melodicSeqMode button,
+.module-melodic-sequencer.rackUnits-1 .melodicSeqMeter button,
+.module-melodic-sequencer.rackUnits-1 .melodicSeqBanks button,
+.module-melodic-sequencer.rackUnits-1 .melodicSeqRandom,
+.module-melodic-sequencer.rackUnits-1 .melodicSeqTranspose {
+  min-height: 23px;
+  font-size: 8px;
+  line-height: 21px;
+}
+
+.module-melodic-sequencer.rackUnits-1 .melodicSeqBanks {
+  gap: 2px;
+}
+
+.module-melodic-sequencer.rackUnits-1 .melodicSeqBanks button::after {
+  right: 2px;
+  bottom: 2px;
+  width: 3px;
+  height: 3px;
+}
+
+.module-melodic-sequencer.rackUnits-1 .melodicSeqSteps {
+  gap: 2px;
+}
+
+.module-melodic-sequencer.rackUnits-1 .melodicSeqStep {
+  grid-template-rows: 14px;
+  min-height: 24px;
+  padding: 3px 2px 5px;
+}
+
+.module-melodic-sequencer.rackUnits-1 .melodicSeqStep strong {
+  font-size: 8px;
+}
+
+.module-melodic-sequencer.rackUnits-1 .melodicSeqStep span {
+  display: none;
+}
+
+.module-melodic-sequencer.rackUnits-1 .melodicSeqStep::after {
+  left: 4px;
+  right: 4px;
+  bottom: 3px;
+  height: 3px;
+}
+
+.module-melodic-sequencer.rackUnits-1 .melodicSeqKeys {
+  grid-template-columns: 48px 1fr;
+  gap: 6px;
+  min-height: 0;
+}
+
+.module-melodic-sequencer.rackUnits-1 .melodicSeqRest {
+  font-size: 10px;
+}
+
+.module-melodic-sequencer.rackUnits-1 .melodicKeyboard {
+  height: 64px;
+}
+
+.module-melodic-sequencer.rackUnits-1 .melodicWhiteKey {
+  padding-bottom: 3px;
+  font-size: 7px;
+}
+
+.module-melodic-sequencer.rackUnits-1 .melodicBlackKey {
+  height: 38px;
+  padding-bottom: 3px;
+  font-size: 0;
+}

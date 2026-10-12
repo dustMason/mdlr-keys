@@ -1,0 +1,3016 @@
+:root {
+    color: #111111;
+    background: #ffffff;
+    font-family:
+        "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+    font-synthesis: none;
+    text-rendering: geometricPrecision;
+    -webkit-font-smoothing: antialiased;
+    --rule: rgba(17, 17, 17, 0.18);
+    --soft: rgba(17, 17, 17, 0.06);
+    --audio: #111111;
+    --cv: #0f766e;
+    --gate: #d97706;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+    height: 100%;
+    margin: 0;
+    overflow: hidden;
+}
+
+button,
+input,
+select {
+    font: inherit;
+    border-radius: 0;
+}
+
+button {
+    color: inherit;
+}
+
+select {
+    appearance: none;
+    -webkit-appearance: none;
+}
+
+.appShell {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    min-height: 0;
+    overflow: hidden;
+    background: #ffffff;
+}
+
+.topBar {
+    flex: 0 0 auto;
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr) auto;
+    align-items: center;
+    gap: 16px;
+    min-height: 58px;
+    padding: 10px 18px;
+    border-bottom: 1px solid #111111;
+    background: #ffffff;
+}
+
+.topBar h1 {
+    margin: 0;
+    font-size: 22px;
+    font-weight: 800;
+    line-height: 1;
+    letter-spacing: 0;
+}
+
+.topBar p {
+    margin: 8px 0 0;
+    font-size: 12px;
+    color: rgba(17, 17, 17, 0.62);
+}
+
+.transport {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.sessionHeaderControls {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    min-width: 0;
+}
+
+.sessionControl,
+.tempoControl {
+    display: grid;
+    align-items: center;
+    gap: 8px;
+    min-height: 34px;
+    padding: 0 10px;
+    border: 1px solid #111111;
+    background: #ffffff;
+    text-transform: uppercase;
+    font-size: 11px;
+}
+
+.sessionControl {
+    position: relative;
+}
+
+.sessionControl::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    right: 8px;
+    width: 0;
+    height: 0;
+    border-top: 5px solid #111111;
+    border-right: 4px solid transparent;
+    border-left: 4px solid transparent;
+    pointer-events: none;
+    transform: translateY(-40%);
+}
+
+.sessionControl {
+    grid-template-columns: auto 214px;
+}
+
+.sessionControl select {
+    width: 214px;
+    height: 22px;
+    min-width: 0;
+    border: 1px solid var(--rule);
+    background: #ffffff;
+    color: #111111;
+    padding: 0 20px 0 6px;
+}
+
+.tempoControl {
+    grid-template-columns: auto 132px 58px auto;
+}
+
+.tempoControl input[type="range"] {
+    width: 132px;
+    height: 18px;
+    appearance: none;
+    -webkit-appearance: none;
+    accent-color: #111111;
+    background: transparent;
+}
+
+.tempoControl input[type="range"]::-webkit-slider-runnable-track {
+    height: 4px;
+    border: 1px solid #111111;
+    background: #111111;
+}
+
+.tempoControl input[type="range"]::-webkit-slider-thumb {
+    width: 12px;
+    height: 18px;
+    margin-top: -8px;
+    appearance: none;
+    -webkit-appearance: none;
+    border: 1px solid #111111;
+    background: #ffffff;
+}
+
+.tempoControl input[type="range"]::-moz-range-track {
+    height: 4px;
+    border: 1px solid #111111;
+    background: #111111;
+}
+
+.tempoControl input[type="range"]::-moz-range-thumb {
+    width: 12px;
+    height: 18px;
+    border: 1px solid #111111;
+    border-radius: 0;
+    background: #ffffff;
+}
+
+.tempoControl input[type="number"] {
+    width: 58px;
+    height: 22px;
+    border: 1px solid var(--rule);
+    background: #ffffff;
+    text-align: right;
+}
+
+.startButton,
+.viewModeButton,
+.newSessionButton,
+.deleteSessionButton,
+.logoutButton,
+.accountMenu button {
+    min-height: 34px;
+    border: 1px solid #111111;
+    background: #ffffff;
+    padding: 0 12px;
+    cursor: pointer;
+    text-transform: uppercase;
+    font-size: 12px;
+}
+
+.startButton:disabled,
+.newSessionButton:disabled,
+.deleteSessionButton:disabled {
+    cursor: wait;
+    opacity: 0.58;
+}
+
+.startButton:hover,
+.viewModeButton:hover,
+.viewModeButton.isActive,
+.newSessionButton:hover,
+.deleteSessionButton:hover,
+.logoutButton:hover,
+.accountMenu button:hover {
+    background: #111111;
+    color: #ffffff;
+}
+
+.deleteSessionButton:hover {
+    border-color: #dc2626;
+    background: #dc2626;
+    color: #ffffff;
+}
+
+.newSessionButton:disabled:hover,
+.deleteSessionButton:disabled:hover {
+    border-color: #111111;
+    background: #ffffff;
+    color: inherit;
+}
+
+.sessionSyncStatus,
+.userControl {
+    min-height: 34px;
+    display: inline-flex;
+    align-items: center;
+    border: 1px solid #111111;
+    background: #ffffff;
+    padding: 0 10px;
+    text-transform: uppercase;
+    font-size: 11px;
+}
+
+.accountMenu {
+    position: relative;
+    justify-self: end;
+    text-transform: uppercase;
+    font-size: 11px;
+}
+
+.accountMenu summary {
+    display: inline-flex;
+    align-items: center;
+    min-width: 116px;
+    min-height: 34px;
+    overflow: hidden;
+    border: 1px solid #111111;
+    background: #ffffff;
+    padding: 0 28px 0 10px;
+    cursor: pointer;
+    list-style: none;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.accountMenu summary::-webkit-details-marker {
+    display: none;
+}
+
+.accountMenu summary::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    width: 0;
+    height: 0;
+    border-top: 5px solid #111111;
+    border-right: 4px solid transparent;
+    border-left: 4px solid transparent;
+    pointer-events: none;
+    transform: translateY(-40%);
+}
+
+.accountMenu[open] summary {
+    background: #111111;
+    color: #ffffff;
+}
+
+.accountMenu[open] summary::after {
+    border-top-color: #ffffff;
+}
+
+.accountMenuPanel {
+    position: absolute;
+    top: calc(100% + 4px);
+    right: 0;
+    z-index: 30;
+    display: grid;
+    width: 116px;
+    border: 1px solid #111111;
+    background: #ffffff;
+}
+
+.accountMenu button {
+    width: 100%;
+    border: 0;
+    text-align: left;
+}
+
+.sessionErrorBar {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 60;
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr);
+    align-items: center;
+    min-height: 34px;
+    border-top: 1px solid #dc2626;
+    background: #fffafa;
+    color: #dc2626;
+    text-transform: uppercase;
+    font-size: 11px;
+}
+
+.sessionErrorBar span,
+.sessionErrorBar strong {
+    overflow: hidden;
+    padding: 0 18px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.sessionErrorBar span {
+    color: rgba(220, 38, 38, 0.68);
+}
+
+.sessionErrorBar strong {
+    border-left: 1px solid rgba(220, 38, 38, 0.28);
+    font-weight: 400;
+}
+
+.sessionSyncStatus-error {
+    max-width: 260px;
+    overflow: hidden;
+    border-color: #dc2626;
+    color: #dc2626;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.sessionSyncStatus-dirty,
+.sessionSyncStatus-saving,
+.sessionSyncStatus-loading {
+    border-color: #d97706;
+    color: #9a4f00;
+}
+
+.sessionSyncStatus-saved {
+    border-color: #0f766e;
+    color: #0f766e;
+}
+
+.logoutButton {
+    background: #ffffff;
+    cursor: pointer;
+}
+
+.status {
+    width: 12px;
+    height: 12px;
+    border: 1px solid #111111;
+    background: #ffffff;
+}
+
+.status-starting {
+    background: #d97706;
+}
+
+.status-stopping {
+    background: #d97706;
+}
+
+.status-running {
+    background: #0f766e;
+}
+
+.perfDock {
+    position: fixed;
+    bottom: 8px;
+    right: 8px;
+    z-index: 20;
+    display: grid;
+    justify-items: end;
+    gap: 6px;
+    pointer-events: none;
+}
+
+.perfToggle {
+    min-width: 46px;
+    min-height: 24px;
+    border: 1px solid #111111;
+    background: #ffffff;
+    padding: 0 7px;
+    cursor: pointer;
+    text-transform: uppercase;
+    font-size: 10px;
+    pointer-events: auto;
+}
+
+.perfToggle:hover,
+.perfToggle.isActive {
+    background: #111111;
+    color: #ffffff;
+}
+
+.perfOverlay {
+    width: 292px;
+    border: 1px solid #111111;
+    background: rgba(255, 255, 255, 0.96);
+    padding: 8px;
+    pointer-events: auto;
+}
+
+.perfGrid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 4px;
+}
+
+.perfMetric {
+    display: grid;
+    grid-template-columns: 48px minmax(0, 1fr);
+    align-items: center;
+    min-height: 20px;
+    border: 1px solid rgba(17, 17, 17, 0.14);
+    background: #ffffff;
+}
+
+.perfMetric span,
+.perfMetric strong {
+    overflow: hidden;
+    padding: 0 5px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-size: 9px;
+    line-height: 18px;
+}
+
+.perfMetric span {
+    color: rgba(17, 17, 17, 0.58);
+    text-transform: uppercase;
+}
+
+.perfMetric strong {
+    border-left: 1px solid rgba(17, 17, 17, 0.14);
+    font-weight: 800;
+    text-align: right;
+}
+
+.perfError {
+    margin-top: 6px;
+    border: 1px solid #dc2626;
+    padding: 5px;
+    color: #dc2626;
+    font-size: 9px;
+    line-height: 1.25;
+}
+
+.moduleToolbar {
+    flex: 0 0 auto;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 8px;
+    padding: 10px 18px;
+    border-bottom: 1px solid #111111;
+    background: #f8f8f8;
+}
+
+.toolbarModuleAdd {
+    display: none;
+    align-items: center;
+    gap: 8px;
+    min-width: 0;
+}
+
+.toolbarModuleSelect {
+    position: relative;
+    display: grid;
+    grid-template-columns: auto 180px;
+    align-items: center;
+    gap: 8px;
+    min-height: 34px;
+    border: 1px solid #111111;
+    background: #ffffff;
+    padding: 0 10px;
+    text-transform: uppercase;
+    font-size: 11px;
+}
+
+.toolbarModuleSelect::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    width: 0;
+    height: 0;
+    border-top: 5px solid #111111;
+    border-right: 4px solid transparent;
+    border-left: 4px solid transparent;
+    pointer-events: none;
+    transform: translateY(-40%);
+}
+
+.toolbarModuleSelect select {
+    width: 180px;
+    height: 22px;
+    min-width: 0;
+    border: 1px solid var(--rule);
+    background: #ffffff;
+    color: #111111;
+    padding: 0 22px 0 6px;
+    text-transform: uppercase;
+}
+
+.toolbarModuleAddButton {
+    min-height: 34px;
+    border: 1px solid #0f766e;
+    background: #ffffff;
+    color: #111111;
+    padding: 0 12px;
+    cursor: pointer;
+    text-transform: uppercase;
+    font-size: 12px;
+}
+
+.toolbarModuleAddButton:hover {
+    background: #0f766e;
+    color: #ffffff;
+}
+
+.rackTransport {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.rackWorkspace {
+    flex: 1 1 0;
+    display: grid;
+    grid-template-columns:
+        var(--rack-canvas-width, 1046px)
+        minmax(420px, 1fr);
+    height: 0;
+    min-height: 0;
+    overflow: hidden;
+    background: #d7d7d2;
+}
+
+.rackViewport {
+    width: var(--rack-canvas-width, 1046px);
+    height: 100%;
+    overflow-x: hidden;
+    overflow-y: auto;
+    min-width: 0;
+    min-height: 0;
+    overscroll-behavior: contain;
+    background: #d7d7d2;
+}
+
+.moduleLibrary {
+    display: grid;
+    grid-template-rows: auto minmax(0, 1fr);
+    align-self: stretch;
+    height: auto;
+    min-width: 0;
+    min-height: 0;
+    overflow: hidden;
+    border-left: 1px solid rgba(255, 255, 255, 0.18);
+    background: #101010;
+    color: #eeeeee;
+}
+
+.moduleLibraryHeader {
+    display: flex;
+    align-items: center;
+    min-height: 44px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.18);
+    background: #171717;
+    padding: 0 12px;
+    text-transform: uppercase;
+    font-size: 12px;
+    font-weight: 800;
+}
+
+.moduleLibraryScroll {
+    height: 100%;
+    overflow-x: hidden;
+    overflow-y: auto;
+    min-height: 0;
+    overscroll-behavior: contain;
+}
+
+.moduleLibraryGroup + .moduleLibraryGroup {
+    margin-top: 12px;
+}
+
+.moduleLibraryGroup h2 {
+    margin: 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    padding: 10px 12px 11px;
+    color: var(--section-accent);
+    text-transform: uppercase;
+    font-size: 11px;
+    font-weight: 800;
+}
+
+.moduleLibraryList {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 0;
+}
+
+.moduleLibraryItem {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 4px;
+    align-items: start;
+    justify-self: stretch;
+    width: 100%;
+    min-height: 68px;
+    border: 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.18);
+    background: transparent;
+    padding: 10px 12px 11px;
+    cursor: pointer;
+    color: #eeeeee;
+    text-align: left;
+}
+
+.moduleLibraryItem:hover {
+    border-bottom-color: rgba(0, 0, 0, 0.35);
+    background: var(--section-accent);
+    color: #111111;
+}
+
+.moduleLibraryItem:hover .moduleLibraryItemName {
+    color: inherit;
+}
+
+.moduleLibraryItemName {
+    color: var(--section-accent);
+    text-transform: uppercase;
+    /*font-size: 14px;*/
+    font-weight: 800;
+    line-height: 1.05;
+}
+
+.moduleLibraryItem:hover .moduleLibraryItemName {
+    color: #111111;
+}
+
+.moduleLibraryItemDescription {
+    color: rgba(255, 255, 255, 0.66);
+    white-space: normal;
+    font-size: 12px;
+    line-height: 1.4;
+    text-wrap: pretty;
+}
+
+.moduleLibraryItem:hover .moduleLibraryItemDescription {
+    color: rgba(17, 17, 17, 0.78);
+}
+
+@media (max-width: 1466px) {
+    .toolbarModuleAdd {
+        display: flex;
+    }
+
+    .rackWorkspace {
+        grid-template-columns: var(--rack-canvas-width, 1046px);
+    }
+
+    .moduleLibrary {
+        display: none;
+    }
+}
+
+.authShell {
+    display: grid;
+    grid-template-rows: auto minmax(0, 1fr);
+    min-height: 100%;
+    background: #f1f1ee;
+    color: #111111;
+}
+
+.authHeader {
+    display: flex;
+    align-items: center;
+    min-height: 74px;
+    border-bottom: 1px solid #111111;
+    background: #ffffff;
+    padding: 12px 18px;
+}
+
+.authHeader h1 {
+    margin: 0;
+    font-size: 22px;
+    font-weight: 800;
+    line-height: 1;
+}
+
+.authPanel {
+    align-self: center;
+    justify-self: center;
+    width: min(420px, calc(100vw - 32px));
+    border: 1px solid #111111;
+    background: #ffffff;
+}
+
+.authModeSwitch {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    border-bottom: 1px solid #111111;
+}
+
+.authModeSwitch button,
+.authForm button {
+    min-height: 42px;
+    border: 0;
+    background: #ffffff;
+    cursor: pointer;
+    text-transform: uppercase;
+    font-size: 12px;
+}
+
+.authModeSwitch button + button {
+    border-left: 1px solid #111111;
+}
+
+.authModeSwitch button:hover,
+.authModeSwitch button.isActive,
+.authForm button:hover {
+    background: #111111;
+    color: #ffffff;
+}
+
+.authForm {
+    display: grid;
+    gap: 12px;
+    padding: 18px;
+}
+
+.authForm label {
+    display: grid;
+    grid-template-columns: 92px minmax(0, 1fr);
+    align-items: center;
+    border: 1px solid #111111;
+    background: #ffffff;
+}
+
+.authForm label span {
+    padding: 0 10px;
+    text-transform: uppercase;
+    font-size: 11px;
+}
+
+.authForm input {
+    min-width: 0;
+    height: 36px;
+    border: 0;
+    border-left: 1px solid #111111;
+    padding: 0 10px;
+    background: #ffffff;
+}
+
+.authForm input:focus {
+    outline: 2px solid #111111;
+    outline-offset: -2px;
+}
+
+.authForm button {
+    border: 1px solid #111111;
+}
+
+.authForm button:disabled {
+    cursor: wait;
+    opacity: 0.62;
+}
+
+.authError {
+    margin: 0;
+    border: 1px solid #dc2626;
+    color: #dc2626;
+    padding: 8px 10px;
+    font-size: 11px;
+    line-height: 1.35;
+}
+
+.appShellPatch .rackViewport {
+    --rule: rgba(255, 255, 255, 0.2);
+    --soft: rgba(255, 255, 255, 0.055);
+    --audio: #f2f2f2;
+    color: #eeeeee;
+    background: #161616;
+}
+
+.appShellPatch .rackWorkspace {
+    background: #161616;
+}
+
+.appShellPatch .moduleLibrary {
+    border-left-color: rgba(255, 255, 255, 0.18);
+    background: #101010;
+}
+
+.appShellPatch .moduleLibraryHeader {
+    border-bottom-color: rgba(255, 255, 255, 0.18);
+    background: #171717;
+}
+
+.appShellPatch .moduleLibraryGroup h2 {
+    border-bottom-color: rgba(255, 255, 255, 0.22);
+    color: rgba(255, 255, 255, 0.62);
+}
+
+.appShellPatch .moduleLibraryItem {
+    border-bottom-color: rgba(255, 255, 255, 0.18);
+    background: transparent;
+}
+
+.appShellPatch .moduleLibraryItemDescription {
+    color: rgba(255, 255, 255, 0.62);
+}
+
+.rackCanvas {
+    position: relative;
+    min-height: 100%;
+    isolation: isolate;
+    background: #151515;
+}
+
+.appShellPatch .rackCanvas {
+    background: #151515;
+}
+
+.remoteCursorLayer {
+    position: absolute;
+    inset: 0;
+    z-index: 1200;
+    pointer-events: none;
+}
+
+.remoteCursor {
+    position: absolute;
+    left: 0;
+    top: 0;
+    display: grid;
+    grid-template-columns: auto auto;
+    align-items: start;
+    gap: 6px;
+    color: var(--cursor-color);
+    transform: translate(var(--cursor-x), var(--cursor-y));
+    transition:
+        transform 180ms cubic-bezier(0.22, 1, 0.36, 1),
+        color 180ms ease;
+    will-change: transform;
+}
+
+.remoteCursorMarker {
+    position: relative;
+    z-index: 1;
+    width: 12px;
+    height: 12px;
+    border: 2px solid currentColor;
+    background: #ffffff;
+    transform: translate(-50%, -50%);
+    transition:
+        background 120ms ease,
+        transform 160ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.remoteCursor-down .remoteCursorMarker,
+.remoteCursor-drag .remoteCursorMarker {
+    background: currentColor;
+    transform: translate(-50%, -50%) scale(1.18);
+}
+
+.remoteCursor-patch .remoteCursorMarker {
+    outline: 2px solid #111111;
+    outline-offset: 1px;
+}
+
+.remoteCursorLabel {
+    position: relative;
+    z-index: 1;
+    min-width: 72px;
+    border: 1px solid currentColor;
+    background: #ffffff;
+    color: #111111;
+    transform: translateY(-50%);
+}
+
+.remoteCursorLabel strong {
+    display: block;
+    overflow: hidden;
+    padding: 2px 5px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-size: 9px;
+    font-style: normal;
+    line-height: 1.15;
+    text-transform: uppercase;
+}
+
+.appShellPatch .remoteCursorLabel {
+    background: #202020;
+    color: #f2f2f2;
+}
+
+.remoteActivityBar {
+    position: absolute;
+    left: 10px;
+    top: var(--bar-y, 8px);
+    z-index: 1300;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    max-width: calc(100% - 24px);
+    padding: 3px 6px;
+    border: 1px solid var(--cursor-color);
+    background: rgba(255, 255, 255, 0.92);
+    color: #111111;
+    font-size: 9px;
+    font-weight: 800;
+    line-height: 1;
+    text-transform: uppercase;
+    pointer-events: none;
+}
+
+.remoteActivityBar-top {
+    transform: translateY(0);
+}
+
+.remoteActivityBar-bottom {
+    transform: translateY(-100%);
+}
+
+.remoteActivityBar span {
+    overflow: hidden;
+    max-width: 92px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.appShellPatch .remoteActivityBar {
+    background: rgba(32, 32, 32, 0.94);
+    color: #f2f2f2;
+}
+
+.rackModule {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    --rack-flange-width: 28px;
+    --rack-screw-size: 12px;
+    border: 1px solid #111111;
+    background: #d8d8d2;
+    overflow: hidden;
+    user-select: none;
+    transition: transform 120ms ease;
+}
+
+.moduleFace {
+    position: absolute;
+    inset: 0 var(--rack-flange-width);
+    display: grid;
+    grid-template-rows: 44px minmax(0, 1fr);
+    min-width: 0;
+    background: #ffffff;
+}
+
+.moduleFace::before {
+    display: none;
+}
+
+.rackModuleSystem {
+    background: #c2c3bd;
+}
+
+.rackModuleSystem .moduleFace {
+    grid-template-rows: minmax(0, 1fr);
+    background: #ededeb;
+}
+
+.rackModuleSystem .moduleFace::before {
+    display: none;
+}
+
+.rackModuleSystem .rackFlange {
+    background: #b8bab2;
+}
+
+.rackModuleSystem .rackScrew {
+    width: 10px;
+    height: 10px;
+}
+
+.rackModuleSystem .rackScrew-top {
+    top: 12px;
+}
+
+.rackModuleSystem .rackScrew-bottom {
+    bottom: 12px;
+}
+
+.rackModuleLocked {
+    opacity: 0.78;
+}
+
+.rackModuleLocked .moduleHeader {
+    cursor: default;
+}
+
+.rackModule.rackModuleDragging {
+    opacity: 0.34;
+    z-index: 6;
+}
+
+.rackModule.rackModuleDragging .moduleFace {
+    filter: saturate(0.75);
+}
+
+.rackModule.rackModuleInsertTarget,
+.rackModule.rackModuleInsertTarget.moduleConnectionView {
+    z-index: 9;
+}
+
+.rackModuleInsertTarget .moduleFace {
+    outline: 4px solid #2563eb;
+    outline-offset: -4px;
+}
+
+.rackModuleInsertTarget::after {
+    content: "INSERT";
+    position: absolute;
+    right: calc(var(--rack-flange-width) + 8px);
+    bottom: 8px;
+    z-index: 4;
+    pointer-events: none;
+    padding: 5px 8px;
+    border: 1px solid #93c5fd;
+    background: #2563eb;
+    color: #ffffff;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 0;
+    line-height: 1;
+    text-transform: uppercase;
+}
+
+.moduleDragPreview {
+    position: fixed;
+    z-index: 2000;
+    pointer-events: none;
+    overflow: hidden;
+    border: 2px solid color-mix(in srgb, var(--module-accent, #2563eb), #ffffff 30%);
+    background:
+        linear-gradient(
+            135deg,
+            color-mix(in srgb, var(--module-accent, #2563eb), transparent 84%),
+            rgba(20, 24, 28, 0.62)
+        );
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.32);
+    opacity: 0.62;
+    backdrop-filter: blur(2px);
+}
+
+.moduleDragPreviewHeader {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    height: 42px;
+    padding: 0 12px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.22);
+    background: rgba(0, 0, 0, 0.32);
+    color: #ffffff;
+    font-family: "IBM Plex Mono", "SFMono-Regular", Consolas, monospace;
+    text-transform: uppercase;
+}
+
+.moduleDragPreviewHeader span {
+    flex: 0 0 auto;
+    font-size: 15px;
+    font-weight: 800;
+}
+
+.moduleDragPreviewHeader strong {
+    min-width: 0;
+    overflow: hidden;
+    color: rgba(255, 255, 255, 0.74);
+    font-size: 11px;
+    font-weight: 500;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.rackModuleLocked .moduleCollapseButton,
+.rackModuleLocked .moduleLabelInput,
+.rackModuleLocked .modulePresetSelect,
+.rackModuleLocked .moduleBypassButton,
+.rackModuleLocked .moduleDeleteButton {
+    cursor: not-allowed;
+}
+
+.connectionBayLocked {
+    opacity: 0.66;
+}
+
+.rackFlange {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    z-index: 4;
+    display: flex;
+    width: var(--rack-flange-width);
+    flex-direction: column;
+    border-color: rgba(17, 17, 17, 0.52);
+    background: #d4d4cd;
+    pointer-events: none;
+}
+
+.rackFlange-left {
+    left: 0;
+    border-right: 1px solid rgba(17, 17, 17, 0.52);
+}
+
+.rackFlange-right {
+    right: 0;
+    border-left: 1px solid rgba(17, 17, 17, 0.52);
+}
+
+.rackFlangeUnit {
+    position: relative;
+    flex: 1 1 0;
+    min-height: 0;
+}
+
+.rackScrew {
+    position: absolute;
+    left: 50%;
+    width: var(--rack-screw-size);
+    height: var(--rack-screw-size);
+    border: 1px solid rgba(17, 17, 17, 0.72);
+    border-radius: 50%;
+    background: #a7a7a0;
+    transform: translateX(-50%) rotate(var(--screw-angle, 0deg));
+}
+
+.rackScrew::before,
+.rackScrew::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 2px;
+    right: 2px;
+    height: 1px;
+    background: rgba(17, 17, 17, 0.72);
+    transform: translateY(-50%);
+}
+
+.rackScrew::after {
+    transform: translateY(-50%) rotate(90deg);
+}
+
+.rackScrew-top {
+    top: 18px;
+}
+
+.rackScrew-bottom {
+    bottom: 18px;
+}
+
+.rackScrew-center {
+    top: 50%;
+    transform: translate(-50%, -50%) rotate(var(--screw-angle, 0deg));
+}
+
+.moduleHeader {
+    position: relative;
+    z-index: 5;
+    display: grid;
+    grid-template-columns:
+        18px auto minmax(56px, 150px) minmax(0, 148px)
+        1fr auto;
+    align-items: center;
+    gap: 8px;
+    width: 100%;
+    height: 44px;
+    padding: 8px 12px 8px 18px;
+    border-bottom: 1px solid #111111;
+    background: #ffffff;
+    text-align: left;
+    cursor: grab;
+}
+
+.moduleHeader:active {
+    cursor: grabbing;
+}
+
+.rackModuleFixed .moduleHeader,
+.rackModuleFixed .moduleHeader:active {
+    cursor: default;
+}
+
+.moduleName {
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-weight: 800;
+    line-height: 1;
+}
+
+.moduleCollapseButton {
+    display: grid;
+    place-items: center;
+    width: 18px;
+    height: 24px;
+    border: 0;
+    background: transparent;
+    cursor: pointer;
+    padding: 0;
+}
+
+.moduleCollapseButton span {
+    display: block;
+    width: 0;
+    height: 0;
+    border-top: 4px solid transparent;
+    border-bottom: 4px solid transparent;
+    border-left: 6px solid #111111;
+    transform: rotate(90deg);
+    transform-origin: 50% 50%;
+}
+
+.moduleCollapseButton[aria-expanded="false"] span {
+    transform: rotate(0deg);
+}
+
+.moduleCollapseButton:hover {
+    background: rgba(17, 17, 17, 0.08);
+}
+
+.moduleCollapseButton:focus-visible {
+    outline: 1px solid #111111;
+    outline-offset: -1px;
+}
+
+.moduleLabelInput {
+    min-width: 0;
+    justify-self: start;
+    width: min(100%, 150px);
+    height: 24px;
+    border: 1px solid rgba(17, 17, 17, 0.28);
+    background: #ffffff;
+    color: #111111;
+    padding: 0 7px;
+    font-size: 11px;
+    line-height: 22px;
+}
+
+.modulePresetSelect {
+    min-width: 112px;
+    max-width: 148px;
+    height: 24px;
+    border: 1px solid rgba(17, 17, 17, 0.42);
+    border-radius: 0;
+    background: #ffffff;
+    color: #111111;
+    cursor: pointer;
+    padding: 0 6px;
+    text-transform: uppercase;
+    font: inherit;
+    font-size: 10px;
+    line-height: 22px;
+}
+
+.modulePresetSelect:focus {
+    border-color: #111111;
+    outline: 0;
+}
+
+.moduleLabelInput::placeholder {
+    color: rgba(17, 17, 17, 0.34);
+}
+
+.moduleLabelInput:focus {
+    border-color: #111111;
+    outline: 0;
+}
+
+.moduleDeleteButton {
+    appearance: none;
+    display: grid;
+    place-items: center;
+    width: 24px;
+    height: 24px;
+    border: 1px solid rgba(17, 17, 17, 0.42);
+    background: #ffffff;
+    background-image: none;
+    color: #111111;
+    cursor: pointer;
+    padding: 0;
+    text-transform: uppercase;
+    font-size: 13px;
+    font-weight: 800;
+    line-height: 1;
+}
+
+.moduleHeaderActions {
+    grid-column: -2 / -1;
+    justify-self: end;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.moduleActivityMeter {
+    display: grid;
+    grid-auto-flow: column;
+    align-items: end;
+    gap: 2px;
+    width: 18px;
+    height: 24px;
+    padding: 5px 2px 4px;
+}
+
+.moduleActivityMeter span {
+    display: block;
+    width: 3px;
+    height: 13px;
+    border: 1px solid rgba(17, 17, 17, 0.32);
+    background: transparent;
+}
+
+.moduleActivityMeter span.isActive {
+    border-color: #111111;
+    background: #111111;
+}
+
+.moduleBypassButton {
+    display: grid;
+    place-items: center;
+    min-width: 34px;
+    height: 24px;
+    border: 1px solid rgba(17, 17, 17, 0.42);
+    background: #ffffff;
+    color: #111111;
+    cursor: pointer;
+    padding: 0 6px;
+    text-transform: uppercase;
+    font-size: 10px;
+    font-weight: 900;
+    line-height: 1;
+}
+
+.moduleBypassButtonActive {
+    background: #111111;
+    color: #ffffff;
+}
+
+.moduleDeleteSpacer {
+    width: 24px;
+    height: 24px;
+}
+
+.moduleDeleteButton:hover,
+.moduleBypassButton:hover {
+    background: #111111;
+    color: #ffffff;
+}
+
+.moduleBody {
+    display: grid;
+    gap: 12px;
+    height: 100%;
+    min-height: 0;
+    overflow: hidden;
+    padding: 0;
+}
+
+.rackModuleCollapsed .moduleFace {
+    grid-template-rows: 44px;
+}
+
+.rackModuleCollapsed .rackScrew-top {
+    top: 9px;
+}
+
+.rackModuleCollapsed .rackScrew-bottom {
+    bottom: 9px;
+}
+
+.rackModuleCollapsed.moduleConnectionView {
+    z-index: 3;
+}
+
+.rackModule.moduleConnectionView {
+    border-color: #0f0f0f;
+    background: #343434;
+    color: #ededed;
+}
+
+.rackModule.moduleConnectionView .moduleFace {
+    background: #343434;
+}
+
+.rackModule.moduleConnectionView .moduleFace::before {
+    background: rgba(255, 255, 255, 0.16);
+}
+
+.rackModule.moduleConnectionView .rackFlange {
+    border-color: rgba(255, 255, 255, 0.16);
+    background: #242424;
+}
+
+.rackModule.moduleConnectionView .rackScrew {
+    border-color: rgba(255, 255, 255, 0.34);
+    background: #303030;
+}
+
+.rackModule.moduleConnectionView .rackScrew::after {
+    background: rgba(255, 255, 255, 0.5);
+}
+
+.rackModule.moduleConnectionView .moduleHeader {
+    height: 44px;
+    border-bottom-color: rgba(255, 255, 255, 0.18);
+    background: #2a2a2a;
+    color: #f5f5f5;
+}
+
+.rackModule.moduleConnectionView .moduleName {
+    color: inherit;
+    letter-spacing: 0;
+}
+
+.rackModule.moduleConnectionView .moduleCollapseButton span {
+    border-left-color: #f5f5f5;
+}
+
+.rackModule.moduleConnectionView .moduleCollapseButton:hover {
+    background: rgba(255, 255, 255, 0.12);
+}
+
+.rackModule.moduleConnectionView .moduleLabelInput {
+    border-color: rgba(255, 255, 255, 0.24);
+    background: #1d1d1d;
+    color: #f5f5f5;
+}
+
+.rackModule.moduleConnectionView .moduleLabelInput::placeholder {
+    color: rgba(255, 255, 255, 0.38);
+}
+
+.rackModule.moduleConnectionView .moduleLabelInput:focus {
+    border-color: rgba(255, 255, 255, 0.72);
+}
+
+.rackModule.moduleConnectionView .modulePresetSelect {
+    border-color: rgba(255, 255, 255, 0.26);
+    background: #1d1d1d;
+    color: #f5f5f5;
+}
+
+.rackModule.moduleConnectionView .moduleActivityMeter span {
+    border-color: rgba(255, 255, 255, 0.28);
+}
+
+.rackModule.moduleConnectionView .moduleActivityMeter span.isActive {
+    border-color: #f5f5f5;
+    background: #f5f5f5;
+}
+
+.rackModule.moduleConnectionView .moduleDeleteButton {
+    border-color: rgba(255, 255, 255, 0.26);
+    background: #1d1d1d;
+    color: #f5f5f5;
+}
+
+.rackModule.moduleConnectionView .moduleBypassButton {
+    border-color: rgba(255, 255, 255, 0.26);
+    background: #1d1d1d;
+    color: #f5f5f5;
+}
+
+.rackModule.moduleConnectionView .moduleBypassButtonActive {
+    background: #f5f5f5;
+    color: #111111;
+}
+
+.rackModule.moduleConnectionView .moduleDeleteButton:hover,
+.rackModule.moduleConnectionView .moduleBypassButton:hover {
+    background: #f5f5f5;
+    color: #111111;
+}
+
+.collapsedPatchSlot {
+    position: absolute;
+    left: var(--collapsed-patch-slot-left, 42px);
+    bottom: 5px;
+    z-index: 6;
+    width: var(--collapsed-patch-slot-width, calc(100% - 84px));
+    height: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 999px;
+    background: #050505;
+    box-shadow:
+        inset 0 2px 3px rgba(0, 0, 0, 0.96),
+        inset 0 -1px 1px rgba(255, 255, 255, 0.08),
+        0 -1px 0 rgba(255, 255, 255, 0.08),
+        0 1px 0 rgba(0, 0, 0, 0.72);
+    pointer-events: none;
+}
+
+.collapsedPatchSlot::before {
+    content: "";
+    position: absolute;
+    inset: 2px 8px 1px;
+    border-radius: inherit;
+    background: #000000;
+    box-shadow: inset 0 1px 4px rgba(0, 0, 0, 0.98);
+}
+
+.collapsedPatchSlot::after {
+    content: "";
+    position: absolute;
+    right: 10px;
+    bottom: -1px;
+    left: 10px;
+    height: 1px;
+    background: rgba(255, 255, 255, 0.12);
+    opacity: 0.4;
+}
+
+.connectionBay {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 4;
+    pointer-events: none;
+}
+
+.connectionDirectionBox {
+    position: absolute;
+    z-index: 1;
+    border: 1px solid rgba(17, 17, 17, 0.22);
+    background: rgba(255, 255, 255, 0.08);
+    pointer-events: none;
+}
+
+.connectionDirectionBoxLabel {
+    position: absolute;
+    top: -1px;
+    left: -1px;
+    display: inline-grid;
+    place-items: center;
+    min-width: 28px;
+    height: 15px;
+    padding: 0 5px;
+    border: 1px solid rgba(17, 17, 17, 0.26);
+    background: #ffffff;
+    color: #111111;
+    text-transform: uppercase;
+    font-size: 9px;
+    font-weight: 900;
+    line-height: 1;
+}
+
+.moduleConnectionView .connectionDirectionBox {
+    border-color: rgba(255, 255, 255, 0.18);
+    background: rgba(255, 255, 255, 0.025);
+}
+
+.moduleConnectionView .connectionDirectionBoxLabel {
+    border-color: rgba(255, 255, 255, 0.24);
+    background: #242424;
+    color: #f5f5f5;
+}
+
+.connectionJackSlot {
+    position: absolute;
+    z-index: 4;
+    pointer-events: auto;
+}
+
+.connectionJackBox {
+    position: absolute;
+    z-index: 3;
+    border: 1px solid rgba(17, 17, 17, 0.24);
+    background: rgba(255, 255, 255, 0.72);
+    color: currentColor;
+    text-transform: uppercase;
+    font-size: 8px;
+    font-weight: 900;
+    line-height: 1;
+    text-align: center;
+    padding-top: 5px;
+    pointer-events: none;
+}
+
+.moduleConnectionView .connectionJackBox {
+    border-color: rgba(255, 255, 255, 0.2);
+    background: rgba(28, 28, 28, 0.88);
+}
+
+.jackPort {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    width: 76px;
+    height: 20px;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    cursor: crosshair;
+    text-transform: uppercase;
+    font-size: 9px;
+    line-height: 1;
+}
+
+.connectionJackSlot .jackPort {
+    display: grid;
+    grid-template-rows: 13px 20px;
+    justify-items: center;
+    align-content: center;
+    gap: 4px;
+    width: 58px;
+    height: 44px;
+    padding: 3px 2px;
+    border: 1px solid rgba(17, 17, 17, 0.2);
+    background: #ffffff;
+    text-align: center;
+}
+
+.moduleConnectionView .connectionJackSlot .jackPort {
+    border-color: rgba(255, 255, 255, 0.2);
+    background: rgba(28, 28, 28, 0.88);
+}
+
+.connectionJackSlotGrouped {
+    z-index: 5;
+}
+
+.connectionJackSlotGrouped .jackPort {
+    width: 100%;
+    height: 100%;
+    border: 0;
+    background: transparent;
+    padding: 0;
+    grid-template-rows: 10px 18px;
+    gap: 3px;
+}
+
+.moduleConnectionView .connectionJackSlotGrouped .jackPort {
+    border: 0;
+    background: transparent;
+}
+
+.connectionJackSlotGrouped .jackText {
+    font-size: 7px;
+    font-weight: 900;
+}
+
+.jackSocket {
+    position: relative;
+    display: block;
+    width: 18px;
+    height: 18px;
+    border: 2px solid currentColor;
+    border-radius: 50%;
+    background: #e7e9e3;
+}
+
+.moduleConnectionView .jackSocket {
+    background: #d7dad2;
+}
+
+.jackSocket::after {
+    content: "";
+    display: block;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #050505;
+    transform: translate(-50%, -50%);
+}
+
+.jackPort:hover .jackSocket {
+    background: #f3f5ef;
+}
+
+.jack-audio {
+    color: var(--audio);
+}
+
+.jack-cv {
+    color: var(--cv);
+}
+
+.jack-gate {
+    color: var(--gate);
+}
+
+.jackText {
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.jackContextMenu {
+    position: fixed;
+    z-index: 6000;
+    width: 312px;
+    max-height: 372px;
+    padding: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.24);
+    background: #1b1b1b;
+    color: #f5f5f5;
+}
+
+.jackContextMenuTitle {
+    padding: 2px 3px 7px;
+    color: rgba(255, 255, 255, 0.64);
+    text-transform: uppercase;
+    font-size: 9px;
+    font-weight: 900;
+    letter-spacing: 0;
+}
+
+.jackContextMenuList {
+    display: grid;
+    gap: 8px;
+    max-height: 330px;
+    overflow: auto;
+    padding-right: 2px;
+}
+
+.jackContextMenuGroup {
+    display: grid;
+    gap: 3px;
+}
+
+.jackContextMenuGroupLabel {
+    overflow: hidden;
+    padding: 3px 5px;
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    background: #252525;
+    color: rgba(255, 255, 255, 0.82);
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    text-transform: uppercase;
+    font-size: 10px;
+    font-weight: 900;
+}
+
+.jackContextMenuOption {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    min-height: 28px;
+    padding: 5px 7px;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    background: #111111;
+    color: #f5f5f5;
+    text-align: left;
+    text-transform: uppercase;
+    font-family: inherit;
+    font-size: 10px;
+    font-weight: 800;
+    cursor: pointer;
+}
+
+.jackContextMenuOption:hover,
+.jackContextMenuOption:focus-visible {
+    border-color: currentColor;
+    outline: 0;
+}
+
+.jackContextMenuOption-audio {
+    color: var(--audio);
+}
+
+.jackContextMenuOption-cv {
+    color: var(--cv);
+}
+
+.jackContextMenuOption-gate {
+    color: var(--gate);
+}
+
+.jackContextMenuOptionStatus {
+    color: rgba(255, 255, 255, 0.48);
+    font-size: 8px;
+}
+
+.jackContextMenuEmpty {
+    padding: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    color: rgba(255, 255, 255, 0.56);
+    text-transform: uppercase;
+    font-size: 10px;
+    font-weight: 800;
+}
+
+.connectionJackSlot .jackText {
+    order: -1;
+}
+
+.moduleDisplay {
+    display: grid;
+    place-items: center;
+    min-height: 54px;
+    border: 1px solid var(--rule);
+    background: #fafafa;
+}
+
+.outputDisplay {
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    padding: 10px;
+}
+
+.outputDisplay > span {
+    display: grid;
+    place-items: center;
+    height: 42px;
+    border: 1px solid #111111;
+    background: #111111;
+    color: #ffffff;
+    font-weight: 800;
+}
+
+.knobGrid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 14px 12px;
+}
+
+.knobGridSingle {
+    grid-template-columns: 1fr;
+}
+
+.knob {
+    position: relative;
+    display: grid;
+    justify-items: center;
+    gap: 5px;
+    min-width: 0;
+    cursor: ew-resize;
+    touch-action: none;
+    text-transform: uppercase;
+    user-select: none;
+}
+
+.knobLabel {
+    font-size: 10px;
+    color: rgba(17, 17, 17, 0.66);
+}
+
+.knobFace {
+    --knob-face-size: 48px;
+    --knob-center-size: 10px;
+    --knob-needle-width: 3px;
+    --knob-needle-offset: -1.5px;
+    --knob-needle-top: 7px;
+    --knob-needle-height: 18px;
+    --knob-needle-origin-y: 17px;
+    position: relative;
+    display: block;
+    width: var(--knob-face-size);
+    height: var(--knob-face-size);
+    border: 1px solid #111111;
+    border-radius: 50%;
+    overflow: hidden;
+    background: #ffffff;
+    touch-action: none;
+    pointer-events: auto;
+}
+
+.knobFace::before {
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: var(--knob-center-size);
+    height: var(--knob-center-size);
+    border: 1px solid #111111;
+    border-radius: 50%;
+    background: #ffffff;
+    pointer-events: none;
+    transform: translate(-50%, -50%);
+    z-index: 3;
+}
+
+.knobNeedle {
+    position: absolute;
+    left: 50%;
+    top: var(--knob-needle-top);
+    width: var(--knob-needle-width);
+    height: var(--knob-needle-height);
+    margin-left: var(--knob-needle-offset);
+    background: #111111;
+    border-radius: 999px;
+    pointer-events: none;
+    transform-origin: 50% var(--knob-needle-origin-y);
+    transform: rotate(var(--knob-deg));
+    z-index: 2;
+}
+
+.knob:focus-within .knobFace {
+    outline: 1px solid #111111;
+    outline-offset: 1px;
+}
+
+.knobValue {
+    width: 100%;
+    min-height: 14px;
+    overflow: hidden;
+    text-align: center;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-size: 10px;
+}
+
+.knobInput {
+    position: absolute;
+    inset: 0;
+    z-index: 4;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    appearance: none;
+    background: transparent;
+    opacity: 0;
+    pointer-events: none;
+    cursor: ew-resize;
+}
+
+.cableLayer {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 2;
+}
+
+.patchCable {
+    fill: none;
+    stroke: #111111;
+    stroke-width: 3.4;
+    stroke-linecap: square;
+    pointer-events: stroke;
+    cursor: pointer;
+}
+
+.patchCable:hover {
+    stroke-width: 5;
+}
+
+.patchCableCollapsed {
+    stroke-linecap: round;
+}
+
+.patchCableShadow {
+    fill: none;
+    stroke: #000000;
+    stroke-width: 5.8;
+    stroke-linecap: square;
+    opacity: 0.36;
+    pointer-events: none;
+    transform: translate(3px, 3px);
+}
+
+.patchCableShadowCollapsed {
+    opacity: 0.44;
+    stroke-linecap: round;
+    transform: translate(2px, 2px);
+}
+
+.cableDraftShadow {
+    opacity: 0.2;
+    stroke-dasharray: 8 8;
+}
+
+.cableEndHandle {
+    pointer-events: all;
+    cursor: grab;
+}
+
+.cableEndHandle:active {
+    cursor: grabbing;
+}
+
+.cableEndHit {
+    fill: transparent;
+    stroke: transparent;
+    pointer-events: all;
+}
+
+.cableEndJackRim {
+    fill: #d7dad2;
+    stroke: #f2f2f2;
+    stroke-width: 2;
+    pointer-events: none;
+}
+
+.cableEndJackHole {
+    fill: #050505;
+    stroke: #050505;
+    stroke-width: 1;
+    pointer-events: none;
+}
+
+.cableEndHandle:hover .cableEndJackRim {
+    stroke-width: 3;
+}
+
+.cableEndHandleCollapsed .cableEndJackRim,
+.cableEndHandleCollapsed .cableEndJackHole {
+    display: none;
+}
+
+.cable-audio {
+    --cable-color: var(--audio);
+    stroke: var(--cable-color);
+}
+
+.cable-cv {
+    --cable-color: var(--cv);
+    stroke: var(--cable-color);
+}
+
+.cable-gate {
+    --cable-color: var(--gate);
+    stroke: var(--cable-color);
+}
+
+.cableDraft {
+    stroke-dasharray: 8 8;
+    opacity: 0.78;
+}
+
+@media (max-width: 720px) {
+    .topBar {
+        grid-template-columns: 1fr;
+        align-items: stretch;
+        gap: 12px;
+    }
+
+    .sessionHeaderControls,
+    .rackTransport {
+        width: 100%;
+    }
+
+    .accountMenu {
+        justify-self: stretch;
+    }
+
+    .accountMenu summary,
+    .accountMenuPanel {
+        width: 100%;
+    }
+
+    .sessionErrorBar {
+        grid-template-columns: 1fr;
+    }
+
+    .sessionErrorBar strong {
+        border-left: 0;
+        border-top: 1px solid rgba(220, 38, 38, 0.28);
+    }
+
+    .tempoControl {
+        grid-template-columns: auto minmax(96px, 1fr) 58px auto;
+        width: 100%;
+    }
+
+    .sessionControl {
+        grid-template-columns: auto minmax(0, 1fr);
+        width: 100%;
+    }
+
+    .sessionControl select {
+        width: 100%;
+    }
+
+    .moduleToolbar {
+        gap: 6px;
+    }
+
+    .rackWorkspace {
+        grid-template-columns: var(--rack-canvas-width, 1046px);
+        grid-template-rows: minmax(0, 1fr);
+    }
+
+    .moduleLibrary {
+        display: none;
+        border-top: 1px solid rgba(255, 255, 255, 0.18);
+        border-left: 0;
+    }
+
+    .toolbarModuleAdd {
+        width: 100%;
+    }
+
+    .toolbarModuleSelect {
+        grid-template-columns: auto minmax(0, 1fr);
+        flex: 1 1 auto;
+    }
+
+    .toolbarModuleSelect select {
+        width: 100%;
+    }
+
+    .startButton,
+    .viewModeButton {
+        flex: 1 1 92px;
+    }
+}
+
+/* Default dark module skin. Kept at the end so module layouts stay intact while
+   the shared light primitives inherit the black-aluminum treatment. */
+:root {
+    --rule: rgba(223, 243, 248, 0.15);
+    --soft: rgba(255, 255, 255, 0.032);
+    --audio: #edf6f7;
+    --cv: #58d9c8;
+    --gate: #f3b15e;
+    --mdl-bg: #07090b;
+    --mdl-bg-raised: #0d1013;
+    --mdl-panel: rgba(255, 255, 255, 0.028);
+    --mdl-panel-strong: rgba(255, 255, 255, 0.044);
+    --mdl-panel-bright: rgba(255, 255, 255, 0.065);
+    --mdl-control: rgba(255, 255, 255, 0.042);
+    --mdl-control-hover: rgba(255, 255, 255, 0.074);
+    --mdl-line: rgba(221, 240, 247, 0.15);
+    --mdl-line-strong: rgba(221, 240, 247, 0.28);
+    --mdl-text: #edf6f7;
+    --mdl-muted: rgba(237, 246, 247, 0.62);
+    --mdl-faint: rgba(237, 246, 247, 0.4);
+    --mdl-accent: #3f9ea8;
+    --mdl-accent-strong: #67bbc5;
+    --mdl-accent-soft: rgba(63, 158, 168, 0.11);
+    --mdl-danger: #ff5c7a;
+}
+
+body {
+    background: var(--mdl-bg);
+    color: var(--mdl-text);
+}
+
+.appShell {
+    background: var(--mdl-bg);
+    color: var(--mdl-text);
+    color-scheme: dark;
+}
+
+.topBar,
+.moduleToolbar {
+    border-color: var(--mdl-line-strong);
+    background: var(--mdl-bg-raised);
+    color: var(--mdl-text);
+}
+
+.topBar p,
+.sessionControl span,
+.tempoControl span,
+.toolbarModuleSelect span {
+    color: var(--mdl-muted);
+}
+
+.sessionControl,
+.tempoControl,
+.toolbarModuleSelect,
+.sessionSyncStatus,
+.userControl,
+.accountMenu summary,
+.perfToggle {
+    border-color: var(--mdl-line-strong);
+    background: var(--mdl-panel);
+    color: var(--mdl-text);
+}
+
+.sessionControl::after,
+.toolbarModuleSelect::after,
+.accountMenu summary::after {
+    border-top-color: var(--mdl-text);
+}
+
+.sessionControl select,
+.toolbarModuleSelect select,
+.tempoControl input[type="number"],
+.topBar input,
+.topBar select {
+    border-color: var(--mdl-line);
+    background: var(--mdl-control);
+    color: var(--mdl-text);
+}
+
+.sessionControl select:focus,
+.toolbarModuleSelect select:focus,
+.tempoControl input[type="number"]:focus {
+    border-color: var(--mdl-accent);
+    outline: 1px solid var(--mdl-accent);
+    outline-offset: -1px;
+}
+
+.startButton,
+.viewModeButton,
+.newSessionButton,
+.deleteSessionButton,
+.logoutButton,
+.accountMenu button,
+.toolbarModuleAddButton {
+    border-color: var(--mdl-line-strong);
+    background: var(--mdl-control);
+    color: var(--mdl-text);
+}
+
+.startButton:hover,
+.viewModeButton:hover,
+.viewModeButton.isActive,
+.newSessionButton:hover,
+.logoutButton:hover,
+.accountMenu button:hover,
+.toolbarModuleAddButton:hover,
+.accountMenu[open] summary {
+    border-color: var(--mdl-accent);
+    background: var(--mdl-accent-soft);
+    color: var(--mdl-text);
+}
+
+.deleteSessionButton:hover {
+    border-color: var(--mdl-danger);
+    background: rgba(255, 92, 122, 0.16);
+    color: var(--mdl-text);
+}
+
+.newSessionButton:disabled:hover,
+.deleteSessionButton:disabled:hover {
+    border-color: var(--mdl-line-strong);
+    background: var(--mdl-control);
+    color: var(--mdl-text);
+    box-shadow: none;
+}
+
+.accountMenuPanel,
+.perfOverlay {
+    border-color: var(--mdl-line-strong);
+    background: #101419;
+    color: var(--mdl-text);
+}
+
+.perfMetric {
+    border-color: var(--mdl-line);
+    background: var(--mdl-panel);
+}
+
+.perfMetric span {
+    color: var(--mdl-muted);
+}
+
+.perfMetric strong {
+    border-left-color: var(--mdl-line);
+}
+
+.status {
+    border-color: var(--mdl-line-strong);
+    background: var(--mdl-control);
+}
+
+.status-running {
+    background: var(--mdl-accent);
+}
+
+.status-starting,
+.status-stopping {
+    background: var(--gate);
+}
+
+.sessionSyncStatus-dirty,
+.sessionSyncStatus-saving,
+.sessionSyncStatus-loading {
+    border-color: var(--gate);
+    color: #f5c27a;
+}
+
+.sessionSyncStatus-saved {
+    border-color: var(--mdl-accent);
+    color: var(--mdl-accent-strong);
+}
+
+.sessionSyncStatus-error {
+    border-color: var(--mdl-danger);
+    color: var(--mdl-danger);
+}
+
+.rackWorkspace,
+.rackViewport,
+.rackCanvas,
+.appShellPatch .rackWorkspace,
+.appShellPatch .rackViewport,
+.appShellPatch .rackCanvas {
+    background: var(--mdl-bg);
+}
+
+.rackCanvas {
+    background-image: none;
+    background-size: auto;
+}
+
+.moduleDefaultSkin:not(.moduleConnectionView) {
+    border-color: rgba(229, 246, 250, 0.3);
+    background: var(--mdl-bg-raised);
+    background-size: auto;
+    color: var(--mdl-text);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.045);
+}
+
+.moduleDefaultSkin:not(.moduleConnectionView) .moduleFace,
+.moduleDefaultSkin.rackModuleSystem:not(.moduleConnectionView) .moduleFace {
+    background: var(--mdl-panel);
+}
+
+.moduleDefaultSkin:not(.moduleConnectionView) .moduleHeader {
+    border-bottom-color: var(--mdl-line-strong);
+    background: var(--mdl-panel);
+    color: var(--mdl-text);
+}
+
+.moduleDefaultSkin:not(.moduleConnectionView) .moduleBody {
+    background: var(--mdl-panel);
+    color: var(--mdl-text);
+}
+
+.moduleDefaultSkin:not(.moduleConnectionView) .rackFlange,
+.moduleDefaultSkin.rackModuleSystem:not(.moduleConnectionView) .rackFlange {
+    border-color: rgba(229, 246, 250, 0.17);
+    background: var(--mdl-panel);
+}
+
+.moduleDefaultSkin:not(.moduleConnectionView) .rackScrew {
+    border-color: rgba(229, 246, 250, 0.27);
+    background: #10151a;
+    box-shadow:
+        inset 0 1px 1px rgba(255, 255, 255, 0.08),
+        inset 0 -1px 1px rgba(0, 0, 0, 0.55);
+}
+
+.moduleDefaultSkin:not(.moduleConnectionView) .rackScrew::before,
+.moduleDefaultSkin:not(.moduleConnectionView) .rackScrew::after {
+    background: rgba(229, 246, 250, 0.38);
+}
+
+.moduleDefaultSkin:not(.moduleConnectionView) .moduleCollapseButton span {
+    border-left-color: var(--mdl-text);
+}
+
+.moduleDefaultSkin:not(.moduleConnectionView) .moduleCollapseButton:hover {
+    background: var(--mdl-control-hover);
+}
+
+.moduleDefaultSkin:not(.moduleConnectionView) .moduleCollapseButton:focus-visible {
+    outline-color: var(--mdl-accent);
+}
+
+.moduleDefaultSkin:not(.moduleConnectionView) .moduleLabelInput,
+.moduleDefaultSkin:not(.moduleConnectionView) .modulePresetSelect,
+.moduleDefaultSkin:not(.moduleConnectionView) .moduleDeleteButton,
+.moduleDefaultSkin:not(.moduleConnectionView) .moduleBypassButton {
+    border-color: var(--mdl-line);
+    background: var(--mdl-control);
+    color: var(--mdl-text);
+}
+
+.moduleDefaultSkin:not(.moduleConnectionView) .moduleLabelInput:focus,
+.moduleDefaultSkin:not(.moduleConnectionView) .modulePresetSelect:focus {
+    border-color: var(--mdl-accent);
+    outline: 1px solid var(--mdl-accent);
+    outline-offset: -1px;
+}
+
+.moduleDefaultSkin:not(.moduleConnectionView) .moduleLabelInput::placeholder {
+    color: var(--mdl-faint);
+}
+
+.moduleDefaultSkin:not(.moduleConnectionView) .moduleActivityMeter span {
+    border-color: var(--mdl-line-strong);
+    background: rgba(0, 0, 0, 0.32);
+}
+
+.moduleDefaultSkin:not(.moduleConnectionView) .moduleActivityMeter span.isActive {
+    border-color: var(--mdl-accent);
+    background: var(--mdl-accent);
+}
+
+.moduleDefaultSkin:not(.moduleConnectionView) .moduleBypassButtonActive,
+.moduleDefaultSkin:not(.moduleConnectionView) .moduleDeleteButton:hover,
+.moduleDefaultSkin:not(.moduleConnectionView) .moduleBypassButton:hover {
+    border-color: var(--mdl-accent);
+    background: var(--mdl-accent-soft);
+    color: var(--mdl-text);
+}
+
+.module-steps:not(.moduleConnectionView) .moduleHeader {
+    border-bottom-color: var(--mdl-line-strong);
+    background: var(--mdl-bg-raised);
+    color: var(--mdl-text);
+}
+
+.module-steps:not(.moduleConnectionView) .rackFlange {
+    border-color: rgba(229, 246, 250, 0.17);
+    background: var(--mdl-bg-raised);
+}
+
+.module-steps:not(.moduleConnectionView) .rackScrew {
+    border-color: rgba(229, 246, 250, 0.27);
+    background: #10151a;
+    box-shadow:
+        inset 0 1px 1px rgba(255, 255, 255, 0.08),
+        inset 0 -1px 1px rgba(0, 0, 0, 0.55);
+}
+
+.module-steps:not(.moduleConnectionView) .rackScrew::before,
+.module-steps:not(.moduleConnectionView) .rackScrew::after {
+    background: rgba(229, 246, 250, 0.38);
+}
+
+.module-steps:not(.moduleConnectionView) .moduleName {
+    color: var(--mdl-text);
+}
+
+.module-steps:not(.moduleConnectionView) .moduleCollapseButton span {
+    border-left-color: var(--mdl-text);
+}
+
+.module-steps:not(.moduleConnectionView) .moduleCollapseButton:hover {
+    background: var(--mdl-control-hover);
+}
+
+.module-steps:not(.moduleConnectionView) .moduleCollapseButton:focus-visible {
+    outline-color: var(--mdl-accent);
+}
+
+.module-steps:not(.moduleConnectionView) .moduleLabelInput,
+.module-steps:not(.moduleConnectionView) .modulePresetSelect,
+.module-steps:not(.moduleConnectionView) .moduleDeleteButton,
+.module-steps:not(.moduleConnectionView) .moduleBypassButton {
+    border-color: var(--mdl-line);
+    background: var(--mdl-control);
+    color: var(--mdl-text);
+}
+
+.module-steps:not(.moduleConnectionView) .moduleLabelInput:focus,
+.module-steps:not(.moduleConnectionView) .modulePresetSelect:focus {
+    border-color: var(--mdl-accent);
+    outline: 1px solid var(--mdl-accent);
+    outline-offset: -1px;
+}
+
+.module-steps:not(.moduleConnectionView) .moduleLabelInput::placeholder {
+    color: var(--mdl-faint);
+}
+
+.module-steps:not(.moduleConnectionView) .moduleActivityMeter span {
+    border-color: var(--mdl-line-strong);
+    background: rgba(0, 0, 0, 0.32);
+}
+
+.module-steps:not(.moduleConnectionView) .moduleActivityMeter span.isActive {
+    border-color: var(--mdl-accent);
+    background: var(--mdl-accent);
+}
+
+.module-steps:not(.moduleConnectionView) .moduleBypassButtonActive,
+.module-steps:not(.moduleConnectionView) .moduleDeleteButton:hover,
+.module-steps:not(.moduleConnectionView) .moduleBypassButton:hover {
+    border-color: var(--mdl-accent);
+    background: var(--mdl-accent-soft);
+    color: var(--mdl-text);
+}
+
+.moduleDefaultSkin:not(.moduleConnectionView) .moduleBody button,
+.moduleDefaultSkin:not(.moduleConnectionView) .moduleBody input:not([type="range"]),
+.moduleDefaultSkin:not(.moduleConnectionView) .moduleBody select,
+.moduleDefaultSkin:not(.moduleConnectionView) .moduleBody output {
+    border-color: var(--mdl-line);
+    background: var(--mdl-control);
+    color: var(--mdl-text);
+}
+
+.moduleDefaultSkin:not(.moduleConnectionView) .moduleBody button:hover,
+.moduleDefaultSkin:not(.moduleConnectionView) .moduleBody button:focus-visible {
+    border-color: var(--mdl-accent);
+    background: var(--mdl-control-hover);
+    outline: 0;
+}
+
+.moduleDefaultSkin:not(.moduleConnectionView) .moduleBody button.isActive,
+.moduleDefaultSkin:not(.moduleConnectionView) .moduleBody button[aria-pressed="true"],
+.moduleDefaultSkin:not(.moduleConnectionView) .moduleBody .isSelected,
+.moduleDefaultSkin:not(.moduleConnectionView) .moduleBody .isActive {
+    border-color: var(--mdl-accent);
+    background: var(--mdl-accent-soft);
+    color: var(--mdl-text);
+}
+
+.moduleDefaultSkin:not(.moduleConnectionView) .moduleBody :is(
+    .productionSection,
+    .moduleDisplay,
+    .synthControlPreview,
+    .mutaMacroGrid,
+    .mutaTree,
+    .mutaStep,
+    .mutaStepHead,
+    .euclidTop,
+    .euclidBlock,
+    .euclidField,
+    .euclidToggle,
+    .euclidPreview,
+    .loopPanel,
+    .loopMonitor,
+    .loopSlot,
+    .loopSlotMeter,
+    .loopInputMeterRow i,
+    .rhythmSeqBanks,
+    .rhythmSeqLength,
+    .rhythmSeqPages,
+    .rhythmSeqMeter,
+    .rhythmSeqActions,
+    .rhythmSeqShuffle,
+    .rhythmSeqGrid,
+    .rhythmSeqStepCell,
+    .connectionJackSlot .jackPort
+) {
+    border-color: var(--mdl-line);
+    background: var(--mdl-panel);
+    color: var(--mdl-text);
+}
+
+.moduleDefaultSkin:not(.moduleConnectionView) .moduleBody :is(
+    .productionSection .productionSection,
+    .euclidField,
+    .euclidToggle,
+    .euclidPreview span,
+    .loopMonitor,
+    .loopSlot,
+    .mutaStepHead,
+    .rhythmSeqRow button,
+    .rhythmSeqStepCell,
+    .connectionJackBox
+) {
+    background: var(--mdl-panel-strong);
+}
+
+.moduleDefaultSkin:not(.moduleConnectionView) .productionSectionTitle,
+.moduleDefaultSkin:not(.moduleConnectionView) .moduleBody :is(
+    .knobLabel,
+    .mutaRange span,
+    .mutaSelect span,
+    .euclidBlockHeader strong,
+    .euclidBlockHeader span,
+    .euclidField span,
+    .euclidToggle span,
+    .euclidMatrixHeader span,
+    .rhythmSeqBanksLabel
+) {
+    border-color: var(--mdl-line);
+    color: var(--mdl-muted);
+}
+
+.moduleDefaultSkin:not(.moduleConnectionView) .moduleBody svg {
+    color: var(--mdl-text);
+}
+
+.moduleDefaultSkin:not(.moduleConnectionView) .moduleBody :is(
+    .synthControlGridLine,
+    .synthControlAxis
+) {
+    stroke: rgba(237, 246, 247, 0.2);
+}
+
+.moduleDefaultSkin:not(.moduleConnectionView) .moduleBody :is(
+    .synthControlMarker,
+    .synthControlTrace
+) {
+    stroke: var(--mdl-accent);
+}
+
+.moduleDefaultSkin.module-euclid:not(.moduleConnectionView) .euclidPanel {
+    color: var(--mdl-text);
+}
+
+.moduleDefaultSkin.module-euclid:not(.moduleConnectionView) .euclidButtonGroup button + button {
+    border-left-color: transparent;
+}
+
+.moduleDefaultSkin.module-euclid:not(.moduleConnectionView) .euclidCell span {
+    background: currentColor;
+    opacity: 0.22;
+}
+
+.moduleDefaultSkin.module-euclid:not(.moduleConnectionView) .euclidCell.isActive span {
+    opacity: 0.55;
+}
+
+.moduleDefaultSkin.module-euclid:not(.moduleConnectionView) .euclidCell.isSelected,
+.moduleDefaultSkin.module-euclid:not(.moduleConnectionView) .euclidOutputs button.isSelected,
+.moduleDefaultSkin.module-euclid:not(.moduleConnectionView) .euclidCvMap button.isSelected {
+    border-color: var(--mdl-accent);
+    box-shadow: inset 0 0 0 1px var(--mdl-accent);
+}
+
+.moduleDefaultSkin.module-euclid:not(.moduleConnectionView) .euclidPreview span.isActive {
+    border-color: var(--mdl-accent);
+    background: var(--mdl-accent);
+}
+
+.moduleDefaultSkin.module-euclid:not(.moduleConnectionView) .euclidToggle strong {
+    border-color: var(--mdl-line);
+    background: var(--mdl-control);
+    color: var(--mdl-text);
+}
+
+.moduleDefaultSkin.module-euclid:not(.moduleConnectionView) .euclidToggle.isActive strong {
+    border-color: var(--mdl-accent);
+    background: var(--mdl-accent-soft);
+    color: var(--mdl-text);
+}
+
+.moduleDefaultSkin.module-muta:not(.moduleConnectionView) .mutaPanel {
+    --muta-channel: var(--mdl-accent) !important;
+    color: var(--mdl-text);
+}
+
+.moduleDefaultSkin.module-muta:not(.moduleConnectionView) .mutaSegment {
+    border-color: var(--mdl-line);
+    background: var(--mdl-panel);
+}
+
+.moduleDefaultSkin.module-muta:not(.moduleConnectionView) .mutaSegment button {
+    border-right-color: var(--mdl-line);
+    background: transparent;
+    color: var(--mdl-muted);
+}
+
+.moduleDefaultSkin.module-muta:not(.moduleConnectionView) .mutaSegment button.isActive {
+    border-color: var(--mdl-accent);
+    background: var(--mdl-accent-soft);
+    color: var(--mdl-text);
+}
+
+.moduleDefaultSkin.module-muta:not(.moduleConnectionView) .mutaTree span {
+    border-color: var(--mdl-line);
+    background: var(--mdl-panel-strong);
+}
+
+.moduleDefaultSkin.module-muta:not(.moduleConnectionView) .mutaTree span.isActive {
+    background: var(--mdl-accent);
+    box-shadow: none;
+}
+
+.moduleDefaultSkin.module-muta:not(.moduleConnectionView) .mutaStep.hasGate {
+    box-shadow: inset 0 -4px 0 var(--mdl-accent);
+}
+
+.moduleDefaultSkin.module-muta:not(.moduleConnectionView) .mutaStepHead strong {
+    background: var(--mdl-bg);
+    color: var(--mdl-text);
+    box-shadow: inset 0 -2px 0 var(--mdl-accent);
+}
+
+.moduleDefaultSkin.module-muta:not(.moduleConnectionView) .mutaStepHead[aria-pressed="true"] {
+    border-color: var(--mdl-accent);
+}
+
+.moduleDefaultSkin.module-rhythm-sequencer:not(.moduleConnectionView) .rhythmSeqBanks button::after {
+    background: var(--mdl-accent);
+}
+
+.moduleDefaultSkin.module-rhythm-sequencer:not(.moduleConnectionView) .rhythmSeqTrack,
+.moduleDefaultSkin.module-rhythm-sequencer:not(.moduleConnectionView) .rhythmSeqRow button,
+.moduleDefaultSkin.module-rhythm-sequencer:not(.moduleConnectionView) .rhythmSeqStepCell,
+.moduleDefaultSkin.module-rhythm-sequencer:not(.moduleConnectionView) .rhythmSeqLength button,
+.moduleDefaultSkin.module-rhythm-sequencer:not(.moduleConnectionView) .rhythmSeqPages button {
+    border-color: var(--mdl-line);
+    background: var(--mdl-control);
+    color: var(--mdl-text);
+}
+
+.moduleDefaultSkin.module-rhythm-sequencer:not(.moduleConnectionView) .rhythmSeqTrack.isActive,
+.moduleDefaultSkin.module-rhythm-sequencer:not(.moduleConnectionView) .rhythmSeqLength button.isActive,
+.moduleDefaultSkin.module-rhythm-sequencer:not(.moduleConnectionView) .rhythmSeqPages button.isActive {
+    border-color: var(--mdl-accent);
+    background: var(--mdl-accent-soft);
+    color: var(--mdl-text);
+}
+
+.moduleDefaultSkin.module-rhythm-sequencer:not(.moduleConnectionView) .rhythmSeqTrack.isMuted {
+    background: rgba(255, 255, 255, 0.035);
+    color: var(--mdl-faint);
+}
+
+.moduleDefaultSkin.module-rhythm-sequencer:not(.moduleConnectionView) .rhythmSeqStepCell {
+    --rhythm-on: #2f75d6;
+    --rhythm-accent: #cf3f46;
+}
+
+.moduleDefaultSkin.module-rhythm-sequencer:not(.moduleConnectionView) .rhythmSeqStepState {
+    border-right-color: var(--mdl-line);
+}
+
+.moduleDefaultSkin.module-rhythm-sequencer:not(.moduleConnectionView) .rhythmSeqStepRatchet {
+    color: var(--mdl-muted);
+}
+
+.moduleDefaultSkin.module-rhythm-sequencer:not(.moduleConnectionView) .rhythmSeqStepCell.hasRatchet .rhythmSeqStepRatchet {
+    background: rgba(255, 255, 255, 0.06);
+    color: var(--mdl-text);
+}
+
+.moduleDefaultSkin.module-rhythm-sequencer:not(.moduleConnectionView) .rhythmSeqStepCell.isOn .rhythmSeqStepState,
+.moduleDefaultSkin.module-rhythm-sequencer:not(.moduleConnectionView) .rhythmSeqStepCell.isAccented .rhythmSeqStepState {
+    color: #f7fbff;
+}
+
+.moduleDefaultSkin.module-rhythm-sequencer:not(.moduleConnectionView) .rhythmSeqStepCell.isOn .rhythmSeqStepState {
+    background: var(--rhythm-on);
+}
+
+.moduleDefaultSkin.module-rhythm-sequencer:not(.moduleConnectionView) .rhythmSeqStepCell.isAccented .rhythmSeqStepState {
+    background: var(--rhythm-accent);
+}
+
+.moduleDefaultSkin.module-rhythm-sequencer:not(.moduleConnectionView) .rhythmSeqStepCell.isPlayhead {
+    box-shadow: inset 0 0 0 1px var(--mdl-accent-strong);
+}
+
+.moduleDefaultSkin.module-rhythm-sequencer:not(.moduleConnectionView) .rhythmSeqStepCell.isPlayhead.isOn,
+.moduleDefaultSkin.module-rhythm-sequencer:not(.moduleConnectionView) .rhythmSeqStepCell.isPlayhead.isAccented {
+    box-shadow:
+        inset 0 0 0 1px var(--mdl-accent-strong),
+        inset 0 -2px 0 currentColor;
+}
+
+.moduleDefaultSkin:not(.moduleConnectionView) .moduleBody :is(
+    .sixFaderLabel,
+    .lfoFaderLabel,
+    .fiveFaderLabel,
+    .oneFaderLabel
+) {
+    color: var(--mdl-muted);
+}
+
+.moduleDefaultSkin:not(.moduleConnectionView) .moduleBody :is(
+    .sixFaderValue,
+    .lfoFaderValue,
+    .mpFaderValue,
+    .fiveFaderValue,
+    .oneFaderValue,
+    .subFaderValue
+) {
+    color: var(--mdl-text);
+}
+
+.moduleDefaultSkin:not(.moduleConnectionView) .moduleBody :is(
+    .sixFaderTrack,
+    .lfoFaderTrack,
+    .mpFaderTrack,
+    .fiveFaderTrack,
+    .oneFaderTrack,
+    .subFaderTrack
+)::before {
+    width: 5px;
+    border: 1px solid rgba(229, 246, 250, 0.18);
+    border-radius: 999px;
+    background: #080c10;
+}
+
+.moduleDefaultSkin:not(.moduleConnectionView) .moduleBody :is(
+    .sixFaderFill,
+    .lfoFaderFill,
+    .mpFaderFill,
+    .fiveFaderFill,
+    .oneFaderFill,
+    .subFaderFill
+) {
+    width: 5px;
+    border-radius: 999px;
+    background: rgba(72, 184, 196, 0.24);
+}
+
+.moduleDefaultSkin:not(.moduleConnectionView) .moduleBody :is(
+    .sixFaderCap,
+    .lfoFaderCap,
+    .mpFaderCap,
+    .fiveFaderCap,
+    .oneFaderCap,
+    .subFaderCap
+) {
+    border-color: var(--mdl-accent);
+    background: #10171c;
+    box-shadow: none;
+}
+
+.moduleDefaultSkin:not(.moduleConnectionView) .moduleBody :is(
+    .sixFader,
+    .lfoFader,
+    .mpFader,
+    .fiveFader,
+    .oneFader,
+    .subFader
+):has(input:focus-visible) :is(
+    .sixFaderCap,
+    .lfoFaderCap,
+    .mpFaderCap,
+    .fiveFaderCap,
+    .oneFaderCap,
+    .subFaderCap
+) {
+    outline: 1px solid var(--mdl-accent);
+    outline-offset: 2px;
+}
+
+.moduleDefaultSkin:not(.moduleConnectionView) .knobLabel {
+    color: var(--mdl-muted);
+}
+
+.moduleDefaultSkin:not(.moduleConnectionView) .knobValue {
+    color: var(--mdl-text);
+}
+
+.moduleDefaultSkin:not(.moduleConnectionView) .knobFace {
+    --knob-needle-width: 2px;
+    --knob-needle-offset: -1px;
+    overflow: hidden;
+    border-color: transparent;
+    background: #0b0f12;
+    box-shadow:
+        inset 0 1px 1px rgba(255, 255, 255, 0.1),
+        inset 0 -4px 8px rgba(0, 0, 0, 0.46);
+}
+
+.moduleDefaultSkin:not(.moduleConnectionView) .knobFace::after {
+    content: "";
+    position: absolute;
+    inset: 1px;
+    z-index: 0;
+    border-radius: 50%;
+    background:
+        conic-gradient(
+            from 228deg,
+            var(--mdl-accent) 0 var(--knob-sweep),
+            rgba(237, 246, 247, 0.075) var(--knob-sweep) 264deg,
+            transparent 264deg 360deg
+        );
+    pointer-events: none;
+    -webkit-mask: radial-gradient(
+        farthest-side,
+        transparent calc(100% - 4px),
+        #000 calc(100% - 3px)
+    );
+    mask: radial-gradient(
+        farthest-side,
+        transparent calc(100% - 4px),
+        #000 calc(100% - 3px)
+    );
+}
+
+.moduleDefaultSkin:not(.moduleConnectionView) .knobFace::before {
+    left: 5px;
+    top: 5px;
+    right: 5px;
+    bottom: 5px;
+    z-index: 1;
+    width: auto;
+    height: auto;
+    border-color: rgba(229, 246, 250, 0.1);
+    background: #10171c;
+    box-shadow:
+        inset 0 1px 1px rgba(255, 255, 255, 0.1),
+        inset 0 -4px 8px rgba(0, 0, 0, 0.44);
+    transform: none;
+}
+
+.moduleDefaultSkin:not(.moduleConnectionView) .knobNeedle {
+    z-index: 2;
+    background: var(--mdl-accent-strong);
+    box-shadow: none;
+}
+
+.moduleDefaultSkin:not(.moduleConnectionView) .knob:focus-within .knobFace {
+    outline: 1px solid var(--mdl-accent);
+    outline-offset: 2px;
+}
+
+:is(
+    .tempoControl,
+    .moduleDefaultSkin:not(.moduleConnectionView) .mutaRange,
+    .moduleDefaultSkin:not(.moduleConnectionView) .mutaStepRange,
+    .moduleDefaultSkin:not(.moduleConnectionView) .euclidField
+) input[type="range"]:not(.knobInput) {
+    height: 18px;
+    min-width: 0;
+    appearance: none;
+    -webkit-appearance: none;
+    accent-color: var(--mdl-accent);
+    background: transparent;
+    cursor: pointer;
+}
+
+:is(
+    .tempoControl,
+    .moduleDefaultSkin:not(.moduleConnectionView) .mutaRange,
+    .moduleDefaultSkin:not(.moduleConnectionView) .mutaStepRange,
+    .moduleDefaultSkin:not(.moduleConnectionView) .euclidField
+) input[type="range"]:not(.knobInput):focus-visible {
+    outline: 1px solid var(--mdl-accent);
+    outline-offset: 2px;
+}
+
+:is(
+    .tempoControl,
+    .moduleDefaultSkin:not(.moduleConnectionView) .mutaRange,
+    .moduleDefaultSkin:not(.moduleConnectionView) .mutaStepRange,
+    .moduleDefaultSkin:not(.moduleConnectionView) .euclidField
+) input[type="range"]:not(.knobInput)::-webkit-slider-runnable-track {
+    height: 5px;
+    border: 1px solid rgba(229, 246, 250, 0.28);
+    border-radius: 999px;
+    background: #151a1f;
+    box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.72);
+}
+
+:is(
+    .tempoControl,
+    .moduleDefaultSkin:not(.moduleConnectionView) .mutaRange,
+    .moduleDefaultSkin:not(.moduleConnectionView) .mutaStepRange,
+    .moduleDefaultSkin:not(.moduleConnectionView) .euclidField
+) input[type="range"]:not(.knobInput)::-webkit-slider-thumb {
+    width: 14px;
+    height: 14px;
+    margin-top: -6px;
+    appearance: none;
+    -webkit-appearance: none;
+    border: 1px solid var(--mdl-accent);
+    border-radius: 50%;
+    background: #10171c;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.72);
+}
+
+:is(
+    .tempoControl,
+    .moduleDefaultSkin:not(.moduleConnectionView) .mutaRange,
+    .moduleDefaultSkin:not(.moduleConnectionView) .mutaStepRange,
+    .moduleDefaultSkin:not(.moduleConnectionView) .euclidField
+) input[type="range"]:not(.knobInput)::-moz-range-track {
+    height: 5px;
+    border: 1px solid rgba(229, 246, 250, 0.28);
+    border-radius: 999px;
+    background: #151a1f;
+    box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.72);
+}
+
+:is(
+    .tempoControl,
+    .moduleDefaultSkin:not(.moduleConnectionView) .mutaRange,
+    .moduleDefaultSkin:not(.moduleConnectionView) .mutaStepRange,
+    .moduleDefaultSkin:not(.moduleConnectionView) .euclidField
+) input[type="range"]:not(.knobInput)::-moz-range-progress {
+    height: 5px;
+    border-radius: 999px;
+    background: var(--mdl-accent);
+}
+
+:is(
+    .tempoControl,
+    .moduleDefaultSkin:not(.moduleConnectionView) .mutaRange,
+    .moduleDefaultSkin:not(.moduleConnectionView) .mutaStepRange,
+    .moduleDefaultSkin:not(.moduleConnectionView) .euclidField
+) input[type="range"]:not(.knobInput)::-moz-range-thumb {
+    width: 14px;
+    height: 14px;
+    border: 1px solid var(--mdl-accent);
+    border-radius: 50%;
+    background: #10171c;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.72);
+}

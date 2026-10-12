@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 68 72">
+  <defs>
+    <filter id="switchShadow" x="-18%" y="-18%" width="136%" height="136%">
+      <feDropShadow dx="0" dy="3" stdDeviation="2" flood-color="#000000" flood-opacity=".3"/>
+    </filter>
+  </defs>
+  <rect x="18" y="7" width="32" height="58" rx="14" fill="#424344" opacity=".64"/>
+  <rect x="26" y="12" width="16" height="48" rx="8" fill="#000000" opacity=".2"/>
+  <rect x="15" y="11" width="38" height="23" rx="5" fill="#111827" filter="url(#switchShadow)"/>
+  <rect x="19" y="13" width="30" height="15" rx="4" fill="#f2f1e9" opacity=".72"/>
+  <path d="M21 16 H47" stroke="#ffffff" stroke-opacity=".24"/>
+</svg>

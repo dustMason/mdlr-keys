@@ -1,0 +1,314 @@
+.module-dist:not(.moduleConnectionView) .moduleFace {
+  background:
+    linear-gradient(90deg, rgba(0, 0, 0, 0.32), rgba(255, 247, 220, 0.04) 48%, rgba(0, 0, 0, 0.24)),
+    url("./assets/dist-panel.png") center / cover no-repeat,
+    #12110f;
+  color: #e4d7b8;
+}
+
+.module-dist:not(.moduleConnectionView) {
+  border-color: rgba(237, 219, 176, 0.22);
+  background: #12110f;
+}
+
+.module-dist:not(.moduleConnectionView) .rackFlange {
+  border-color: rgba(237, 219, 176, 0.2);
+  background:
+    linear-gradient(90deg, rgba(255, 244, 205, 0.05), rgba(0, 0, 0, 0.24)),
+    #12110f;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.05),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.48);
+}
+
+.module-dist:not(.moduleConnectionView) .rackFlange-left {
+  border-right-color: rgba(237, 219, 176, 0.2);
+}
+
+.module-dist:not(.moduleConnectionView) .rackFlange-right {
+  border-left-color: rgba(237, 219, 176, 0.2);
+}
+
+.module-dist:not(.moduleConnectionView) .rackScrew {
+  border-color: rgba(237, 219, 176, 0.36);
+  background:
+    radial-gradient(circle at 35% 28%, rgba(255, 244, 205, 0.28), transparent 24%),
+    radial-gradient(circle at 62% 68%, rgba(0, 0, 0, 0.58), transparent 45%),
+    #34322b;
+  box-shadow:
+    inset 0 1px 1px rgba(255, 244, 205, 0.16),
+    inset 0 -2px 2px rgba(0, 0, 0, 0.56);
+}
+
+.module-dist:not(.moduleConnectionView) .rackScrew::before {
+  background: rgba(237, 219, 176, 0.56);
+}
+
+.module-dist:not(.moduleConnectionView) .moduleHeader {
+  border-bottom: 1px solid rgba(237, 219, 176, 0.24);
+  background: transparent;
+  color: #eadfbd;
+  text-shadow: 0 1px 1px #000000;
+}
+
+.module-dist:not(.moduleConnectionView) .moduleCollapseButton span {
+  border-left-color: #eadfbd;
+}
+
+.module-dist:not(.moduleConnectionView) .moduleCollapseButton:hover,
+.module-dist:not(.moduleConnectionView) .moduleBypassButton:hover,
+.module-dist:not(.moduleConnectionView) .moduleDeleteButton:hover {
+  background: rgba(235, 215, 170, 0.14);
+  color: #fff2cb;
+}
+
+.module-dist:not(.moduleConnectionView) .moduleLabelInput,
+.module-dist:not(.moduleConnectionView) .modulePresetSelect,
+.module-dist:not(.moduleConnectionView) .moduleBypassButton,
+.module-dist:not(.moduleConnectionView) .moduleDeleteButton {
+  border-color: rgba(236, 219, 178, 0.26);
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.06), rgba(0, 0, 0, 0.18)),
+    rgba(13, 12, 10, 0.54);
+  color: #eadfbd;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.08),
+    0 1px 1px rgba(0, 0, 0, 0.42);
+}
+
+.module-dist:not(.moduleConnectionView) .moduleBypassButtonActive {
+  background: #eadfbd;
+  color: #10100e;
+  text-shadow: none;
+}
+
+.module-dist:not(.moduleConnectionView) .moduleActivityMeter span {
+  border-color: rgba(234, 223, 189, 0.34);
+}
+
+.module-dist:not(.moduleConnectionView) .moduleActivityMeter span.isActive {
+  border-color: #eadfbd;
+  background: #eadfbd;
+}
+
+.module-dist:not(.moduleConnectionView) .moduleBody {
+  padding: 0;
+  overflow: hidden;
+  background: transparent;
+}
+
+.distPanel {
+  position: relative;
+  isolation: isolate;
+  display: grid;
+  grid-template-columns: 144px minmax(0, 1fr);
+  gap: 6px;
+  height: 100%;
+  min-height: 0;
+  padding: 7px 10px 6px;
+  color: #e2d8bf;
+  background: transparent;
+}
+
+.distPanel::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.07), transparent 22%, rgba(0, 0, 0, 0.28)),
+    linear-gradient(90deg, rgba(0, 0, 0, 0.4), transparent 8%, transparent 92%, rgba(0, 0, 0, 0.34)),
+    repeating-linear-gradient(102deg, rgba(255, 255, 255, 0.022) 0 1px, transparent 1px 23px);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.08),
+    inset 0 -6px 10px rgba(0, 0, 0, 0.54);
+  opacity: 0.72;
+}
+
+.distDisplay {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: repeat(13, minmax(0, 1fr));
+  align-items: center;
+  align-self: stretch;
+  gap: 3px;
+  min-height: 0;
+  border: 1px solid rgba(237, 224, 190, 0.18);
+  border-radius: 3px;
+  padding: 10px 8px 8px;
+  overflow: hidden;
+  background:
+    linear-gradient(180deg, rgba(250, 224, 162, 0.1), rgba(0, 0, 0, 0.48)),
+    url("./assets/dist-display.png") center / cover no-repeat,
+    #080706;
+  box-shadow:
+    inset 0 0 0 1px rgba(0, 0, 0, 0.86),
+    inset 0 0 24px rgba(0, 0, 0, 0.92),
+    0 1px 0 rgba(255, 255, 255, 0.1),
+    0 3px 8px rgba(0, 0, 0, 0.5);
+}
+
+.distDisplay::before {
+  content: "";
+  position: absolute;
+  inset: 8px 9px;
+  pointer-events: none;
+  border: 1px solid rgba(223, 196, 135, 0.12);
+  background:
+    radial-gradient(circle at 34% 44%, rgba(231, 112, 30, 0.16), transparent 48%),
+    linear-gradient(90deg, rgba(0, 0, 0, 0.42), transparent 22%, rgba(0, 0, 0, 0.62));
+}
+
+.distDisplay::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0.07), transparent 20%, rgba(255, 255, 255, 0.03) 70%, transparent);
+  opacity: 0.58;
+}
+
+.distDisplay span {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  min-height: 12px;
+  border: 0;
+  border-radius: 1px;
+  background: linear-gradient(180deg, #ffdd8e 0%, #e66b25 38%, #7f1b0e 100%);
+  box-shadow:
+    0 0 7px rgba(221, 84, 24, 0.42),
+    inset 0 1px 0 rgba(255, 235, 176, 0.58);
+  transform-origin: center;
+}
+
+.module-dist:not(.moduleConnectionView) .distSections {
+  position: relative;
+  z-index: 1;
+  height: 100%;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 4px;
+}
+
+.module-dist:not(.moduleConnectionView) .distSections .productionSection {
+  position: relative;
+  align-content: start;
+  gap: 3px;
+  min-height: 0;
+  border: 0;
+  border-left: 1px solid rgba(229, 211, 169, 0.16);
+  padding: 4px 5px 4px 6px;
+  background: transparent;
+  box-shadow:
+    inset 1px 0 0 rgba(0, 0, 0, 0.54),
+    -1px 0 0 rgba(255, 238, 194, 0.05);
+}
+
+.module-dist:not(.moduleConnectionView) .distSections .productionSectionTitle {
+  margin: 0;
+  border: 0;
+  padding: 2px 5px 3px;
+  color: rgba(234, 222, 190, 0.92);
+  background:
+    linear-gradient(90deg, rgba(0, 0, 0, 0.78), rgba(0, 0, 0, 0.36) 68%, transparent),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.08), rgba(0, 0, 0, 0.12));
+  font-size: 9px;
+  line-height: 1;
+  letter-spacing: 0;
+  text-shadow: 0 1px 1px #000000;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.06),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.58);
+}
+
+.module-dist:not(.moduleConnectionView) .distSections .productionSectionKnobs {
+  grid-template-columns: repeat(2, minmax(42px, 1fr));
+  gap: 3px 4px;
+  align-items: start;
+}
+
+.module-dist:not(.moduleConnectionView) .distSections .knob {
+  gap: 2px;
+  min-width: 0;
+  color: rgba(230, 217, 184, 0.95);
+  text-shadow: 0 1px 1px #000000;
+}
+
+.module-dist:not(.moduleConnectionView) .distSections .knobLabel {
+  color: rgba(222, 210, 176, 0.76);
+  font-size: 8.5px;
+  line-height: 1;
+  letter-spacing: 0;
+}
+
+.module-dist:not(.moduleConnectionView) .distSections .knobFace {
+  --knob-face-size: 44px;
+  --knob-center-size: 10px;
+  --knob-needle-width: 2px;
+  --knob-needle-offset: -1.5px;
+  --knob-needle-top: 7px;
+  --knob-needle-height: 15px;
+  --knob-needle-origin-y: 15px;
+  overflow: visible;
+  border: 0;
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at 28% 22%, rgba(255, 244, 202, 0.26), transparent 18%),
+    radial-gradient(circle at 62% 72%, rgba(0, 0, 0, 0.52), transparent 42%),
+    conic-gradient(from 214deg, #080706, #4b4437 16%, #181611 34%, #625942 49%, #191713 70%, #060504 100%);
+  box-shadow:
+    inset 0 2px 2px rgba(255, 244, 205, 0.18),
+    inset 0 -7px 8px rgba(0, 0, 0, 0.78),
+    0 1px 0 rgba(255, 238, 188, 0.12),
+    0 4px 7px rgba(0, 0, 0, 0.82);
+}
+
+.module-dist:not(.moduleConnectionView) .distSections .knobFace::after {
+  content: "";
+  position: absolute;
+  inset: 5px;
+  z-index: 1;
+  border-radius: 50%;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at 34% 24%, rgba(255, 242, 201, 0.14), transparent 28%),
+    radial-gradient(circle at 60% 68%, rgba(0, 0, 0, 0.34), transparent 44%),
+    url("./assets/dist-knob.png") center / 145% 145% no-repeat,
+    #15130f;
+  box-shadow:
+    inset 0 1px 2px rgba(255, 247, 206, 0.18),
+    inset 0 -4px 7px rgba(0, 0, 0, 0.72),
+    0 0 0 1px rgba(235, 222, 184, 0.18),
+    0 1px 1px rgba(0, 0, 0, 0.78);
+}
+
+.module-dist:not(.moduleConnectionView) .distSections .knobFace::before {
+  z-index: 4;
+  border-color: rgba(231, 220, 189, 0.32);
+  background:
+    radial-gradient(circle at 34% 24%, rgba(255, 242, 198, 0.22), transparent 28%),
+    radial-gradient(circle at 62% 68%, #090806, #201d17 62%, #070605);
+  box-shadow:
+    inset 0 1px 1px rgba(255, 255, 255, 0.2),
+    inset 0 -2px 2px rgba(0, 0, 0, 0.68),
+    0 1px 1px rgba(0, 0, 0, 0.7);
+}
+
+.module-dist:not(.moduleConnectionView) .distSections .knobNeedle {
+  z-index: 3;
+  background: linear-gradient(180deg, #fff2cc, #b19a70);
+  box-shadow:
+    0 0 2px rgba(255, 210, 122, 0.45),
+    0 1px 1px rgba(0, 0, 0, 0.72);
+}
+
+.module-dist:not(.moduleConnectionView) .distSections .knob:focus-within .knobFace {
+  outline: 1px solid rgba(250, 219, 145, 0.72);
+  outline-offset: 2px;
+}
+
+.module-dist.rackUnits-1 .distSections .knobValue {
+  display: none;
+}

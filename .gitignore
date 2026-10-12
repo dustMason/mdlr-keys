@@ -1,0 +1,55 @@
+# Build output and dependency caches
+/Build/
+/build/
+/DerivedData/
+/App/WebPanel/
+/Frontend/dist/
+node_modules/
+target/
+*.tsbuildinfo
+*.app/
+*.ipa
+*.a
+*.o
+*.dylib
+*.dSYM/
+*.xcarchive/
+*.xcresult/
+
+# Local archives, backups, screenshots and development records
+/Backups/
+*.zip
+*.tar
+*.tar.gz
+*.log
+/README.txt
+/verification.json
+/rust-tests.txt
+/*.jpg
+/Scripts/install-horse.sh
+
+# Xcode and editor state
+*.xcuserstate
+xcuserdata/
+.DS_Store
+.idea/
+.vscode/
+*.swp
+
+# Credentials, signing material and local configuration
+.env
+.env.*
+!.env.example
+*.local
+*.local.*
+*.mobileprovision
+*.provisionprofile
+*.p12
+*.pfx
+*.pem
+*.key
+*.cer
+*.keychain
+*.keychain-db
+credentials.json
+secrets.json

@@ -1,0 +1,32 @@
+{
+  "name": "modular",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build:wasm": "node scripts/build-wasm.mjs",
+    "dev:backend": "cd backend && go run . migrate up && go run . serve --http=127.0.0.1:8090 --dev",
+    "dev:frontend": "npm run dev",
+    "dev": "npm run build:wasm && vite --host 127.0.0.1",
+    "backend:migrate": "cd backend && go run . migrate up",
+    "build": "npm run build:wasm && tsc -b && vite build",
+    "check": "npm run build:wasm && tsc -b --noEmit",
+    "test": "vitest run",
+    "preview": "vite preview --host 127.0.0.1"
+  },
+  "dependencies": {
+    "fast-json-patch": "^3.1.1",
+    "pocketbase": "^0.26.8",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0"
+  },
+  "devDependencies": {
+    "@types/react": "^19.1.0",
+    "@types/react-dom": "^19.1.0",
+    "@vitejs/plugin-react": "^5.0.0",
+    "playwright": "^1.59.1",
+    "typescript": "^5.9.0",
+    "vite": "^7.0.0",
+    "vitest": "^4.1.4"
+  }
+}

@@ -1,0 +1,271 @@
+.module-farf:not(.moduleConnectionView) {
+    --farf-cream: #efe2b5;
+    --farf-cream-soft: #f7ecc7;
+    --farf-red: #9e2b20;
+    --farf-red-dark: #661812;
+    --farf-brown: #6f3e1d;
+    --farf-ink: #1d1c19;
+    --farf-rail: #10110f;
+    --farf-line: rgba(78, 39, 17, 0.68);
+    --farf-shadow: rgba(33, 19, 8, 0.48);
+    border-color: #070707;
+    background: #0c0d0c;
+    color: var(--farf-ink);
+}
+
+.module-farf:not(.moduleConnectionView) .rackFlange {
+    border-color: #42100c;
+    background:
+        linear-gradient(90deg, rgba(255, 255, 255, 0.13), transparent 24%, transparent 76%, rgba(0, 0, 0, 0.34)),
+        #9f2c22;
+}
+
+.module-farf:not(.moduleConnectionView) .rackScrew {
+    border-color: #0b0b0a;
+    background:
+        radial-gradient(circle at 36% 28%, rgba(255, 255, 255, 0.72), transparent 17%),
+        radial-gradient(circle at 50% 50%, #69695f 0 44%, #171713 72%);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.55);
+}
+
+.module-farf:not(.moduleConnectionView) .rackScrew::before,
+.module-farf:not(.moduleConnectionView) .rackScrew::after {
+    background: #151512;
+}
+
+.module-farf:not(.moduleConnectionView) .moduleFace {
+    background:
+        linear-gradient(180deg, var(--farf-rail) 0 8px, transparent 8px calc(100% - 8px), var(--farf-rail) calc(100% - 8px)),
+        var(--farf-red);
+}
+
+.module-farf:not(.moduleConnectionView) .moduleHeader {
+    border-bottom-color: #24140c;
+    background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.22), transparent 62%),
+        repeating-linear-gradient(90deg, rgba(90, 63, 27, 0.08) 0 1px, transparent 1px 18px),
+        var(--farf-cream);
+    color: var(--farf-ink);
+}
+
+.module-farf:not(.moduleConnectionView) .moduleName {
+    color: #24231f;
+    letter-spacing: 0.12em;
+}
+
+.module-farf:not(.moduleConnectionView) .moduleLabelInput {
+    border-color: rgba(94, 59, 24, 0.55);
+    border-radius: 4px;
+    background: rgba(246, 233, 190, 0.62);
+    color: var(--farf-ink);
+}
+
+.module-farf:not(.moduleConnectionView) .moduleDeleteButton {
+    border-color: #4d130e;
+    background: #9d2a20;
+    color: #f2dfb5;
+    box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.32),
+        0 2px 3px rgba(0, 0, 0, 0.38);
+}
+
+.module-farf:not(.moduleConnectionView) .moduleDeleteButton:hover {
+    background: #7f1e17;
+    color: #fff2cf;
+}
+
+.module-farf:not(.moduleConnectionView) .moduleActivityMeter span {
+    border-color: rgba(61, 37, 15, 0.46);
+    background: rgba(61, 37, 15, 0.16);
+}
+
+.module-farf:not(.moduleConnectionView) .moduleActivityMeter span.isActive {
+    border-color: #21150b;
+    background: #21150b;
+}
+
+.module-farf:not(.moduleConnectionView) .moduleBody {
+    padding: 0;
+    background: var(--farf-red);
+}
+
+.farfPanel {
+    position: relative;
+    height: 100%;
+    min-height: 0;
+    padding: 13px 22px 13px;
+    background:
+        linear-gradient(90deg, rgba(42, 13, 8, 0.35), transparent 6%, transparent 94%, rgba(42, 13, 8, 0.35)),
+        repeating-linear-gradient(90deg, rgba(0, 0, 0, 0.06) 0 1px, transparent 1px 26px),
+        #a63324;
+}
+
+.farfPanel::before,
+.farfPanel::after {
+    content: "";
+    position: absolute;
+    right: 0;
+    left: 0;
+    z-index: 0;
+    height: 9px;
+    background:
+        repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.08) 0 2px, transparent 2px 9px),
+        var(--farf-rail);
+    box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.18),
+        inset 0 -1px 0 rgba(0, 0, 0, 0.7);
+}
+
+.farfPanel::before {
+    top: 0;
+}
+
+.farfPanel::after {
+    bottom: 0;
+}
+
+.farfSections {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    grid-template-columns:
+        minmax(0, 1.55fr)
+        minmax(0, 0.72fr)
+        minmax(0, 1.3fr)
+        minmax(0, 0.72fr);
+    gap: 8px;
+    height: 100%;
+    min-height: 0;
+}
+
+.farfSections .productionSection {
+    position: relative;
+    display: grid;
+    grid-template-rows: 26px minmax(0, 1fr);
+    gap: 0;
+    min-height: 0;
+    overflow: hidden;
+    padding: 0;
+    border: 1px solid var(--farf-line);
+    border-radius: 18px;
+    background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.18), transparent 70%),
+        repeating-linear-gradient(90deg, rgba(85, 52, 18, 0.06) 0 1px, transparent 1px 22px),
+        var(--farf-cream);
+    box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.42),
+        0 1px 2px var(--farf-shadow);
+}
+
+.farfSections .productionSectionTitle {
+    display: block;
+    margin: 0;
+    padding: 7px 14px 4px;
+    border: 0;
+    background: #a12920;
+    color: #f0ddb0;
+    font-size: 12px;
+    font-weight: 900;
+    line-height: 1;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+}
+
+.farfDrawbars {
+    display: grid;
+    grid-template-columns: repeat(var(--farf-drawbar-count, 2), minmax(0, 1fr));
+    gap: 8px;
+    height: 100%;
+    min-height: 0;
+    padding: 12px 13px 8px;
+}
+
+.farfToneSection,
+.farfEnvelopeSection {
+    --farf-drawbar-count: 4;
+}
+
+.farfMotionSection,
+.farfAmpSection {
+    --farf-drawbar-count: 2;
+}
+
+.farfDrawbar {
+    position: relative;
+    display: grid;
+    grid-template-rows: auto minmax(0, 1fr);
+    justify-items: center;
+    min-width: 0;
+    min-height: 0;
+    gap: 7px;
+    cursor: ns-resize;
+    text-transform: uppercase;
+}
+
+.farfDrawbarLabel {
+    overflow: hidden;
+    max-width: 100%;
+    color: #241f17;
+    font-size: 12px;
+    font-weight: 900;
+    line-height: 1;
+    text-align: center;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.farfDrawbarValue {
+    display: none;
+}
+
+.farfDrawbarRail {
+    position: relative;
+    display: block;
+    width: 48px;
+    min-height: 76px;
+    height: 100%;
+}
+
+.farfDrawbarRail::before {
+    content: "";
+    position: absolute;
+    top: 2px;
+    bottom: 3px;
+    left: 50%;
+    width: 4px;
+    border-radius: 999px;
+    background: #0f0d09;
+    transform: translateX(-50%);
+}
+
+.farfDrawbarFill {
+    display: none;
+}
+
+.farfDrawbarCap {
+    position: absolute;
+    left: 50%;
+    bottom: clamp(7px, var(--farf-drawbar-fill), calc(100% - 7px));
+    width: 40px;
+    height: 21px;
+    border: 1px solid rgba(76, 44, 16, 0.58);
+    border-radius: 3px;
+    background:
+        linear-gradient(180deg, #fbf0ca 0 42%, #9d2c21 42% 51%, #e5d3a6 51% 100%);
+    box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.68),
+        inset 0 -2px 3px rgba(74, 44, 18, 0.28),
+        0 3px 5px rgba(43, 22, 8, 0.4);
+    transform: translate(-50%, 50%);
+}
+
+.farfDrawbarInput {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    cursor: ns-resize;
+    direction: rtl;
+    writing-mode: vertical-lr;
+}

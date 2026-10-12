@@ -1,0 +1,24 @@
+/* Fit every panel at horse's 1080×758 / 810×1028 available points.
+   Keep the enlarged touch controls; compact the section spacing instead. */
+.panelCanvas.wide .fivePanel, .panelCanvas .fivePanel {
+  grid-template-rows:minmax(144px,1fr) minmax(144px,1fr) minmax(232px,1.6fr) minmax(148px,1fr);
+  padding:10px 12px;row-gap:14px;
+}
+.panelCanvas .fiveSection {padding:18px 12px 10px}
+.panelCanvas .moduleDefaultSkin.module-five:not(.moduleConnectionView) .fivePanel .fiveKnob {gap:6px}
+.panelCanvas .fiveFilterControls {row-gap:10px}
+.panelCanvas .fiveRouteGrid {row-gap:8px}
+.panelCanvas .fiveSectionTitle {font-size:16px;top:-9px}
+.panelCanvas.compact .fivePanel {
+  grid-template-rows:repeat(3,minmax(144px,1fr)) minmax(162px,1.15fr) repeat(2,minmax(144px,1fr));
+}
+/* Portrait has the width for all eight filter controls on one row. */
+.panelCanvas.compact .fiveFilterControls {grid-template-columns:repeat(8,minmax(72px,1fr));grid-template-rows:1fr;gap:8px}
+.panelCanvas.compact .onePanel {
+  grid-template-rows:200px minmax(300px,1.25fr) minmax(220px,1fr) 220px;
+}
+.panelCanvas.compact .fm4MacroPanel {padding:12px}
+.panelCanvas.compact .fm4MacroValue {bottom:4px}
+.panelCanvas.compact .fiveWheelControls {grid-template-columns:84px minmax(0,1fr);gap:16px}
+.panelCanvas.compact .fiveWheelDestinations {gap:8px}
+.panelCanvas.compact .fivePanel .fiveWheelDestinations .fiveSwitchLabel {font-size:14px}

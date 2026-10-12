@@ -1,0 +1,192 @@
+--- upstream/five.rs
++++ ipad/five.rs
+@@ -154,6 +154,7 @@
+ }
+ 
+ pub struct Five {
++    midi_velocity: [f32; 5],
+     tune: SmoothedValue,
+     osc_a_freq: SmoothedValue,
+     osc_b_freq: SmoothedValue,
+@@ -216,6 +217,7 @@
+ impl Five {
+     pub fn new() -> Self {
+         Self {
++            midi_velocity: [1.0; 5],
+             tune: SmoothedValue::new(0.0),
+             osc_a_freq: SmoothedValue::new(0.0),
+             osc_b_freq: SmoothedValue::new(0.0),
+@@ -582,8 +584,8 @@
+                         .filter
+                         .process(raw, cutoff, resonance, filter_drive, rev, sample_rate);
+                 let (left_gain, right_gain) = pan_gains(voice_index, spread);
+-                left += filtered * amp_env * left_gain * 0.38;
+-                right += filtered * amp_env * right_gain * 0.38;
++                left += filtered * amp_env * self.midi_velocity[voice_index] * left_gain * 0.38;
++                right += filtered * amp_env * self.midi_velocity[voice_index] * right_gain * 0.38;
+             }
+ 
+             let level = (level_param + level_cv * 0.42).clamp(0.0, 1.0);
+@@ -805,3 +807,18 @@
+         assert!(difference > 0.01);
+     }
+ }
++
++// Native MIDI adapter: per-voice velocity and allocation-free panic/reset.
++impl crate::Instrument for Five {
++    fn velocity(&mut self, voice: usize, value: f32) {
++        if let Some(v) = self.midi_velocity.get_mut(voice) { *v = value.clamp(0.0, 1.0); }
++    }
++    fn silence(&mut self) { self.voices = [
++                FiveVoice::new(0.02, 0.13, -0.58),
++                FiveVoice::new(0.19, 0.31, -0.24),
++                FiveVoice::new(0.41, 0.47, 0.03),
++                FiveVoice::new(0.68, 0.61, 0.27),
++                FiveVoice::new(0.86, 0.79, 0.51),
++            ];
++self.left_dc = DcBlocker::new(); self.right_dc = DcBlocker::new(); }
++}
+--- upstream/fm4.rs
++++ ipad/fm4.rs
+@@ -75,6 +75,7 @@
+ }
+ 
+ pub struct Fm4 {
++    midi_velocity: [f32; 4],
+     intensity: SmoothedValue,
+     frequency: SmoothedValue,
+     topology: SmoothedValue,
+@@ -91,6 +92,7 @@
+ impl Fm4 {
+     pub fn new() -> Self {
+         Self {
++            midi_velocity: [1.0; 4],
+             intensity: SmoothedValue::new(DEFAULT_INTENSITY),
+             frequency: SmoothedValue::new(DEFAULT_FREQUENCY),
+             topology: SmoothedValue::new(DEFAULT_TOPOLOGY),
+@@ -208,7 +210,7 @@
+                         mono += ops[op] * topology.carrier_gains[op];
+                     }
+                 }
+-                mono *= amp_env * 0.74 / VOICES as f32;
++                mono *= self.midi_velocity[voice_index] * amp_env * 0.74 / VOICES as f32;
+                 let pan = (voice_index as f32 - 1.5) * 0.13 + detune * color * 0.18;
+                 left += mono * (0.5 - pan * 0.5).clamp(0.0, 1.0);
+                 right += mono * (0.5 + pan * 0.5).clamp(0.0, 1.0);
+@@ -656,3 +658,17 @@
+         assert!(long_outputs[2][63] > short_outputs[2][63] * 2.0);
+     }
+ }
++
++// Native MIDI adapter: per-voice velocity and allocation-free panic/reset.
++impl crate::Instrument for Fm4 {
++    fn velocity(&mut self, voice: usize, value: f32) {
++        if let Some(v) = self.midi_velocity.get_mut(voice) { *v = value.clamp(0.0, 1.0); }
++    }
++    fn silence(&mut self) { self.voices = [
++                Fm4Voice::new(0.0),
++                Fm4Voice::new(0.17),
++                Fm4Voice::new(0.31),
++                Fm4Voice::new(0.47),
++            ];
++self.left_dc = DcBlocker::new(); self.right_dc = DcBlocker::new(); }
++}
+--- upstream/one.rs
++++ ipad/one.rs
+@@ -100,6 +100,7 @@
+ }
+ 
+ pub struct One {
++    midi_velocity: [f32; 1],
+     tune: SmoothedValue,
+     range: SmoothedValue,
+     pulse_width: SmoothedValue,
+@@ -148,6 +149,7 @@
+ impl One {
+     pub fn new() -> Self {
+         Self {
++            midi_velocity: [1.0; 1],
+             tune: SmoothedValue::new(0.0),
+             range: SmoothedValue::new(1.0),
+             pulse_width: SmoothedValue::new(0.52),
+@@ -417,7 +419,7 @@
+                 .dc_blocker
+                 .process(filtered * amp * level * (1.42 + drive * 0.92));
+ 
+-            outputs[0][frame] = soft_clip(output);
++            outputs[0][frame] = soft_clip(output) * self.midi_velocity[0];
+             outputs[1][frame] = f32::from(gate);
+             outputs[2][frame] = env.clamp(0.0, 1.0);
+             outputs[3][frame] = lfo.clamp(-1.0, 1.0);
+@@ -575,3 +577,11 @@
+         assert!(outputs[2][8] > 0.02);
+     }
+ }
++
++// Native MIDI adapter: per-voice velocity and allocation-free panic/reset.
++impl crate::Instrument for One {
++    fn velocity(&mut self, voice: usize, value: f32) {
++        if let Some(v) = self.midi_velocity.get_mut(voice) { *v = value.clamp(0.0, 1.0); }
++    }
++    fn silence(&mut self) { self.env = 0.0; self.env_stage = EnvStage::Idle; self.gate_amp = 0.0; self.last_gate = false; self.filter = OneFilter::new(); self.dc_blocker = DcBlocker::new(); }
++}
+--- upstream/six.rs
++++ ipad/six.rs
+@@ -134,6 +134,7 @@
+ }
+ 
+ pub struct Six {
++    midi_velocity: [f32; 6],
+     tune: SmoothedValue,
+     range: SmoothedValue,
+     pulse_width: SmoothedValue,
+@@ -182,6 +183,7 @@
+ impl Six {
+     pub fn new() -> Self {
+         Self {
++            midi_velocity: [1.0; 6],
+             tune: SmoothedValue::new(0.0),
+             range: SmoothedValue::new(1.0),
+             pulse_width: SmoothedValue::new(0.52),
+@@ -450,8 +452,8 @@
+                 );
+                 let amp = if vca_mode { amp_env } else { f32::from(gate) };
+                 let (left_gain, right_gain) = pan_gains(voice_index, spread);
+-                left += filtered * amp * left_gain * 0.33;
+-                right += filtered * amp * right_gain * 0.33;
++                left += filtered * amp * self.midi_velocity[voice_index] * left_gain * 0.33;
++                right += filtered * amp * self.midi_velocity[voice_index] * right_gain * 0.33;
+             }
+ 
+             let level = (vca_level + level_cv * 0.42).clamp(0.0, 1.0);
+@@ -653,3 +655,20 @@
+         assert!(difference > 0.01);
+     }
+ }
++
++// Native MIDI adapter: per-voice velocity and allocation-free panic/reset.
++impl crate::Instrument for Six {
++    fn velocity(&mut self, voice: usize, value: f32) {
++        if let Some(v) = self.midi_velocity.get_mut(voice) { *v = value.clamp(0.0, 1.0); }
++    }
++    fn silence(&mut self) { self.voices = [
++                SixVoice::new(0.01, 0.09, -0.58),
++                SixVoice::new(0.17, 0.23, -0.34),
++                SixVoice::new(0.34, 0.39, -0.12),
++                SixVoice::new(0.52, 0.57, 0.14),
++                SixVoice::new(0.71, 0.73, 0.32),
++                SixVoice::new(0.88, 0.91, 0.53),
++            ];
++self.left_dc = DcBlocker::new(); self.right_dc = DcBlocker::new();
++self.chorus_left.clear(); self.chorus_right.clear(); }
++}
+--- upstream/dsp.rs
++++ ipad/dsp.rs
+@@ -283,6 +283,7 @@
+ }
+ 
+ impl SafeDelayLine {
++    pub fn clear(&mut self) { self.buffer.fill(0.0); self.write_index = 0; }
+     pub fn new(max_samples: usize) -> Self {
+         Self {
+             buffer: vec![0.0; max_samples.max(2)],

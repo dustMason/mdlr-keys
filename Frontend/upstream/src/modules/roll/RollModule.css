@@ -1,0 +1,151 @@
+.rollPanel {
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr);
+  gap: 8px;
+  min-height: 0;
+}
+
+.rollToolbar {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  min-width: 0;
+  padding: 6px;
+  border: 1px solid rgba(17, 17, 17, 0.22);
+}
+
+.rollToolbar button {
+  height: 24px;
+  border: 1px solid rgba(17, 17, 17, 0.45);
+  cursor: pointer;
+  font: inherit;
+  font-size: 9px;
+  font-weight: 900;
+  line-height: 1;
+  padding: 0 10px;
+  text-transform: uppercase;
+}
+
+.rollLengthControl {
+  display: flex;
+}
+
+.rollMeterControl {
+  display: flex;
+}
+
+.rollLengthControl button + button,
+.rollMeterControl button + button {
+  border-left: 0;
+}
+
+.rollGrid {
+  --roll-steps: 16;
+  display: grid;
+  grid-template-columns: 42px repeat(var(--roll-steps), minmax(8px, 1fr));
+  align-content: start;
+  position: relative;
+  min-height: 0;
+  overflow: auto;
+  border: 2px solid #111111;
+  scrollbar-width: thin;
+}
+
+.rollPlayhead {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  z-index: 4;
+  display: none;
+  border-inline: 1px solid #111111;
+  pointer-events: none;
+}
+
+.rollGrid[data-roll-playhead-step] .rollPlayhead {
+  display: block;
+}
+
+.rollCorner,
+.rollStepHead,
+.rollKeyboardCell,
+.rollCell {
+  min-width: 0;
+  height: 13px;
+}
+
+.rollCorner {
+  position: sticky;
+  top: 0;
+  left: 0;
+  z-index: 3;
+  border-right: 1px solid rgba(17, 17, 17, 0.28);
+  border-bottom: 1px solid rgba(17, 17, 17, 0.28);
+}
+
+.rollStepHead {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  display: grid;
+  place-items: center;
+  border-bottom: 1px solid rgba(17, 17, 17, 0.28);
+  border-left: 1px solid rgba(17, 17, 17, 0.12);
+  font-size: 7px;
+  font-weight: 900;
+}
+
+.rollRowContents {
+  display: contents;
+}
+
+.rollKeyboardCell {
+  position: sticky;
+  left: 0;
+  z-index: 1;
+  display: grid;
+  align-items: center;
+  border-right: 1px solid rgba(17, 17, 17, 0.28);
+  border-bottom: 1px solid rgba(17, 17, 17, 0.1);
+  font-size: 7px;
+  font-weight: 900;
+  line-height: 1;
+  padding-left: 5px;
+}
+
+
+.rollCell {
+  border: 0;
+  border-bottom: 1px solid rgba(17, 17, 17, 0.07);
+  border-left: 1px solid rgba(17, 17, 17, 0.07);
+  cursor: pointer;
+  padding: 0;
+}
+
+
+.rollCell:hover {
+  outline: 1px solid #111111;
+  outline-offset: -1px;
+}
+
+.rollCell.isActive {
+  border: 1px solid #111111;
+}
+
+.rollCell.voice1 {
+  background: #155eef;
+}
+
+.rollCell.voice2 {
+  background: #c2410c;
+}
+
+.rollCell.voice3 {
+  background: #0f766e;
+}
+
+.rollCell.voice4 {
+  background: #7c3aed;
+}
+
+
+

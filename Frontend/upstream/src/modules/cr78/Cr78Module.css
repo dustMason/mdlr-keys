@@ -1,0 +1,90 @@
+.module-cr78 .productionSections {
+    display: grid;
+    /*grid-template-columns: repeat(8, minmax(0, 1fr));*/
+    grid-template-columns: 170px repeat(7, minmax(0, 1fr));
+    gap: 8px;
+    min-width: 0;
+}
+
+.module-cr78 .productionSectionTitle {
+    text-align: center;
+}
+
+.cr78MuteStrip {
+    display: grid;
+    grid-template-columns: repeat(7, minmax(0, 1fr));
+    gap: 2px;
+}
+
+.cr78MuteSwitch {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: center;
+    gap: 1px 5px;
+    border: 1px solid rgba(17, 17, 17, 0.3);
+    cursor: pointer;
+    font: inherit;
+    line-height: 1;
+    padding: 3px 6px;
+    text-transform: uppercase;
+}
+
+.cr78MuteSwitch.isMuted {
+    background: rgba(17, 17, 17, 0.08);
+    border-color: rgba(17, 17, 17, 0.55);
+}
+
+.cr78MuteSwitch.isMuted .cr78MuteName {
+    opacity: 0.72;
+    text-decoration: line-through;
+}
+
+.cr78MuteName,
+.cr78MuteState {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.cr78MuteName {
+    font-size: 8px;
+    font-weight: 900;
+}
+
+.cr78MuteLed {
+    display: block;
+    width: 6px;
+    height: 6px;
+    border: 1px solid #111111;
+    border-radius: 50%;
+    opacity: 0.72;
+}
+
+.cr78MuteSwitch.isMuted .cr78MuteLed {
+    opacity: 0.35;
+}
+
+.cr78MuteSwitch:not(.isMuted).isPlaying .cr78MuteLed {
+    opacity: calc(0.45 + var(--cr78-led-level) * 0.55);
+}
+
+.cr78MuteState {
+    grid-column: 1 / -1;
+    font-size: 7px;
+    font-weight: 900;
+}
+
+.cr78MuteSwitch:hover,
+.cr78MuteSwitch:focus-visible {
+    outline: 1px solid #111111;
+    outline-offset: -3px;
+}
+
+.rackUnits-2 .cr78MuteStrip {
+    min-height: 30px;
+    padding: 2px;
+}
+
+.module-cr78 .productionSection:nth-child(-n) .knobLabel {
+    display: none;
+}

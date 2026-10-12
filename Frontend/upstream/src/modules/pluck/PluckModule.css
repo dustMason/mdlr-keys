@@ -1,0 +1,253 @@
+.module-pluck:not(.moduleConnectionView) {
+    --pluck-metal-hi: #f6f8fa;
+    --pluck-metal-mid: #dce2e7;
+    --pluck-metal-low: #aeb8c1;
+    --pluck-ink: #333940;
+    --pluck-rule: rgba(38, 45, 52, 0.34);
+    --pluck-blue: #7fdcff;
+    --pluck-blue-deep: #2a86be;
+    color: var(--pluck-ink);
+    background: #d7dde3;
+}
+
+.module-pluck:not(.moduleConnectionView) .moduleFace {
+    background:
+        linear-gradient(180deg, #f9fbfc 0%, #cdd5dd 50%, #eef2f5 100%),
+        repeating-linear-gradient(
+            90deg,
+            rgba(255, 255, 255, 0.2) 0 1px,
+            rgba(54, 64, 72, 0.08) 1px 2px
+        );
+}
+
+.module-pluck:not(.moduleConnectionView) .moduleHeader {
+    color: var(--pluck-ink);
+    background:
+        linear-gradient(180deg, #f7fafc 0%, #dde4ea 52%, #c2ccd5 100%),
+        repeating-linear-gradient(
+            90deg,
+            rgba(255, 255, 255, 0.18) 0 1px,
+            transparent 1px 3px
+        );
+    border-bottom-color: rgba(55, 65, 75, 0.4);
+}
+
+.module-pluck:not(.moduleConnectionView) .moduleLabelInput,
+.module-pluck:not(.moduleConnectionView) .modulePresetSelect {
+    border-color: rgba(54, 64, 72, 0.34);
+    background: rgba(255, 255, 255, 0.42);
+    color: var(--pluck-ink);
+    box-shadow: inset 0 1px 4px rgba(40, 48, 56, 0.16);
+}
+
+.module-pluck:not(.moduleConnectionView) .moduleActivityMeter span {
+    border-color: rgba(65, 169, 220, 0.7);
+    background: rgba(149, 225, 255, 0.14);
+}
+
+.module-pluck:not(.moduleConnectionView) .moduleActivityMeter span.isActive {
+    background: var(--pluck-blue);
+    box-shadow: 0 0 10px rgba(127, 220, 255, 0.7);
+}
+
+.module-pluck:not(.moduleConnectionView) .moduleDeleteButton {
+    border-color: rgba(72, 82, 92, 0.42);
+    background: linear-gradient(180deg, #f4f7fa, #bcc6d0);
+    color: #1f252b;
+    box-shadow: 0 2px 5px rgba(20, 28, 36, 0.22);
+}
+
+.module-pluck .moduleBody {
+    padding: 0;
+}
+
+.pluckPanel {
+    height: 100%;
+    min-height: 0;
+    padding: 0;
+    background:
+        linear-gradient(180deg, #eef3f6 0%, #cfd7de 48%, #f5f7f9 100%),
+        repeating-linear-gradient(
+            90deg,
+            rgba(255, 255, 255, 0.22) 0 1px,
+            rgba(41, 49, 58, 0.07) 1px 3px
+        );
+    box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.82),
+        inset 0 -2px 6px rgba(26, 33, 40, 0.2);
+}
+
+.pluckSections {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 0;
+    height: 100%;
+}
+
+.pluckFaderSection {
+    position: relative;
+    grid-template-rows: 32px minmax(0, 1fr);
+    align-content: normal;
+    gap: 0;
+    min-height: 0;
+    padding: 0;
+    border: 1px solid rgba(45, 54, 63, 0.42);
+    border-radius: 0;
+    background:
+        linear-gradient(
+            180deg,
+            rgba(255, 255, 255, 0.34),
+            rgba(218, 225, 231, 0.54)
+        ),
+        repeating-linear-gradient(
+            90deg,
+            rgba(255, 255, 255, 0.16) 0 1px,
+            rgba(55, 65, 75, 0.05) 1px 3px
+        );
+    box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.72),
+        inset 0 -1px 4px rgba(29, 38, 47, 0.14),
+        0 0 0 1px rgba(255, 255, 255, 0.32),
+        0 2px 7px rgba(30, 39, 48, 0.18);
+}
+
+.pluckFaderSection::after {
+    content: "";
+    position: absolute;
+    right: 18px;
+    bottom: -2px;
+    left: 18px;
+    height: 3px;
+    background: var(--pluck-blue);
+    box-shadow: 0 0 10px rgba(127, 220, 255, 0.88);
+    opacity: 0.72;
+    pointer-events: none;
+}
+
+.pluckSections .productionSectionTitle {
+    margin: 0;
+    display: grid;
+    place-items: center;
+    min-height: 0;
+    padding: 0;
+    border-bottom: 1px solid var(--pluck-rule);
+    color: var(--pluck-ink);
+    text-align: center;
+    font-size: 13px;
+    font-weight: 900;
+    letter-spacing: 0.12em;
+    line-height: 1;
+}
+
+.pluckFaderGrid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    align-items: stretch;
+    gap: 0;
+    min-height: 0;
+}
+
+.pluckFader {
+    position: relative;
+    display: grid;
+    grid-template-rows: 22px minmax(0, 1fr);
+    justify-items: center;
+    min-width: 0;
+    gap: 0;
+    padding: 0;
+    color: var(--pluck-ink);
+    cursor: ns-resize;
+    text-transform: uppercase;
+}
+
+.pluckFaderLabel {
+    overflow: hidden;
+    max-width: 100%;
+    color: #3f464d;
+    font-size: 10px;
+    font-weight: 800;
+    line-height: 1;
+    text-align: center;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.pluckFaderTrack {
+    position: relative;
+    display: block;
+    width: 44px;
+    min-height: 0;
+    height: 100%;
+}
+
+.pluckFaderTrack::before {
+    content: "";
+    position: absolute;
+    top: 8px;
+    bottom: 8px;
+    left: 50%;
+    width: 9px;
+    border: 1px solid rgba(36, 43, 50, 0.36);
+    border-radius: 5px;
+    background: linear-gradient(
+        90deg,
+        #101820,
+        #2d3740 48%,
+        #0c1218 52%,
+        #252f38
+    );
+    box-shadow:
+        inset 0 0 4px rgba(0, 0, 0, 0.64),
+        0 0 0 1px rgba(255, 255, 255, 0.24);
+    transform: translateX(-50%);
+}
+
+.pluckFaderFill {
+    display: none;
+}
+
+.pluckFaderCap {
+    position: absolute;
+    left: 50%;
+    bottom: clamp(10px, var(--pluck-fader-fill), calc(100% - 10px));
+    width: 30px;
+    height: 18px;
+    border: 1px solid rgba(75, 85, 95, 0.52);
+    border-radius: 2px;
+    background: linear-gradient(
+        180deg,
+        #f6fbff 0%,
+        #b9c4cd 48%,
+        #eef3f7 52%,
+        #8c98a2 100%
+    );
+    box-shadow:
+        0 3px 7px rgba(20, 28, 36, 0.28),
+        inset 0 1px 0 rgba(255, 255, 255, 0.78);
+    transform: translate(-50%, 50%);
+}
+
+.pluckFaderCap::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 7px;
+    right: 7px;
+    height: 3px;
+    border-radius: 999px;
+    background: #c8f4ff;
+    box-shadow:
+        0 0 6px rgba(127, 220, 255, 0.95),
+        inset 0 0 2px rgba(26, 130, 180, 0.88);
+    transform: translateY(-50%);
+}
+
+.pluckFaderInput {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    cursor: ns-resize;
+    direction: rtl;
+    writing-mode: vertical-lr;
+}

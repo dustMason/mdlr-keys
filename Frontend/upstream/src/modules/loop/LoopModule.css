@@ -1,0 +1,317 @@
+.loopPanel {
+    display: grid;
+    grid-template-rows: 18px minmax(0, 1fr) 24px;
+    gap: 5px;
+    height: 100%;
+    padding: 8px;
+    box-sizing: border-box;
+    color: var(--mdl-text, inherit);
+}
+
+.loopGridHeader,
+.loopTrackRow {
+    display: grid;
+    grid-template-columns: 54px minmax(88px, 118px) repeat(4, minmax(92px, 1fr));
+    gap: 5px;
+    min-width: 0;
+}
+
+.loopGridHeader {
+    align-items: end;
+    color: var(--mdl-text-muted, currentColor);
+    font-size: 8px;
+    line-height: 1;
+    text-transform: uppercase;
+}
+
+.loopGridHeader span {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.loopRows {
+    display: grid;
+    grid-template-rows: repeat(8, minmax(0, 1fr));
+    gap: 5px;
+    min-width: 0;
+    min-height: 0;
+}
+
+.loopTrackRow {
+    min-height: 0;
+}
+
+.loopTrackMonitor,
+.loopTrackLabelInput,
+.loopClipCell,
+.loopFooter,
+.loopInputMeter {
+    border: 1px solid var(--mdl-line, #242a2d);
+    background: var(--mdl-panel-strong, transparent);
+    box-sizing: border-box;
+}
+
+.loopTrackMonitor {
+    min-width: 0;
+    height: 100%;
+    padding: 0 4px;
+    font-size: 10px;
+    text-transform: uppercase;
+}
+
+.loopTrackLabelInput {
+    width: 100%;
+    min-width: 0;
+    height: 100%;
+    padding: 0 7px;
+    border-radius: 0;
+    color: inherit;
+    font: inherit;
+    font-size: 11px;
+    text-transform: uppercase;
+}
+
+.loopTrackLabelInput::placeholder {
+    color: var(--mdl-text-muted, currentColor);
+    opacity: 0.56;
+}
+
+.loopClipCell {
+    --loop-meter-level: 0%;
+    display: grid;
+    grid-template-rows: minmax(0, 1fr);
+    min-width: 0;
+    min-height: 0;
+    overflow: hidden;
+}
+
+.loopClipCell.hasControls {
+    grid-template-rows: minmax(0, 1fr) 17px;
+}
+
+.loopClipCell::before {
+    content: "";
+    display: block;
+    grid-row: 1 / 2;
+    grid-column: 1 / 2;
+    align-self: end;
+    width: var(--loop-meter-level);
+    height: 2px;
+    background: var(--mdl-accent, #5aa9b0);
+    opacity: 0.72;
+    pointer-events: none;
+    z-index: 2;
+}
+
+.loopClipMain {
+    position: relative;
+    grid-row: 1 / 2;
+    grid-column: 1 / 2;
+    display: grid;
+    grid-template-columns: 32px minmax(0, 1fr) auto;
+    align-items: center;
+    gap: 5px;
+    min-width: 0;
+    min-height: 0;
+    padding: 0 6px;
+    overflow: hidden;
+    border: 0;
+    border-radius: 0;
+    background: var(--mdl-control, transparent);
+    color: inherit;
+    font: inherit;
+    text-align: left;
+}
+
+.loopClipProgress {
+    position: absolute;
+    inset: 0 auto 0 0;
+    width: var(--loop-play-progress, 0%);
+    background: var(--mdl-accent, #5aa9b0);
+    opacity: 0;
+    pointer-events: none;
+}
+
+.loopClipIcon,
+.loopClipName,
+.loopClipMeta {
+    position: relative;
+    z-index: 1;
+    min-width: 0;
+}
+
+.loopClipIcon {
+    font-size: 8px;
+    text-transform: uppercase;
+}
+
+.loopClipName {
+    overflow: hidden;
+    font-size: 10px;
+    font-weight: 700;
+    text-overflow: ellipsis;
+    text-transform: uppercase;
+    white-space: nowrap;
+}
+
+.loopClipMeta {
+    color: var(--mdl-text-muted, currentColor);
+    font-size: 8px;
+    white-space: nowrap;
+}
+
+.loopClipControls {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 20px;
+    gap: 1px;
+    min-width: 0;
+    min-height: 0;
+    border-top: 1px solid var(--mdl-line, #242a2d);
+}
+
+.loopClipControls select,
+.loopClipControls button {
+    min-width: 0;
+    height: 16px;
+    padding: 0 2px;
+    border: 0;
+    border-right: 1px solid var(--mdl-line, #242a2d);
+    border-radius: 0;
+    background: var(--mdl-control, transparent);
+    color: inherit;
+    font: inherit;
+    font-size: 8px;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+.loopClipControls button:last-child {
+    border-right: 0;
+}
+
+.loopClipControls select {
+    appearance: none;
+    padding-left: 4px;
+    text-align: left;
+    text-align-last: left;
+}
+
+.loopClipDelete:disabled {
+    opacity: 0.35;
+}
+
+.moduleDefaultSkin.module-loop:not(.moduleConnectionView) .loopTrackMonitor.isMonitoring,
+.moduleDefaultSkin.module-loop:not(.moduleConnectionView) .loopClipControls button.isActive {
+    border-color: var(--mdl-accent-strong);
+    background: var(--mdl-accent);
+    color: #061014;
+    font-weight: 700;
+}
+
+.moduleDefaultSkin.module-loop:not(.moduleConnectionView) .loopClipCell.hasLoop .loopClipMain {
+    background: var(--mdl-control-hover, var(--mdl-control, transparent));
+}
+
+.moduleDefaultSkin.module-loop:not(.moduleConnectionView) .loopClipCell.isPlaying {
+    border-color: var(--mdl-accent-strong);
+}
+
+.moduleDefaultSkin.module-loop:not(.moduleConnectionView) .loopClipCell.isPlaying .loopClipProgress {
+    opacity: 0.46;
+}
+
+.moduleDefaultSkin.module-loop:not(.moduleConnectionView) .loopClipCell.isArmed .loopClipProgress {
+    width: 100%;
+    opacity: 0.22;
+    animation: loopClipArmedFlash 0.6s steps(2, end) infinite;
+}
+
+.moduleDefaultSkin.module-loop:not(.moduleConnectionView) .loopClipCell.isRecording {
+    border-color: var(--mdl-accent-strong);
+}
+
+.moduleDefaultSkin.module-loop:not(.moduleConnectionView) .loopClipCell.isRecording .loopClipMain {
+    background: color-mix(in srgb, var(--mdl-accent) 18%, var(--mdl-control));
+}
+
+.loopFooter {
+    display: grid;
+    grid-template-columns: 260px minmax(0, 1fr);
+    align-items: center;
+    gap: 7px;
+    min-width: 0;
+    padding: 3px 6px;
+}
+
+.loopInputMeter {
+    display: grid;
+    grid-template-columns: 22px repeat(2, minmax(0, 1fr));
+    align-items: center;
+    gap: 5px;
+    min-width: 0;
+    height: 16px;
+    padding: 2px 4px;
+    border: 0;
+    background: transparent;
+    font-size: 8px;
+    text-transform: uppercase;
+}
+
+.loopInputMeterRow {
+    display: grid;
+    grid-template-columns: 10px minmax(0, 1fr);
+    align-items: center;
+    gap: 3px;
+    min-width: 0;
+}
+
+.loopInputMeterRow b {
+    font-size: 8px;
+}
+
+.loopInputMeterRow i {
+    display: block;
+    overflow: hidden;
+    height: 5px;
+    border: 1px solid var(--mdl-line, #242a2d);
+    background: var(--mdl-control, transparent);
+}
+
+.loopInputMeterRow i span {
+    display: block;
+    width: 100%;
+    height: 100%;
+    transform-origin: left center;
+    background: var(--mdl-accent, #5aa9b0);
+}
+
+.loopStatus {
+    min-width: 0;
+    overflow: hidden;
+    color: var(--mdl-text-muted, currentColor);
+    font-size: 9px;
+    text-align: right;
+    text-overflow: ellipsis;
+    text-transform: uppercase;
+    white-space: nowrap;
+}
+
+@keyframes loopClipArmedFlash {
+    0%,
+    49% {
+        opacity: 0.14;
+    }
+
+    50%,
+    100% {
+        opacity: 0.34;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .moduleDefaultSkin.module-loop:not(.moduleConnectionView) .loopClipCell.isArmed .loopClipProgress {
+        animation: none;
+        opacity: 0.26;
+    }
+}

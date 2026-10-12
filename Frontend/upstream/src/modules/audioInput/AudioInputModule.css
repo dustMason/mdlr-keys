@@ -1,0 +1,136 @@
+.module-in .moduleBody {
+  padding: 0;
+}
+
+.audioInputPanel {
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  gap: 10px;
+  height: 100%;
+  padding: 10px;
+}
+
+.audioInputControls {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 58px;
+  gap: 8px;
+  align-items: end;
+}
+
+.audioInputDevice {
+  display: grid;
+  gap: 4px;
+  min-width: 0;
+  text-transform: uppercase;
+}
+
+.audioInputDevice span {
+  font-size: 10px;
+  color: rgba(17, 17, 17, 0.72);
+}
+
+.audioInputRemoteNotice {
+  display: grid;
+  align-content: center;
+  min-height: 34px;
+  border: 1px solid rgba(17, 17, 17, 0.42);
+  padding: 4px 8px;
+  color: rgba(17, 17, 17, 0.72);
+  text-transform: uppercase;
+}
+
+.audioInputRemoteNotice span {
+  font-size: 9px;
+}
+
+.audioInputRemoteNotice strong {
+  overflow: hidden;
+  font-size: 11px;
+  font-weight: 700;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.audioInputDevice select,
+.audioInputControls button {
+  min-width: 0;
+  height: 34px;
+  border: 1px solid #111111;
+  border-radius: 0;
+  background: transparent;
+  color: #111111;
+  font: inherit;
+  text-transform: uppercase;
+}
+
+.audioInputDevice select {
+  padding: 0 8px;
+  text-transform: none;
+}
+
+.audioInputControls button {
+  cursor: pointer;
+  font-weight: 700;
+}
+
+.audioInputControls button.isActive {
+  background: #111111;
+  color: #ffffff;
+}
+
+.audioInputControls button:disabled {
+  cursor: not-allowed;
+  opacity: 0.45;
+}
+
+.audioInputChannels {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 6px;
+}
+
+.audioInputChannels div {
+  display: grid;
+  place-items: center;
+  border: 1px solid rgba(17, 17, 17, 0.52);
+  min-height: 62px;
+  text-transform: uppercase;
+}
+
+.audioInputPanelLocked {
+  opacity: 0.72;
+}
+
+.audioInputPanelLocked .audioInputChannels div {
+  border-style: dashed;
+}
+
+.audioInputChannels strong {
+  font-size: 26px;
+  line-height: 1;
+}
+
+.audioInputChannels span {
+  font-size: 10px;
+  color: rgba(17, 17, 17, 0.68);
+}
+
+.audioInputStatus {
+  min-height: 18px;
+  margin: 0;
+  overflow: hidden;
+  color: rgba(17, 17, 17, 0.68);
+  font-size: 11px;
+  text-overflow: ellipsis;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.audioInputStatus-active {
+  color: #111111;
+}
+
+.audioInputStatus-denied,
+.audioInputStatus-error {
+  color: #9f1239;
+}

@@ -1,0 +1,61 @@
+{
+  "repository": "https://github.com/dustMason/mdlr",
+  "commit": "32bf69ac6121826f8acfa07218f82b0ff5a0be65",
+  "upstream_sha256": {
+    "five": "1cdf98fc5e8221b1dc037c907eda33287b9944b180831e39fc2429579845baf1",
+    "fm4": "e7eb2b3b2eec22e88feda0f3d9010d4fd12c6112796953963279739d9703c108",
+    "one": "2e048c99c7e1b8ba0b7547d6e38ad32498efa0325a223f680ae5926d37505782",
+    "six": "f71a295072211adb195f4f6b6ba5c804aa4f54670b7bf1d24a89e06eb7e4de66"
+  },
+  "changes": [
+    "Per-voice MIDI velocity gain",
+    "Allocation-free voice reset and delay clear",
+    "Standalone port contract (15 inputs / 4 outputs)",
+    "Global persisted velocity sensitivity switch; raw note velocities retained across toggles and mono fallback",
+    "Audio starts automatically when the app becomes active, after restoring controls; manual start/stop remains available",
+    "Global persisted Mono mode with last-note priority, fixed processor port routing, sustained-note cleanup on mode changes and unchanged stereo audio"
+  ],
+  "parameter_counts": [
+    52,
+    8,
+    29,
+    33
+  ],
+  "preset_counts": [
+    4,
+    4,
+    4,
+    4
+  ],
+  "frontend": {
+    "commit": "32bf69ac6121826f8acfa07218f82b0ff5a0be65",
+    "manifest": "Frontend/upstream-manifest.json",
+    "source_files_unmodified": 152,
+    "panels": [
+      "Five",
+      "FM4",
+      "One",
+      "Six"
+    ],
+    "adaptations": [
+      "Local rack shell substituted by Vite alias",
+      "Offline React host and WebKit parameter bridge",
+      "Full-height responsive panel layout with compact native toolbar and optional piano",
+      "TouchKnob adapter derived from upstream Knob.tsx: relative vertical drag, pointer capture, feedback and keyboard controls",
+      "OnePanel.tsx and SixPanel.tsx local copies substitute shared full-lane TouchFader for native range inputs; original source files preserved",
+      "Larger controls across all panels: 72-point standard knobs, 112-point FM4 knobs, 56-point minimum fader lanes, readable labels and scrolling layouts",
+      "SIX fits horse at 1080x758 / 810x1028 points; 2-row landscape and 3-row portrait section layout, 2-column PWM source selector, preserved physical touch target sizes",
+      "All four panels fit horse in landscape and portrait with keyboard hidden: tighter FIVE spacing and single-row portrait filter, compact ONE portrait rows and FM4 portrait spacing; enlarged controls retained"
+    ],
+    "bundled_assets": "App/WebPanel"
+  },
+  "app_icon": {
+    "design": "MD / LR in a 2x2 pixel-letter grid; cream on charcoal",
+    "method": "Built-in image_gen",
+    "source": "Artwork/app-icon-source.png",
+    "prompt": "Artwork/app-icon-prompt.txt",
+    "asset_catalog": "App/Assets.xcassets/AppIcon.appiconset",
+    "export_script": "Scripts/build-icons.py",
+    "format": "Opaque RGB PNG; 20 iPad/marketing/Mac slots"
+  }
+}

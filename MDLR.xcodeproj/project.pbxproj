@@ -1,0 +1,65 @@
+// !$*UTF8*$!
+{ archiveVersion = 1; classes = {}; objectVersion = 56; objects = {
+A0738AC23DA749CA962C2077 = { isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+E0A29658700B4016B57B015B = { isa = PBXBuildFile; fileRef = A0738AC23DA749CA962C2077; };
+E42613019F1D6FFC609C620C = { isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OriginalPanelView.swift; sourceTree = "<group>"; };
+0A6849D9A405E38B457C389B = { isa = PBXBuildFile; fileRef = E42613019F1D6FFC609C620C; };
+1551B2F47EC7AC400A75E0A6 = { isa = PBXFileReference; lastKnownFileType = folder; path = WebPanel; sourceTree = "<group>"; };
+E355EB35FE8B27B447807B9B = { isa = PBXBuildFile; fileRef = 1551B2F47EC7AC400A75E0A6; };
+
+87D0DA3F70C77C640AAAAF64 = { isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MDLRApp.swift"; sourceTree = "<group>"; };
+13F3B1F41E51D2AEAA6D98C6 = { isa = PBXBuildFile; fileRef = 87D0DA3F70C77C640AAAAF64; };
+7242C8AFCC3341C831842EF8 = { isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "InstrumentModel.swift"; sourceTree = "<group>"; };
+8D0F1DCE5A4794C059BE7BAA = { isa = PBXBuildFile; fileRef = 7242C8AFCC3341C831842EF8; };
+D598D405CEC7F14EFA66A634 = { isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "InstrumentView.swift"; sourceTree = "<group>"; };
+FEB1446B416288CA9CFAD733 = { isa = PBXBuildFile; fileRef = D598D405CEC7F14EFA66A634; };
+4ED38BB2E93C8A6BD8C404D1 = { isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PianoKeyboard.swift"; sourceTree = "<group>"; };
+1F8644AF5C3552DC32602662 = { isa = PBXBuildFile; fileRef = 4ED38BB2E93C8A6BD8C404D1; };
+85A1C7761B2BF965391C222C = { isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = "SynthBridge.mm"; sourceTree = "<group>"; };
+97621113E14F4AB32DE46B03 = { isa = PBXBuildFile; fileRef = 85A1C7761B2BF965391C222C; };
+B02C7D846152128EABD06E0E = { isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SynthBridge.h"; sourceTree = "<group>"; };
+DF2D7C736833A0A23C69236D = { isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "DSP.h"; sourceTree = "<group>"; };
+CCF001C52C086796B22F5B22 = { isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = "CommandQueue.hpp"; sourceTree = "<group>"; };
+59DD9040B28337F16D29838F = { isa = PBXFileReference; lastKnownFileType = text.json; path = "Engines.json"; sourceTree = "<group>"; };
+5FB8AC1F68CE3F749ABAA135 = { isa = PBXBuildFile; fileRef = 59DD9040B28337F16D29838F; };
+3A2A88DEEFF3D1D23E496597 = { isa = PBXGroup; children = (A0738AC23DA749CA962C2077,E42613019F1D6FFC609C620C,1551B2F47EC7AC400A75E0A6,87D0DA3F70C77C640AAAAF64,7242C8AFCC3341C831842EF8,D598D405CEC7F14EFA66A634,4ED38BB2E93C8A6BD8C404D1,85A1C7761B2BF965391C222C,B02C7D846152128EABD06E0E,DF2D7C736833A0A23C69236D,CCF001C52C086796B22F5B22,59DD9040B28337F16D29838F,); path = App; sourceTree = "<group>"; };
+38A007151ABE87CC01A5B6E9 = { isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MDLR.app; sourceTree = BUILT_PRODUCTS_DIR; };
+FBDC4F23F93125BBEEAE800C = { isa = PBXGroup; children = (38A007151ABE87CC01A5B6E9,); name = Products; sourceTree = "<group>"; };
+B28B7AF69320201D1CF206EB = { isa = PBXGroup; children = (3A2A88DEEFF3D1D23E496597,FBDC4F23F93125BBEEAE800C,); sourceTree = "<group>"; };
+7B41F80FC68BC2A989356F0C = { isa = PBXShellScriptBuildPhase; buildActionMask = 2147483647; files = (); inputPaths = (); outputPaths = ("$(BUILT_PRODUCTS_DIR)/libmdlr_ipad_dsp.a",); runOnlyForDeploymentPostprocessing = 0; alwaysOutOfDate = 1; name = "Compile native Rust DSP"; shellPath = /bin/bash; shellScript = "bash \"$PROJECT_DIR/Scripts/build-rust.sh\""; };
+BCE16DD0260827ECF338C787 = { isa = PBXSourcesBuildPhase; buildActionMask = 2147483647; files = (0A6849D9A405E38B457C389B,13F3B1F41E51D2AEAA6D98C6,8D0F1DCE5A4794C059BE7BAA,FEB1446B416288CA9CFAD733,1F8644AF5C3552DC32602662,97621113E14F4AB32DE46B03,); runOnlyForDeploymentPostprocessing = 0; };
+0189424A5A60FED329FA868E = { isa = PBXResourcesBuildPhase; buildActionMask = 2147483647; files = (E0A29658700B4016B57B015B,E355EB35FE8B27B447807B9B,5FB8AC1F68CE3F749ABAA135,); runOnlyForDeploymentPostprocessing = 0; };
+7561BFB015D8F536760CB671 = { isa = PBXFrameworksBuildPhase; buildActionMask = 2147483647; files = (); runOnlyForDeploymentPostprocessing = 0; };
+89E1FD6268CC0F221A2BE178 = { isa = XCBuildConfiguration; name = Debug; buildSettings = { CLANG_ENABLE_MODULES = YES; CLANG_ENABLE_OBJC_ARC = YES; CLANG_CXX_LANGUAGE_STANDARD = "c++17"; ENABLE_USER_SCRIPT_SANDBOXING = NO; SWIFT_VERSION = 5.0; IPHONEOS_DEPLOYMENT_TARGET = 16.0; MACOSX_DEPLOYMENT_TARGET = 13.0; }; };
+7082CC0B6FC1282FCEABD07A = { isa = XCBuildConfiguration; name = Debug; buildSettings = {
+        PRODUCT_NAME = MDLR; PRODUCT_BUNDLE_IDENTIFIER = com.dustmason.mdlr.ipad;
+        ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+        SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx"; SDKROOT = iphoneos;
+        TARGETED_DEVICE_FAMILY = 2; ARCHS = arm64; ONLY_ACTIVE_ARCH = YES;
+        CODE_SIGN_STYLE = Automatic; GENERATE_INFOPLIST_FILE = NO; INFOPLIST_FILE = App/Info.plist;
+        SWIFT_OBJC_BRIDGING_HEADER = App/SynthBridge.h;
+        LIBRARY_SEARCH_PATHS = ("$(inherited)","$(BUILT_PRODUCTS_DIR)",);
+        OTHER_LDFLAGS = ("$(inherited)","-lmdlr_ipad_dsp","-lc++","-framework",AVFoundation,"-framework",CoreMIDI,"-framework",WebKit,);
+        LD_RUNPATH_SEARCH_PATHS = ("$(inherited)","@executable_path/Frameworks",);
+        SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+        ENABLE_HARDENED_RUNTIME = NO; ENABLE_APP_SANDBOX = NO;
+    }; };
+E6DE6C99132752C914FEF632 = { isa = XCBuildConfiguration; name = Release; buildSettings = { CLANG_ENABLE_MODULES = YES; CLANG_ENABLE_OBJC_ARC = YES; CLANG_CXX_LANGUAGE_STANDARD = "c++17"; ENABLE_USER_SCRIPT_SANDBOXING = NO; SWIFT_VERSION = 5.0; IPHONEOS_DEPLOYMENT_TARGET = 16.0; MACOSX_DEPLOYMENT_TARGET = 13.0; }; };
+639A7CA24D39909E713B47F7 = { isa = XCBuildConfiguration; name = Release; buildSettings = {
+        PRODUCT_NAME = MDLR; PRODUCT_BUNDLE_IDENTIFIER = com.dustmason.mdlr.ipad;
+        ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+        SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx"; SDKROOT = iphoneos;
+        TARGETED_DEVICE_FAMILY = 2; ARCHS = arm64; ONLY_ACTIVE_ARCH = YES;
+        CODE_SIGN_STYLE = Automatic; GENERATE_INFOPLIST_FILE = NO; INFOPLIST_FILE = App/Info.plist;
+        SWIFT_OBJC_BRIDGING_HEADER = App/SynthBridge.h;
+        LIBRARY_SEARCH_PATHS = ("$(inherited)","$(BUILT_PRODUCTS_DIR)",);
+        OTHER_LDFLAGS = ("$(inherited)","-lmdlr_ipad_dsp","-lc++","-framework",AVFoundation,"-framework",CoreMIDI,"-framework",WebKit,);
+        LD_RUNPATH_SEARCH_PATHS = ("$(inherited)","@executable_path/Frameworks",);
+        SWIFT_OPTIMIZATION_LEVEL = "-O";
+        ENABLE_HARDENED_RUNTIME = NO; ENABLE_APP_SANDBOX = NO;
+    }; };
+862894B703A6DEDF96A9DD6C = { isa = XCConfigurationList; buildConfigurations = (89E1FD6268CC0F221A2BE178,E6DE6C99132752C914FEF632,); defaultConfigurationIsVisible = 0; defaultConfigurationName = Release; };
+C57128001CE614BF8549D6BB = { isa = XCConfigurationList; buildConfigurations = (7082CC0B6FC1282FCEABD07A,639A7CA24D39909E713B47F7,); defaultConfigurationIsVisible = 0; defaultConfigurationName = Release; };
+0E8A3AD980EC179856012B7E = { isa = PBXNativeTarget; buildConfigurationList = C57128001CE614BF8549D6BB; buildPhases = (7B41F80FC68BC2A989356F0C,BCE16DD0260827ECF338C787,7561BFB015D8F536760CB671,0189424A5A60FED329FA868E,); buildRules = (); dependencies = (); name = MDLR; productName = MDLR; productReference = 38A007151ABE87CC01A5B6E9; productType = "com.apple.product-type.application"; };
+98F54143AB4E86B28C3AFEE0 = { isa = PBXProject; attributes = { LastUpgradeCheck = 2600; }; buildConfigurationList = 862894B703A6DEDF96A9DD6C; compatibilityVersion = "Xcode 14.0"; developmentRegion = en; knownRegions = (en,Base,); mainGroup = B28B7AF69320201D1CF206EB; productRefGroup = FBDC4F23F93125BBEEAE800C; projectDirPath = ""; projectRoot = ""; targets = (0E8A3AD980EC179856012B7E,); };
+}; rootObject = 98F54143AB4E86B28C3AFEE0; }

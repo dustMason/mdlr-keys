@@ -1,0 +1,311 @@
+.module-muta .moduleBody {
+  padding: 0;
+}
+
+.mutaPanel {
+  --muta-channel: #111111;
+  display: grid;
+  grid-template-rows: auto auto minmax(0, 1fr);
+  gap: 8px;
+  min-height: 0;
+  height: 100%;
+  color: #111111;
+}
+
+.mutaTop,
+.mutaModes {
+  display: grid;
+  gap: 8px;
+  min-width: 0;
+}
+
+.mutaTop {
+  grid-template-columns: 168px minmax(0, 1fr) 160px;
+}
+
+.mutaModes {
+  grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.8fr) minmax(0, 0.8fr);
+}
+
+.mutaSegment {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: minmax(0, 1fr);
+  min-width: 0;
+  border: 1px solid rgba(17, 17, 17, 0.26);
+}
+
+.mutaSegment button {
+  min-width: 0;
+  min-height: 29px;
+  padding: 0 5px;
+  border: 0;
+  border-right: 1px solid rgba(17, 17, 17, 0.16);
+  cursor: pointer;
+  font: inherit;
+  font-size: 9px;
+  font-weight: 900;
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+.mutaSegment button:last-child {
+  border-right: 0;
+}
+
+.mutaSegment button.isActive {
+  background: var(--muta-channel);
+  color: #ffffff;
+}
+
+.mutaPages button:not(.isInLength) {
+  opacity: 0.36;
+}
+
+.mutaMain {
+  display: grid;
+  grid-template-columns: 246px minmax(0, 1fr);
+  gap: 10px;
+  min-height: 0;
+}
+
+.mutaMacro,
+.mutaEditor {
+  min-width: 0;
+  min-height: 0;
+}
+
+.mutaMacro {
+  display: grid;
+  grid-template-rows: minmax(0, 1fr) auto auto auto;
+  gap: 8px;
+}
+
+.mutaMacroGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-content: start;
+  gap: 6px;
+  min-height: 0;
+  padding: 7px;
+  border: 1px solid rgba(17, 17, 17, 0.2);
+  overflow: auto;
+}
+
+.mutaRange,
+.mutaSelect {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 38px;
+  grid-template-rows: 12px 18px;
+  align-items: center;
+  gap: 5px;
+  min-width: 0;
+  min-height: 38px;
+  font-size: 9px;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.mutaSelect {
+  grid-template-columns: 48px minmax(0, 1fr);
+  grid-template-rows: 24px;
+  min-height: 30px;
+}
+
+.mutaRange span,
+.mutaSelect span {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.mutaRange output {
+  min-width: 0;
+  text-align: right;
+  font-size: 8px;
+  font-weight: 800;
+}
+
+.mutaRange input[type="range"],
+.mutaStepRange input[type="range"] {
+  min-width: 0;
+  accent-color: var(--muta-channel);
+}
+
+.mutaRange input[type="range"] {
+  grid-column: 1 / -1;
+  width: 100%;
+}
+
+.mutaSelect select,
+.mutaPattern select {
+  min-width: 0;
+  height: 24px;
+  border: 1px solid rgba(17, 17, 17, 0.26);
+  border-radius: 0;
+  background: #ffffff;
+  font: inherit;
+  font-size: 9px;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.mutaActions,
+.mutaTransform,
+.mutaPattern {
+  display: grid;
+  gap: 4px;
+}
+
+.mutaActions {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.mutaTransform {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.mutaPattern {
+  grid-template-columns: minmax(0, 1fr) 58px 58px;
+}
+
+.mutaActions button,
+.mutaTransform button,
+.mutaPattern button {
+  min-width: 0;
+  height: 28px;
+  padding: 0 5px;
+  border: 1px solid rgba(17, 17, 17, 0.28);
+  cursor: pointer;
+  font: inherit;
+  font-size: 9px;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.mutaActions button:disabled,
+.mutaPattern button:disabled {
+  cursor: not-allowed;
+  opacity: 0.4;
+}
+
+.mutaEditor {
+  display: grid;
+  grid-template-rows: 34px minmax(0, 1fr);
+  gap: 8px;
+}
+
+.mutaTree {
+  display: grid;
+  grid-template-columns: repeat(8, minmax(0, 1fr));
+  gap: 4px;
+  padding: 5px;
+  border: 1px solid rgba(17, 17, 17, 0.18);
+}
+
+.mutaTree span {
+  min-width: 0;
+  min-height: 20px;
+  border: 1px solid rgba(17, 17, 17, 0.2);
+  background: #efefed;
+}
+
+.mutaTree span.isActive {
+  background: var(--muta-channel);
+}
+
+.mutaSteps {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-rows: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+  min-height: 0;
+}
+
+.mutaStep {
+  display: grid;
+  grid-template-rows: 52px minmax(0, 1fr);
+  min-width: 0;
+  min-height: 0;
+  padding: 6px;
+  border: 1px solid rgba(17, 17, 17, 0.28);
+  background: #fbfbf8;
+}
+
+.mutaStep.hasGate {
+  box-shadow: inset 0 -4px 0 var(--muta-channel);
+}
+
+.mutaStep.isMuted {
+  opacity: 0.38;
+}
+
+.mutaStep.isEmpty {
+  border-style: dashed;
+  opacity: 0.25;
+}
+
+.mutaStepHead {
+  display: grid;
+  grid-template-columns: 28px minmax(0, 1fr);
+  align-items: center;
+  gap: 5px;
+  min-width: 0;
+  height: 46px;
+  padding: 0 6px;
+  border: 1px solid rgba(17, 17, 17, 0.32);
+  cursor: pointer;
+  font: inherit;
+  text-align: left;
+  text-transform: uppercase;
+}
+
+.mutaStepHead:disabled {
+  cursor: not-allowed;
+}
+
+.mutaStepHead[aria-pressed="true"] {
+  border-color: #111111;
+}
+
+.mutaStepHead strong {
+  display: grid;
+  place-items: center;
+  width: 26px;
+  height: 26px;
+  background: #111111;
+  color: #ffffff;
+  font-size: 10px;
+  line-height: 1;
+}
+
+.mutaStepHead span {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 13px;
+  font-weight: 900;
+  line-height: 1;
+}
+
+.mutaStepRange {
+  display: grid;
+  grid-template-rows: minmax(0, 1fr) 18px;
+  gap: 5px;
+  min-width: 0;
+  min-height: 0;
+  padding-top: 7px;
+}
+
+.mutaStepRange output {
+  min-width: 0;
+  overflow: hidden;
+  text-align: center;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 10px;
+  font-weight: 900;
+  line-height: 18px;
+  text-transform: uppercase;
+}

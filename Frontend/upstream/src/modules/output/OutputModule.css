@@ -1,0 +1,167 @@
+.module-output:not(.moduleConnectionView) {
+    border-color: #111111;
+    background: #333735 url("./brushed-metal-darker.webp") center / cover
+        no-repeat;
+}
+
+.module-output:not(.moduleConnectionView) .rackFlange {
+    background: #333735 url("./brushed-metal-darker.webp") center / cover
+        no-repeat;
+}
+
+.module-output:not(.moduleConnectionView) .moduleFace {
+    background: #bfc1bd url("./brushed-metal.webp") center / cover no-repeat;
+}
+
+.module-output .moduleHeader {
+    background: #f2f3f5;
+}
+
+.module-output .moduleBody {
+    padding: 10px;
+}
+
+.outputPanel {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 96px;
+    align-items: stretch;
+    gap: 8px;
+    min-height: 0;
+}
+
+.outputPanel .outputDisplay {
+    align-items: stretch;
+    justify-items: center;
+    min-height: 0;
+    height: 100%;
+    padding: 8px;
+}
+
+.outputVu {
+    position: relative;
+    aspect-ratio: 1332 / 918;
+    width: auto;
+    max-width: 100%;
+    height: 100%;
+    min-width: 0;
+    min-height: 58px;
+    overflow: hidden;
+    border: 0;
+    background: transparent url("./vu-meter.webp") center / contain no-repeat;
+    justify-self: center;
+}
+
+.outputVuNeedle {
+    position: absolute;
+    left: calc(50% - 1px);
+    bottom: 14%;
+    width: 2px;
+    height: 38%;
+    background: #b91c1c;
+    transform: rotate(var(--vu-deg));
+    transform-origin: 50% calc(100% - 1px);
+}
+
+.outputVu strong {
+    position: absolute;
+    right: 9px;
+    bottom: 10px;
+    color: #111111;
+    font-size: 12px;
+    line-height: 1;
+}
+
+.outputKnobs {
+    align-content: center;
+    gap: 0;
+}
+
+.rackModuleSystem.module-output .outputPanel {
+    grid-template-columns: minmax(0, 1fr) 70px;
+    gap: 18px;
+    height: 100%;
+}
+
+.rackModuleSystem.module-output .outputPanel .outputDisplay {
+    min-height: 0;
+    border: 0;
+    background: transparent;
+    gap: 9px;
+    padding: 0;
+}
+
+.rackModuleSystem.module-output .outputVu {
+    min-height: 0;
+}
+
+.rackModuleSystem.module-output .outputVuNeedle {
+    width: 1.5px;
+}
+
+.rackModuleSystem.module-output .outputVu strong {
+    right: 8px;
+    bottom: 7px;
+    font-size: 9px;
+}
+
+.rackModuleSystem.module-output .outputKnobs {
+    display: grid;
+    grid-template-columns: 1fr;
+    align-content: center;
+    justify-items: center;
+    place-items: center;
+    width: 100%;
+    height: 100%;
+    padding: 0;
+}
+
+.rackModuleSystem.module-output .knob {
+    align-content: center;
+    gap: 2px;
+    width: 58px;
+    height: 100%;
+}
+
+.rackModuleSystem.module-output .knobFace {
+    --knob-face-size: 52px;
+    --knob-center-size: 10px;
+    --knob-needle-width: 3px;
+    --knob-needle-offset: -1.5px;
+    --knob-needle-top: 7px;
+    --knob-needle-height: 18px;
+    --knob-needle-origin-y: 17px;
+}
+
+.rackModuleSystem.module-output .knobLabel,
+.rackModuleSystem.module-output .knobValue {
+    font-size: 9px;
+}
+
+.outputImageKnob .outputImageKnobFace {
+    overflow: visible;
+    border: 0;
+    border-radius: 0;
+    background-color: transparent;
+    background-position: center;
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+}
+
+.outputImageKnob .outputImageKnobFace::before {
+    display: none;
+}
+
+.outputImageKnobIndicator {
+    position: absolute;
+    left: 50%;
+    top: 9px;
+    z-index: 2;
+    width: 3px;
+    height: 19px;
+    margin-left: -1.5px;
+    background: #111111;
+    border-radius: 999px;
+    pointer-events: none;
+    transform: rotate(var(--knob-deg));
+    transform-origin: 50% 17px;
+}

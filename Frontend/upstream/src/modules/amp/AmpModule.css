@@ -1,0 +1,71 @@
+.module-amp .moduleHeader {
+}
+
+.ampPanel {
+  gap: 7px;
+}
+
+.ampBadge {
+  display: grid;
+  grid-template-columns: 44px repeat(4, 1fr) 28px;
+  align-items: center;
+  gap: 6px;
+  min-height: 32px;
+  padding: 5px 8px;
+  border: 1px solid rgba(17, 17, 17, 0.28);
+}
+
+.ampBadge span,
+.ampBadge strong {
+  font-size: 9px;
+  font-weight: 900;
+  letter-spacing: 0;
+  text-transform: uppercase;
+}
+
+.ampBadge i {
+  height: 10px;
+  border: 1px solid #111111;
+}
+
+.ampSections {
+  grid-template-columns: 0.9fr 1.35fr 1fr 0.9fr;
+}
+
+
+
+.ampSections .productionSectionKnobs {
+  align-items: center;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.ampSections .productionSection:nth-child(2) .productionSectionKnobs {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.ampPanel .knobFace {
+  --knob-face-size: 38px;
+  --knob-center-size: 7px;
+  --knob-needle-width: 2px;
+  --knob-needle-top: 5px;
+  --knob-needle-height: 14px;
+  --knob-needle-origin-y: 13px;
+}
+
+.rackUnits-1 .ampPanel {
+  gap: 5px;
+}
+
+.rackUnits-1 .ampBadge {
+  min-height: 24px;
+  padding: 3px 6px;
+}
+
+.rackUnits-1 .ampBadge i {
+  height: 7px;
+}
+
+.rackUnits-1 .ampPanel .knobFace {
+  --knob-face-size: 34px;
+  --knob-center-size: 6px;
+}

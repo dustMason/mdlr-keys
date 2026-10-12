@@ -1,0 +1,330 @@
+.module-euclid .moduleBody {
+  padding: 0;
+}
+
+.euclidPanel {
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr);
+  gap: 6px;
+  min-width: 0;
+  min-height: 0;
+  color: #111111;
+}
+
+.euclidTop,
+.euclidBlock {
+  border: 1px solid rgba(17, 17, 17, 0.24);
+  background: #f7f7f7;
+}
+
+.euclidTop {
+  display: grid;
+  grid-template-columns: 174px 174px 118px minmax(120px, 1fr) 70px 54px;
+  gap: 5px;
+  align-items: stretch;
+  min-width: 0;
+  padding: 5px;
+}
+
+.euclidMain {
+  display: grid;
+  grid-template-columns: 1.28fr 0.82fr 1.02fr 0.88fr;
+  gap: 6px;
+  min-width: 0;
+  min-height: 0;
+}
+
+.euclidBlock {
+  display: grid;
+  align-content: start;
+  gap: 6px;
+  min-width: 0;
+  min-height: 0;
+  padding: 6px;
+}
+
+.euclidMatrixBlock {
+  grid-template-rows: auto auto minmax(0, 1fr);
+}
+
+.euclidBlockHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  min-width: 0;
+  min-height: 21px;
+  border-bottom: 1px solid rgba(17, 17, 17, 0.18);
+  padding-bottom: 4px;
+}
+
+.euclidBlockHeader strong,
+.euclidBlockHeader span {
+  min-width: 0;
+  overflow: hidden;
+  font-size: 10px;
+  font-weight: 900;
+  line-height: 16px;
+  text-overflow: ellipsis;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.euclidButtonGroup {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: minmax(0, 1fr);
+  min-width: 0;
+}
+
+.euclidButtonGroup button,
+.euclidAction,
+.euclidCell,
+.euclidMatrixRow > button,
+.euclidOutputs button,
+.euclidCvMap button,
+.euclidToggle {
+  min-width: 0;
+  border: 1px solid rgba(17, 17, 17, 0.34);
+  background: #ffffff;
+  color: #111111;
+  cursor: pointer;
+  font: inherit;
+  font-size: 9px;
+  font-weight: 900;
+  letter-spacing: 0;
+  line-height: 22px;
+  text-transform: uppercase;
+}
+
+.euclidButtonGroup button + button {
+  border-left: 0;
+}
+
+.euclidButtonGroup button.isActive,
+.euclidAction.isActive,
+.euclidCell.isActive,
+.euclidMatrixRow > button.isSelected,
+.euclidOutputs button.isSelected,
+.euclidCvMap button.isSelected,
+.euclidToggle.isActive strong {
+  border-color: #111111;
+  background: #111111;
+  color: #ffffff;
+}
+
+.euclidMatrix {
+  display: grid;
+  gap: 4px;
+  min-width: 0;
+}
+
+.euclidMatrixHeader,
+.euclidMatrixRow {
+  display: grid;
+  grid-template-columns: 28px repeat(8, minmax(0, 1fr));
+  gap: 3px;
+  min-width: 0;
+}
+
+.euclidMatrixHeader span {
+  display: grid;
+  place-items: center;
+  min-width: 0;
+  overflow: hidden;
+  color: rgba(17, 17, 17, 0.65);
+  font-size: 8px;
+  font-weight: 900;
+  line-height: 12px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.euclidMatrixRow > button,
+.euclidCell {
+  height: 25px;
+  padding: 0;
+  line-height: 20px;
+}
+
+.euclidCell {
+  position: relative;
+  display: grid;
+  place-items: end center;
+  overflow: hidden;
+}
+
+.euclidCell span {
+  display: block;
+  width: 100%;
+  min-height: 2px;
+  background: currentColor;
+  opacity: 0.26;
+}
+
+.euclidCell.isActive span {
+  opacity: 0.72;
+}
+
+.euclidCell.isSelected,
+.euclidOutputs button.isSelected,
+.euclidCvMap button.isSelected {
+  box-shadow: inset 0 0 0 2px #111111;
+}
+
+.euclidOutputs {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 4px;
+  min-width: 0;
+}
+
+.euclidOutputs button,
+.euclidCvMap button {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 3px;
+  align-items: center;
+  padding: 3px 5px;
+  line-height: 16px;
+  text-align: left;
+}
+
+.euclidOutputs button span,
+.euclidOutputs button strong,
+.euclidCvMap button span,
+.euclidCvMap button strong {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.euclidOutputs button.isMuted {
+  opacity: 0.45;
+}
+
+.euclidControls,
+.euclidClockControls {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 5px;
+  min-width: 0;
+}
+
+.euclidClockControls {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  padding-top: 2px;
+}
+
+.euclidPatternControls {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.euclidField,
+.euclidToggle {
+  display: grid;
+  min-width: 0;
+  gap: 2px;
+  border: 1px solid rgba(17, 17, 17, 0.18);
+  background: #ffffff;
+  padding: 4px;
+}
+
+.euclidField span,
+.euclidToggle span {
+  min-width: 0;
+  overflow: hidden;
+  font-size: 8px;
+  font-weight: 900;
+  line-height: 10px;
+  text-overflow: ellipsis;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.euclidField input[type="range"] {
+  width: 100%;
+  min-width: 0;
+  accent-color: #111111;
+}
+
+.euclidField output,
+.euclidField select,
+.euclidValueInput,
+.euclidToggle strong {
+  display: grid;
+  place-items: center;
+  width: 100%;
+  min-width: 0;
+  min-height: 20px;
+  overflow: hidden;
+  border: 1px solid rgba(17, 17, 17, 0.3);
+  background: #f7f7f7;
+  color: #111111;
+  font: inherit;
+  font-size: 9px;
+  font-weight: 900;
+  line-height: 18px;
+  text-align: center;
+  text-overflow: ellipsis;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.euclidField select {
+  padding: 0 4px;
+  appearance: none;
+}
+
+.euclidValueInput {
+  padding: 0 4px;
+}
+
+.euclidValueInput:focus {
+  outline: 2px solid #111111;
+  outline-offset: -2px;
+}
+
+.euclidWideAction {
+  grid-column: 1 / -1;
+}
+
+.euclidPreview {
+  display: grid;
+  grid-template-columns: repeat(16, minmax(0, 1fr));
+  gap: 3px;
+  min-width: 0;
+  border: 1px solid rgba(17, 17, 17, 0.18);
+  background: #ffffff;
+  padding: 5px;
+}
+
+.euclidPreview span {
+  display: block;
+  aspect-ratio: 1 / 1;
+  border: 1px solid rgba(17, 17, 17, 0.22);
+  background: #f7f7f7;
+}
+
+.euclidPreview span.isActive {
+  border-color: #111111;
+  background: #111111;
+}
+
+.euclidCvMap {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 4px;
+  min-width: 0;
+}
+
+@media (max-width: 900px) {
+  .euclidTop {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .euclidMain {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}

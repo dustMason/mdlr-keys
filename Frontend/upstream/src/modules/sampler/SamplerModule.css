@@ -1,0 +1,421 @@
+.samplerPanel {
+    position: relative;
+    display: grid;
+    grid-template-rows: 28px minmax(0, 1fr) 94px;
+    gap: 7px;
+    height: 100%;
+    min-height: 0;
+    padding: 8px 10px 10px;
+}
+
+.samplerPanel.isDraggingFile::after {
+    content: "DROP AUDIO";
+    position: absolute;
+    inset: 8px 10px 10px;
+    z-index: 4;
+    display: grid;
+    place-items: center;
+    border: 2px solid rgba(126, 231, 210, 0.78);
+    background: rgba(5, 12, 12, 0.74);
+    color: rgba(238, 255, 249, 0.94);
+    font:
+        18px/1 "Roboto Mono",
+        "SFMono-Regular",
+        monospace;
+    text-transform: uppercase;
+    pointer-events: none;
+}
+
+.samplerLoadingOverlay {
+    position: absolute;
+    inset: 8px 10px 10px;
+    z-index: 5;
+    display: grid;
+    place-items: center;
+    border: 2px solid rgba(126, 231, 210, 0.56);
+    background:
+        linear-gradient(90deg, rgba(126, 231, 210, 0.08), rgba(126, 231, 210, 0.18), rgba(126, 231, 210, 0.08)),
+        rgba(5, 12, 12, 0.82);
+    background-size: 220% 100%;
+    color: rgba(238, 255, 249, 0.96);
+    text-transform: uppercase;
+    animation: samplerLoadingSweep 1.15s linear infinite;
+    pointer-events: none;
+}
+
+.samplerLoadingOverlay span {
+    max-width: min(520px, 80%);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font:
+        16px/1 "Roboto Mono",
+        "SFMono-Regular",
+        monospace;
+}
+
+@keyframes samplerLoadingSweep {
+    from {
+        background-position: 0 0;
+    }
+
+    to {
+        background-position: -220% 0;
+    }
+}
+
+.module-samp .productionSectionTitle {
+    display: none;
+}
+
+.samplerToolbar {
+    display: grid;
+    gap: 7px;
+    min-width: 0;
+}
+
+.samplerToolbar-empty {
+    grid-template-columns: minmax(185px, 0.76fr) minmax(245px, 1fr) 54px;
+}
+
+.samplerToolbar-loaded {
+    grid-template-columns: 72px minmax(290px, 380px);
+    justify-content: start;
+}
+
+.samplerBankRow,
+.samplerLoadRow {
+    display: grid;
+    gap: 6px;
+    min-width: 0;
+}
+
+.samplerBankRow {
+    grid-template-columns: minmax(0, 1fr) 52px;
+}
+
+.samplerLoadRow {
+    grid-template-columns: minmax(0, 1fr) 70px;
+}
+
+.samplerChopControls {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 76px 54px;
+    gap: 6px;
+    min-width: 0;
+}
+
+.samplerChopMode {
+    display: grid;
+    grid-template-columns: 38px minmax(0, 1fr);
+    gap: 5px;
+    align-items: center;
+    min-width: 0;
+}
+
+.samplerChopMode span {
+    color: rgba(185, 198, 198, 0.72);
+    font:
+        9px/1 "Roboto Mono",
+        "SFMono-Regular",
+        monospace;
+    text-transform: uppercase;
+}
+
+.samplerSensitivityKnob {
+    grid-template-columns: 22px 26px 24px;
+    grid-template-rows: 1fr;
+    align-items: center;
+    justify-items: center;
+    gap: 4px;
+    min-width: 0;
+    height: 28px;
+}
+
+.samplerSensitivityKnob .knobLabel,
+.samplerSensitivityKnob .knobValue {
+    width: auto;
+    min-height: 0;
+    color: rgba(185, 198, 198, 0.72);
+    font:
+        9px/1 "Roboto Mono",
+        "SFMono-Regular",
+        monospace;
+}
+
+.samplerSensitivityKnob .knobFace {
+    --knob-face-size: 24px;
+    --knob-center-size: 5px;
+    --knob-needle-width: 2px;
+    --knob-needle-offset: -1px;
+    --knob-needle-top: 4px;
+    --knob-needle-height: 9px;
+    --knob-needle-origin-y: 8px;
+}
+
+.samplerBankRow select,
+.samplerLoadRow input,
+.samplerBankRow button,
+.samplerLoadRow button,
+.samplerFileButton,
+.samplerClearButton,
+.samplerChopButton,
+.samplerChopMode select,
+.samplerWaveHeader input,
+.samplerWaveHeader select,
+.samplerSliceEditor input,
+.samplerSliceEditor select,
+.samplerSliceEditor button {
+    min-width: 0;
+    border: 1px solid rgba(156, 169, 170, 0.32);
+    border-radius: 2px;
+    background: rgba(255, 255, 255, 0.04);
+    color: rgba(238, 244, 242, 0.88);
+    font:
+        10px/1.1 "Roboto Mono",
+        "SFMono-Regular",
+        monospace;
+    letter-spacing: 0;
+}
+
+.samplerBankRow select,
+.samplerLoadRow input,
+.samplerChopMode select,
+.samplerSliceEditor input,
+.samplerSliceEditor select {
+    padding: 0 7px;
+}
+
+.samplerBankRow button,
+.samplerLoadRow button,
+.samplerFileButton,
+.samplerClearButton,
+.samplerChopButton,
+.samplerSliceEditor button {
+    cursor: pointer;
+    text-transform: uppercase;
+}
+
+.samplerBankRow button:disabled,
+.samplerLoadRow button:disabled,
+.samplerBankRow select:disabled,
+.samplerFileButton:disabled,
+.samplerClearButton:disabled,
+.samplerChopButton:disabled,
+.samplerChopMode select:disabled,
+.samplerSliceEditor button:disabled,
+.samplerSliceEditor input:disabled,
+.samplerSliceEditor select:disabled {
+    cursor: wait;
+    opacity: 0.56;
+}
+
+.samplerFileInput {
+    display: none;
+}
+
+.samplerWavePanel {
+    display: grid;
+    grid-template-rows: 26px minmax(0, 1fr);
+    min-height: 0;
+    overflow: hidden;
+    border: 1px solid rgba(156, 169, 170, 0.22);
+    background: #070c0c;
+}
+
+.samplerWaveHeader {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 148px 148px;
+    gap: 8px;
+    align-items: center;
+    min-width: 0;
+    border-bottom: 1px solid rgba(156, 169, 170, 0.18);
+    background: rgba(255, 255, 255, 0.025);
+    padding: 3px 6px;
+}
+
+.samplerWaveHeader label {
+    display: grid;
+    grid-template-columns: 38px minmax(0, 1fr);
+    gap: 5px;
+    align-items: center;
+    min-width: 0;
+}
+
+.samplerWaveHeader label span {
+    color: rgba(185, 198, 198, 0.72);
+    font:
+        9px/1 "Roboto Mono",
+        "SFMono-Regular",
+        monospace;
+    text-transform: uppercase;
+}
+
+.samplerWaveHeader input[type="range"] {
+    height: 14px;
+    padding: 0;
+    accent-color: #7ee7d2;
+}
+
+.samplerStatus {
+    display: grid;
+    grid-template-columns: minmax(0, 0.9fr) minmax(0, 0.7fr);
+    gap: 8px;
+    align-items: center;
+    min-width: 0;
+    overflow: hidden;
+    color: rgba(236, 243, 241, 0.88);
+    font:
+        10px/1.2 "Roboto Mono",
+        "SFMono-Regular",
+        monospace;
+    text-transform: uppercase;
+}
+
+.samplerStatus span {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.samplerStatus span:first-child {
+    color: rgba(242, 248, 246, 0.94);
+}
+
+.samplerStatus span:last-child {
+    color: rgba(185, 198, 198, 0.72);
+}
+
+.samplerStatus-error span:first-child {
+    color: #d98f84;
+}
+
+.samplerWaveCanvas {
+    display: block;
+    width: 100%;
+    height: 100%;
+    min-height: 116px;
+    cursor: crosshair;
+    touch-action: none;
+}
+
+.samplerBottom {
+    display: grid;
+    grid-template-columns: minmax(220px, 1fr) minmax(250px, 0.7fr) 210px;
+    gap: 8px;
+    min-height: 0;
+}
+
+.samplerSliceStrip {
+    display: grid;
+    grid-auto-flow: column;
+    grid-auto-columns: 42px;
+    gap: 4px;
+    min-width: 0;
+    overflow-x: auto;
+    overflow-y: hidden;
+    border: 1px solid rgba(156, 169, 170, 0.2);
+    background: rgba(255, 255, 255, 0.024);
+    padding: 5px;
+}
+
+.samplerSliceStrip button {
+    appearance: none;
+    display: grid;
+    grid-template-rows: minmax(0, 1fr) 14px;
+    align-items: center;
+    justify-items: center;
+    min-width: 0;
+    min-height: 0;
+    border: 1px solid rgba(156, 169, 170, 0.24);
+    border-radius: 2px;
+    background: rgba(255, 255, 255, 0.035);
+    color: rgba(179, 191, 191, 0.78);
+    cursor: pointer;
+    font:
+        10px/1 "Roboto Mono",
+        "SFMono-Regular",
+        monospace;
+}
+
+.samplerSliceStrip button span {
+    align-self: end;
+}
+
+.samplerSliceStrip button small {
+    color: rgba(126, 231, 210, 0.78);
+    font-size: 8px;
+}
+
+.samplerSliceStrip button.isSelected {
+    border-color: rgba(126, 231, 210, 0.78);
+    background: rgba(63, 143, 152, 0.28);
+    color: rgba(238, 255, 249, 0.96);
+}
+
+.samplerSliceEditor {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    grid-template-rows: 18px repeat(2, 1fr);
+    gap: 5px;
+    min-width: 0;
+    border: 1px solid rgba(156, 169, 170, 0.2);
+    background: rgba(255, 255, 255, 0.024);
+    padding: 6px;
+}
+
+.samplerEditorTitle {
+    grid-column: 1 / -1;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    min-width: 0;
+    color: rgba(238, 244, 242, 0.9);
+    font:
+        10px/1 "Roboto Mono",
+        "SFMono-Regular",
+        monospace;
+    text-transform: uppercase;
+}
+
+.samplerEditorTitle strong {
+    color: rgba(126, 231, 210, 0.76);
+    font-weight: 600;
+}
+
+.samplerSliceEditor label {
+    display: grid;
+    grid-template-rows: 11px minmax(0, 1fr);
+    gap: 3px;
+    min-width: 0;
+}
+
+.samplerSliceEditor label span {
+    color: rgba(185, 198, 198, 0.72);
+    font:
+        8px/1 "Roboto Mono",
+        "SFMono-Regular",
+        monospace;
+    text-transform: uppercase;
+}
+
+.samplerSliceEditor button {
+    grid-column: span 1;
+    align-self: stretch;
+}
+
+.samplerControls.productionSections {
+    grid-template-columns: minmax(0, 1fr);
+    min-height: 0;
+    border: 1px solid rgba(156, 169, 170, 0.2);
+    background: rgba(255, 255, 255, 0.024);
+    padding: 5px;
+}
+
+.samplerControls .productionSectionBody {
+    grid-template-columns: repeat(4, minmax(42px, 1fr));
+}
+
+.moduleConnectionView .samplerPanel {
+    display: none;
+}

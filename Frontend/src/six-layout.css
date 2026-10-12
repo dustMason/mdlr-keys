@@ -1,0 +1,56 @@
+/* SIX on horse: 1080×810 / 810×1080 points minus the native 48pt toolbar + 4pt gap.
+   Keep controls at physical touch size. Reflow sections, rather than scale the panel. */
+.panelCanvas .sixPanel {
+  grid-template-columns:repeat(12,minmax(0,1fr));
+  grid-template-rows:repeat(2,minmax(0,1fr));
+  grid-template-areas:
+    "lfo lfo dco dco dco dco dco dco dco chorus chorus chorus"
+    "hpf vcf vcf vcf vcf vcf env1 env1 env1 env2 env2 env2";
+  gap:12px 4px;padding:10px 8px;
+}
+.panelCanvas .sixPanel .sixSection {grid-template-rows:32px minmax(0,1fr)}
+.panelCanvas .sixPanel .sixSection h2 {height:32px;font-size:18px;line-height:32px}
+.panelCanvas .sixPanel .sixSectionBody {padding:10px 8px}
+.panelCanvas .sixPanel .sixFader {min-width:56px;gap:8px}
+.panelCanvas .sixPanel .sixFaderTrack {width:56px;min-height:120px}
+.panelCanvas .sixPanel .sixFaderCap {width:46px;height:34px;bottom:clamp(18px,var(--six-fader-fill),calc(100% - 18px))}
+.panelCanvas .sixPanel .sixFaderLabel,
+.panelCanvas .sixPanel .sixButtonGroup > span,
+.panelCanvas .sixPanel .sixVerticalSelector > span {
+  font-size:14px;line-height:1.25;white-space:normal;min-height:28px;overflow:visible;
+}
+.panelCanvas .module-six:not(.moduleConnectionView) .moduleBody .sixModKnob .knobLabel {font-size:14px;line-height:1.25}
+.panelCanvas .module-six:not(.moduleConnectionView) .moduleBody .sixModKnob {gap:10px}
+.panelCanvas .module-six:not(.moduleConnectionView) .moduleBody .sixModKnob .knobFace {
+  --knob-face-size:72px;width:72px;height:72px;--knob-needle-top:9px;--knob-needle-height:27px;--knob-needle-origin-y:27px;
+}
+.panelCanvas .sixPanel .sixDcoGrid {grid-template-columns:112px 172px minmax(0,1fr);gap:12px}
+.panelCanvas .sixPanel .sixDcoMod {grid-template-columns:56px minmax(104px,1fr);gap:12px}
+.panelCanvas .sixPanel .sixDcoMix {grid-template-columns:repeat(2,minmax(56px,1fr));gap:12px}
+.panelCanvas .sixPanel .sixRangeGroup .sixButtonRow {grid-template-columns:repeat(2,minmax(48px,1fr));gap:12px;transform:none}
+.panelCanvas .module-six:not(.moduleConnectionView) .moduleBody .sixButtonRow button {
+  min-width:48px;height:52px;font-size:14px;touch-action:manipulation;
+}
+.panelCanvas .sixPanel .sixVerticalSelector {align-content:start;grid-template-rows:auto auto;gap:8px}
+.panelCanvas .sixPanel .sixVerticalSwitch {
+  padding:0;gap:12px 8px;grid-template-columns:repeat(2,minmax(48px,1fr));grid-template-rows:repeat(3,52px);
+}
+.panelCanvas .sixPanel .sixVerticalSwitch::before {display:none}
+.panelCanvas .module-six:not(.moduleConnectionView) .moduleBody .sixVerticalSwitch button {
+  min-width:48px;min-height:52px;font-size:14px;text-align:center;
+  border:1px solid #69726a;border-radius:4px;touch-action:manipulation;
+}
+.panelCanvas .module-six:not(.moduleConnectionView) .moduleBody .sixVerticalSwitch button.isActive {background:#c7cdbe;color:#15191a}
+.panelCanvas .sixPanel .sixLfoControls {grid-template-columns:56px 72px;gap:12px;justify-content:space-evenly}
+.panelCanvas .sixPanel .sixEnvGrid {grid-template-columns:repeat(4,minmax(56px,1fr));gap:6px}
+.panelCanvas .sixPanel .sixFaderGroupTwo {grid-template-columns:repeat(2,minmax(56px,1fr))}
+.panelCanvas .sixPanel .sixVcfGrid {grid-template-columns:minmax(56px,1fr) repeat(2,minmax(120px,2fr));gap:8px}
+.panelCanvas .sixPanel .sixFaderGroup::before {top:44px}
+.panelCanvas.compact .sixPanel {
+  grid-template-rows:minmax(0,.95fr) minmax(0,1.1fr) minmax(0,.85fr);
+  grid-template-areas:
+    "lfo lfo lfo dco dco dco dco dco dco dco dco dco"
+    "hpf hpf vcf vcf vcf vcf vcf vcf chorus chorus chorus chorus"
+    "env1 env1 env1 env1 env1 env1 env2 env2 env2 env2 env2 env2";
+  column-gap:8px;
+}

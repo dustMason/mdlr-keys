@@ -1,0 +1,128 @@
+.module-scope {
+  border-color: rgba(129, 255, 174, 0.28);
+  background: #050907;
+}
+
+.module-scope .moduleFace {
+  background: #020604;
+}
+
+.rackModuleSystem.module-scope .rackFlange,
+.module-scope .rackFlange {
+  border-color: rgba(129, 255, 174, 0.18);
+  background: #0a0f0c;
+}
+
+.rackModuleSystem.module-scope .rackFlange-left,
+.module-scope .rackFlange-left {
+  border-right-color: rgba(129, 255, 174, 0.18);
+}
+
+.rackModuleSystem.module-scope .rackFlange-right,
+.module-scope .rackFlange-right {
+  border-left-color: rgba(129, 255, 174, 0.18);
+}
+
+.rackModuleSystem.module-scope .rackFlangeUnit,
+.module-scope .rackFlangeUnit {
+  background: #0a0f0c;
+}
+
+.rackModuleSystem.module-scope .rackScrew,
+.module-scope .rackScrew {
+  border-color: rgba(129, 255, 174, 0.34);
+  background:
+    radial-gradient(circle at 34% 28%, rgba(210, 255, 221, 0.12), transparent 34%),
+    #111812;
+  box-shadow:
+    inset 0 -1px 1px rgba(0, 0, 0, 0.82),
+    0 1px 1px rgba(0, 0, 0, 0.7);
+}
+
+.rackModuleSystem.module-scope .rackScrew::before,
+.rackModuleSystem.module-scope .rackScrew::after,
+.module-scope .rackScrew::before,
+.module-scope .rackScrew::after {
+  left: 2px;
+  right: 2px;
+  height: 1px;
+  background: rgba(129, 255, 174, 0.36);
+}
+
+.module-scope .moduleHeader {
+  border-bottom-color: rgba(129, 255, 174, 0.22);
+  background: #0a0f0c;
+  color: #e7f5ec;
+}
+
+.module-scope .moduleBody,
+.module-scope.rackUnits-1 .moduleBody,
+.rackModuleSystem.module-scope .moduleBody {
+  padding: 0;
+  background: #020604;
+}
+
+.scopePanel {
+  position: relative;
+  height: 100%;
+  min-height: 0;
+  overflow: hidden;
+  border: 0;
+  background:
+    radial-gradient(circle at 50% 50%, rgba(120, 255, 172, 0.08), transparent 66%),
+    linear-gradient(#030a06, #010604);
+}
+
+.scopePanel::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(rgba(141, 255, 173, 0.035) 50%, transparent 50%),
+    radial-gradient(circle at 50% 50%, transparent 54%, rgba(0, 0, 0, 0.26) 100%);
+  background-size: 100% 4px, 100% 100%;
+  mix-blend-mode: screen;
+}
+
+.scopeCanvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+  border: 0;
+  image-rendering: auto;
+}
+
+.scopeLegend {
+  position: absolute;
+  top: 6px;
+  right: 7px;
+  display: flex;
+  gap: 4px;
+  align-items: center;
+  justify-content: flex-end;
+  min-height: 0;
+  pointer-events: none;
+}
+
+.scopeLegend span {
+  display: grid;
+  place-items: center;
+  width: 18px;
+  height: 12px;
+  border: 1px solid rgba(141, 255, 173, 0.22);
+  background: rgba(1, 8, 4, 0.62);
+  color: rgba(189, 255, 207, 0.7);
+  font-size: 7px;
+  font-weight: 800;
+  line-height: 1;
+}
+
+.scopeTraceA {
+  color: rgba(141, 255, 173, 0.82);
+}
+
+.scopeTraceB {
+  color: rgba(66, 221, 160, 0.78);
+}

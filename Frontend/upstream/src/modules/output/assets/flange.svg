@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 760" preserveAspectRatio="none">
+  <defs>
+    <filter id="flangeNoise">
+      <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="3" seed="480" result="noise"/>
+      <feColorMatrix in="noise" type="matrix" values="0 0 0 0 .45 0 0 0 0 .45 0 0 0 0 .45 0 0 0 .2 0" result="grain"/>
+      <feBlend in="SourceGraphic" in2="grain" mode="multiply"/>
+    </filter>
+  </defs>
+  <rect width="120" height="760" fill="#333735" filter="url(#flangeNoise)"/>
+  <rect x="0" y="0" width="14" height="760" fill="#686b6a" opacity=".18"/>
+  <rect x="104" y="0" width="16" height="760" fill="#222423" opacity=".36"/>
+  <g><path d="M31 60 l100 -1" stroke="#ffffff" stroke-width="1" opacity="0.079" />
+<path d="M17 132 l111 -5" stroke="#000000" stroke-width="1" opacity="0.094" />
+<path d="M124 728 l119 3" stroke="#000000" stroke-width="2" opacity="0.074" />
+<path d="M89 598 l131 -1" stroke="#ffffff" stroke-width="1" opacity="0.057" />
+<path d="M93 498 l41 3" stroke="#000000" stroke-width="1" opacity="0.116" />
+<path d="M31 492 l44 2" stroke="#000000" stroke-width="1" opacity="0.054" />
+<path d="M107 462 l94 2" stroke="#ffffff" stroke-width="1" opacity="0.096" />
+<path d="M-20 143 l97 -6" stroke="#000000" stroke-width="1" opacity="0.101" />
+<path d="M60 404 l180 -3" stroke="#000000" stroke-width="1" opacity="0.097" />
+<path d="M-18 445 l62 5" stroke="#ffffff" stroke-width="1" opacity="0.096" />
+<path d="M89 481 l165 -5" stroke="#000000" stroke-width="1" opacity="0.091" />
+<path d="M67 67 l101 1" stroke="#000000" stroke-width="1" opacity="0.096" />
+<path d="M-11 86 l160 0" stroke="#ffffff" stroke-width="1" opacity="0.110" />
+<path d="M94 282 l125 0" stroke="#000000" stroke-width="1" opacity="0.071" />
+<path d="M-14 382 l170 -6" stroke="#000000" stroke-width="1" opacity="0.074" />
+<path d="M20 252 l127 3" stroke="#ffffff" stroke-width="1" opacity="0.053" />
+<path d="M112 276 l123 5" stroke="#000000" stroke-width="1" opacity="0.074" />
+<path d="M85 700 l137 -5" stroke="#000000" stroke-width="1" opacity="0.114" />
+<path d="M39 245 l108 3" stroke="#ffffff" stroke-width="1" opacity="0.119" />
+<path d="M138 324 l165 -3" stroke="#000000" stroke-width="2" opacity="0.077" />
+<path d="M124 37 l39 -6" stroke="#000000" stroke-width="2" opacity="0.069" />
+<path d="M127 677 l80 -2" stroke="#ffffff" stroke-width="1" opacity="0.067" />
+<path d="M47 226 l84 3" stroke="#000000" stroke-width="2" opacity="0.082" />
+<path d="M26 87 l165 4" stroke="#000000" stroke-width="1" opacity="0.060" />
+<path d="M92 29 l174 4" stroke="#ffffff" stroke-width="1" opacity="0.085" />
+<path d="M74 422 l64 -5" stroke="#000000" stroke-width="2" opacity="0.084" />
+<path d="M46 223 l60 3" stroke="#000000" stroke-width="1" opacity="0.105" />
+<path d="M112 215 l145 -5" stroke="#ffffff" stroke-width="1" opacity="0.080" />
+<path d="M7 226 l65 0" stroke="#000000" stroke-width="1" opacity="0.060" />
+<path d="M52 597 l98 2" stroke="#000000" stroke-width="1" opacity="0.062" />
+<path d="M138 363 l73 -1" stroke="#ffffff" stroke-width="1" opacity="0.117" />
+<path d="M58 406 l74 5" stroke="#000000" stroke-width="1" opacity="0.052" />
+<path d="M126 306 l63 -1" stroke="#000000" stroke-width="2" opacity="0.114" />
+<path d="M97 717 l148 0" stroke="#ffffff" stroke-width="1" opacity="0.062" />
+<path d="M-13 631 l141 -2" stroke="#000000" stroke-width="2" opacity="0.070" />
+<path d="M82 494 l137 5" stroke="#000000" stroke-width="1" opacity="0.066" />
+<path d="M95 345 l27 2" stroke="#ffffff" stroke-width="1" opacity="0.053" />
+<path d="M118 749 l158 -2" stroke="#000000" stroke-width="1" opacity="0.104" />
+<path d="M96 735 l39 6" stroke="#000000" stroke-width="1" opacity="0.050" />
+<path d="M120 455 l38 4" stroke="#ffffff" stroke-width="2" opacity="0.065" />
+<path d="M107 705 l172 -3" stroke="#000000" stroke-width="1" opacity="0.068" />
+<path d="M48 538 l107 -6" stroke="#000000" stroke-width="2" opacity="0.118" /></g>
+</svg>

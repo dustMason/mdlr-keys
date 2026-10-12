@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48">
+  <defs>
+    <filter id="ledShadow" x="-40%" y="-40%" width="180%" height="180%">
+      <feDropShadow dx="0" dy="2" stdDeviation="2" flood-color="#000000" flood-opacity=".32"/>
+    </filter>
+  </defs>
+  <circle cx="24" cy="24" r="16" fill="#000000" opacity=".32" filter="url(#ledShadow)"/>
+  <circle cx="24" cy="22" r="14" fill="#181a1b"/>
+  <circle cx="24" cy="22" r="9" fill="#b91c1c" opacity=".98"/>
+  <circle cx="19" cy="17" r="3" fill="#ffffff" opacity=".45"/>
+</svg>

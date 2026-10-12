@@ -1,0 +1,73 @@
+.choirPanel {
+    display: grid;
+    gap: 8px;
+    grid-template-rows: auto 1fr;
+    min-width: 0;
+}
+
+.choirWordsSection {
+    min-height: 48px;
+}
+
+.choirPhraseSelect {
+    align-items: center;
+    background: rgba(237, 246, 247, 0.035);
+    border: 1px solid rgba(191, 213, 214, 0.18);
+    display: flex;
+    gap: 8px;
+    min-height: 30px;
+    min-width: 0;
+    overflow: hidden;
+    padding: 0 7px;
+    position: relative;
+    width: 100%;
+}
+
+.choirPhraseSelect::after {
+    border-left: 4px solid transparent;
+    border-right: 4px solid transparent;
+    border-top: 5px solid rgba(129, 180, 184, 0.84);
+    content: "";
+    pointer-events: none;
+    position: absolute;
+    right: 9px;
+    top: 12px;
+}
+
+.choirPhraseSelect span {
+    border-right: 1px solid rgba(191, 213, 214, 0.14);
+    color: rgba(129, 180, 184, 0.88);
+    flex: 0 0 auto;
+    font: 800 10px/1 "JetBrains Mono", "SFMono-Regular", monospace;
+    min-width: 22px;
+    padding-right: 7px;
+    text-align: right;
+}
+
+.module-choir:not(.moduleConnectionView) .choirPhraseSelect select {
+    appearance: none;
+    -webkit-appearance: none;
+    background: transparent;
+    border: 0;
+    color: rgba(243, 249, 249, 0.9);
+    cursor: pointer;
+    flex: 1 1 auto;
+    font: 800 12px/1 "JetBrains Mono", "SFMono-Regular", monospace;
+    letter-spacing: 0;
+    min-width: 0;
+    outline: 0;
+    overflow: hidden;
+    padding: 0 18px 0 0;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.choirPhraseSelect:focus-within {
+    border-color: rgba(83, 166, 173, 0.58);
+    background: rgba(237, 246, 247, 0.052);
+}
+
+.module-choir:not(.moduleConnectionView) .choirPhraseSelect option {
+    background: #181d1e;
+    color: rgba(243, 249, 249, 0.92);
+}

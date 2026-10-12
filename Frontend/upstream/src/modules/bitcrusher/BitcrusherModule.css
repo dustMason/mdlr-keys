@@ -1,0 +1,16 @@
+.module-bit .moduleBody {
+  padding: 0;
+}
+
+.bitPanel {
+  display: grid;
+  height: 100%;
+  min-height: 0;
+  align-content: start;
+  gap: 8px;
+}
+
+.module-bit:not(.moduleConnectionView) .productionSection {
+  border-top-width: 4px;
+}
+

@@ -1,0 +1,9 @@
+.module-chorus.rackUnits-1 .chorusPanel {
+    grid-template-columns: minmax(220px, 0.36fr) minmax(0, 1fr);
+    gap: 10px;
+}
+
+.module-chorus.rackUnits-1 .chorusSections {
+    grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.1fr) minmax(0, 0.8fr);
+    height: 100%;
+}

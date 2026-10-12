@@ -1,0 +1,549 @@
+.module-steps .moduleBody {
+  padding: 0;
+}
+
+.stepsPanel {
+  display: grid;
+  grid-template-rows: 38px minmax(0, 1fr) 132px;
+  gap: 6px;
+  min-height: 0;
+  padding: 6px;
+  background: #050611;
+  color: #6e958c;
+}
+
+.stepsTopBar {
+  display: grid;
+  grid-template-columns: 92px 284px 118px 52px minmax(0, 1fr);
+  gap: 6px;
+  min-width: 0;
+  align-items: stretch;
+}
+
+.stepsInfoButton,
+.stepsDirection,
+.stepsTopSelect,
+.stepsRandom,
+.stepsRange {
+  border: 1px solid #1a1d32;
+  background: #080914;
+  color: #6e958c;
+}
+
+.stepsInfoButton,
+.stepsDirection button,
+.stepsRandom {
+  cursor: pointer;
+}
+
+.stepsInfoButton {
+  display: grid;
+  place-items: center;
+  min-width: 0;
+  border-radius: 6px;
+  padding: 0;
+  font: inherit;
+  font-size: 16px;
+  font-weight: 900;
+}
+
+.stepsInfoButton.isActive {
+  border-color: #477c6d;
+  background: #5f9d89;
+  color: #06100e;
+}
+
+.stepsDirection {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  min-width: 0;
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.stepsDirection button {
+  min-width: 0;
+  border: 0;
+  border-right: 1px solid #1a1d32;
+  background: transparent;
+  color: inherit;
+  padding: 0;
+  font: inherit;
+  font-size: 15px;
+  font-weight: 900;
+}
+
+.stepsDirection button:last-child {
+  border-right: 0;
+}
+
+.stepsDirection button.isActive {
+  background: #22483f;
+  color: #9dcebd;
+}
+
+.stepsTopSelect,
+.stepsRange {
+  display: grid;
+  align-items: center;
+  gap: 6px;
+  min-width: 0;
+  padding: 0 8px;
+  font-size: 14px;
+  font-weight: 800;
+}
+
+.stepsTopSelect {
+  grid-template-columns: auto minmax(50px, 1fr);
+  border-radius: 6px;
+}
+
+.stepsRandom {
+  min-width: 0;
+  border-radius: 6px;
+  padding: 0;
+  font: inherit;
+  font-size: 12px;
+  font-weight: 900;
+}
+
+.stepsRange {
+  grid-template-columns: auto minmax(58px, 1fr) auto minmax(58px, 1fr);
+  border-radius: 6px;
+}
+
+.stepsTopSelect span,
+.stepsRange span {
+  min-width: 0;
+  white-space: nowrap;
+}
+
+.stepsTopSelect select,
+.stepsRange select,
+.stepsChordCell select {
+  min-width: 0;
+  border: 1px solid #1a1d32;
+  border-radius: 0;
+  background: #080914;
+  color: #74a79a;
+  font: inherit;
+  font-weight: 800;
+}
+
+.stepsTopSelect select,
+.stepsRange select {
+  height: 24px;
+  padding: 0 7px;
+  font-size: 13px;
+}
+
+.stepsMatrix {
+  display: grid;
+  grid-template-columns: 76px repeat(var(--stage-count), minmax(0, 1fr));
+  gap: 8px;
+  min-height: 0;
+}
+
+.stepsPanel.hideLabels .stepsMatrix {
+  grid-template-columns: 0 repeat(var(--stage-count), minmax(0, 1fr));
+  gap: 7px;
+}
+
+.stepsLabels,
+.stepsStage {
+  display: grid;
+  grid-template-rows: 30px minmax(98px, 1fr) 52px 48px 48px 28px;
+  gap: 6px;
+  min-height: 0;
+}
+
+.stepsLabels {
+  overflow: hidden;
+}
+
+.stepsPanel.hideLabels .stepsLabels {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.stepsLabels span {
+  display: grid;
+  align-items: center;
+  min-width: 0;
+  overflow: hidden;
+  color: rgba(166, 170, 186, 0.72);
+  font-size: 13px;
+  font-weight: 900;
+  line-height: 1;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.stepsLabels span:nth-child(2) {
+  align-items: start;
+  padding-top: 62px;
+}
+
+.stepsStage {
+  opacity: 1;
+}
+
+.stepsStage.isSkipped {
+  opacity: 0.58;
+}
+
+.stepsLock,
+.stepsPitch,
+.stepsNumberStepper,
+.stepsSkip,
+.stepsChordCell {
+  min-width: 0;
+  border: 1px solid #23253d;
+  border-radius: 7px;
+  background: #080914;
+  color: #75a395;
+  font: inherit;
+}
+
+.stepsLock,
+.stepsSkip,
+.stepsNumberStepper button {
+  cursor: pointer;
+}
+
+.stepsLock {
+  display: grid;
+  place-items: center;
+  padding: 0;
+}
+
+.stepsLock span {
+  display: block;
+  width: 15px;
+  height: 15px;
+  border: 2px solid #244940;
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at 50% 50%, transparent 0 32%, #244940 34% 42%, transparent 44%),
+    #070911;
+}
+
+.stepsStage.isLocked .stepsLock {
+  border-color: #609984;
+  background: #233f39;
+}
+
+.stepsStage.isLocked .stepsLock span {
+  border-color: #8ac3ad;
+  background:
+    radial-gradient(circle at 50% 50%, #8ac3ad 0 26%, transparent 28%),
+    #111b1a;
+}
+
+.stepsPitch {
+  position: relative;
+  display: grid;
+  align-items: end;
+  overflow: hidden;
+  border-radius: 0;
+  background: #101121;
+}
+
+.stepsPitchFill {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  display: block;
+  background: #2e304d;
+  pointer-events: none;
+}
+
+.stepsStage:nth-child(4n + 2) .stepsPitchFill,
+.stepsStage:nth-child(4n + 4) .stepsPitchFill {
+  background: #6f9487;
+}
+
+.stepsPitch input {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  opacity: 0;
+  cursor: ns-resize;
+}
+
+.stepsChordCell {
+  display: grid;
+  grid-template-rows: minmax(0, 1fr) 18px;
+  gap: 4px;
+  padding: 4px;
+  border-radius: 0;
+  background: #060711;
+}
+
+.stepsChordCell select {
+  width: 100%;
+  height: 100%;
+  padding: 0 3px;
+  border-color: #151729;
+  text-align: center;
+  text-align-last: center;
+}
+
+.stepsChordCell select:first-child {
+  font-size: 15px;
+}
+
+.stepsChordCell select:last-child {
+  font-size: 9px;
+  text-transform: uppercase;
+}
+
+.stepsNumberStepper {
+  display: grid;
+  grid-template-rows: 13px minmax(0, 1fr) 13px;
+  overflow: hidden;
+  border-radius: 10px;
+}
+
+.stepsNumberStepper button {
+  min-width: 0;
+  border: 0;
+  background: #0b0c18;
+  color: #75a395;
+  padding: 0;
+  font: inherit;
+  font-size: 10px;
+  font-weight: 900;
+  line-height: 1;
+}
+
+.stepsNumberStepper output {
+  display: grid;
+  place-items: center;
+  min-width: 0;
+  overflow: hidden;
+  font-size: 16px;
+  font-weight: 900;
+  line-height: 1;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.stepsSkip {
+  padding: 0;
+  border-radius: 7px;
+}
+
+.stepsStage.isSkipped .stepsSkip {
+  border-color: #6f9487;
+  background: #263f39;
+}
+
+.stepsStage.isSkipped .stepsPitchFill {
+  background: #1b1d2d;
+}
+
+.stepsStage.isPlayhead .stepsPitch {
+  outline: 2px solid #82b5a8;
+  outline-offset: -2px;
+}
+
+.stepsStage.isPlayhead .stepsNumberStepper,
+.stepsStage.isPlayhead .stepsChordCell,
+.stepsStage.isPlayhead .stepsSkip,
+.stepsStage.isPlayhead .stepsLock {
+  box-shadow: 0 0 0 1px #6f9487;
+}
+
+.stepsLowerPanel {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 340px;
+  gap: 6px;
+  min-height: 0;
+}
+
+.stepsQuantPanel,
+.stepsSeqModsPanel {
+  display: grid;
+  min-width: 0;
+  min-height: 0;
+  border: 1px solid #1a1d32;
+  border-radius: 7px;
+  background: #080914;
+  padding: 6px;
+  color: #74a79a;
+}
+
+.stepsQuantPanel {
+  grid-template-rows: 16px 30px minmax(0, 1fr);
+  gap: 5px;
+}
+
+.stepsSeqModsPanel {
+  grid-template-rows: 16px minmax(0, 1fr);
+  gap: 5px;
+}
+
+.stepsPanelHeader {
+  min-width: 0;
+  overflow: hidden;
+  color: rgba(166, 170, 186, 0.78);
+  font-size: 11px;
+  font-weight: 900;
+  letter-spacing: 0;
+  line-height: 1.2;
+  text-overflow: ellipsis;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.stepsScaleKeyboard {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: 3px;
+  min-width: 0;
+}
+
+.stepsScaleKeyboard button,
+.stepsQuantizeButton {
+  min-width: 0;
+  border: 1px solid #22263f;
+  border-radius: 4px;
+  background: #050611;
+  color: #5e817a;
+  cursor: pointer;
+  font: inherit;
+  font-size: 9px;
+  font-weight: 900;
+  letter-spacing: 0;
+}
+
+.stepsScaleKeyboard button.isActive,
+.stepsQuantizeButton.isActive {
+  border-color: #5f9d89;
+  background: #244b42;
+  color: #9fd1c0;
+}
+
+.stepsQuantControls,
+.stepsSeqModsGrid {
+  display: grid;
+  gap: 5px;
+  min-width: 0;
+  min-height: 0;
+}
+
+.stepsQuantControls {
+  grid-template-columns: 62px 82px 60px minmax(112px, 1fr) 68px 60px;
+}
+
+.stepsSeqModsGrid {
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+}
+
+.stepsMiniSelect,
+.stepsMiniSlider,
+.stepsMiniStepper {
+  display: grid;
+  min-width: 0;
+  min-height: 0;
+  border: 1px solid #22263f;
+  border-radius: 5px;
+  background: #060711;
+  color: #74a79a;
+}
+
+.stepsMiniSelect,
+.stepsMiniStepper {
+  grid-template-rows: 13px minmax(0, 1fr);
+  gap: 3px;
+  padding: 4px;
+}
+
+.stepsMiniSlider {
+  grid-template-rows: 13px 18px 13px;
+  gap: 2px;
+  padding: 4px;
+}
+
+.stepsMiniSelect > span,
+.stepsMiniSlider > span,
+.stepsMiniStepper > span {
+  min-width: 0;
+  overflow: hidden;
+  color: rgba(166, 170, 186, 0.72);
+  font-size: 9px;
+  font-weight: 900;
+  line-height: 1.2;
+  text-overflow: ellipsis;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.stepsMiniSelect select {
+  width: 100%;
+  min-width: 0;
+  border: 1px solid #151729;
+  border-radius: 0;
+  background: #080914;
+  color: #74a79a;
+  font: inherit;
+  font-size: 10px;
+  font-weight: 900;
+}
+
+.stepsMiniSlider input {
+  width: 100%;
+  min-width: 0;
+  margin: 0;
+  accent-color: #6f9487;
+}
+
+.stepsMiniSlider output {
+  display: block;
+  min-width: 0;
+  overflow: hidden;
+  color: #9dcebd;
+  font-size: 10px;
+  font-weight: 900;
+  line-height: 1;
+  text-align: right;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.stepsMiniStepper .stepsNumberStepper {
+  border-color: #151729;
+  border-radius: 5px;
+}
+
+.stepsMiniStepper .stepsNumberStepper output {
+  font-size: 13px;
+}
+
+.stepsQuantizeButton {
+  border-radius: 5px;
+  padding: 0;
+  text-transform: uppercase;
+}
+
+.stepsInfoButton:focus-visible,
+.stepsDirection button:focus-visible,
+.stepsTopSelect select:focus-visible,
+.stepsRandom:focus-visible,
+.stepsRange select:focus-visible,
+.stepsLock:focus-visible,
+.stepsPitch input:focus-visible,
+.stepsChordCell select:focus-visible,
+.stepsNumberStepper button:focus-visible,
+.stepsSkip:focus-visible,
+.stepsScaleKeyboard button:focus-visible,
+.stepsMiniSelect select:focus-visible,
+.stepsMiniSlider input:focus-visible,
+.stepsQuantizeButton:focus-visible {
+  outline: 2px solid #7fb9a9;
+  outline-offset: -2px;
+}

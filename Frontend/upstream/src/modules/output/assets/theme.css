@@ -1,0 +1,113 @@
+/* Historical generated asset theme; maintained by hand. */
+.module-output:not(.moduleConnectionView) {
+  background-color: #333735;
+}
+
+.module-output:not(.moduleConnectionView) .rackFlange {
+  background-color: #333735;
+  background-image: url("./flange.svg");
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+}
+
+.module-output:not(.moduleConnectionView) .moduleFace {
+  background-color: #bfc1bd;
+  color: #151515;
+}
+
+.module-output:not(.moduleConnectionView) .moduleFace::before {
+  background: #111827;
+}
+
+.module-output:not(.moduleConnectionView) .moduleHeader {
+  background: rgba(205, 207, 204, 0.860);
+  border-bottom-color: rgba(21, 21, 21, 0.280);
+  color: #151515;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.22);
+}
+
+.module-output:not(.moduleConnectionView) .moduleActivityMeter span {
+  border: 0;
+  background: transparent url("./led-off.svg") center / contain no-repeat;
+}
+
+.module-output:not(.moduleConnectionView) .moduleActivityMeter span.isActive {
+  background-image: url("./led-on.svg");
+}
+
+.module-output:not(.moduleConnectionView) .moduleBody {
+  background: transparent;
+}
+
+.module-output:not(.moduleConnectionView) .moduleLabelInput,
+.module-output:not(.moduleConnectionView) .modulePresetSelect,
+.module-output:not(.moduleConnectionView) .moduleBody input[type="text"],
+.module-output:not(.moduleConnectionView) .moduleBody select {
+  border-color: rgba(21, 21, 21, 0.280);
+  background: rgba(225, 225, 216, 0.760);
+  color: #151515;
+}
+
+.module-output:not(.moduleConnectionView) .productionSection,
+.module-output:not(.moduleConnectionView) .moduleDisplay {
+  border-color: rgba(21, 21, 21, 0.280);
+  background: rgba(225, 225, 216, 0.820);
+  color: #151515;
+}
+
+.module-output:not(.moduleConnectionView) .productionSectionTitle,
+.module-output:not(.moduleConnectionView) .knobLabel {
+  border-color: rgba(21, 21, 21, 0.280);
+  color: #6f7069;
+}
+
+.module-output:not(.moduleConnectionView) .knobValue,
+.module-output:not(.moduleConnectionView) .moduleName {
+  color: #151515;
+}
+
+.module-output:not(.moduleConnectionView) .knobFace {
+  overflow: visible;
+  border: 0;
+  border-radius: 0;
+  background-color: transparent;
+  background-image: url("./knob.svg");
+  background-position: center;
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+}
+
+.module-output:not(.moduleConnectionView) .knobFace::before {
+  display: none;
+}
+
+.module-output:not(.moduleConnectionView) .knobNeedle {
+  background: #151515;
+  box-shadow: 0 0 0 1px rgba(225, 225, 216, 0.320);
+}
+
+
+
+
+
+
+
+.module-output:not(.moduleConnectionView) .moduleDisplay {
+  border-color: rgba(21, 21, 21, 0.280);
+  background-color: #181a1b;
+  background-image: url("./screen.svg");
+  background-position: center;
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  color: #f8f8f8;
+}
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,16 @@
+# These three exact values are verified SHA-256 checksums of vendored files.
+# Their AuthScreen/key filenames trigger the generic credential heuristic.
+# Keep all default rules; exempt only these checksums in this one manifest.
+[extend]
+useDefault = true
+
+[[allowlists]]
+description = "Verified source-file checksums, not credentials"
+condition = "AND"
+paths = ['''(^|/)Frontend/upstream-manifest\.json$''']
+regexTarget = "secret"
+regexes = [
+  '''^eed7f052b4aa29e6191ffd36752de8092996ced97edcc587bb95cf4cf8df7935$''',
+  '''^9b47c7779353ab9b1e766863ae33403b29f2cc10e876989cfccbd0660d16061f$''',
+  '''^2e0320cd221a3d949a04a1a940bf11363a74f56007467891171a6637aab81ea2$''',
+]

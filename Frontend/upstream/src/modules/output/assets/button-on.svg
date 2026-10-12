@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 44">
+  <defs>
+    <filter id="buttonShadow" x="-12%" y="-20%" width="124%" height="148%">
+      <feDropShadow dx="0" dy="2" stdDeviation="1.7" flood-color="#000000" flood-opacity=".28"/>
+    </filter>
+  </defs>
+  <rect x="7" y="5" width="82" height="32" rx="5" fill="#0b0f18" filter="url(#buttonShadow)"/>
+  <rect x="10" y="5" width="76" height="28" rx="4" fill="#111827"/>
+  <path d="M14 10 H82 V15 H14Z" fill="#626770" opacity=".2"/>
+  <rect x="13" y="30" width="70" height="3" fill="#000000" opacity=".22"/>
+  <circle cx="79" cy="14" r="4" fill="#b91c1c" opacity=".86"/>
+</svg>

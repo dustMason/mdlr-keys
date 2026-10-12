@@ -1,0 +1,60 @@
+.module-drone .moduleHeader {
+}
+
+.module-drone .moduleBody {
+  padding: 0;
+}
+
+.dronePanel {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 5px;
+  min-height: 0;
+}
+
+.droneTrack {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 32px;
+  gap: 4px;
+  min-width: 0;
+  padding: 5px;
+  border: 1px solid rgba(17, 17, 17, 0.18);
+  text-transform: uppercase;
+}
+
+.droneTrack::before {
+  content: "";
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  width: 7px;
+  height: 7px;
+  border: 1px solid rgba(17, 17, 17, 0.42);
+}
+
+.droneTrackLabel {
+  grid-column: 1 / -1;
+  font-size: 9px;
+}
+
+.droneTrack select,
+.droneGate {
+  width: 100%;
+  height: 30px;
+  border: 1px solid #111111;
+  border-radius: 0;
+  font: inherit;
+  font-size: 10px;
+  padding: 0 4px;
+}
+
+.droneGate {
+  cursor: pointer;
+  padding: 0;
+  text-transform: uppercase;
+}
+
+.moduleConnectionView .dronePanel {
+  display: none;
+}
