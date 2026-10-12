@@ -1,6 +1,6 @@
 /* Control polish for the iPad panels.
    Loaded after the upstream styles and the layout overrides; the upstream files stay untouched.
-   Sizes and hit areas are unchanged: this only changes how controls are drawn and how they respond. */
+   Artwork retains its size; invisible square surfaces make the knob corners touchable. */
 
 /* ---------------------------------------------------------------------------------------------
    Knob rotor: the indicator layer is the full knob face, rotated about its exact centre.
@@ -64,6 +64,19 @@
 .panelCanvas .knobFace {
   -webkit-tap-highlight-color: transparent;
   transition: box-shadow 120ms ease-out;
+}
+
+/* Keep round artwork, but catch touches throughout each knob's square bounds.
+   Events bubble to the slider, which captures the pointer for the whole drag. */
+.panelCanvas .rackModule .knobFace {overflow:visible}
+.panelCanvas .knobFace > .knobTouchTarget {
+  position:absolute;
+  inset:0;
+  z-index:4;
+  border-radius:0;
+  background:transparent;
+  pointer-events:auto;
+  touch-action:none;
 }
 
 /* ---------------------------------------------------------------------------------------------
@@ -220,7 +233,20 @@
 }
 
 .panelCanvas .module-fm4:not(.moduleConnectionView) .fm4MovementKnobFace::after {
-  display: none;
+  /* The upstream custom renderer has no extra touch span. Its unused overlay
+     supplies the same square hit area without changing the preserved source. */
+  content:"";
+  display:block;
+  position:absolute;
+  inset:0;
+  width:auto;
+  height:auto;
+  z-index:4;
+  border:0;
+  border-radius:0;
+  background:transparent;
+  box-shadow:none;
+  pointer-events:auto;
 }
 
 /* The white knob: machined face with a subtle radial grain and a contact shadow on the ring. */

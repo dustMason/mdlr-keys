@@ -45,12 +45,12 @@ function App(){
   },[]);
   const definition=definitions[state.engine];
   const Component=definition.Component;
-  const canvasWidth=Math.max(state.engine===2?720:800,size.width);
+  const canvasWidth=Math.max(state.engine===2?720:780,size.width);
   const compact=canvasWidth<(state.engine===2?1000:940);
   const scale=size.width/canvasWidth*(state.zoom??1);
-  // All four panels fit horse's 1080×758 / 810×1028 panel at 100%; only smaller windows
+  // All four panels fit the inset iPad panel (1056×746 / 786×1016) at 100%; only smaller windows
   // (or an intentionally enlarged panel) need scrolling. Do not scale touch targets down.
-  const minimumHeight=(compact?[980,960,980,900]:[740,720,752,700])[state.engine];
+  const minimumHeight=(compact?[980,960,980,900]:[740,720,740,700])[state.engine];
   const panelHeight=Math.max(minimumHeight,(size.height-4)/scale);
   const update=(moduleId:number,id:number,value:number)=>{
     const p=definition.params.find(x=>x.id===id);if(!p||!Number.isFinite(value))return;

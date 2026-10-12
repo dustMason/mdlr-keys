@@ -25,6 +25,18 @@ The piano keyboard is hidden by default to maximize panel space. Knobs and fader
 use relative vertical dragging with pointer capture; double-tap to reset a
 control. The four panels fit an 8th-generation iPad in portrait and landscape at
 100% zoom with the piano hidden. Smaller windows or enlarged panels may scroll.
+Toolbar buttons accept touches throughout their full rectangles, and round knobs
+have invisible square hit areas. A small inset keeps controls away from the iPad's
+physical edges without shrinking them. The app also requests hidden system
+overlays and priority for gestures beginning at the screen edges.
+
+For a full-screen playing session, choose **Settings → Multitasking & Gestures →
+Full Screen Apps**. To keep the iPad in MDLR, enable **Settings → Accessibility →
+Guided Access**, open MDLR, and triple-click the Home button (or top button on an
+iPad without a Home button). Keep **Touch** enabled, then start the session.
+Triple-click the same button, authenticate, and choose **End** to leave it.
+See Apple's [full-screen settings](https://support.apple.com/en-us/123635) and
+[Guided Access instructions](https://support.apple.com/en-us/111795).
 
 Connect a class-compliant USB MIDI keyboard through a compatible iPad USB adapter.
 Core MIDI handles connected sources and hotplug. Audio plays through the current

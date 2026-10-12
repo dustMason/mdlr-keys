@@ -49,7 +49,12 @@ struct InstrumentView: View {
                     HStack {Text(model.notice).font(.caption);Spacer();Button("Dismiss"){model.notice=""}.frame(minHeight:44)}
                         .foregroundStyle(accent).padding(.horizontal,8)
                 }
-            }.background(Color(red:0.065,green:0.075,blue:0.082))
+            }
+#if os(iOS)
+            // Leave a small finger landing area inside the physical screen edge.
+            .padding(EdgeInsets(top:6,leading:12,bottom:6,trailing:12))
+#endif
+            .background(Color(red:0.065,green:0.075,blue:0.082))
         }
         .onAppear {if scenePhase == .active {model.startAudio()}}
         .onChange(of:scenePhase) {phase in if phase == .active {model.startAudio()}}
@@ -63,6 +68,7 @@ struct InstrumentView: View {
                             .frame(width:48,height:44)
                             .foregroundStyle(model.selected==e.id ? .black:.white.opacity(0.6))
                             .background(model.selected==e.id ? accent:Color.clear,in:RoundedRectangle(cornerRadius:6))
+                            .contentShape(Rectangle())
                     }.accessibilityLabel("Select \(e.name), \(e.voices == 1 ? "monophonic":"\(e.voices) voices")")
                 }
             }.background(Color.white.opacity(0.04),in:RoundedRectangle(cornerRadius:6))
@@ -71,17 +77,17 @@ struct InstrumentView: View {
                 ForEach(model.engine.presets.indices,id:\.self){i in Button(model.engine.presets[i].name){model.preset(model.engine.presets[i])}}
                 Divider();Button("Save my patch"){model.save()};Button("Load my patch"){model.load()}
             } label: {
-                Text(model.patchName).font(.system(size:12,weight:.medium)).lineLimit(1).frame(minWidth:60,maxWidth:160,minHeight:44,alignment:.leading).padding(.horizontal,6)
+                Text(model.patchName).font(.system(size:12,weight:.medium)).lineLimit(1).frame(minWidth:60,maxWidth:160,minHeight:44,alignment:.leading).padding(.horizontal,6).contentShape(Rectangle())
             }.accessibilityLabel("Preset: \(model.patchName)")
             Spacer(minLength:0)
             Button {
                 if keyboardVisible {model.sustain=false;model.bridge.sendStatus(0xbf,data1:64,data2:0)}
                 keyboardVisible.toggle()
-            } label:{Image(systemName:"pianokeys").frame(width:44,height:44).background(keyboardVisible ? accent.opacity(0.2):Color.clear,in:RoundedRectangle(cornerRadius:6))}
+            } label:{Image(systemName:"pianokeys").frame(width:44,height:44).background(keyboardVisible ? accent.opacity(0.2):Color.clear,in:RoundedRectangle(cornerRadius:6)).contentShape(Rectangle())}
                 .accessibilityLabel(keyboardVisible ? "Hide keyboard":"Show keyboard")
-            Button {model.toggleAudio()} label:{Image(systemName:model.running ? "stop.fill":"play.fill").frame(width:44,height:44).foregroundStyle(.black).background(accent,in:RoundedRectangle(cornerRadius:6))}
+            Button {model.toggleAudio()} label:{Image(systemName:model.running ? "stop.fill":"play.fill").frame(width:44,height:44).foregroundStyle(.black).background(accent,in:RoundedRectangle(cornerRadius:6)).contentShape(Rectangle())}
                 .accessibilityLabel(model.running ? "Stop audio":"Start audio")
-            Button {optionsVisible.toggle()} label:{Image(systemName:"ellipsis").frame(width:44,height:44)}
+            Button {optionsVisible.toggle()} label:{Image(systemName:"ellipsis").frame(width:44,height:44).contentShape(Rectangle())}
                 .accessibilityLabel("Instrument options")
                 .popover(isPresented:$optionsVisible){options.padding(20).frame(width:310).preferredColorScheme(.dark)}
         }.buttonStyle(.plain).tint(accent).padding(.horizontal,6).padding(.vertical,2)

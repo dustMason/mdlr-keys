@@ -7,6 +7,8 @@ struct MDLRApp: App {
             InstrumentView().preferredColorScheme(.dark)
 #if os(iOS)
                 .statusBarHidden(true)
+                .persistentSystemOverlays(.hidden)
+                .defersSystemGestures(on: .all)
 #endif
         }
     }

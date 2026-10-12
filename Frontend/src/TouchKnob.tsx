@@ -55,6 +55,7 @@ export function Knob({
         } as CSSProperties}
       >
         <span className="knobNeedle" />
+        <span className="knobTouchTarget" aria-hidden="true" />
       </span>
       <span className="knobValue">{control.display}</span>
       <input
