@@ -1,0 +1,284 @@
+[
+  {
+    "label": "baseline",
+    "calibration": {},
+    "scores": {
+      "train": 11.974470382489946,
+      "held_out": 9.125960363404587
+    }
+  },
+  {
+    "label": "trial-001",
+    "calibration": {
+      "cutoff_curve": 0.8,
+      "filter_eg_octaves": 8.0,
+      "shape_amount": 2.0,
+      "drive_mix_curve": 1.0,
+      "drive_gain": 12.0
+    },
+    "scores": {
+      "train": 11.94272137715838
+    }
+  },
+  {
+    "label": "trial-002",
+    "calibration": {
+      "cutoff_curve": 1.2,
+      "filter_eg_octaves": 8.0,
+      "shape_amount": 2.0,
+      "drive_mix_curve": 1.0,
+      "drive_gain": 12.0
+    },
+    "scores": {
+      "train": 11.812371546979618
+    }
+  },
+  {
+    "label": "trial-003",
+    "calibration": {
+      "cutoff_curve": 1.2,
+      "filter_eg_octaves": 6.0,
+      "shape_amount": 2.0,
+      "drive_mix_curve": 1.0,
+      "drive_gain": 12.0
+    },
+    "scores": {
+      "train": 11.382066449658033
+    }
+  },
+  {
+    "label": "trial-004",
+    "calibration": {
+      "cutoff_curve": 1.2,
+      "filter_eg_octaves": 10.0,
+      "shape_amount": 2.0,
+      "drive_mix_curve": 1.0,
+      "drive_gain": 12.0
+    },
+    "scores": {
+      "train": 12.03308712013006
+    }
+  },
+  {
+    "label": "trial-005",
+    "calibration": {
+      "cutoff_curve": 1.2,
+      "filter_eg_octaves": 6.0,
+      "shape_amount": 1.25,
+      "drive_mix_curve": 1.0,
+      "drive_gain": 12.0
+    },
+    "scores": {
+      "train": 11.489120942212388
+    }
+  },
+  {
+    "label": "trial-006",
+    "calibration": {
+      "cutoff_curve": 1.2,
+      "filter_eg_octaves": 6.0,
+      "shape_amount": 2.75,
+      "drive_mix_curve": 1.0,
+      "drive_gain": 12.0
+    },
+    "scores": {
+      "train": 11.579261692272093
+    }
+  },
+  {
+    "label": "trial-007",
+    "calibration": {
+      "cutoff_curve": 1.2,
+      "filter_eg_octaves": 6.0,
+      "shape_amount": 2.0,
+      "drive_mix_curve": 0.7,
+      "drive_gain": 12.0
+    },
+    "scores": {
+      "train": 11.364071678480363
+    }
+  },
+  {
+    "label": "trial-008",
+    "calibration": {
+      "cutoff_curve": 1.2,
+      "filter_eg_octaves": 6.0,
+      "shape_amount": 2.0,
+      "drive_mix_curve": 1.3,
+      "drive_gain": 12.0
+    },
+    "scores": {
+      "train": 11.431819692874479
+    }
+  },
+  {
+    "label": "trial-009",
+    "calibration": {
+      "cutoff_curve": 1.2,
+      "filter_eg_octaves": 6.0,
+      "shape_amount": 2.0,
+      "drive_mix_curve": 0.7,
+      "drive_gain": 8.0
+    },
+    "scores": {
+      "train": 11.485701479995342
+    }
+  },
+  {
+    "label": "trial-010",
+    "calibration": {
+      "cutoff_curve": 1.2,
+      "filter_eg_octaves": 6.0,
+      "shape_amount": 2.0,
+      "drive_mix_curve": 0.7,
+      "drive_gain": 16.0
+    },
+    "scores": {
+      "train": 11.20177627769433
+    }
+  },
+  {
+    "label": "trial-011",
+    "calibration": {
+      "cutoff_curve": 1.0999999999999999,
+      "filter_eg_octaves": 6.0,
+      "shape_amount": 2.0,
+      "drive_mix_curve": 0.7,
+      "drive_gain": 16.0
+    },
+    "scores": {
+      "train": 11.346566280906961
+    }
+  },
+  {
+    "label": "trial-012",
+    "calibration": {
+      "cutoff_curve": 1.3,
+      "filter_eg_octaves": 6.0,
+      "shape_amount": 2.0,
+      "drive_mix_curve": 0.7,
+      "drive_gain": 16.0
+    },
+    "scores": {
+      "train": 11.186837584110725
+    }
+  },
+  {
+    "label": "trial-013",
+    "calibration": {
+      "cutoff_curve": 1.3,
+      "filter_eg_octaves": 5.0,
+      "shape_amount": 2.0,
+      "drive_mix_curve": 0.7,
+      "drive_gain": 16.0
+    },
+    "scores": {
+      "train": 11.379784685289758
+    }
+  },
+  {
+    "label": "trial-014",
+    "calibration": {
+      "cutoff_curve": 1.3,
+      "filter_eg_octaves": 7.0,
+      "shape_amount": 2.0,
+      "drive_mix_curve": 0.7,
+      "drive_gain": 16.0
+    },
+    "scores": {
+      "train": 11.246707104056808
+    }
+  },
+  {
+    "label": "trial-015",
+    "calibration": {
+      "cutoff_curve": 1.3,
+      "filter_eg_octaves": 6.0,
+      "shape_amount": 1.625,
+      "drive_mix_curve": 0.7,
+      "drive_gain": 16.0
+    },
+    "scores": {
+      "train": 11.347226967153526
+    }
+  },
+  {
+    "label": "trial-016",
+    "calibration": {
+      "cutoff_curve": 1.3,
+      "filter_eg_octaves": 6.0,
+      "shape_amount": 2.375,
+      "drive_mix_curve": 0.7,
+      "drive_gain": 16.0
+    },
+    "scores": {
+      "train": 11.001585037020986
+    }
+  },
+  {
+    "label": "trial-017",
+    "calibration": {
+      "cutoff_curve": 1.3,
+      "filter_eg_octaves": 6.0,
+      "shape_amount": 2.375,
+      "drive_mix_curve": 0.5499999999999999,
+      "drive_gain": 16.0
+    },
+    "scores": {
+      "train": 10.99341389003854
+    }
+  },
+  {
+    "label": "trial-018",
+    "calibration": {
+      "cutoff_curve": 1.3,
+      "filter_eg_octaves": 6.0,
+      "shape_amount": 2.375,
+      "drive_mix_curve": 0.85,
+      "drive_gain": 16.0
+    },
+    "scores": {
+      "train": 11.020224764597785
+    }
+  },
+  {
+    "label": "trial-019",
+    "calibration": {
+      "cutoff_curve": 1.3,
+      "filter_eg_octaves": 6.0,
+      "shape_amount": 2.375,
+      "drive_mix_curve": 0.5499999999999999,
+      "drive_gain": 14.0
+    },
+    "scores": {
+      "train": 11.106606273335347
+    }
+  },
+  {
+    "label": "trial-020",
+    "calibration": {
+      "cutoff_curve": 1.3,
+      "filter_eg_octaves": 6.0,
+      "shape_amount": 2.375,
+      "drive_mix_curve": 0.5499999999999999,
+      "drive_gain": 18.0
+    },
+    "scores": {
+      "train": 10.879869613841109
+    }
+  },
+  {
+    "label": "best",
+    "calibration": {
+      "cutoff_curve": 1.3,
+      "filter_eg_octaves": 6.0,
+      "shape_amount": 2.375,
+      "drive_mix_curve": 0.5499999999999999,
+      "drive_gain": 18.0
+    },
+    "scores": {
+      "train": 10.879869613841109,
+      "held_out": 8.889369282596796
+    }
+  }
+]

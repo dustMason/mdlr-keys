@@ -1,0 +1,100 @@
+{
+  "s0s_triangle": [
+    {
+      "time": 0.05,
+      "note": 88,
+      "velocity": 0.8,
+      "type": "on"
+    },
+    {
+      "time": 0.347,
+      "note": 88,
+      "velocity": 0,
+      "type": "off"
+    }
+  ],
+  "harpie_saw": [
+    {
+      "time": 0.05,
+      "note": 60,
+      "velocity": 0.8,
+      "type": "on"
+    },
+    {
+      "time": 0.2,
+      "note": 60,
+      "velocity": 0,
+      "type": "off"
+    }
+  ],
+  "pinoesque": [
+    {
+      "time": 0.05,
+      "note": 60,
+      "velocity": 0.8,
+      "type": "on"
+    },
+    {
+      "time": 0.24,
+      "note": 60,
+      "velocity": 0,
+      "type": "off"
+    }
+  ],
+  "string_hold": [
+    {
+      "time": 0.05,
+      "note": 69,
+      "velocity": 0.8,
+      "type": "on"
+    },
+    {
+      "time": 0.15,
+      "note": 69,
+      "velocity": 0,
+      "type": "off"
+    }
+  ],
+  "gloeckchen_triangles": [
+    {
+      "time": 0.05,
+      "note": 72,
+      "velocity": 0.4881889763779528,
+      "type": "on"
+    },
+    {
+      "time": 0.18194444444444446,
+      "note": 72,
+      "velocity": 0,
+      "type": "off"
+    }
+  ],
+  "duidui_saw_shape": [
+    {
+      "time": 0.05,
+      "note": 52,
+      "velocity": 0.8,
+      "type": "on"
+    },
+    {
+      "time": 0.15,
+      "note": 52,
+      "velocity": 0,
+      "type": "off"
+    }
+  ],
+  "wuai_saw_filter": [
+    {
+      "time": 0.05,
+      "note": 48,
+      "velocity": 0.8,
+      "type": "on"
+    },
+    {
+      "time": 0.15,
+      "note": 48,
+      "velocity": 0,
+      "type": "off"
+    }
+  ]
+}

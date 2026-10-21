@@ -1,0 +1,19 @@
+{
+  "identity": "exact Python object equality for every scalar/list result",
+  "cases": 11,
+  "repeated_passes": 2,
+  "mutable_reference_candidate_checks": 6,
+  "concurrent_workers": 3,
+  "uncached_seconds": 1.4942721249972237,
+  "cold_cache_seconds": 1.2013196670013713,
+  "warm_cache_seconds": 0.7535323750053067,
+  "warm_speedup": 1.9830231249011703,
+  "cache_stats": {
+    "audio_hits": 29,
+    "audio_misses": 10,
+    "pitch_hits": 29,
+    "pitch_misses": 10,
+    "frame_hits": 26,
+    "frame_misses": 13
+  }
+}

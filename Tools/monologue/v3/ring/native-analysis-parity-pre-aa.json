@@ -1,0 +1,27 @@
+{
+  "bit_identical": true,
+  "f32_samples": 368640,
+  "bytes": 1474560,
+  "sha256_native": "6a3ae0a1c3e8078b26e1183ea7f8a2a9e6cee28d0b3f4c00c0b0edee01076b12",
+  "sha256_analysis": "6a3ae0a1c3e8078b26e1183ea7f8a2a9e6cee28d0b3f4c00c0b0edee01076b12",
+  "scenarios": [
+    "sync",
+    "ring",
+    "off/sync/ring mode switching"
+  ],
+  "rates_hz": [
+    48000,
+    96000
+  ],
+  "mode_switch_rate_changes_hz": [
+    24000,
+    48000
+  ],
+  "includes_nonfinite_pitch_bend_inputs": true,
+  "compiled": "same source via separate rustc, default cfg versus feature=analysis",
+  "current_source_hashes": {
+    "monologue.rs": "014472fbb2ba8646629ee16f65d482ce6e97c78972e3ed39e74697cb61da3703",
+    "monologue_sync.rs": "0511ce301fe9060d27a7d24d484cb7dedcea7c2cb7f1c8b012fafcfc123fece1",
+    "monologue_ring.rs": "e6a8090d69f24937a36edafec86606ac39772a9cd9d3d0a8b47ae599e8f2293b"
+  }
+}

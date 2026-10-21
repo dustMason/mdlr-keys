@@ -1,0 +1,43 @@
+{
+  "captured_utc": "2026-10-21T21:28:02.216472+00:00",
+  "renderer": "/Users/jordans/Documents/Codex/2026-10-20/yamaha-reface-emulators/work/monologue/accuracy-v2/structural-renderer",
+  "renderer_sha256": "3501abcae31feab0a8afaf9e445c7b1b671928e5048fc176ab98856f50823546",
+  "source_snapshots": [
+    {
+      "repo_path": "Rust/src/modules/monologue.rs",
+      "snapshot_path": "source-snapshot/monologue.rs",
+      "sha256": "046b398ec86606aff5be181480d8021273afb0ddcf9e7d71be73f96551720959"
+    },
+    {
+      "repo_path": "Rust/src/modules/monologue_control.rs",
+      "snapshot_path": "source-snapshot/monologue_control.rs",
+      "sha256": "f9960ae114e568a498739224708560e94a47f40722a03de7725ec4c669591b25"
+    },
+    {
+      "repo_path": "Rust/src/modules/monologue_fir.rs",
+      "snapshot_path": "source-snapshot/monologue_fir.rs",
+      "sha256": "254bfa3a5c226924a38998d81587c955275e5ac63cd3af301bc1e76398e82840"
+    },
+    {
+      "repo_path": "Rust/src/bin/monologue-render.rs",
+      "snapshot_path": "source-snapshot/monologue-render.rs",
+      "sha256": "6e1693ab46c3c2e131757d7b847908faa31106085a2a38ea60526f7641aadcc4"
+    },
+    {
+      "repo_path": "Rust/Cargo.lock",
+      "snapshot_path": "source-snapshot/Cargo.lock",
+      "sha256": "6141556e7f4bcd36992595cb64858fe4fcdfedb39919b936f0e07ca455cd4168"
+    }
+  ],
+  "source_snapshot_caveat": "Parent confirmed the three DSP source hashes match the compiled structural renderer. Explicit cargo build completed after52unit+4MIDI+1allocation checks.",
+  "platform": "macOS-26.7.1-arm64-arm-64bit",
+  "python": "3.12.12",
+  "analysis_sha256": {
+    "corpus-v2.json": "d8c52e3c2b8b01da0c048c04d601881f1c8dabbebfb053d7faff8fbfbf63e036",
+    "initial-calibration-v2.json": "bfccd2061b63a94b3fb60606458e78865cfa66a12d530e82d419ffcae7f07b7c",
+    "analog-search-space-v2.json": "b61e297cdf4f3cd91db4156ad6b7118059e9610f8eedd259ebd8ae51a2ef00da",
+    "calibrate_v2.py": "e2f7e7ab2de8d24ef5d5a4a8e0540df41f37fe526f1a7e56342698d89ae5cbaf",
+    "metric-audit-v2/metric_audit.py": "edb0286fc5b2dd19a64b08ce1710e6b9fb9bf72b0f23b41a610f3b2d66059ae7",
+    "metric-audit-v2/cached_metric.py": "d8eabcf3d8594864250bd3734f88771954a54354ffad2f2d5061b1bc945d1f81"
+  }
+}

@@ -1,0 +1,14 @@
+[
+  {
+    "time": 0.05,
+    "note": 69,
+    "velocity": 0.8,
+    "type": "on"
+  },
+  {
+    "time": 0.15,
+    "note": 69,
+    "velocity": 0,
+    "type": "off"
+  }
+]

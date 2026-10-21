@@ -1,0 +1,17 @@
+{
+  "cutoff_min": 19.445436,
+  "cutoff_max": 19380.219,
+  "cutoff_curve": 1,
+  "resonance_curve": 1.35,
+  "resonance_max": 2.1,
+  "filter_saturation": 0.5,
+  "vca_curve": 1,
+  "saw_shape_scale": 1.2929688,
+  "triangle_fold_slope": 2.7,
+  "triangle_shape_depth": 0.7272949,
+  "drive_gain": 18,
+  "drive_mix_curve": 0.55,
+  "drive_bass": 0.8,
+  "output_gain": 0.5,
+  "shape_calibration_peak": 0.84
+}

@@ -1,0 +1,18 @@
+{
+  "source_sha256": "e4d91d04f3a117a83d289af996d1abcabeea62b27c77aa80e197dd3981b1cb22",
+  "cases": 6000,
+  "seed": 1642,
+  "method": "Independent exact two-point Gauss integration of the triangle over every affine segment, weighted by a symmetric triangular kernel of radius one internal sample. Half of cases place a corner inside the interval.",
+  "max_absolute_error": 1.7760051329585025e-07,
+  "failures_above_2e_minus5": 0,
+  "worst": {
+    "inputs": [
+      0.9048058390617371,
+      0.1681194305419922,
+      0.07292532920837402
+    ],
+    "rust": -0.6676043,
+    "exact_convolution": -0.6676044776005133
+  },
+  "limit": "Float32 phase wrapping differs slightly from a continuous f64 oscillator. This checks numerical integration, not physical reset behavior."
+}

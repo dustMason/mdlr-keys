@@ -1,0 +1,264 @@
+{
+  "protocol": "monologue accuracy v2,64 harmonics /12kHz cap /4ms alignment",
+  "created_utc": "2026-10-21T21:45:57.389663+00:00",
+  "baseline": {
+    "train": 3.6734624549097163,
+    "held_out": 3.3823866224001673
+  },
+  "fitted": {
+    "train": 2.2783169049403447,
+    "held_out": 2.3242863851119964
+  },
+  "objective_reduction_percent": {
+    "train": 37.97903387047577,
+    "held_out": 31.282652026850055
+  },
+  "old_same_physical_midi": {
+    "train": 16.734007107159663,
+    "held_out": 20.895041234801976
+  },
+  "old_generous_training_register_profile": {
+    "cases": [
+      {
+        "id": "s0s_triangle",
+        "same_physical_midi": 39.56165633568893,
+        "physical_midi_minus12": 1.0557444602627926,
+        "generous_register_profile": 1.0557444602627926,
+        "selected_transposition": -12
+      },
+      {
+        "id": "harpie_saw",
+        "same_physical_midi": 18.39462097807574,
+        "physical_midi_minus12": 7.340202503877895,
+        "generous_register_profile": 7.340202503877895,
+        "selected_transposition": -12
+      },
+      {
+        "id": "pinoesque",
+        "same_physical_midi": 17.824068435706582,
+        "physical_midi_minus12": 7.910582461495183,
+        "generous_register_profile": 7.910582461495183,
+        "selected_transposition": -12
+      },
+      {
+        "id": "duidui_saw_shape",
+        "same_physical_midi": 4.198768241847999,
+        "physical_midi_minus12": 8.909514387966883,
+        "generous_register_profile": 4.198768241847999,
+        "selected_transposition": 0
+      },
+      {
+        "id": "wuai_saw_filter",
+        "same_physical_midi": 3.690921544479063,
+        "physical_midi_minus12": 4.2453671269737345,
+        "generous_register_profile": 3.690921544479063,
+        "selected_transposition": 0
+      }
+    ],
+    "training_mean_same_physical_midi": 16.734007107159663,
+    "training_mean_minus12": 5.892282188115297,
+    "training_mean_generous_register_profile": 4.8392438423925865,
+    "warning": "Retrospective diagnostic only. Generous register profile changes played notes per case. It does not represent the old engine response to the same physical MIDI, and is not a hardware-fidelity percentage."
+  },
+  "all_seven_native_defaults_bit_identical": true,
+  "cases": [
+    {
+      "id": "s0s_triangle",
+      "split": "train",
+      "physical_midi_note": 88,
+      "observed_base_note": 76,
+      "initial_objective": 1.0389224141444091,
+      "fitted_objective": 1.0389031283938577,
+      "old_same_midi_objective": 39.56165633568893,
+      "harmonic_error_db": 0.8718860554077225,
+      "pooled_harmonic_error_db": 0.8724823827191435,
+      "envelope_error_db": 0.5567235766204504,
+      "legacy_full_spectrum_objective": 7.803247767128299,
+      "local_pitch_error_cents": 0.8753231739171604,
+      "reference_harmonic_coverage": 0.9975916096337549,
+      "candidate_harmonic_coverage": 0.9978363244917092,
+      "fitted_gain_db": -8.831844306471066,
+      "alignment_ms": 0.0,
+      "velocity": 0.8,
+      "gate_off": null,
+      "oscillator_phases": null,
+      "velocity_at_boundary": false,
+      "gate_at_boundary": false,
+      "alignment_at_boundary": false
+    },
+    {
+      "id": "harpie_saw",
+      "split": "train",
+      "physical_midi_note": 60,
+      "observed_base_note": 48,
+      "initial_objective": 6.228262525777375,
+      "fitted_objective": 4.512873584295708,
+      "old_same_midi_objective": 18.39462097807574,
+      "harmonic_error_db": 4.3166348793458615,
+      "pooled_harmonic_error_db": 2.6700892898113593,
+      "envelope_error_db": 0.6541290164994875,
+      "legacy_full_spectrum_objective": 8.155405628694085,
+      "local_pitch_error_cents": 0.8753231739171604,
+      "reference_harmonic_coverage": 0.9977991163789024,
+      "candidate_harmonic_coverage": 0.9988379180021454,
+      "fitted_gain_db": -5.058370642631682,
+      "alignment_ms": 2.0,
+      "velocity": 0.8,
+      "gate_off": null,
+      "oscillator_phases": null,
+      "velocity_at_boundary": false,
+      "gate_at_boundary": false,
+      "alignment_at_boundary": false
+    },
+    {
+      "id": "pinoesque",
+      "split": "train",
+      "physical_midi_note": 60,
+      "observed_base_note": 48,
+      "initial_objective": 4.175874927197996,
+      "fitted_objective": 2.5727841438384074,
+      "old_same_midi_objective": 17.824068435706582,
+      "harmonic_error_db": 2.309781940358681,
+      "pooled_harmonic_error_db": 2.0787921519814114,
+      "envelope_error_db": 0.8766740115990892,
+      "legacy_full_spectrum_objective": 9.232199810677862,
+      "local_pitch_error_cents": 1.7457916991047016,
+      "reference_harmonic_coverage": 0.9973866796044011,
+      "candidate_harmonic_coverage": 0.9957695447376551,
+      "fitted_gain_db": -10.052768371226355,
+      "alignment_ms": 0.0,
+      "velocity": 1.0,
+      "gate_off": 0.16,
+      "oscillator_phases": [
+        0.137,
+        0.5
+      ],
+      "velocity_at_boundary": true,
+      "gate_at_boundary": true,
+      "alignment_at_boundary": false
+    },
+    {
+      "id": "string_hold",
+      "split": "held_out",
+      "physical_midi_note": 69,
+      "observed_base_note": 57,
+      "initial_objective": 3.326069019128053,
+      "fitted_objective": 3.1201170574838115,
+      "old_same_midi_objective": 21.310811161351765,
+      "harmonic_error_db": 2.9241543921858493,
+      "pooled_harmonic_error_db": 2.6045796918712387,
+      "envelope_error_db": 0.6532088843265415,
+      "legacy_full_spectrum_objective": 8.273529857299032,
+      "local_pitch_error_cents": 0.8753231739171604,
+      "reference_harmonic_coverage": 0.9989221389565079,
+      "candidate_harmonic_coverage": 0.9992154171740465,
+      "fitted_gain_db": -7.9750657585079034,
+      "alignment_ms": 0.0,
+      "velocity": 0.8,
+      "gate_off": 0.1,
+      "oscillator_phases": [
+        0.137,
+        0.75
+      ],
+      "velocity_at_boundary": false,
+      "gate_at_boundary": true,
+      "alignment_at_boundary": false
+    },
+    {
+      "id": "gloeckchen_triangles",
+      "split": "held_out",
+      "physical_midi_note": 72,
+      "observed_base_note": 60,
+      "initial_objective": 3.438704225672282,
+      "fitted_objective": 1.5284557127401812,
+      "old_same_midi_objective": 20.479271308252187,
+      "harmonic_error_db": 1.4302575278379916,
+      "pooled_harmonic_error_db": 1.180150520846618,
+      "envelope_error_db": 0.3273272830072986,
+      "legacy_full_spectrum_objective": 8.639433081147523,
+      "local_pitch_error_cents": 0.8753231739171604,
+      "reference_harmonic_coverage": 0.9962454855672012,
+      "candidate_harmonic_coverage": 0.9973735141726718,
+      "fitted_gain_db": -8.66794962607869,
+      "alignment_ms": 2.0,
+      "velocity": 0.4881889763779528,
+      "gate_off": null,
+      "oscillator_phases": [
+        0.137,
+        0.125
+      ],
+      "velocity_at_boundary": false,
+      "gate_at_boundary": false,
+      "alignment_at_boundary": false
+    },
+    {
+      "id": "duidui_saw_shape",
+      "split": "train",
+      "physical_midi_note": 52,
+      "observed_base_note": 40,
+      "initial_objective": 3.468040993147988,
+      "fitted_objective": 1.3088616758559009,
+      "old_same_midi_objective": 4.198768241847999,
+      "harmonic_error_db": 1.1352343605291415,
+      "pooled_harmonic_error_db": 0.6440391273518542,
+      "envelope_error_db": 0.5787577177558642,
+      "legacy_full_spectrum_objective": 4.007628843762657,
+      "local_pitch_error_cents": -1.093518165666265,
+      "reference_harmonic_coverage": 0.991758805741306,
+      "candidate_harmonic_coverage": 0.9928992305525067,
+      "fitted_gain_db": -5.2156890150021065,
+      "alignment_ms": -4.0,
+      "velocity": 0.8,
+      "gate_off": 0.15,
+      "oscillator_phases": [
+        0.137,
+        0.5
+      ],
+      "velocity_at_boundary": false,
+      "gate_at_boundary": false,
+      "alignment_at_boundary": true
+    },
+    {
+      "id": "wuai_saw_filter",
+      "split": "train",
+      "physical_midi_note": 48,
+      "observed_base_note": 48,
+      "initial_objective": 3.4562114142808134,
+      "fitted_objective": 1.958161992317851,
+      "old_same_midi_objective": 3.690921544479063,
+      "harmonic_error_db": 1.4954239448109379,
+      "pooled_harmonic_error_db": 0.9053928482597124,
+      "envelope_error_db": 1.542460158356377,
+      "legacy_full_spectrum_objective": 4.6362561914847555,
+      "local_pitch_error_cents": 0.21885845404643903,
+      "reference_harmonic_coverage": 0.9486284973966115,
+      "candidate_harmonic_coverage": 0.9671634072342259,
+      "fitted_gain_db": -6.116058858782307,
+      "alignment_ms": -4.0,
+      "velocity": 0.8,
+      "gate_off": 0.25,
+      "oscillator_phases": [
+        0.137,
+        0.75
+      ],
+      "velocity_at_boundary": false,
+      "gate_at_boundary": true,
+      "alignment_at_boundary": true
+    }
+  ],
+  "training_candidates": {
+    "structural_analog_search": 68,
+    "excursion_followup": 50
+  },
+  "validation_used_for_optimization": false,
+  "limitations": [
+    "The two held-out cases were first scored after global constants were frozen. Unknown performance variables are still independently profiled against each recording; these are optimistic conditional comparisons, not recovered MIDI performances.",
+    "Shape calibration excursion 0.78 and drive-bass coefficient 0 reach their predeclared lower bounds. They are fitted model values, not measured hardware components; only Pinoesque supplies driven training audio.",
+    "Pinoesque selects maximum velocity and its earliest candidate release; String Hold selects its earliest release; Wuai selects its latest release. Those timings and velocity remain uncertain.",
+    "DuiDui and Wuai use the 4 ms alignment boundary. The bound was not widened after fitting. Wuai harmonic coverage is about 94.9% reference and 96.7% candidate, weaker than the other tonal cases.",
+    "Harpie still loses its lower component too quickly. At approximately 25/217/481 ms after onset, reference H2/H1 is \u22121.0/9.2/17.4 dB versus 1.6/15.6/72.5 dB in the frozen model. The exact firmware LFO timing was re-audited rather than altered to fit this residual.",
+    "The harmonic objective takes a median over frames and can underweight short transients; pooled and full-spectrum diagnostics remain important. Harmonic-band coverage does not establish alias-free output.",
+    "Seven short excerpts from one recording chain do not establish general hardware parity. Recording transfer, global settings, drift, absolute oscillator phase and source firmware version are not provided.",
+    "The legacy same-MIDI comparison includes the old triangle octave error. The optional register-compensated legacy result changes MIDI notes per case and is labeled separately, not a hardware-fidelity percentage."
+  ]
+}

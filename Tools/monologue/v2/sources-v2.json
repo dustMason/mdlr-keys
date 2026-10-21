@@ -1,0 +1,126 @@
+{
+  "repository": "https://github.com/callimero/Monologue",
+  "commit": "e829a7fbcc15a2a3555f86625b8592d77e4e5b76",
+  "license": "MIT; original artist callimero attribution is downloaded with source assets",
+  "files": [
+    {
+      "path": "patches/S0S.wav",
+      "url": "https://raw.githubusercontent.com/callimero/Monologue/e829a7fbcc15a2a3555f86625b8592d77e4e5b76/patches/S0S.wav",
+      "bytes": 2646736,
+      "sha256": "66450b8219472f7fd1ff4eb00390fd19a4708043588d0444372aff5bd68c1ac6",
+      "target": "../references/callimero/patches/S0S.wav"
+    },
+    {
+      "path": "patches/S0S.molgprog",
+      "url": "https://raw.githubusercontent.com/callimero/Monologue/e829a7fbcc15a2a3555f86625b8592d77e4e5b76/patches/S0S.molgprog",
+      "bytes": 769,
+      "sha256": "ebe110286d6dfd9d25d410a9ee7e7e6054d6d0ffe951dcff89fd43957155cf71",
+      "target": "../references/callimero/patches/S0S.molgprog"
+    },
+    {
+      "path": "patches/Harpie.wav",
+      "url": "https://raw.githubusercontent.com/callimero/Monologue/e829a7fbcc15a2a3555f86625b8592d77e4e5b76/patches/Harpie.wav",
+      "bytes": 2779036,
+      "sha256": "682e201ffa2967a10daa8b3e6bd9ada2d3b05cef57f8c40fc7e43c1c27e7bcdd",
+      "target": "../references/callimero/patches/Harpie.wav"
+    },
+    {
+      "path": "patches/Harpie.molgprog",
+      "url": "https://raw.githubusercontent.com/callimero/Monologue/e829a7fbcc15a2a3555f86625b8592d77e4e5b76/patches/Harpie.molgprog",
+      "bytes": 786,
+      "sha256": "3cb571de1c1200691ae5d8de738a5f577aa7635ebe997806cd1d982441d5ba3b",
+      "target": "../references/callimero/patches/Harpie.molgprog"
+    },
+    {
+      "path": "patches/Pinoesque.wav",
+      "url": "https://raw.githubusercontent.com/callimero/Monologue/e829a7fbcc15a2a3555f86625b8592d77e4e5b76/patches/Pinoesque.wav",
+      "bytes": 3043636,
+      "sha256": "8e153023f6362ba1f538ae1d0e443ac25e3deaf93662ad49a3fab6db95eb6232",
+      "target": "../references/callimero/patches/Pinoesque.wav"
+    },
+    {
+      "path": "patches/Pinoesque.molgprog",
+      "url": "https://raw.githubusercontent.com/callimero/Monologue/e829a7fbcc15a2a3555f86625b8592d77e4e5b76/patches/Pinoesque.molgprog",
+      "bytes": 768,
+      "sha256": "7dc0df8c4d41ec5787be02cb872ef24b6e0964b7e01759ba794c97ef49d32328",
+      "target": "../references/callimero/patches/Pinoesque.molgprog"
+    },
+    {
+      "path": "patches/String Hold.wav",
+      "url": "https://raw.githubusercontent.com/callimero/Monologue/e829a7fbcc15a2a3555f86625b8592d77e4e5b76/patches/String%20Hold.wav",
+      "bytes": 8864836,
+      "sha256": "4af72f2407bafe1b37c6c13c3b6d7a6e4173bd295d7408a5cb5b8059b60b7513",
+      "target": "../references/callimero/patches/String Hold.wav"
+    },
+    {
+      "path": "patches/String Hold.molgprog",
+      "url": "https://raw.githubusercontent.com/callimero/Monologue/e829a7fbcc15a2a3555f86625b8592d77e4e5b76/patches/String%20Hold.molgprog",
+      "bytes": 737,
+      "sha256": "ce16891c9781dbc630211d768648f81ac1c62261ef38c8b8eb9d7d1ef951aaec",
+      "target": "../references/callimero/patches/String Hold.molgprog"
+    },
+    {
+      "path": "sources/patches/Gloeckchen.wav",
+      "url": "https://raw.githubusercontent.com/callimero/Monologue/e829a7fbcc15a2a3555f86625b8592d77e4e5b76/patches/Gloeckchen.wav",
+      "sha256": "f55ca895487aa38f2125f086cf407bbbb10cdcc41c70ac4b383ac6b58c74ce9f",
+      "bytes": 2249836,
+      "target": "sources/patches/Gloeckchen.wav"
+    },
+    {
+      "path": "patches/Gloeckchen.molgprog",
+      "url": "https://raw.githubusercontent.com/callimero/Monologue/e829a7fbcc15a2a3555f86625b8592d77e4e5b76/patches/Gloeckchen.molgprog",
+      "bytes": 825,
+      "sha256": "5dfdd8a68185866a342097815eb983465c449e54b65db58f765ef12472aa69c0",
+      "target": "../references/callimero/patches/Gloeckchen.molgprog"
+    },
+    {
+      "path": "sources/patches/DuiDui.wav",
+      "url": "https://raw.githubusercontent.com/callimero/Monologue/e829a7fbcc15a2a3555f86625b8592d77e4e5b76/patches/DuiDui.wav",
+      "sha256": "73ac1945758ab2df7eada38fc0f34ce4ce1ae33ed2fef0be0500023424157a4d",
+      "bytes": 5292736,
+      "target": "sources/patches/DuiDui.wav"
+    },
+    {
+      "path": "patches/DuiDui.molgprog",
+      "url": "https://raw.githubusercontent.com/callimero/Monologue/e829a7fbcc15a2a3555f86625b8592d77e4e5b76/patches/DuiDui.molgprog",
+      "bytes": 735,
+      "sha256": "1d89050839e86a8787977927c072b59a299f81eb68f100a9fb03e96c7a2561eb",
+      "target": "../references/callimero/patches/DuiDui.molgprog"
+    },
+    {
+      "path": "sources/patches/Wuai.wav",
+      "url": "https://raw.githubusercontent.com/callimero/Monologue/e829a7fbcc15a2a3555f86625b8592d77e4e5b76/patches/Wuai.wav",
+      "sha256": "372f8703729796cf7e4d20a9ead26b0b13beea5952a258f8f5464b5650997b86",
+      "bytes": 4895836,
+      "target": "sources/patches/Wuai.wav"
+    },
+    {
+      "path": "patches/Wuai.molgprog",
+      "url": "https://raw.githubusercontent.com/callimero/Monologue/e829a7fbcc15a2a3555f86625b8592d77e4e5b76/patches/Wuai.molgprog",
+      "bytes": 733,
+      "sha256": "335d081cd64e47ff066a54a576e1788813c31bc5fb3fa6013b6b755f17f3042f",
+      "target": "../references/callimero/patches/Wuai.molgprog"
+    },
+    {
+      "path": "LICENSE",
+      "url": "https://raw.githubusercontent.com/callimero/Monologue/e829a7fbcc15a2a3555f86625b8592d77e4e5b76/LICENSE",
+      "bytes": 1073,
+      "sha256": "c304e48334c15dff4fb4346df8d8c0d4582b44fc741793ea73e33ac391ecc55c",
+      "target": "../references/callimero/LICENSE"
+    },
+    {
+      "path": "README.md",
+      "url": "https://raw.githubusercontent.com/callimero/Monologue/e829a7fbcc15a2a3555f86625b8592d77e4e5b76/README.md",
+      "bytes": 748,
+      "sha256": "cc80752084ff41ae74cb3bdd2ff1b6a2dddd38d1b332624ee57fccb9b6fd571f",
+      "target": "../references/callimero/README.md"
+    },
+    {
+      "path": "patches/Readme.md",
+      "url": "https://raw.githubusercontent.com/callimero/Monologue/e829a7fbcc15a2a3555f86625b8592d77e4e5b76/patches/Readme.md",
+      "bytes": 143,
+      "sha256": "367bee5a240a4b6bd55a676c69f9843a89d769262135bc4c28e0b7b5db28ce56",
+      "target": "../references/callimero/patches/Readme.md"
+    }
+  ]
+}

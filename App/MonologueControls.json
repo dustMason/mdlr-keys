@@ -1,0 +1,662 @@
+{
+  "id": 5,
+  "name": "MONOLOGUE",
+  "voices": 1,
+  "params": [
+    {
+      "id": 0,
+      "key": "wave1",
+      "label": "VCO 1 wave",
+      "min": 0,
+      "max": 2,
+      "step": 1,
+      "defaultValue": 0,
+      "exponential": false,
+      "group": "Oscillators",
+      "labels": [
+        "Saw",
+        "Triangle",
+        "Square"
+      ]
+    },
+    {
+      "id": 1,
+      "key": "shape1",
+      "label": "VCO 1 shape",
+      "min": 0,
+      "max": 1,
+      "step": 0.001,
+      "defaultValue": 0,
+      "exponential": false,
+      "group": "Oscillators"
+    },
+    {
+      "id": 2,
+      "key": "level1",
+      "label": "VCO 1 level",
+      "min": 0,
+      "max": 1,
+      "step": 0.001,
+      "defaultValue": 1,
+      "exponential": false,
+      "group": "Oscillators"
+    },
+    {
+      "id": 3,
+      "key": "wave2",
+      "label": "VCO 2 wave",
+      "min": 0,
+      "max": 2,
+      "step": 1,
+      "defaultValue": 0,
+      "exponential": false,
+      "group": "Oscillators",
+      "labels": [
+        "Saw",
+        "Triangle",
+        "Noise"
+      ]
+    },
+    {
+      "id": 4,
+      "key": "shape2",
+      "label": "VCO 2 shape",
+      "min": 0,
+      "max": 1,
+      "step": 0.001,
+      "defaultValue": 0,
+      "exponential": false,
+      "group": "Oscillators"
+    },
+    {
+      "id": 5,
+      "key": "level2",
+      "label": "VCO 2 level",
+      "min": 0,
+      "max": 1,
+      "step": 0.001,
+      "defaultValue": 0,
+      "exponential": false,
+      "group": "Oscillators"
+    },
+    {
+      "id": 6,
+      "key": "octave2",
+      "label": "VCO 2 octave",
+      "min": -1,
+      "max": 2,
+      "step": 1,
+      "defaultValue": 0,
+      "exponential": false,
+      "group": "Oscillators",
+      "labels": [
+        "16′",
+        "8′",
+        "4′",
+        "2′"
+      ]
+    },
+    {
+      "id": 7,
+      "key": "tune2",
+      "label": "VCO 2 pitch",
+      "min": -1200,
+      "max": 1200,
+      "step": 1,
+      "defaultValue": 0,
+      "exponential": false,
+      "group": "Oscillators"
+    },
+    {
+      "id": 8,
+      "key": "syncRing",
+      "label": "Sync / ring",
+      "min": 0,
+      "max": 2,
+      "step": 1,
+      "defaultValue": 0,
+      "exponential": false,
+      "group": "Oscillators",
+      "labels": [
+        "Off",
+        "Sync",
+        "Ring"
+      ]
+    },
+    {
+      "id": 9,
+      "key": "cutoff",
+      "label": "Cutoff",
+      "min": 0,
+      "max": 1,
+      "step": 0.001,
+      "defaultValue": 1,
+      "exponential": false,
+      "group": "Filter"
+    },
+    {
+      "id": 10,
+      "key": "resonance",
+      "label": "Resonance",
+      "min": 0,
+      "max": 1,
+      "step": 0.001,
+      "defaultValue": 0,
+      "exponential": false,
+      "group": "Filter"
+    },
+    {
+      "id": 11,
+      "key": "drive",
+      "label": "Drive",
+      "min": 0,
+      "max": 1,
+      "step": 0.001,
+      "defaultValue": 0,
+      "exponential": false,
+      "group": "Filter"
+    },
+    {
+      "id": 12,
+      "key": "egType",
+      "label": "Envelope type",
+      "min": 0,
+      "max": 2,
+      "step": 1,
+      "defaultValue": 1,
+      "exponential": false,
+      "group": "Envelope",
+      "labels": [
+        "A / D",
+        "A / G / D",
+        "Gate"
+      ]
+    },
+    {
+      "id": 13,
+      "key": "attack",
+      "label": "Attack",
+      "min": 0,
+      "max": 1,
+      "step": 0.001,
+      "defaultValue": 0,
+      "exponential": false,
+      "group": "Envelope"
+    },
+    {
+      "id": 14,
+      "key": "decay",
+      "label": "Decay",
+      "min": 0,
+      "max": 1,
+      "step": 0.001,
+      "defaultValue": 0.25,
+      "exponential": false,
+      "group": "Envelope"
+    },
+    {
+      "id": 15,
+      "key": "egInt",
+      "label": "Envelope depth",
+      "min": -1,
+      "max": 1,
+      "step": 0.001,
+      "defaultValue": 0,
+      "exponential": false,
+      "group": "Envelope"
+    },
+    {
+      "id": 16,
+      "key": "egTarget",
+      "label": "Envelope target",
+      "min": 0,
+      "max": 2,
+      "step": 1,
+      "defaultValue": 2,
+      "exponential": false,
+      "group": "Envelope",
+      "labels": [
+        "Pitch",
+        "Pitch 2",
+        "Cutoff"
+      ]
+    },
+    {
+      "id": 17,
+      "key": "lfoWave",
+      "label": "LFO wave",
+      "min": 0,
+      "max": 2,
+      "step": 1,
+      "defaultValue": 1,
+      "exponential": false,
+      "group": "LFO",
+      "labels": [
+        "Saw",
+        "Triangle",
+        "Square"
+      ]
+    },
+    {
+      "id": 18,
+      "key": "lfoMode",
+      "label": "LFO mode",
+      "min": 0,
+      "max": 2,
+      "step": 1,
+      "defaultValue": 0,
+      "exponential": false,
+      "group": "LFO",
+      "labels": [
+        "Slow",
+        "Fast",
+        "1-shot"
+      ]
+    },
+    {
+      "id": 19,
+      "key": "rate",
+      "label": "LFO rate",
+      "min": 0,
+      "max": 1,
+      "step": 0.001,
+      "defaultValue": 0.3,
+      "exponential": false,
+      "group": "LFO"
+    },
+    {
+      "id": 20,
+      "key": "lfoInt",
+      "label": "LFO depth",
+      "min": -1,
+      "max": 1,
+      "step": 0.001,
+      "defaultValue": 0,
+      "exponential": false,
+      "group": "LFO"
+    },
+    {
+      "id": 21,
+      "key": "lfoTarget",
+      "label": "LFO target",
+      "min": 0,
+      "max": 2,
+      "step": 1,
+      "defaultValue": 0,
+      "exponential": false,
+      "group": "LFO",
+      "labels": [
+        "Pitch",
+        "Shape",
+        "Cutoff"
+      ]
+    },
+    {
+      "id": 22,
+      "key": "glide",
+      "label": "Glide",
+      "min": 0,
+      "max": 1,
+      "step": 0.001,
+      "defaultValue": 0,
+      "exponential": false,
+      "group": "Play"
+    },
+    {
+      "id": 23,
+      "key": "level",
+      "label": "Output level",
+      "min": 0,
+      "max": 1,
+      "step": 0.001,
+      "defaultValue": 0.8,
+      "exponential": false,
+      "group": "Play"
+    },
+    {
+      "id": 24,
+      "key": "cutoffKeytrack",
+      "label": "Filter key track",
+      "min": 0,
+      "max": 1,
+      "step": 0.001,
+      "defaultValue": 0,
+      "exponential": false,
+      "group": "Expression"
+    },
+    {
+      "id": 25,
+      "key": "lfoKeySync",
+      "label": "Sync slow LFO",
+      "min": 0,
+      "max": 1,
+      "step": 1,
+      "defaultValue": 0,
+      "exponential": false,
+      "group": "Expression",
+      "labels": [
+        "Off",
+        "On"
+      ]
+    },
+    {
+      "id": 26,
+      "key": "egLegato",
+      "label": "Envelope legato",
+      "min": 0,
+      "max": 1,
+      "step": 1,
+      "defaultValue": 0,
+      "exponential": false,
+      "group": "Expression",
+      "labels": [
+        "Off",
+        "On"
+      ]
+    },
+    {
+      "id": 27,
+      "key": "cutoffVelocity",
+      "label": "Filter velocity",
+      "min": 0,
+      "max": 1,
+      "step": 0.001,
+      "defaultValue": 0,
+      "exponential": false,
+      "group": "Expression"
+    },
+    {
+      "id": 28,
+      "key": "fineTune",
+      "label": "Fine tune",
+      "min": -100,
+      "max": 100,
+      "step": 1,
+      "defaultValue": 0,
+      "exponential": false,
+      "group": "Play"
+    },
+    {
+      "id": 29,
+      "key": "glideLegato",
+      "label": "Legato glide",
+      "min": 0,
+      "max": 1,
+      "step": 1,
+      "defaultValue": 1,
+      "exponential": false,
+      "group": "Expression",
+      "labels": [
+        "Off",
+        "On"
+      ]
+    },
+    {
+      "id": 30,
+      "key": "tune1",
+      "label": "VCO 1 pitch",
+      "min": -1200,
+      "max": 1200,
+      "step": 1,
+      "defaultValue": 0,
+      "exponential": false,
+      "group": "Tuning"
+    },
+    {
+      "id": 31,
+      "key": "octave1",
+      "label": "VCO 1 octave",
+      "min": -1,
+      "max": 2,
+      "step": 1,
+      "defaultValue": 0,
+      "exponential": false,
+      "group": "Tuning",
+      "labels": [
+        "16′",
+        "8′",
+        "4′",
+        "2′"
+      ]
+    },
+    {
+      "id": 32,
+      "key": "lfoBpmSync",
+      "label": "LFO tempo sync",
+      "min": 0,
+      "max": 1,
+      "step": 1,
+      "defaultValue": 0,
+      "exponential": false,
+      "group": "Expression",
+      "labels": [
+        "Off",
+        "On"
+      ]
+    },
+    {
+      "id": 33,
+      "key": "bpm",
+      "label": "Tempo",
+      "min": 10,
+      "max": 300,
+      "step": 0.1,
+      "defaultValue": 120,
+      "exponential": false,
+      "group": "Expression"
+    },
+    {
+      "id": 35,
+      "key": "ampVelocity",
+      "label": "Amp velocity",
+      "min": 0,
+      "max": 1,
+      "step": 0.001,
+      "defaultValue": 1,
+      "exponential": false,
+      "group": "Expression"
+    },
+    {
+      "id": 36,
+      "key": "programLevelDb",
+      "label": "Program level",
+      "min": -25,
+      "max": 25,
+      "step": 0.1,
+      "defaultValue": 0,
+      "exponential": false,
+      "group": "Play"
+    },
+    {
+      "id": 48,
+      "key": "tuning_0",
+      "label": "C tuning",
+      "min": -100,
+      "max": 100,
+      "step": 1,
+      "defaultValue": 0,
+      "exponential": false,
+      "group": "Tuning"
+    },
+    {
+      "id": 49,
+      "key": "tuning_1",
+      "label": "C♯ tuning",
+      "min": -100,
+      "max": 100,
+      "step": 1,
+      "defaultValue": 0,
+      "exponential": false,
+      "group": "Tuning"
+    },
+    {
+      "id": 50,
+      "key": "tuning_2",
+      "label": "D tuning",
+      "min": -100,
+      "max": 100,
+      "step": 1,
+      "defaultValue": 0,
+      "exponential": false,
+      "group": "Tuning"
+    },
+    {
+      "id": 51,
+      "key": "tuning_3",
+      "label": "D♯ tuning",
+      "min": -100,
+      "max": 100,
+      "step": 1,
+      "defaultValue": 0,
+      "exponential": false,
+      "group": "Tuning"
+    },
+    {
+      "id": 52,
+      "key": "tuning_4",
+      "label": "E tuning",
+      "min": -100,
+      "max": 100,
+      "step": 1,
+      "defaultValue": 0,
+      "exponential": false,
+      "group": "Tuning"
+    },
+    {
+      "id": 53,
+      "key": "tuning_5",
+      "label": "F tuning",
+      "min": -100,
+      "max": 100,
+      "step": 1,
+      "defaultValue": 0,
+      "exponential": false,
+      "group": "Tuning"
+    },
+    {
+      "id": 54,
+      "key": "tuning_6",
+      "label": "F♯ tuning",
+      "min": -100,
+      "max": 100,
+      "step": 1,
+      "defaultValue": 0,
+      "exponential": false,
+      "group": "Tuning"
+    },
+    {
+      "id": 55,
+      "key": "tuning_7",
+      "label": "G tuning",
+      "min": -100,
+      "max": 100,
+      "step": 1,
+      "defaultValue": 0,
+      "exponential": false,
+      "group": "Tuning"
+    },
+    {
+      "id": 56,
+      "key": "tuning_8",
+      "label": "G♯ tuning",
+      "min": -100,
+      "max": 100,
+      "step": 1,
+      "defaultValue": 0,
+      "exponential": false,
+      "group": "Tuning"
+    },
+    {
+      "id": 57,
+      "key": "tuning_9",
+      "label": "A tuning",
+      "min": -100,
+      "max": 100,
+      "step": 1,
+      "defaultValue": 0,
+      "exponential": false,
+      "group": "Tuning"
+    },
+    {
+      "id": 58,
+      "key": "tuning_10",
+      "label": "A♯ tuning",
+      "min": -100,
+      "max": 100,
+      "step": 1,
+      "defaultValue": 0,
+      "exponential": false,
+      "group": "Tuning"
+    },
+    {
+      "id": 59,
+      "key": "tuning_11",
+      "label": "B tuning",
+      "min": -100,
+      "max": 100,
+      "step": 1,
+      "defaultValue": 0,
+      "exponential": false,
+      "group": "Tuning"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Round bass",
+      "values": {
+        "0": 2,
+        "1": 0.15,
+        "2": 0.8,
+        "9": 0.32,
+        "10": 0.15,
+        "11": 0.12,
+        "12": 0,
+        "14": 0.22,
+        "15": 0.38,
+        "16": 2
+      }
+    },
+    {
+      "name": "Soft triangle",
+      "values": {
+        "0": 1,
+        "1": 0.12,
+        "2": 0.8,
+        "9": 0.8,
+        "12": 1,
+        "13": 0.15,
+        "14": 0.35
+      }
+    },
+    {
+      "name": "Sync lead",
+      "values": {
+        "2": 0.35,
+        "3": 0,
+        "4": 0.18,
+        "5": 0.8,
+        "7": 700,
+        "8": 1,
+        "9": 0.7,
+        "10": 0.2,
+        "15": 0.25,
+        "16": 1,
+        "22": 0.12
+      }
+    },
+    {
+      "name": "Metallic ring",
+      "values": {
+        "0": 1,
+        "2": 0.7,
+        "3": 1,
+        "5": 0.7,
+        "7": 500,
+        "8": 2,
+        "9": 0.85,
+        "12": 0,
+        "14": 0.3
+      }
+    }
+  ]
+}

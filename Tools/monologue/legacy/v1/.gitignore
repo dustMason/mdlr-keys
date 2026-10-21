@@ -1,0 +1,6 @@
+data/
+runs/
+__pycache__/
+.matplotlib-cache/
+*.pyc
+.venv/

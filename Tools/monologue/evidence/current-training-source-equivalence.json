@@ -1,0 +1,35 @@
+{
+  "cases": [
+    {
+      "id": "s0s_triangle",
+      "before_sha256": "8d9d121c88cb161c5eb5e887218378fbd9ad0fcd31565d07a61ca8f74cec698c",
+      "final_sha256": "8d9d121c88cb161c5eb5e887218378fbd9ad0fcd31565d07a61ca8f74cec698c",
+      "identical": true
+    },
+    {
+      "id": "harpie_saw",
+      "before_sha256": "ca772edc376a84bc82a09b084205dd0a32dc93d35dbee6ce5a6be9376e3c6c4b",
+      "final_sha256": "ca772edc376a84bc82a09b084205dd0a32dc93d35dbee6ce5a6be9376e3c6c4b",
+      "identical": true
+    },
+    {
+      "id": "pinoesque",
+      "before_sha256": "695f9d900355904db4319475c460b38bfec625c133c4e1eee56472a0e6fd00e5",
+      "final_sha256": "695f9d900355904db4319475c460b38bfec625c133c4e1eee56472a0e6fd00e5",
+      "identical": true
+    },
+    {
+      "id": "duidui_saw_shape",
+      "before_sha256": "395faf316066bc8850e5051cb4ff104c9e1b0cd5a62036484638c12be09556b3",
+      "final_sha256": "395faf316066bc8850e5051cb4ff104c9e1b0cd5a62036484638c12be09556b3",
+      "identical": true
+    },
+    {
+      "id": "wuai_saw_filter",
+      "before_sha256": "ed982032af5b0b53370e00cf81bc7b3b0739cb117517be0b173ae942dc6d9129",
+      "final_sha256": "ed982032af5b0b53370e00cf81bc7b3b0739cb117517be0b173ae942dc6d9129",
+      "identical": true
+    }
+  ],
+  "all_identical": true
+}

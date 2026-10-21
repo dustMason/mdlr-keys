@@ -1,0 +1,91 @@
+{
+  "schema": 1,
+  "source": "Korg monologue service manual, KLM3621 sheet4",
+  "diode_part": "unknown; representative silicon assumption only",
+  "diode_is_a": 1e-09,
+  "diode_nvt_v": 0.04342944819032518,
+  "grid_shape": [
+    129,
+    65
+  ],
+  "table_bytes": 33540,
+  "a_domain_v": [
+    -1.5,
+    1.5
+  ],
+  "abs_b_domain_v": [
+    0,
+    1.5
+  ],
+  "engine_unit_volts": 0.55,
+  "table_output": "volts",
+  "max_kcl_residual_a": 2.2305768343500177e-16,
+  "grid_newton_iterations": 13,
+  "validation_points": 93728,
+  "max_measured_interpolation_error_v": 0.001082608648356187,
+  "rms_measured_interpolation_error_v": 0.0001841317522993414,
+  "worst_error_input_v": [
+    -0.76171875,
+    0.55078125
+  ],
+  "measured_interpolation_ceiling_v": 0.0012,
+  "interpolation_ceiling_kind": "checked finite coverage, not a mathematical all-real-input certificate",
+  "model_inputs": "Published circuit values and assumed silicon curve only; no audio recordings",
+  "b_odd_residual_v": 6.661338147750939e-16,
+  "a_non_odd_max_v": 0.03594163295121566,
+  "diode_sensitivity": [
+    {
+      "forward_voltage_shift_v": -0.05,
+      "max_output_change_v": 0.12080457599801786,
+      "rms_output_change_v": 0.03869544853351492
+    },
+    {
+      "forward_voltage_shift_v": 0.05,
+      "max_output_change_v": 0.11265339988930267,
+      "rms_output_change_v": 0.029902383255229335
+    }
+  ],
+  "probes": [
+    {
+      "a_v": 0,
+      "b_v": 0.55,
+      "output_v": 0.0
+    },
+    {
+      "a_v": 0.2234,
+      "b_v": 0,
+      "output_v": 4.689723715895312e-20
+    },
+    {
+      "a_v": 0.2234,
+      "b_v": 0.55,
+      "output_v": 0.2970622062045387
+    },
+    {
+      "a_v": -0.2234,
+      "b_v": 0.55,
+      "output_v": -0.2974324115650066
+    },
+    {
+      "a_v": 0.55,
+      "b_v": 0.55,
+      "output_v": 0.7159328153953471
+    },
+    {
+      "a_v": 1.21,
+      "b_v": 0.55,
+      "output_v": 0.9828655472722536
+    },
+    {
+      "a_v": 1.21,
+      "b_v": 1.21,
+      "output_v": 1.3532291900419113
+    },
+    {
+      "a_v": -1.21,
+      "b_v": 1.21,
+      "output_v": -1.3563391008512387
+    }
+  ],
+  "table_f32_le_sha256": "e03c02cd81333c7cec7a9be554267b693fd774a48b8507af2a6a7c0d6610aa13"
+}

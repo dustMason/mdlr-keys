@@ -1,0 +1,65 @@
+{
+  "cases": [
+    {
+      "renderer": "baseline",
+      "case": "s0s_triangle",
+      "bit_identical": true,
+      "wav_sha256": "8d9d121c88cb161c5eb5e887218378fbd9ad0fcd31565d07a61ca8f74cec698c"
+    },
+    {
+      "renderer": "baseline",
+      "case": "harpie_saw",
+      "bit_identical": true,
+      "wav_sha256": "ca772edc376a84bc82a09b084205dd0a32dc93d35dbee6ce5a6be9376e3c6c4b"
+    },
+    {
+      "renderer": "baseline",
+      "case": "pinoesque",
+      "bit_identical": true,
+      "wav_sha256": "695f9d900355904db4319475c460b38bfec625c133c4e1eee56472a0e6fd00e5"
+    },
+    {
+      "renderer": "baseline",
+      "case": "string_hold",
+      "bit_identical": true,
+      "wav_sha256": "f0be5af30195a8d3caf6ca2fd1ce7a6d189e109c56b1c075ea206527cb25592b"
+    },
+    {
+      "renderer": "baseline",
+      "case": "gloeckchen_triangles",
+      "bit_identical": true,
+      "wav_sha256": "7a00b2fea9c685e0bf28e40961e16c4504d3e28200f1dfbaf78105e23bbd7cca"
+    },
+    {
+      "renderer": "baseline",
+      "case": "duidui_saw_shape",
+      "bit_identical": true,
+      "wav_sha256": "395faf316066bc8850e5051cb4ff104c9e1b0cd5a62036484638c12be09556b3"
+    },
+    {
+      "renderer": "baseline",
+      "case": "wuai_saw_filter",
+      "bit_identical": true,
+      "wav_sha256": "ed982032af5b0b53370e00cf81bc7b3b0739cb117517be0b173ae942dc6d9129"
+    },
+    {
+      "renderer": "candidate",
+      "case": "harpie_saw",
+      "bit_identical": true,
+      "wav_sha256": "5645bf41ef2481c9426ee920a3ed815812df5661eeff18d76e7c1a85f4d7b333"
+    },
+    {
+      "renderer": "candidate",
+      "case": "string_hold",
+      "bit_identical": true,
+      "wav_sha256": "c7626615677dd75a520ec2cbc357eaad5d3903bbf15da6fb3ec87a80da8dabb9"
+    },
+    {
+      "renderer": "candidate",
+      "case": "deep_meow_ring",
+      "bit_identical": true,
+      "wav_sha256": "c3d78f7d50d0ab6ee63403c484ce907d9860ac763bd64cb3b5ea9506da13225a"
+    }
+  ],
+  "all_bit_identical": true
+}

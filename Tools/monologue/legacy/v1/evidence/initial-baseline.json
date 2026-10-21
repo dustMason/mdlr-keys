@@ -1,0 +1,177 @@
+{
+  "calibration": {},
+  "scores": {
+    "train": 11.974470382489946,
+    "held_out": 9.125960363404587
+  },
+  "cases": [
+    {
+      "id": "s0s_triangle",
+      "split": "train",
+      "metrics": {
+        "reference_rms": 0.06350637243918353,
+        "candidate_rms": 0.1204883547127092,
+        "fitted_gain_db": -5.562555360792728,
+        "alignment_ms": 2.0,
+        "duration_s": 0.401,
+        "multiresolution": [
+          {
+            "fft_size": 256,
+            "log_magnitude_mae_db": 9.477125467165672,
+            "spectral_convergence": 0.07226824354769534
+          },
+          {
+            "fft_size": 1024,
+            "log_magnitude_mae_db": 7.801547089981904,
+            "spectral_convergence": 0.07153637197562629
+          },
+          {
+            "fft_size": 4096,
+            "log_magnitude_mae_db": 6.260038608624435,
+            "spectral_convergence": 0.08395993821753882
+          }
+        ],
+        "envelope_mae_db": 0.33409760539010547,
+        "spectral_mae_db": 7.846237055257337,
+        "reference_pitch": {
+          "hz": 660.1079691260001,
+          "midi": 76.02238189562021,
+          "periodicity": 0.9936951091266389
+        },
+        "candidate_pitch": {
+          "hz": 660.4774332484357,
+          "midi": 76.03206894629042,
+          "periodicity": 0.9924904809157964
+        },
+        "objective": 7.946466336874368,
+        "pitch_error_cents": 0.9687050670208919
+      }
+    },
+    {
+      "id": "harpie_saw",
+      "split": "train",
+      "metrics": {
+        "reference_rms": 0.023860995479009547,
+        "candidate_rms": 0.07884707842422513,
+        "fitted_gain_db": -10.381940946001132,
+        "alignment_ms": 0.0,
+        "duration_s": 0.599,
+        "multiresolution": [
+          {
+            "fft_size": 256,
+            "log_magnitude_mae_db": 10.600789498853546,
+            "spectral_convergence": 0.8059210968877211
+          },
+          {
+            "fft_size": 1024,
+            "log_magnitude_mae_db": 10.093654495494404,
+            "spectral_convergence": 0.808985205400823
+          },
+          {
+            "fft_size": 4096,
+            "log_magnitude_mae_db": 16.022753862120204,
+            "spectral_convergence": 0.8070434914204523
+          }
+        ],
+        "envelope_mae_db": 2.77340309397889,
+        "spectral_mae_db": 12.239065952156052,
+        "reference_pitch": {
+          "hz": 130.71967002363846,
+          "midi": 47.98767267657714,
+          "periodicity": 0.9818629027076473
+        },
+        "candidate_pitch": {
+          "hz": 130.75173349346548,
+          "midi": 47.991918599475575,
+          "periodicity": 0.9951665382072253
+        },
+        "objective": 13.07108688034972,
+        "pitch_error_cents": 0.42459228984341735
+      }
+    },
+    {
+      "id": "pinoesque",
+      "split": "train",
+      "metrics": {
+        "reference_rms": 0.053916084914758196,
+        "candidate_rms": 0.22659700712360956,
+        "fitted_gain_db": -12.470716416117389,
+        "alignment_ms": 2.0,
+        "duration_s": 0.588,
+        "multiresolution": [
+          {
+            "fft_size": 256,
+            "log_magnitude_mae_db": 8.82391084144487,
+            "spectral_convergence": 0.7253542890867303
+          },
+          {
+            "fft_size": 1024,
+            "log_magnitude_mae_db": 14.714650217500246,
+            "spectral_convergence": 0.709958223819827
+          },
+          {
+            "fft_size": 4096,
+            "log_magnitude_mae_db": 18.64577151357402,
+            "spectral_convergence": 0.7503146432904236
+          }
+        ],
+        "envelope_mae_db": 2.8147124646867723,
+        "spectral_mae_db": 14.061444190839714,
+        "reference_pitch": {
+          "hz": 131.10567549905522,
+          "midi": 48.038719400491296,
+          "periodicity": 0.9769292607198233
+        },
+        "candidate_pitch": {
+          "hz": 131.66185145642189,
+          "midi": 48.112006400884574,
+          "periodicity": 0.9932662271333372
+        },
+        "objective": 14.905857930245745,
+        "pitch_error_cents": 7.3287000393278845
+      }
+    },
+    {
+      "id": "string_hold",
+      "split": "held_out",
+      "metrics": {
+        "reference_rms": 0.050201388402571705,
+        "candidate_rms": 0.25159966458928273,
+        "fitted_gain_db": -13.999886587310888,
+        "alignment_ms": -2.0,
+        "duration_s": 0.88,
+        "multiresolution": [
+          {
+            "fft_size": 256,
+            "log_magnitude_mae_db": 6.528747056697233,
+            "spectral_convergence": 0.6025589664928547
+          },
+          {
+            "fft_size": 1024,
+            "log_magnitude_mae_db": 7.439654517758279,
+            "spectral_convergence": 0.5977583141765294
+          },
+          {
+            "fft_size": 4096,
+            "log_magnitude_mae_db": 10.916187830675032,
+            "spectral_convergence": 0.5812853136964193
+          }
+        ],
+        "envelope_mae_db": 2.7703240945369068,
+        "spectral_mae_db": 8.294863135043515,
+        "reference_pitch": {
+          "hz": 219.7010239707,
+          "midi": 56.97645684074725,
+          "periodicity": 0.9821059194352111
+        },
+        "candidate_pitch": {
+          "hz": 219.87840058231234,
+          "midi": 56.99042839760573,
+          "periodicity": 0.9812453474053778
+        },
+        "objective": 9.125960363404587,
+        "pitch_error_cents": 1.3971556858486167
+      }
+    }
+  ]
+}

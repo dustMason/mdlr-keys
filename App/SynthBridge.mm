@@ -1,6 +1,7 @@
 #import "SynthBridge.h"
 #import "DSP.h"
-#import "CommandQueue.hpp"
+#import "SynthRouting.hpp"
+#import "JP8000Host.hpp"
 #import <AVFoundation/AVFoundation.h>
 #import <CoreMIDI/CoreMIDI.h>
 #include <memory>
@@ -10,23 +11,25 @@
 
 struct RenderCore {
     void *synth=mdlr_create();
-    CommandQueue commands;
+    SynthRouting routing;
+    std::shared_ptr<JP8000Host> jp;
     std::atomic<float> peak{0};
+    void midi(uint8_t status,uint8_t a,uint8_t b) {
+        routing.midi(status,a,b,[this](uint8_t s,uint8_t a,uint8_t b){if(jp)jp->midi(s,a,b);});
+    }
+    void umpWord(uint32_t word) {
+        routing.umpWord(word,[this](uint8_t s,uint8_t a,uint8_t b){if(jp)jp->midi(s,a,b);});
+    }
     ~RenderCore(){mdlr_destroy(synth);}
     void render(AudioBufferList *abl,uint32_t frames) {
         if(abl->mNumberBuffers!=2 || !abl->mBuffers[0].mData || !abl->mBuffers[1].mData){
             for(uint32_t b=0;b<abl->mNumberBuffers;b++)if(abl->mBuffers[b].mData)memset(abl->mBuffers[b].mData,0,abl->mBuffers[b].mDataByteSize);
             return;
         }
-        Command c; uint32_t consumed=0;
-        bool overflow=commands.overflow.exchange(false);
-        while(consumed++<2048 && commands.pop(c)) {
-            // After overflow drop queued MIDI events so a lost note-off cannot stick.
-            if(!overflow || c.kind!=0)mdlr_command(synth,c.kind,c.a,c.b,c.value);
-        }
-        if(overflow)mdlr_command(synth,4,0,0,0);
+        routing.drain([this](Command c){mdlr_command(synth,c.kind,c.a,c.b,c.value);});
         auto *l=(float *)abl->mBuffers[0].mData,*r=(float *)abl->mBuffers[1].mData;
-        mdlr_render(synth,l,r,frames,48000);
+        if(routing.renderEngine==4 && jp)jp->render48k(l,r,frames);
+        else mdlr_render(synth,l,r,frames,48000);
         float p=0;for(uint32_t i=0;i<frames;i++)p=std::max(p,std::max(std::abs(l[i]),std::abs(r[i])));
         peak.store(p,std::memory_order_relaxed);
     }
@@ -43,10 +46,20 @@ struct RenderCore {
     NSString *_midiSources;
     BOOL _wanted;
     BOOL _monoOutput;
+    NSString *_jpSavedPatch;
 }
 - (instancetype)init {
     if((self=[super init])) {
         _core=std::make_shared<RenderCore>(); _audio=[AVAudioEngine new];
+        NSBundle *bundle=NSBundle.mainBundle;
+        NSString *rom=[bundle pathForResource:@"jp8000_v1.05" ofType:@"bin" inDirectory:@"JP8000"];
+        NSString *ram=[bundle pathForResource:@"ram_dump" ofType:@"bin" inDirectory:@"JP8000"];
+        NSURL *support=[[NSFileManager defaultManager] URLsForDirectory:NSApplicationSupportDirectory inDomains:NSUserDomainMask].firstObject;
+        NSURL *state=[support URLByAppendingPathComponent:@"mdlr/JP8000" isDirectory:YES];
+        _jpSavedPatch=[[state URLByAppendingPathComponent:@"saved-patch.syx"] path];
+        // create starts a worker; firmware boot, disk access and snapshots never run
+        // in AVAudioSourceNode's callback or block the main thread.
+        _core->jp=JP8000Host::create(rom.UTF8String ?: "",ram.UTF8String ?: "",state.path.UTF8String ?: "");
         _status=@"Audio stopped"; _midiSources=@"No MIDI keyboard connected";
         auto core=_core;
         AVAudioFormat *format=[[AVAudioFormat alloc] initStandardFormatWithSampleRate:48000 channels:2];
@@ -64,7 +77,7 @@ struct RenderCore {
             for(uint32_t i=0;i<list->numPackets;i++){
                 for(uint32_t j=0;j<p->wordCount;){
                     uint32_t word=p->words[j],type=word>>28;
-                    if(type==2)core->commands.push({0,(word>>16)&255,(word>>8)&127,float(word&127)});
+                    core->umpWord(word);
                     j+=lengths[type];
                 }
                 p=MIDIEventPacketNext(p);
@@ -109,18 +122,19 @@ struct RenderCore {
     }
 #endif
     [_audio prepare];
-    if(![_audio startAndReturnError:&error]){_status=error.localizedDescription;return NO;}
+    _core->jp->setActive(_core->routing.selectedEngine()==4);
+    if(![_audio startAndReturnError:&error]){_core->jp->setActive(false);_status=error.localizedDescription;return NO;}
     _status=@"Playing · 48 kHz stereo";return YES;
 }
-- (void)stop { _wanted=NO;[self panic];[_audio stop];_status=@"Audio stopped"; }
+- (void)stop { _wanted=NO;[self panic];[_audio stop];_core->jp->setActive(false);_status=@"Audio stopped"; }
 - (void)audioChanged:(NSNotification *)n {
-    dispatch_async(dispatch_get_main_queue(),^{if(self->_wanted){[self->_audio stop];[self panic];[self start];}});
+    dispatch_async(dispatch_get_main_queue(),^{if(self->_wanted){[self->_audio stop];self->_core->jp->setActive(false);[self panic];[self start];}});
 }
 #if TARGET_OS_IOS
 - (void)interrupted:(NSNotification *)n {
     dispatch_async(dispatch_get_main_queue(),^{
         auto type=[n.userInfo[AVAudioSessionInterruptionTypeKey] unsignedIntegerValue];
-        if(type==AVAudioSessionInterruptionTypeBegan){[self panic];[self->_audio pause];self->_status=@"Audio interrupted";}
+        if(type==AVAudioSessionInterruptionTypeBegan){[self panic];[self->_audio pause];self->_core->jp->setActive(false);self->_status=@"Audio interrupted";}
         else if(self->_wanted && ([n.userInfo[AVAudioSessionInterruptionOptionKey] unsignedIntegerValue]&AVAudioSessionInterruptionOptionShouldResume)){[self start];}
     });
 }
@@ -133,13 +147,35 @@ struct RenderCore {
 - (NSString *)status{if(_audio.isRunning)return _monoOutput ? @"Playing · 48 kHz mono":@"Playing · 48 kHz stereo";return _status;}
 - (NSString *)midiSources{return _midiSources;}
 - (float)peak{return _core->peak.load(std::memory_order_relaxed);}
-- (uint32_t)droppedEvents{return _core->commands.dropped.load();}
-- (void)selectEngine:(NSInteger)e{_core->commands.push({1,(uint32_t)e,0,0});}
-- (void)setParameter:(NSInteger)p value:(float)v{_core->commands.push({2,(uint32_t)p,0,v});}
-- (void)setMasterVolume:(float)v{_core->commands.push({3,0,0,v});}
-- (void)setVelocitySensitive:(BOOL)enabled{_core->commands.push({5,(uint32_t)enabled,0,0});}
-- (void)setMonoOutput:(BOOL)enabled{_monoOutput=enabled;_core->commands.push({6,(uint32_t)enabled,0,0});}
-- (void)sendStatus:(uint8_t)s data1:(uint8_t)a data2:(uint8_t)b{_core->commands.push({0,s,a,float(b)});}
-- (void)panic{_core->commands.push({4,0,0,0});}
-- (void)dealloc{[[NSNotificationCenter defaultCenter] removeObserver:self];[_audio stop];if(_input)MIDIPortDispose(_input);if(_client)MIDIClientDispose(_client);}
+- (uint32_t)droppedEvents{return _core->routing.commands.dropped.load()+_core->jp->droppedEvents();}
+- (void)selectEngine:(NSInteger)e {
+    if(e<0 || e>5)return;
+    [self panic];
+    _core->routing.selectEngine((uint32_t)e);
+    _core->jp->setActive(e==4 && _audio.isRunning);
+}
+- (void)setParameter:(NSInteger)p value:(float)v {
+    if(p<0 || !std::isfinite(v))return;
+    const uint32_t engine=_core->routing.selectedEngine();
+    if(engine==4)_core->jp->parameter((uint32_t)p,(uint32_t)std::max(0.0f,std::round(v)));
+    else _core->routing.parameter(engine,(uint32_t)p,v);
+}
+- (void)setMasterVolume:(float)v{_core->routing.commands.push({3,0,0,v});_core->jp->setMasterVolume(v);}
+- (void)setVelocitySensitive:(BOOL)enabled{_core->routing.commands.push({5,(uint32_t)enabled,0,0});_core->jp->setVelocitySensitive(enabled);}
+- (void)setMonoOutput:(BOOL)enabled{_monoOutput=enabled;_core->routing.commands.push({6,(uint32_t)enabled,0,0});_core->jp->setMono(enabled);}
+- (void)sendStatus:(uint8_t)s data1:(uint8_t)a data2:(uint8_t)b{_core->midi(s,a,b);}
+- (void)panic{_core->routing.commands.push({4,0,0,0});_core->jp->panic();}
+- (NSString *)jpSnapshot{auto text=_core->jp->snapshotJSON();return [[NSString alloc] initWithBytes:text.data() length:text.size() encoding:NSUTF8StringEncoding] ?: @"{}";}
+- (void)jpSelectPart:(NSInteger)part{if(part>=0 && part<=2)_core->jp->setPart((uint32_t)part);}
+- (void)jpLoadPatch:(NSInteger)index{if(index>=0 && index<128)_core->jp->factoryPatch((uint32_t)index);}
+- (void)jpLoadPerformance:(NSInteger)index{if(index>=0 && index<64)_core->jp->factoryPerformance((uint32_t)index);}
+- (void)jpPressPanel:(NSInteger)button {
+    if(button<0 || button>255)return;
+    _core->jp->panel((uint32_t)button,true);
+    // The worker schedules release after the firmware's keyboard scan sees down.
+    _core->jp->panel((uint32_t)button,false);
+}
+- (void)jpSavePatch{_core->jp->saveState(_jpSavedPatch.UTF8String ?: "");}
+- (void)jpRestorePatch{_core->jp->loadState(_jpSavedPatch.UTF8String ?: "");}
+- (void)dealloc{[[NSNotificationCenter defaultCenter] removeObserver:self];[_audio stop];_core->jp->setActive(false);if(_input)MIDIPortDispose(_input);if(_client)MIDIClientDispose(_client);}
 @end

@@ -1,0 +1,49 @@
+{
+  "renderer_sha256": "02730e59367815dfdd0d9e27853c9f05cd1c9cf2d7fcdcd875d81c7ddbec8dcd",
+  "all_seven_native_defaults_bit_identical": true,
+  "method": "Native defaults and explicit fitted constants use the same selected events and relative phases for each case. No gain correction or audio normalization is applied to the equality check.",
+  "cases": [
+    {
+      "id": "s0s_triangle",
+      "native_wav_sha256": "8d9d121c88cb161c5eb5e887218378fbd9ad0fcd31565d07a61ca8f74cec698c",
+      "explicit_wav_sha256": "8d9d121c88cb161c5eb5e887218378fbd9ad0fcd31565d07a61ca8f74cec698c",
+      "bit_identical": true
+    },
+    {
+      "id": "harpie_saw",
+      "native_wav_sha256": "ca772edc376a84bc82a09b084205dd0a32dc93d35dbee6ce5a6be9376e3c6c4b",
+      "explicit_wav_sha256": "ca772edc376a84bc82a09b084205dd0a32dc93d35dbee6ce5a6be9376e3c6c4b",
+      "bit_identical": true
+    },
+    {
+      "id": "pinoesque",
+      "native_wav_sha256": "695f9d900355904db4319475c460b38bfec625c133c4e1eee56472a0e6fd00e5",
+      "explicit_wav_sha256": "695f9d900355904db4319475c460b38bfec625c133c4e1eee56472a0e6fd00e5",
+      "bit_identical": true
+    },
+    {
+      "id": "string_hold",
+      "native_wav_sha256": "f0be5af30195a8d3caf6ca2fd1ce7a6d189e109c56b1c075ea206527cb25592b",
+      "explicit_wav_sha256": "f0be5af30195a8d3caf6ca2fd1ce7a6d189e109c56b1c075ea206527cb25592b",
+      "bit_identical": true
+    },
+    {
+      "id": "gloeckchen_triangles",
+      "native_wav_sha256": "7a00b2fea9c685e0bf28e40961e16c4504d3e28200f1dfbaf78105e23bbd7cca",
+      "explicit_wav_sha256": "7a00b2fea9c685e0bf28e40961e16c4504d3e28200f1dfbaf78105e23bbd7cca",
+      "bit_identical": true
+    },
+    {
+      "id": "duidui_saw_shape",
+      "native_wav_sha256": "395faf316066bc8850e5051cb4ff104c9e1b0cd5a62036484638c12be09556b3",
+      "explicit_wav_sha256": "395faf316066bc8850e5051cb4ff104c9e1b0cd5a62036484638c12be09556b3",
+      "bit_identical": true
+    },
+    {
+      "id": "wuai_saw_filter",
+      "native_wav_sha256": "ed982032af5b0b53370e00cf81bc7b3b0739cb117517be0b173ae942dc6d9129",
+      "explicit_wav_sha256": "ed982032af5b0b53370e00cf81bc7b3b0739cb117517be0b173ae942dc6d9129",
+      "bit_identical": true
+    }
+  ]
+}

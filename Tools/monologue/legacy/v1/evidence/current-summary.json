@@ -1,0 +1,46 @@
+{
+  "baseline": {
+    "train": 11.934394211016034,
+    "held_out": 8.98126108586121
+  },
+  "best": {
+    "train": 10.606141753456725,
+    "held_out": 8.959664444670224
+  },
+  "native_defaults": {
+    "train": 10.606141753456725,
+    "held_out": 8.959664444670224
+  },
+  "native_defaults_bit_identical_to_explicit_fit": {
+    "s0s_triangle": true,
+    "harpie_saw": true,
+    "pinoesque": true,
+    "string_hold": true
+  },
+  "training_improvement_percent": 11.129617759175964,
+  "held_out_improvement_percent": 0.24046334901658717,
+  "calibration": {
+    "cutoff_curve": 1.2,
+    "filter_eg_octaves": 6.0,
+    "shape_amount": 0.875,
+    "drive_mix_curve": 0.5499999999999999,
+    "drive_gain": 18.0,
+    "triangle_shape_amount": 7.0,
+    "triangle_shape_fall": 0.25
+  },
+  "held_out_used_for_optimization": false,
+  "constants_selected_on_prior_revision": "runs/final-profiled; evaluated after final firmware-audit corrections without another search",
+  "limitations": [
+    "Patch parameters are paired with source audio, but MIDI performance and recording gain were not published.",
+    "Note/gate timings and sounding MIDI pitch are inferred, not hardware-verified. Gain is fitted per excerpt.",
+    "Pinoesque amplitude velocity sensitivity is 50/127 and cutoff velocity sensitivity is 50%; its unknown performance velocity is profiled on a fixed grid. Earlier runs assumed 0.8.",
+    "No pitch/time warping in the objective; oscillator start phase is unobserved.",
+    "These four expressive patches do not identify every analog transfer function. Hold-out must never enter optimization."
+  ],
+  "native_default_wav_sha256": {
+    "s0s_triangle": "c84d628e77967ef2e204ea0d5b835c6de5cca56e7e7e074eead7308a2b1d4d26",
+    "harpie_saw": "99a551da1aa8f89500f8db1a2534a7ceff138d783c9824d92f65f8e824cd7c8e",
+    "pinoesque": "59febafcb1d55ca3b4e7ab769c097ad84bdd9591434bad87f83f1132a3ecb8b8",
+    "string_hold": "63be959c50d04728c24cc94f7af4bc743660d33245c09f101089d488098dfb06"
+  }
+}

@@ -7,7 +7,7 @@ struct InstrumentView: View {
     @State private var panelZoom=1.0
     @State private var keyboardVisible=false
     @State private var optionsVisible=false
-    private var accent: Color { [Color(red:1,green:0.54,blue:0.32),.cyan,Color(red:0.79,green:0.85,blue:0.48),Color(red:0.93,green:0.42,blue:0.61)][model.selected] }
+    private var accent: Color { [Color(red:1,green:0.54,blue:0.32),.cyan,Color(red:0.79,green:0.85,blue:0.48),Color(red:0.93,green:0.42,blue:0.61),Color(red:0.96,green:0.54,blue:0.29),Color(red:0.86,green:0.20,blue:0.18)][model.selected] }
     var body: some View {
         GeometryReader { geometry in
             VStack(spacing:4) {
@@ -23,12 +23,16 @@ struct InstrumentView: View {
                                 .foregroundStyle(model.section==group ? .white:.gray)
                         }}.buttonStyle(.plain)
                     }
+                    if !model.editsEnabled {
+                        Text(model.jpState["status"] as? String ?? "Starting JP-8000…")
+                            .font(.caption).foregroundStyle(accent).padding(.horizontal,8)
+                    }
                     ScrollView {
                         LazyVGrid(columns:[GridItem(.adaptive(minimum:geometry.size.width<700 ? 160:205),spacing:12)],spacing:12) {
                             ForEach(model.engine.params.filter{$0.group==model.section}) { p in
                                 ParameterControl(parameter:p,value:Binding(get:{model.value(p)},set:{model.set(p,$0)}),accent:accent)
                             }
-                        }.padding(8)
+                        }.padding(8).disabled(!model.editsEnabled)
                     }.frame(maxHeight:.infinity)
                 }
                 if keyboardVisible {
@@ -39,11 +43,13 @@ struct InstrumentView: View {
                         Text("C\(model.octave)–B\(model.octave+1)").font(.system(size:12,design:.monospaced))
                         Button {model.panic();model.octave=min(7,model.octave+1)} label:{Image(systemName:"plus").frame(width:44,height:44)}
                         Toggle("Sustain",isOn:$model.sustain).toggleStyle(.button).frame(height:44)
-                            .onChange(of:model.sustain){v in model.bridge.sendStatus(0xbf,data1:64,data2:v ? 127:0)}
+                            .onChange(of:model.sustain){v in model.setSustain(v)}
+                            .disabled(!model.editsEnabled)
                     }.buttonStyle(.plain).tint(accent).padding(.horizontal,8)
                     PianoKeyboard(baseNote:(model.octave+1)*12,accent:accent){note,down in model.note(note,down:down)}
                         .id("\(model.selected)-\(model.octave)").frame(height:geometry.size.height<650 ? 100:130)
-                        .padding(.horizontal,4)
+                        .padding(.horizontal,4).disabled(!model.editsEnabled)
+                        .opacity(model.editsEnabled ? 1:0.4)
                 }
                 if !model.notice.isEmpty {
                     HStack {Text(model.notice).font(.caption);Spacer();Button("Dismiss"){model.notice=""}.frame(minHeight:44)}
@@ -65,7 +71,7 @@ struct InstrumentView: View {
                 ForEach(model.engines) { e in
                     Button {model.select(e.id)} label: {
                         Text(e.name).font(.system(size:12,weight:.bold,design:.monospaced))
-                            .frame(width:48,height:44)
+                            .frame(width:e.id == 5 ? 96:e.id == 4 ? 72:48,height:44)
                             .foregroundStyle(model.selected==e.id ? .black:.white.opacity(0.6))
                             .background(model.selected==e.id ? accent:Color.clear,in:RoundedRectangle(cornerRadius:6))
                             .contentShape(Rectangle())
@@ -73,15 +79,15 @@ struct InstrumentView: View {
                 }
             }.background(Color.white.opacity(0.04),in:RoundedRectangle(cornerRadius:6))
             Menu {
-                Button("Init"){model.preset(nil)}
+                Button(model.isJP ? "Factory performance 01":"Init"){model.preset(nil)}
                 ForEach(model.engine.presets.indices,id:\.self){i in Button(model.engine.presets[i].name){model.preset(model.engine.presets[i])}}
                 Divider();Button("Save my patch"){model.save()};Button("Load my patch"){model.load()}
             } label: {
                 Text(model.patchName).font(.system(size:12,weight:.medium)).lineLimit(1).frame(minWidth:60,maxWidth:160,minHeight:44,alignment:.leading).padding(.horizontal,6).contentShape(Rectangle())
-            }.accessibilityLabel("Preset: \(model.patchName)")
+            }.accessibilityLabel("Preset: \(model.patchName)").disabled(!model.editsEnabled)
             Spacer(minLength:0)
             Button {
-                if keyboardVisible {model.sustain=false;model.bridge.sendStatus(0xbf,data1:64,data2:0)}
+                if keyboardVisible {model.sustain=false;model.setSustain(false)}
                 keyboardVisible.toggle()
             } label:{Image(systemName:"pianokeys").frame(width:44,height:44).background(keyboardVisible ? accent.opacity(0.2):Color.clear,in:RoundedRectangle(cornerRadius:6)).contentShape(Rectangle())}
                 .accessibilityLabel(keyboardVisible ? "Hide keyboard":"Show keyboard")
@@ -111,7 +117,7 @@ struct InstrumentView: View {
             Divider()
             Text(model.status).font(.caption.monospaced())
             Text(model.midiSources).font(.caption)
-            Text("USB MIDI · all channels · CC1 mod · CC64 sustain · bend ±2").font(.caption2).foregroundStyle(.secondary)
+            Text(model.isJP ? "USB MIDI · upper/lower receive channels follow the performance":"USB MIDI · all channels · CC1 mod · CC64 sustain · bend ±2").font(.caption2).foregroundStyle(.secondary)
             Button("Panic — release all notes"){model.panic()}.frame(minHeight:44)
         }.tint(accent)
     }

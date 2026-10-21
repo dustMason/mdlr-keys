@@ -1,0 +1,36 @@
+{
+  "baseline": {
+    "train": 2.6535303149815865
+  },
+  "best": {
+    "train": 2.2783169049403447
+  },
+  "calibration": {
+    "cutoff_min": 19.445436,
+    "cutoff_max": 19380.219,
+    "cutoff_curve": 1,
+    "resonance_curve": 0.8500000000000001,
+    "resonance_max": 2.3000000000000003,
+    "filter_saturation": 0.875,
+    "vca_curve": 1,
+    "saw_shape_scale": 1.2929688,
+    "triangle_fold_slope": 2.7,
+    "triangle_shape_depth": 0.7272949,
+    "drive_gain": 28.0,
+    "drive_mix_curve": 0.42500000000000004,
+    "drive_bass": 0,
+    "output_gain": 0.5,
+    "shape_calibration_peak": 0.78
+  },
+  "validation_used_for_optimization": false,
+  "search_approximation": "During each global pass, velocity/gate/phase search is restricted to the selected nuisance candidate and its adjacent grid values. Baseline, each pass boundary and final use the full frozen nuisance grid.",
+  "limitations": [
+    "Physical MIDI notes follow firmware-confirmed 8-foot triangle/divider phase one octave below MIDI; raw saw is twice that frequency. Observed lower component is not always the played MIDI note.",
+    "Note onsets are inferred from audio with roughly 2ms uncertainty; unknown manual gate-off, velocity and relative oscillator phase are explicitly profiled, not recovered as facts.",
+    "Original Pinoesque excerpt contained a second same-note attack near0.895s; v2 stops at0.840s and includes release.",
+    "Harpie first release is inferred from its sequence step and amplitude trajectory. String Hold and Pinoesque manual release times remain nuisance parameters.",
+    "String Hold is ring-modulated by muted square VCO1; Harpie is hard-synced to muted VCO1. Muted oscillator levels do not remove modulation sources.",
+    "Gloeckchen is reserved as new validation; no engine score was used to choose it. Its first four sounding pitches and0.5s step spacing match the stored sequence.",
+    "Gain, oscillator phase, analog drift and recording transfer remain unobserved. No pitch/time warping; small corpus does not identify every analog parameter."
+  ]
+}

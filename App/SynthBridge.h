@@ -6,6 +6,13 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic, readonly) NSString *midiSources;
 @property(nonatomic, readonly) float peak;
 @property(nonatomic, readonly) uint32_t droppedEvents;
+@property(nonatomic, readonly) NSString *jpSnapshot;
+- (void)jpSelectPart:(NSInteger)part;
+- (void)jpLoadPatch:(NSInteger)index;
+- (void)jpLoadPerformance:(NSInteger)index;
+- (void)jpPressPanel:(NSInteger)button;
+- (void)jpSavePatch;
+- (void)jpRestorePatch;
 - (BOOL)start;
 - (void)stop;
 - (void)selectEngine:(NSInteger)engine;

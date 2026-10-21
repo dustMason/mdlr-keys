@@ -1,0 +1,34 @@
+{
+  "portable_corpus": {
+    "source_assets": 23,
+    "downloaded_this_run": [],
+    "all_program_reference_event_bytes_match_frozen_corpus": true,
+    "cases": 11,
+    "manifest_sha256": "0f1918bb315aa75f436b42f53fd4a29574014b500e9dae8752f8c4df65b7add8",
+    "conditioned_manifest_sha256": "49e27d2aae3012f328e9f26ea2b05cb12bf11e28a6c3c8b84de71eaddc0a7db2"
+  },
+  "full_metric_json_exact_match_cases": [
+    "harpie_saw",
+    "string_hold",
+    "deep_meow_ring"
+  ],
+  "no_heldout_rerender_or_reselection": true,
+  "dependencies": {
+    "audio_compare": {
+      "source": "/Users/jordans/src/mdlr-keys/Tools/monologue/audio_compare.py",
+      "sha256": "0ab4ac4ff4a7b3262d8b744f1aaec253880bf06e6292dbea02215ea023361e96"
+    },
+    "metric_audit": {
+      "source": "/Users/jordans/src/mdlr-keys/Tools/monologue/v2/metric_audit.py",
+      "sha256": "5556bf7cc8d1e020b448dba9fb11e08166fd431d43bec95e9a864e5bbea52496"
+    },
+    "cached_metric": {
+      "source": "/Users/jordans/src/mdlr-keys/Tools/monologue/v2/cached_metric.py",
+      "sha256": "d8eabcf3d8594864250bd3734f88771954a54354ffad2f2d5061b1bc945d1f81"
+    },
+    "metric_v3": {
+      "source": "/Users/jordans/src/mdlr-keys/Tools/monologue/v3/metric_v3.py",
+      "sha256": "7c4b06a9a01c04e4cd1666cb1ac9513922c0b8e7313ce7652a75778eb33969bf"
+    }
+  }
+}

@@ -1,0 +1,61 @@
+{
+  "rea_version": "6.4.0",
+  "skill_version": "44",
+  "analyses": [
+    {
+      "evidence_id": "ev_6d70d1e274dbc762481513aa754318bae884493bd25126e9bf3defa7f4e7cd51",
+      "subject": {
+        "name": "monologue_Updater_0200_win.zip",
+        "digest": {
+          "sha256": "1756d1a72fa73992f49fa35c0c22c0aab41e007edc6ea002f85ec0c081ee2ea4"
+        },
+        "format": "zip",
+        "architecture": null
+      },
+      "provider": {
+        "id": "rea-artifact-graph",
+        "name": "REA safe artifact graph provider",
+        "version": "1"
+      },
+      "operation": "inspect_artifact",
+      "parameters": {
+        "integrity_policy": "fail"
+      },
+      "limitations": [
+        "Inspection derives bounded static hypotheses and next probes; it does not execute the artifact or claim format-specific semantics.",
+        "ZIP inventory lists central-directory entries only. Bytes after the central directory, including an APK Signing Block or a ZIP comment, are not occurrences."
+      ]
+    },
+    {
+      "evidence_id": "ev_d4f9c4a184450f1b81ea3653441128b72bf87e5f44b24ee934e0c7be522f72aa",
+      "subject": {
+        "name": "voice-analysis.elf",
+        "digest": {
+          "sha256": "4564e40eaab92f0686f6ec03a1d3dc2e171450d2b270bf8c82bcae59651195f0"
+        },
+        "format": "elf",
+        "architecture": "arm"
+      },
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "operation": "procedure_pseudo_code",
+      "parameters": {
+        "procedure": "0x8f54"
+      },
+      "limitations": [
+        "The session serves operations only after Ghidra reports default auto-analysis complete; incomplete analysis does not expose partial results.",
+        "The imported Program and temporary project are ephemeral and deleted on close. Annotation operations edit session database metadata; original executable bytes are never written.",
+        "Cancelling an active Ghidra request terminates its ephemeral database and discards session annotations. The selected target remains open; the next provider query imports the original artifact again.",
+        "Default-space addresses use lowercase 0x-prefixed hexadecimal; other address spaces use <percent-encoded-space>:0x<hex>.",
+        "Pseudocode is Ghidra decompiler output, not original source and not text-equivalent to Hopper output.",
+        "External functions and functions without an analyzable body return null; other decompiler failures remain explicit.",
+        "macOS sessions require a matching executable Ghidra native decompiler; REA checks for it but does not build native components or change Gatekeeper quarantine state."
+      ]
+    }
+  ],
+  "lifecycle": "isolated CLI invocations close their native session before returning; final native invocation exit0",
+  "limitations": "Focused direct Ghidra queries expanded the initial REA decompilation; detailed mappings are not individually REA ledger records."
+}

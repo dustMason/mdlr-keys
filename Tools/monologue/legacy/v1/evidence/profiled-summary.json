@@ -1,0 +1,28 @@
+{
+  "baseline": {
+    "train": 11.922184111341315,
+    "held_out": 8.980041915819204
+  },
+  "best": {
+    "train": 10.60078260131394,
+    "held_out": 8.960549564579047
+  },
+  "training_improvement_percent": 11.083552289469797,
+  "calibration": {
+    "cutoff_curve": 1.2,
+    "filter_eg_octaves": 6.0,
+    "shape_amount": 0.875,
+    "drive_mix_curve": 0.5499999999999999,
+    "drive_gain": 18.0,
+    "triangle_shape_amount": 7.0,
+    "triangle_shape_fall": 0.25
+  },
+  "held_out_used_for_optimization": false,
+  "limitations": [
+    "Patch parameters are paired with source audio, but MIDI performance and recording gain were not published.",
+    "Note/gate timings and sounding MIDI pitch are inferred, not hardware-verified. Gain is fitted per excerpt.",
+    "Pinoesque amplitude velocity sensitivity is 50/127 and cutoff velocity sensitivity is 50%; its unknown performance velocity is profiled on a fixed grid. Earlier runs assumed 0.8.",
+    "No pitch/time warping in the objective; oscillator start phase is unobserved.",
+    "These four expressive patches do not identify every analog transfer function. Hold-out must never enter optimization."
+  ]
+}

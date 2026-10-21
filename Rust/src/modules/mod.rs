@@ -4,6 +4,7 @@ pub mod five;
 pub mod fm4;
 pub mod one;
 pub mod six;
+pub mod monologue;
 pub const MAX_BLOCK_FRAMES: usize = 128;
 pub const MAX_INPUTS: usize = 15;
 pub const MAX_OUTPUTS: usize = 4;

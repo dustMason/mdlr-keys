@@ -1,0 +1,35 @@
+{
+  "case_lfo_targets": {
+    "s0s_triangle": {
+      "target": "cutoff",
+      "raw_int": 516
+    },
+    "harpie_saw": {
+      "target": "shape",
+      "raw_int": 227
+    },
+    "pinoesque": {
+      "target": "cutoff",
+      "raw_int": 588
+    },
+    "string_hold": {
+      "target": "shape",
+      "raw_int": 138
+    },
+    "gloeckchen_triangles": {
+      "target": "shape",
+      "raw_int": 785
+    },
+    "duidui_saw_shape": {
+      "target": "shape",
+      "raw_int": 886
+    },
+    "wuai_saw_filter": {
+      "target": "cutoff",
+      "raw_int": 226
+    }
+  },
+  "pitch_lfo_cases": [],
+  "source_manifest_sha256": "d8c52e3c2b8b01da0c048c04d601881f1c8dabbebfb053d7faff8fbfbf63e036",
+  "method": "Decoded all seven raw448-byte programs using the official MIDI Table2 layout. All LFO targets are shape or cutoff, so the final pitch-LFO encoding correction does not affect this corpus."
+}

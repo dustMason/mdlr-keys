@@ -1,0 +1,944 @@
+{
+  "renderer_sha256": {
+    "baseline": "02730e59367815dfdd0d9e27853c9f05cd1c9cf2d7fcdcd875d81c7ddbec8dcd",
+    "sync": "83b2b0879de9714a041129fe56c5393224041dd88852a5c9e7cb400f429bc7ad"
+  },
+  "script_sha256": "92a71d9927106d8492858d6a8a444b36ebe49b6d18c9efe6eaa10be8c09dd131",
+  "candidate_ring_model": "product",
+  "analysis_band_hz": [
+    40,
+    16000
+  ],
+  "harmonic_half_width_hz": 30,
+  "analysis_window_s": [
+    0.2,
+    0.95
+  ],
+  "cases": [
+    {
+      "case": "saw_plain",
+      "master_hz": 997.3,
+      "slave_ratio": 2.375,
+      "params": {
+        "0": 0,
+        "1": 0,
+        "2": 0,
+        "3": 0,
+        "4": 0,
+        "5": 1,
+        "6": 1,
+        "7": 297.51301613230254,
+        "8": 1,
+        "9": 1,
+        "10": 0,
+        "11": 0,
+        "12": 1,
+        "13": 0,
+        "14": 0.25,
+        "15": 0,
+        "16": 2,
+        "17": 1,
+        "18": 0,
+        "19": 0.3,
+        "20": 0,
+        "21": 0,
+        "22": 0,
+        "23": 0.25,
+        "24": 0,
+        "25": 0,
+        "26": 0,
+        "27": 0,
+        "28": -83.37116829735375,
+        "29": 1,
+        "30": 0,
+        "31": 0,
+        "32": 0,
+        "33": 120,
+        "34": 0,
+        "35": 0,
+        "36": 0
+      },
+      "events": [
+        {
+          "time": 0,
+          "type": "on",
+          "note": 96,
+          "velocity": 1
+        }
+      ],
+      "renders": [
+        {
+          "model": "baseline",
+          "render_rate": 44100,
+          "off_harmonic_16k_db": -40.528622503898156,
+          "audio_sha256": "9fc85e96a389800ae41157b7a2cb0d52c3e52706d92a271057d1f6ad478292fc"
+        },
+        {
+          "model": "baseline",
+          "render_rate": 48000,
+          "off_harmonic_16k_db": -41.317378693717046,
+          "audio_sha256": "0b4b136b40d58dcfd8fea33caa96d2802dcd572b38ad62394e418637a64a6213"
+        },
+        {
+          "model": "baseline",
+          "render_rate": 96000,
+          "off_harmonic_16k_db": -47.48515120594408,
+          "audio_sha256": "cd71ae108d825f5ab9cc3abea22bd5a65c4f00b4af4a69ca1db6d2a96de1835a"
+        },
+        {
+          "model": "baseline",
+          "render_rate": 192000,
+          "off_harmonic_16k_db": -53.44395002318457,
+          "audio_sha256": "0428bbfa83b8388c8494c82fd065e858f938e321d92696f186d92e167f966d5b"
+        },
+        {
+          "model": "sync",
+          "render_rate": 44100,
+          "off_harmonic_16k_db": -75.53834098014224,
+          "audio_sha256": "99ffb7b0846023a7e3b85c6f0bdec1ecebab093b8c20b45cdebe5ffa15db73e0"
+        },
+        {
+          "model": "sync",
+          "render_rate": 48000,
+          "off_harmonic_16k_db": -79.40084289668499,
+          "audio_sha256": "fe9ebf1b296114a6c84c919dc9b2618925090b17599ea918d0aaf3fec2a76b71"
+        },
+        {
+          "model": "sync",
+          "render_rate": 96000,
+          "off_harmonic_16k_db": -85.807162635455,
+          "audio_sha256": "f44829cd23b31a26dd0d7b625f574b891d568c9eb9506fb35fedcd74c79a6862"
+        },
+        {
+          "model": "sync",
+          "render_rate": 192000,
+          "off_harmonic_16k_db": -86.25928438527602,
+          "audio_sha256": "d9689b93a275aaa8e432e2b8e76fa8bc21beea54dd7e7ae07b62c59f6f7a1772"
+        }
+      ]
+    },
+    {
+      "case": "saw_shaped",
+      "master_hz": 997.3,
+      "slave_ratio": 2.375,
+      "params": {
+        "0": 0,
+        "1": 0,
+        "2": 0,
+        "3": 0,
+        "4": 0.8,
+        "5": 1,
+        "6": 1,
+        "7": 297.51301613230254,
+        "8": 1,
+        "9": 1,
+        "10": 0,
+        "11": 0,
+        "12": 1,
+        "13": 0,
+        "14": 0.25,
+        "15": 0,
+        "16": 2,
+        "17": 1,
+        "18": 0,
+        "19": 0.3,
+        "20": 0,
+        "21": 0,
+        "22": 0,
+        "23": 0.25,
+        "24": 0,
+        "25": 0,
+        "26": 0,
+        "27": 0,
+        "28": -83.37116829735375,
+        "29": 1,
+        "30": 0,
+        "31": 0,
+        "32": 0,
+        "33": 120,
+        "34": 0,
+        "35": 0,
+        "36": 0
+      },
+      "events": [
+        {
+          "time": 0,
+          "type": "on",
+          "note": 96,
+          "velocity": 1
+        }
+      ],
+      "renders": [
+        {
+          "model": "baseline",
+          "render_rate": 44100,
+          "off_harmonic_16k_db": -40.720799063402076,
+          "audio_sha256": "8e9f12033de00f20478ccc52d25f32ea0a5933f8c273c4741499ae8f6e305fea"
+        },
+        {
+          "model": "baseline",
+          "render_rate": 48000,
+          "off_harmonic_16k_db": -41.432703474941455,
+          "audio_sha256": "379cb6efa54f9ccc1d0708d48acd05f07b95e9351cc04d43eaa2b09f6350f593"
+        },
+        {
+          "model": "baseline",
+          "render_rate": 96000,
+          "off_harmonic_16k_db": -47.64421283369785,
+          "audio_sha256": "13b05739e6db7701ae01c750969dc990754088dc8d6511a37d25ba9e258a3509"
+        },
+        {
+          "model": "baseline",
+          "render_rate": 192000,
+          "off_harmonic_16k_db": -53.54112211351506,
+          "audio_sha256": "1a8b274d5f5af7d374a5f64e9ba55c6608ccd0569eb46298a5291b4e8732aceb"
+        },
+        {
+          "model": "sync",
+          "render_rate": 44100,
+          "off_harmonic_16k_db": -76.16385920191216,
+          "audio_sha256": "83fffb706e1b72e2f691d7060020f5119ab49de0e23ea9adb430b9e25fdcdc11"
+        },
+        {
+          "model": "sync",
+          "render_rate": 48000,
+          "off_harmonic_16k_db": -77.44253113311602,
+          "audio_sha256": "8851149685448fa87a468d3f63aff951337ea606e8dbcc215cbac27c3340bed1"
+        },
+        {
+          "model": "sync",
+          "render_rate": 96000,
+          "off_harmonic_16k_db": -85.85223798232578,
+          "audio_sha256": "64441440ca07c3a26795d7157e5d8d7af39aad488dd3a27e690ab32bd5c8b511"
+        },
+        {
+          "model": "sync",
+          "render_rate": 192000,
+          "off_harmonic_16k_db": -86.28076597434209,
+          "audio_sha256": "d077d26bc92c0a2673360f36d1f1d88f8fc1b82b5cb8d63b7746dfd94d3ab4b5"
+        }
+      ]
+    },
+    {
+      "case": "saw_ratio_below1",
+      "master_hz": 997.3,
+      "slave_ratio": 0.73,
+      "params": {
+        "0": 0,
+        "1": 0,
+        "2": 0,
+        "3": 0,
+        "4": 0.8,
+        "5": 1,
+        "6": -1,
+        "7": 655.1620429263511,
+        "8": 1,
+        "9": 1,
+        "10": 0,
+        "11": 0,
+        "12": 1,
+        "13": 0,
+        "14": 0.25,
+        "15": 0,
+        "16": 2,
+        "17": 1,
+        "18": 0,
+        "19": 0.3,
+        "20": 0,
+        "21": 0,
+        "22": 0,
+        "23": 0.25,
+        "24": 0,
+        "25": 0,
+        "26": 0,
+        "27": 0,
+        "28": -83.37116829735375,
+        "29": 1,
+        "30": 0,
+        "31": 0,
+        "32": 0,
+        "33": 120,
+        "34": 0,
+        "35": 0,
+        "36": 0
+      },
+      "events": [
+        {
+          "time": 0,
+          "type": "on",
+          "note": 96,
+          "velocity": 1
+        }
+      ],
+      "renders": [
+        {
+          "model": "baseline",
+          "render_rate": 44100,
+          "off_harmonic_16k_db": -48.411370197804274,
+          "audio_sha256": "78b02033dc591394ddc401d08294ddd33afb098dc837b1bd2b90958ecace774a"
+        },
+        {
+          "model": "baseline",
+          "render_rate": 48000,
+          "off_harmonic_16k_db": -49.15407688608548,
+          "audio_sha256": "bac1e392d46efc8b80ee4b4604290bfc9dbadcc98cf0ccdd3e4ee6ec11eaf7c4"
+        },
+        {
+          "model": "baseline",
+          "render_rate": 96000,
+          "off_harmonic_16k_db": -55.51853883188312,
+          "audio_sha256": "f0a4561c056c37acad4de27aa8f121bec582f42b0d831e041ba52ceb675ce988"
+        },
+        {
+          "model": "baseline",
+          "render_rate": 192000,
+          "off_harmonic_16k_db": -61.406511856867624,
+          "audio_sha256": "d9704d8e6a86f0fe1bc026d4fb038457cae148985350cb8558cb7ce22bd0e00f"
+        },
+        {
+          "model": "sync",
+          "render_rate": 44100,
+          "off_harmonic_16k_db": -81.76471620069674,
+          "audio_sha256": "e9d25aa94448a4d7fb9cd272180aab24c0fcc7000402a08c68aea6510f395ecd"
+        },
+        {
+          "model": "sync",
+          "render_rate": 48000,
+          "off_harmonic_16k_db": -83.16295888084143,
+          "audio_sha256": "58e9e1506ee614431129767aa662e8508decbd456e29f9b547efdd5f45adbc1a"
+        },
+        {
+          "model": "sync",
+          "render_rate": 96000,
+          "off_harmonic_16k_db": -86.23780427842792,
+          "audio_sha256": "4bbf0b6e929c7aff339a8164df186d031fba57e63fdefcf8be94e4a26d406d7a"
+        },
+        {
+          "model": "sync",
+          "render_rate": 192000,
+          "off_harmonic_16k_db": -86.30068951579106,
+          "audio_sha256": "5d131243db7ed125b0cdfe3b9febc61f6cd158e2baa8b2a21ae3b7e4e7fba9aa"
+        }
+      ]
+    },
+    {
+      "case": "saw_ratio_below4",
+      "master_hz": 997.3,
+      "slave_ratio": 3.995,
+      "params": {
+        "0": 0,
+        "1": 0,
+        "2": 0,
+        "3": 0,
+        "4": 0.8,
+        "5": 1,
+        "6": 1,
+        "7": 1197.8346037839026,
+        "8": 1,
+        "9": 1,
+        "10": 0,
+        "11": 0,
+        "12": 1,
+        "13": 0,
+        "14": 0.25,
+        "15": 0,
+        "16": 2,
+        "17": 1,
+        "18": 0,
+        "19": 0.3,
+        "20": 0,
+        "21": 0,
+        "22": 0,
+        "23": 0.25,
+        "24": 0,
+        "25": 0,
+        "26": 0,
+        "27": 0,
+        "28": -83.37116829735375,
+        "29": 1,
+        "30": 0,
+        "31": 0,
+        "32": 0,
+        "33": 120,
+        "34": 0,
+        "35": 0,
+        "36": 0
+      },
+      "events": [
+        {
+          "time": 0,
+          "type": "on",
+          "note": 96,
+          "velocity": 1
+        }
+      ],
+      "renders": [
+        {
+          "model": "baseline",
+          "render_rate": 44100,
+          "off_harmonic_16k_db": -41.54264122541481,
+          "audio_sha256": "ab0759df8e72cfbb435fd2f1ffd7324d5398c01a64717d3a6a3c285115fcbfe7"
+        },
+        {
+          "model": "baseline",
+          "render_rate": 48000,
+          "off_harmonic_16k_db": -41.61008245030463,
+          "audio_sha256": "1e208281b77e44d28daf97635564e025491ae2f9f438fbfdd549b09e3e79cc0a"
+        },
+        {
+          "model": "baseline",
+          "render_rate": 96000,
+          "off_harmonic_16k_db": -42.83705235094169,
+          "audio_sha256": "b628c5633accfca7e4e03aa1369f3c0e5470256befb69dd314d3c0a585e932a9"
+        },
+        {
+          "model": "baseline",
+          "render_rate": 192000,
+          "off_harmonic_16k_db": -46.57429381245685,
+          "audio_sha256": "bfc99a1d6a39b58e06c884996c0e2c7bc17a4f9a13d1e46c9ef5a14883c2137f"
+        },
+        {
+          "model": "sync",
+          "render_rate": 44100,
+          "off_harmonic_16k_db": -73.51511584174449,
+          "audio_sha256": "5e8fcbdcb97cc23c4282a7edefb5fc6fd4947b1076f97b026e9e3c045a51d16a"
+        },
+        {
+          "model": "sync",
+          "render_rate": 48000,
+          "off_harmonic_16k_db": -74.15596802626493,
+          "audio_sha256": "384dc17a8d3b6f3a4144f4f784b2ed7be7c85afef734988076385e04ea7f1537"
+        },
+        {
+          "model": "sync",
+          "render_rate": 96000,
+          "off_harmonic_16k_db": -85.42599527319348,
+          "audio_sha256": "2a7b64f9bf897df7989cc05c681e26723b12ba7b64d031ea54aa8b771b72060a"
+        },
+        {
+          "model": "sync",
+          "render_rate": 192000,
+          "off_harmonic_16k_db": -86.23549289013079,
+          "audio_sha256": "04231504123589fedd96612ce6c44158bd91895e905546cb069301eba0fb801f"
+        }
+      ]
+    },
+    {
+      "case": "saw_ratio_above4",
+      "master_hz": 997.3,
+      "slave_ratio": 4.005,
+      "params": {
+        "0": 0,
+        "1": 0,
+        "2": 0,
+        "3": 0,
+        "4": 0.8,
+        "5": 1,
+        "6": 2,
+        "7": 2.162691160782515,
+        "8": 1,
+        "9": 1,
+        "10": 0,
+        "11": 0,
+        "12": 1,
+        "13": 0,
+        "14": 0.25,
+        "15": 0,
+        "16": 2,
+        "17": 1,
+        "18": 0,
+        "19": 0.3,
+        "20": 0,
+        "21": 0,
+        "22": 0,
+        "23": 0.25,
+        "24": 0,
+        "25": 0,
+        "26": 0,
+        "27": 0,
+        "28": -83.37116829735375,
+        "29": 1,
+        "30": 0,
+        "31": 0,
+        "32": 0,
+        "33": 120,
+        "34": 0,
+        "35": 0,
+        "36": 0
+      },
+      "events": [
+        {
+          "time": 0,
+          "type": "on",
+          "note": 96,
+          "velocity": 1
+        }
+      ],
+      "renders": [
+        {
+          "model": "baseline",
+          "render_rate": 44100,
+          "off_harmonic_16k_db": -41.70563927792233,
+          "audio_sha256": "27118e457bd7e099172e4b899717fa524254bb2444a6fb9afca83aac2fbfbc9d"
+        },
+        {
+          "model": "baseline",
+          "render_rate": 48000,
+          "off_harmonic_16k_db": -41.711839640965536,
+          "audio_sha256": "be2f1f5cd293298de0be738e4df431beb444e99e2f9b61739d5e3c8933b7f2ba"
+        },
+        {
+          "model": "baseline",
+          "render_rate": 96000,
+          "off_harmonic_16k_db": -42.93143413082055,
+          "audio_sha256": "5cb2ef09293990192c9a9d5d468240f2dad548074b980e136a40b531c06a493d"
+        },
+        {
+          "model": "baseline",
+          "render_rate": 192000,
+          "off_harmonic_16k_db": -46.62060020118882,
+          "audio_sha256": "aea41323fdc74fff6e8309cdffd57e16a37993a85fa56827a27bbdc67f89af0e"
+        },
+        {
+          "model": "sync",
+          "render_rate": 44100,
+          "off_harmonic_16k_db": -73.52476735585293,
+          "audio_sha256": "c2c51c0ab01a94c11cd6effe6719d6058bda57847ed0a764fcd763f8f79c3b43"
+        },
+        {
+          "model": "sync",
+          "render_rate": 48000,
+          "off_harmonic_16k_db": -74.03118858905529,
+          "audio_sha256": "c9c3408e73553cc2ad4aadec2351235a1d3d9c7973816aaf2602a038a4b74534"
+        },
+        {
+          "model": "sync",
+          "render_rate": 96000,
+          "off_harmonic_16k_db": -85.25153495974997,
+          "audio_sha256": "12575301a4b3013475e544ef1177bd65909954a3ca4dd13a00562e3ae5c880ca"
+        },
+        {
+          "model": "sync",
+          "render_rate": 192000,
+          "off_harmonic_16k_db": -86.23660586931466,
+          "audio_sha256": "5d76d82a4a6c34594d7f4fcddc0a45e753de3021a2069db04479c5249c7b5d2d"
+        }
+      ]
+    },
+    {
+      "case": "triangle_plain",
+      "master_hz": 997.3,
+      "slave_ratio": 2.375,
+      "params": {
+        "0": 0,
+        "1": 0,
+        "2": 0,
+        "3": 1,
+        "4": 0,
+        "5": 1,
+        "6": 1,
+        "7": 297.51301613230254,
+        "8": 1,
+        "9": 1,
+        "10": 0,
+        "11": 0,
+        "12": 1,
+        "13": 0,
+        "14": 0.25,
+        "15": 0,
+        "16": 2,
+        "17": 1,
+        "18": 0,
+        "19": 0.3,
+        "20": 0,
+        "21": 0,
+        "22": 0,
+        "23": 0.25,
+        "24": 0,
+        "25": 0,
+        "26": 0,
+        "27": 0,
+        "28": -83.37116829735375,
+        "29": 1,
+        "30": 0,
+        "31": 0,
+        "32": 0,
+        "33": 120,
+        "34": 0,
+        "35": 0,
+        "36": 0
+      },
+      "events": [
+        {
+          "time": 0,
+          "type": "on",
+          "note": 96,
+          "velocity": 1
+        }
+      ],
+      "renders": [
+        {
+          "model": "baseline",
+          "render_rate": 44100,
+          "off_harmonic_16k_db": -34.00977836184125,
+          "audio_sha256": "2c84678e0b0539f98c81111b9803c290fe72f636e697d2ae077d7d8ebcc9c9dd"
+        },
+        {
+          "model": "baseline",
+          "render_rate": 48000,
+          "off_harmonic_16k_db": -34.730946625160335,
+          "audio_sha256": "be126fd6e8343f4a371f7f1bc44697f4155f93849edd4ef8ce2969dd6ac33cad"
+        },
+        {
+          "model": "baseline",
+          "render_rate": 96000,
+          "off_harmonic_16k_db": -40.9208816087901,
+          "audio_sha256": "2e1d3f40140eac34b480f7972cbd38ac34f1f4496e2bfbd9b8e8e1a0a2e73e56"
+        },
+        {
+          "model": "baseline",
+          "render_rate": 192000,
+          "off_harmonic_16k_db": -46.868705491012676,
+          "audio_sha256": "657a444d80e1f3b0f766985290ff08239ae31f552d6314b69d33db0275ee17b0"
+        },
+        {
+          "model": "sync",
+          "render_rate": 44100,
+          "off_harmonic_16k_db": -83.77619337675944,
+          "audio_sha256": "75095717d021d3345a6beb1742024bbc9361d140536acbe9ccb9c455811b9ab4"
+        },
+        {
+          "model": "sync",
+          "render_rate": 48000,
+          "off_harmonic_16k_db": -84.67310070612004,
+          "audio_sha256": "29d5c52c76f10d007861c42e58e6a8727df4170f0c7eb007c27ca657f4db165d"
+        },
+        {
+          "model": "sync",
+          "render_rate": 96000,
+          "off_harmonic_16k_db": -86.27720933663362,
+          "audio_sha256": "57e6d77795891fd8f0d534261d7f2aa43275c2323943f37e59019612889bacab"
+        },
+        {
+          "model": "sync",
+          "render_rate": 192000,
+          "off_harmonic_16k_db": -86.31377093337497,
+          "audio_sha256": "29fc951ce2c1dbed64b920dcb3157f31013dc71c2714b7a3beafeeca31a4b3aa"
+        }
+      ]
+    },
+    {
+      "case": "triangle_fold",
+      "master_hz": 997.3,
+      "slave_ratio": 2.375,
+      "params": {
+        "0": 0,
+        "1": 0,
+        "2": 0,
+        "3": 1,
+        "4": 0.8,
+        "5": 1,
+        "6": 1,
+        "7": 297.51301613230254,
+        "8": 1,
+        "9": 1,
+        "10": 0,
+        "11": 0,
+        "12": 1,
+        "13": 0,
+        "14": 0.25,
+        "15": 0,
+        "16": 2,
+        "17": 1,
+        "18": 0,
+        "19": 0.3,
+        "20": 0,
+        "21": 0,
+        "22": 0,
+        "23": 0.25,
+        "24": 0,
+        "25": 0,
+        "26": 0,
+        "27": 0,
+        "28": -83.37116829735375,
+        "29": 1,
+        "30": 0,
+        "31": 0,
+        "32": 0,
+        "33": 120,
+        "34": 0,
+        "35": 0,
+        "36": 0
+      },
+      "events": [
+        {
+          "time": 0,
+          "type": "on",
+          "note": 96,
+          "velocity": 1
+        }
+      ],
+      "renders": [
+        {
+          "model": "baseline",
+          "render_rate": 44100,
+          "off_harmonic_16k_db": -34.90202977533941,
+          "audio_sha256": "ca5f7842b0dd66fd45dc82d2fcbc50fc798b41347e6c2d245745197dd427d583"
+        },
+        {
+          "model": "baseline",
+          "render_rate": 48000,
+          "off_harmonic_16k_db": -35.7096121822906,
+          "audio_sha256": "4b0ae22227a62e47b10f93d0a415021e7f9700ad0547c9c78b3f06aa2f830068"
+        },
+        {
+          "model": "baseline",
+          "render_rate": 96000,
+          "off_harmonic_16k_db": -41.625574618349816,
+          "audio_sha256": "3280be34248319e502e9cefe9224487d800922f063e4198a0bff3c930096a00f"
+        },
+        {
+          "model": "baseline",
+          "render_rate": 192000,
+          "off_harmonic_16k_db": -47.43111584349202,
+          "audio_sha256": "914ddf9b968b14d7fa01f43a8581f2158ccee1223653e0e9f59305d8188add56"
+        },
+        {
+          "model": "sync",
+          "render_rate": 44100,
+          "off_harmonic_16k_db": -52.05880808452658,
+          "audio_sha256": "dd041ba53afd34d295e0147e7d28aa3f86f97c6207b7849b4e2f227b016cdab4"
+        },
+        {
+          "model": "sync",
+          "render_rate": 48000,
+          "off_harmonic_16k_db": -53.02530112217072,
+          "audio_sha256": "22edd3f482eb69266b10ba9482f88793f5ce44ba4824658595d8d0964a8dffc9"
+        },
+        {
+          "model": "sync",
+          "render_rate": 96000,
+          "off_harmonic_16k_db": -65.79693425380155,
+          "audio_sha256": "9d2048ceb31fc4ac8b23b9cf4d2dee1f549d12bb7805ce9ccffc30cd22561fe9"
+        },
+        {
+          "model": "sync",
+          "render_rate": 192000,
+          "off_harmonic_16k_db": -77.67970508989742,
+          "audio_sha256": "eca2f421960186df87e24d0d813b4b8a7090cf1a8bb5d7663e2d5e07dbf69833"
+        }
+      ]
+    },
+    {
+      "case": "high_saw",
+      "master_hz": 3989.2,
+      "slave_ratio": 2.375,
+      "params": {
+        "0": 0,
+        "1": 0,
+        "2": 0,
+        "3": 0,
+        "4": 0.8,
+        "5": 1,
+        "6": 1,
+        "7": 297.51301613230254,
+        "8": 1,
+        "9": 1,
+        "10": 0,
+        "11": 0,
+        "12": 1,
+        "13": 0,
+        "14": 0.25,
+        "15": 0,
+        "16": 2,
+        "17": 1,
+        "18": 0,
+        "19": 0.3,
+        "20": 0,
+        "21": 0,
+        "22": 0,
+        "23": 0.25,
+        "24": 0,
+        "25": 0,
+        "26": 0,
+        "27": 0,
+        "28": -83.37116829735375,
+        "29": 1,
+        "30": 0,
+        "31": 0,
+        "32": 0,
+        "33": 120,
+        "34": 0,
+        "35": 0,
+        "36": 0
+      },
+      "events": [
+        {
+          "time": 0,
+          "type": "on",
+          "note": 120,
+          "velocity": 1
+        }
+      ],
+      "renders": [
+        {
+          "model": "baseline",
+          "render_rate": 44100,
+          "off_harmonic_16k_db": -29.74365265530041,
+          "audio_sha256": "8eefcf6a5d73e8db0d006cc22428ee20a1ac519853f8f86b4a73b3ee133800c1"
+        },
+        {
+          "model": "baseline",
+          "render_rate": 48000,
+          "off_harmonic_16k_db": -30.007428149429693,
+          "audio_sha256": "9190d8282c1b035feacae14205ebc7250754efc9cbab2f67886212a2a049aef5"
+        },
+        {
+          "model": "baseline",
+          "render_rate": 96000,
+          "off_harmonic_16k_db": -35.62951267089066,
+          "audio_sha256": "a6a2116bee67509d96f54ac69b79f3f93369d346de7e5105d2ff0fda1d063099"
+        },
+        {
+          "model": "baseline",
+          "render_rate": 192000,
+          "off_harmonic_16k_db": -42.0047802747306,
+          "audio_sha256": "a05de9aee0471b1b7c8c5e7128b73020b415a25d6aec0df92d0b7a76b93d1107"
+        },
+        {
+          "model": "sync",
+          "render_rate": 44100,
+          "off_harmonic_16k_db": -67.55868946239686,
+          "audio_sha256": "f7d3e25ad5d0cc991b89aada55ec181b607a1ecf2add021a13804d6ce98269f8"
+        },
+        {
+          "model": "sync",
+          "render_rate": 48000,
+          "off_harmonic_16k_db": -64.58335056693105,
+          "audio_sha256": "9f0f3c6d82ce86c8f6d047c90056517f2fc82612d5d2d4c458f155619d086889"
+        },
+        {
+          "model": "sync",
+          "render_rate": 96000,
+          "off_harmonic_16k_db": -82.02637350378181,
+          "audio_sha256": "d8702593ee63e0a4776a551d485c9f9d4ea9bc2b4016f76cf34e2733f3403b93"
+        },
+        {
+          "model": "sync",
+          "render_rate": 192000,
+          "off_harmonic_16k_db": -86.29618633686994,
+          "audio_sha256": "59e986a0dc1f7585a8d96791caef9012c839f5ae2ff16ac35db4501daaac33b5"
+        }
+      ]
+    },
+    {
+      "case": "high_triangle",
+      "master_hz": 3989.2,
+      "slave_ratio": 2.375,
+      "params": {
+        "0": 0,
+        "1": 0,
+        "2": 0,
+        "3": 1,
+        "4": 0,
+        "5": 1,
+        "6": 1,
+        "7": 297.51301613230254,
+        "8": 1,
+        "9": 1,
+        "10": 0,
+        "11": 0,
+        "12": 1,
+        "13": 0,
+        "14": 0.25,
+        "15": 0,
+        "16": 2,
+        "17": 1,
+        "18": 0,
+        "19": 0.3,
+        "20": 0,
+        "21": 0,
+        "22": 0,
+        "23": 0.25,
+        "24": 0,
+        "25": 0,
+        "26": 0,
+        "27": 0,
+        "28": -83.37116829735375,
+        "29": 1,
+        "30": 0,
+        "31": 0,
+        "32": 0,
+        "33": 120,
+        "34": 0,
+        "35": 0,
+        "36": 0
+      },
+      "events": [
+        {
+          "time": 0,
+          "type": "on",
+          "note": 120,
+          "velocity": 1
+        }
+      ],
+      "renders": [
+        {
+          "model": "baseline",
+          "render_rate": 44100,
+          "off_harmonic_16k_db": -24.95134103098684,
+          "audio_sha256": "68c17fdf39a71bf704bf027f3dcdafee12f0881e44aab2c7f7df5d634c4cffa3"
+        },
+        {
+          "model": "baseline",
+          "render_rate": 48000,
+          "off_harmonic_16k_db": -25.705121269518045,
+          "audio_sha256": "52a3ff680f27529d266fd96042ee8d972ffc611e93816d3064b1faf0a75b38c5"
+        },
+        {
+          "model": "baseline",
+          "render_rate": 96000,
+          "off_harmonic_16k_db": -31.6935865193934,
+          "audio_sha256": "166f29804963cda2639e58787cdb3db118cb211f25b1e6a0f25c282f9dbd6b63"
+        },
+        {
+          "model": "baseline",
+          "render_rate": 192000,
+          "off_harmonic_16k_db": -37.69185404887581,
+          "audio_sha256": "f0a8ece074c7d7d33e18c14d9d801a247109951cbeefbd41b13cdee6e4d55f52"
+        },
+        {
+          "model": "sync",
+          "render_rate": 44100,
+          "off_harmonic_16k_db": -77.77222493655843,
+          "audio_sha256": "e8550f8563fffa96041fbc9fd913b757b68c21de50ef18e9ce72627dd0e5fe80"
+        },
+        {
+          "model": "sync",
+          "render_rate": 48000,
+          "off_harmonic_16k_db": -80.10398099747492,
+          "audio_sha256": "f679360b6648e36c1c01e1759f6e50f7bd2dc65ac903229f7cac497856dfaefb"
+        },
+        {
+          "model": "sync",
+          "render_rate": 96000,
+          "off_harmonic_16k_db": -86.07946738901697,
+          "audio_sha256": "953719b74592d48afeac95b346d0c29e92385feeb0eed3be28badc08876e5ea5"
+        },
+        {
+          "model": "sync",
+          "render_rate": 192000,
+          "off_harmonic_16k_db": -86.30656065762173,
+          "audio_sha256": "2a3c4e4d2f6fb2a4891a2d7cbbd4280cdcf109eeb02972f36e009ab143064c60"
+        }
+      ]
+    }
+  ],
+  "notes": [
+    "Synthetic steady notes; no hardware references used and no reset parameter retuned.",
+    "48/96/192k renders use a shared 48k analysis rate with offline 20k-pass/24k-stop resampling; 44.1k uses rational Kaiser resampling.",
+    "Native final FIR cutoff scales with render rate; measurements stop at 16k, below every native transition.",
+    "Off-harmonic residual does not measure aliases coincident with harmonics; reference Fourier audit separately checks harmonic/timing error.",
+    "Above max supported notes the internal increment cap can alter ratios; chosen cases stay below that cap."
+  ]
+}

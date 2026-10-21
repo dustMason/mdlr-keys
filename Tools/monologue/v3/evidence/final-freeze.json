@@ -1,0 +1,16 @@
+{
+  "frozen_utc": "2026-10-21T22:28:07.128372+00:00",
+  "authorization": "Parent froze the final source and explicitly authorized full warm development, then untouched baseline/final validation once, with no subsequent tuning.",
+  "native_renderer_sha256": "83b2b0879de9714a041129fe56c5393224041dd88852a5c9e7cb400f429bc7ad",
+  "baseline_renderer_sha256": "acbc91bf2f01ebf80a015e0e78714e40623d7348b3a1ead14c31ed5083bf66b8",
+  "protocol_sha256": "41fbee75817f27ee8b624dcb885489eaa5d7e6eabf8ceb15179e96a20a2d70e5",
+  "manifest_sha256": "783cf05d0d0857f7a84e34ab5dc820d279521de8a99d5416d19248415fbaeb20",
+  "metric_sha256": "6760affc4c57c378306d8775cc7f6b28794979fd460f7a6096a0702410880d35",
+  "runner_sha256": "5ad7a78ae7817a2b1df44005ea61b8c75dc008c7c7fe103fe1aeb39ee03f1ac8",
+  "native_model": "Original product, free-triangle BLAMP and sync corrections; no added delay",
+  "rejected_models": [
+    "coupled diode bridge",
+    "coupled bridge AA",
+    "exact interval product AA"
+  ]
+}

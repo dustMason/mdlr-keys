@@ -1,0 +1,278 @@
+{
+  "repository": "https://github.com/callimero/Monologue",
+  "commit": "e829a7fbcc15a2a3555f86625b8592d77e4e5b76",
+  "license": "MIT",
+  "retrieved_utc": "2026-10-21",
+  "files": [
+    {
+      "path": "LICENSE",
+      "url": "https://raw.githubusercontent.com/callimero/Monologue/e829a7fbcc15a2a3555f86625b8592d77e4e5b76/LICENSE",
+      "bytes": 1073,
+      "sha256": "c304e48334c15dff4fb4346df8d8c0d4582b44fc741793ea73e33ac391ecc55c"
+    },
+    {
+      "path": "README.md",
+      "url": "https://raw.githubusercontent.com/callimero/Monologue/e829a7fbcc15a2a3555f86625b8592d77e4e5b76/README.md",
+      "bytes": 748,
+      "sha256": "cc80752084ff41ae74cb3bdd2ff1b6a2dddd38d1b332624ee57fccb9b6fd571f"
+    },
+    {
+      "path": "patches/3rd OSC.molgprog",
+      "url": "https://raw.githubusercontent.com/callimero/Monologue/e829a7fbcc15a2a3555f86625b8592d77e4e5b76/patches/3rd%20OSC.molgprog",
+      "bytes": 788,
+      "sha256": "c064f3ecbc0828b11b5e993bc37db34cab27f09603f9e297b7f9ec997499a931"
+    },
+    {
+      "path": "patches/A Base.jpg",
+      "url": "https://raw.githubusercontent.com/callimero/Monologue/e829a7fbcc15a2a3555f86625b8592d77e4e5b76/patches/A%20Base.jpg",
+      "bytes": 92302,
+      "sha256": "3511d601d6dd2362303248714ee998feacd79aa87d9d96e54d4e536b07bf0850"
+    },
+    {
+      "path": "patches/A Base.molgprog",
+      "url": "https://raw.githubusercontent.com/callimero/Monologue/e829a7fbcc15a2a3555f86625b8592d77e4e5b76/patches/A%20Base.molgprog",
+      "bytes": 791,
+      "sha256": "b816e8d8f72983a68ba83149c9be4554e504f1a460a3e90663e84677dece9684"
+    },
+    {
+      "path": "patches/A Base.wav",
+      "url": "https://raw.githubusercontent.com/callimero/Monologue/e829a7fbcc15a2a3555f86625b8592d77e4e5b76/patches/A%20Base.wav",
+      "bytes": 3440536,
+      "sha256": "6b961fc8cf88e1338dab65f94d00827e2dc8554a328f78c8c0f19be062f177ac"
+    },
+    {
+      "path": "patches/Akkordeon.molgprog",
+      "url": "https://raw.githubusercontent.com/callimero/Monologue/e829a7fbcc15a2a3555f86625b8592d77e4e5b76/patches/Akkordeon.molgprog",
+      "bytes": 739,
+      "sha256": "e949f3d2434d421d6773355affa6a39ad30986a46c3b45f07b89c24047927222"
+    },
+    {
+      "path": "patches/Bimbampam.molgprog",
+      "url": "https://raw.githubusercontent.com/callimero/Monologue/e829a7fbcc15a2a3555f86625b8592d77e4e5b76/patches/Bimbampam.molgprog",
+      "bytes": 762,
+      "sha256": "9bf7bb8bb14bc2d0ff2be5d3733abbe7a2bb36c9891d78715426d3598e704f7e"
+    },
+    {
+      "path": "patches/Brite Power.jpg",
+      "url": "https://raw.githubusercontent.com/callimero/Monologue/e829a7fbcc15a2a3555f86625b8592d77e4e5b76/patches/Brite%20Power.jpg",
+      "bytes": 90032,
+      "sha256": "97ac2970df5d31cfced6a9d6df021c84feb62a8d055b131a4aa287cdd1a051a7"
+    },
+    {
+      "path": "patches/Brite Power.molgprog",
+      "url": "https://raw.githubusercontent.com/callimero/Monologue/e829a7fbcc15a2a3555f86625b8592d77e4e5b76/patches/Brite%20Power.molgprog",
+      "bytes": 813,
+      "sha256": "32259d99150c54b39eef94bcaea329d8f51b7b62c9e23c2144da10cb1b8ca3f8"
+    },
+    {
+      "path": "patches/Brite Power.wav",
+      "url": "https://raw.githubusercontent.com/callimero/Monologue/e829a7fbcc15a2a3555f86625b8592d77e4e5b76/patches/Brite%20Power.wav",
+      "bytes": 1588336,
+      "sha256": "253384b2e4f52505d6b70e1ebec9f27e571560a193dfa62d75a0cd00b08ce72d"
+    },
+    {
+      "path": "patches/Deep Meow.molgprog",
+      "url": "https://raw.githubusercontent.com/callimero/Monologue/e829a7fbcc15a2a3555f86625b8592d77e4e5b76/patches/Deep%20Meow.molgprog",
+      "bytes": 816,
+      "sha256": "fd995b434a10682bde919a09e755541c24eed86ffaf71a8af91564413f038e65"
+    },
+    {
+      "path": "patches/DuiDui.molgprog",
+      "url": "https://raw.githubusercontent.com/callimero/Monologue/e829a7fbcc15a2a3555f86625b8592d77e4e5b76/patches/DuiDui.molgprog",
+      "bytes": 735,
+      "sha256": "1d89050839e86a8787977927c072b59a299f81eb68f100a9fb03e96c7a2561eb"
+    },
+    {
+      "path": "patches/Enough.molgprog",
+      "url": "https://raw.githubusercontent.com/callimero/Monologue/e829a7fbcc15a2a3555f86625b8592d77e4e5b76/patches/Enough.molgprog",
+      "bytes": 787,
+      "sha256": "2e5d61aae2106b0c0f604d924c3e3d5af72f9bde0a9920ed73f3ec0cc8f99b19"
+    },
+    {
+      "path": "patches/Gear Shift.molgprog",
+      "url": "https://raw.githubusercontent.com/callimero/Monologue/e829a7fbcc15a2a3555f86625b8592d77e4e5b76/patches/Gear%20Shift.molgprog",
+      "bytes": 819,
+      "sha256": "93dd5b85efae98aabe9393711783e8020690c9bec25dbf6d9f29c475c977e5be"
+    },
+    {
+      "path": "patches/Gloeckchen.molgprog",
+      "url": "https://raw.githubusercontent.com/callimero/Monologue/e829a7fbcc15a2a3555f86625b8592d77e4e5b76/patches/Gloeckchen.molgprog",
+      "bytes": 825,
+      "sha256": "5dfdd8a68185866a342097815eb983465c449e54b65db58f765ef12472aa69c0"
+    },
+    {
+      "path": "patches/Harpie.jpg",
+      "url": "https://raw.githubusercontent.com/callimero/Monologue/e829a7fbcc15a2a3555f86625b8592d77e4e5b76/patches/Harpie.jpg",
+      "bytes": 91377,
+      "sha256": "c357b26905652876d01387a2d560d6834a60eb926431af081d7fc828d8285f24"
+    },
+    {
+      "path": "patches/Harpie.molgprog",
+      "url": "https://raw.githubusercontent.com/callimero/Monologue/e829a7fbcc15a2a3555f86625b8592d77e4e5b76/patches/Harpie.molgprog",
+      "bytes": 786,
+      "sha256": "3cb571de1c1200691ae5d8de738a5f577aa7635ebe997806cd1d982441d5ba3b"
+    },
+    {
+      "path": "patches/Harpie.wav",
+      "url": "https://raw.githubusercontent.com/callimero/Monologue/e829a7fbcc15a2a3555f86625b8592d77e4e5b76/patches/Harpie.wav",
+      "bytes": 2779036,
+      "sha256": "682e201ffa2967a10daa8b3e6bd9ada2d3b05cef57f8c40fc7e43c1c27e7bcdd"
+    },
+    {
+      "path": "patches/Herz.molgprog",
+      "url": "https://raw.githubusercontent.com/callimero/Monologue/e829a7fbcc15a2a3555f86625b8592d77e4e5b76/patches/Herz.molgprog",
+      "bytes": 775,
+      "sha256": "858809da6368543b52cd309c05190fb301296299d217a3f20516ce853827db36"
+    },
+    {
+      "path": "patches/Nass.molgprog",
+      "url": "https://raw.githubusercontent.com/callimero/Monologue/e829a7fbcc15a2a3555f86625b8592d77e4e5b76/patches/Nass.molgprog",
+      "bytes": 797,
+      "sha256": "4c3297b00979ef5bc8749833573fa9666083dca311aee7bd8b3d1cb376b42336"
+    },
+    {
+      "path": "patches/Pad Ua.molgprog",
+      "url": "https://raw.githubusercontent.com/callimero/Monologue/e829a7fbcc15a2a3555f86625b8592d77e4e5b76/patches/Pad%20Ua.molgprog",
+      "bytes": 797,
+      "sha256": "5ee8e17946ab3f5c698322397e3790e160114db209dc2754b1b33f4fa4d3a427"
+    },
+    {
+      "path": "patches/Pinoesque.jpg",
+      "url": "https://raw.githubusercontent.com/callimero/Monologue/e829a7fbcc15a2a3555f86625b8592d77e4e5b76/patches/Pinoesque.jpg",
+      "bytes": 91760,
+      "sha256": "3395844e247ea11bad85efc7b903a6eb060bd80b774ecbc564a4453fdb29c351"
+    },
+    {
+      "path": "patches/Pinoesque.molgprog",
+      "url": "https://raw.githubusercontent.com/callimero/Monologue/e829a7fbcc15a2a3555f86625b8592d77e4e5b76/patches/Pinoesque.molgprog",
+      "bytes": 768,
+      "sha256": "7dc0df8c4d41ec5787be02cb872ef24b6e0964b7e01759ba794c97ef49d32328"
+    },
+    {
+      "path": "patches/Pinoesque.wav",
+      "url": "https://raw.githubusercontent.com/callimero/Monologue/e829a7fbcc15a2a3555f86625b8592d77e4e5b76/patches/Pinoesque.wav",
+      "bytes": 3043636,
+      "sha256": "8e153023f6362ba1f538ae1d0e443ac25e3deaf93662ad49a3fab6db95eb6232"
+    },
+    {
+      "path": "patches/Rain.molgprog",
+      "url": "https://raw.githubusercontent.com/callimero/Monologue/e829a7fbcc15a2a3555f86625b8592d77e4e5b76/patches/Rain.molgprog",
+      "bytes": 855,
+      "sha256": "dd9206ec2458acb3d409b2f7a9316b0fe3f06f310e41a25bd39f7d507773ca68"
+    },
+    {
+      "path": "patches/Readme.md",
+      "url": "https://raw.githubusercontent.com/callimero/Monologue/e829a7fbcc15a2a3555f86625b8592d77e4e5b76/patches/Readme.md",
+      "bytes": 143,
+      "sha256": "367bee5a240a4b6bd55a676c69f9843a89d769262135bc4c28e0b7b5db28ce56"
+    },
+    {
+      "path": "patches/S0S.jpg",
+      "url": "https://raw.githubusercontent.com/callimero/Monologue/e829a7fbcc15a2a3555f86625b8592d77e4e5b76/patches/S0S.jpg",
+      "bytes": 89678,
+      "sha256": "7e177ba924145299de9435ba10026af76d172a56dbef91456b1e09cf4bebf912"
+    },
+    {
+      "path": "patches/S0S.molgprog",
+      "url": "https://raw.githubusercontent.com/callimero/Monologue/e829a7fbcc15a2a3555f86625b8592d77e4e5b76/patches/S0S.molgprog",
+      "bytes": 769,
+      "sha256": "ebe110286d6dfd9d25d410a9ee7e7e6054d6d0ffe951dcff89fd43957155cf71"
+    },
+    {
+      "path": "patches/S0S.wav",
+      "url": "https://raw.githubusercontent.com/callimero/Monologue/e829a7fbcc15a2a3555f86625b8592d77e4e5b76/patches/S0S.wav",
+      "bytes": 2646736,
+      "sha256": "66450b8219472f7fd1ff4eb00390fd19a4708043588d0444372aff5bd68c1ac6"
+    },
+    {
+      "path": "patches/Spce Meow.molgprog",
+      "url": "https://raw.githubusercontent.com/callimero/Monologue/e829a7fbcc15a2a3555f86625b8592d77e4e5b76/patches/Spce%20Meow.molgprog",
+      "bytes": 803,
+      "sha256": "c6fef9550f5706c9e91f8d50830b881c1197f21c091b1f140129271e66d1d205"
+    },
+    {
+      "path": "patches/Stormy Sea.molgprog",
+      "url": "https://raw.githubusercontent.com/callimero/Monologue/e829a7fbcc15a2a3555f86625b8592d77e4e5b76/patches/Stormy%20Sea.molgprog",
+      "bytes": 1007,
+      "sha256": "1416c6b0633707e1f3ecea1a6fd5b1c5388cd2f92441804bf12477b5aa2f2b84"
+    },
+    {
+      "path": "patches/String Hold.jpg",
+      "url": "https://raw.githubusercontent.com/callimero/Monologue/e829a7fbcc15a2a3555f86625b8592d77e4e5b76/patches/String%20Hold.jpg",
+      "bytes": 91651,
+      "sha256": "a6a365418d39b3f84392552974c16d4d49f90d6388a8e7b045a469f25e0963c2"
+    },
+    {
+      "path": "patches/String Hold.molgprog",
+      "url": "https://raw.githubusercontent.com/callimero/Monologue/e829a7fbcc15a2a3555f86625b8592d77e4e5b76/patches/String%20Hold.molgprog",
+      "bytes": 737,
+      "sha256": "ce16891c9781dbc630211d768648f81ac1c62261ef38c8b8eb9d7d1ef951aaec"
+    },
+    {
+      "path": "patches/String Hold.wav",
+      "url": "https://raw.githubusercontent.com/callimero/Monologue/e829a7fbcc15a2a3555f86625b8592d77e4e5b76/patches/String%20Hold.wav",
+      "bytes": 8864836,
+      "sha256": "4af72f2407bafe1b37c6c13c3b6d7a6e4173bd295d7408a5cb5b8059b60b7513"
+    },
+    {
+      "path": "patches/Thunder.molgprog",
+      "url": "https://raw.githubusercontent.com/callimero/Monologue/e829a7fbcc15a2a3555f86625b8592d77e4e5b76/patches/Thunder.molgprog",
+      "bytes": 771,
+      "sha256": "609a72bc96693042d40a4c3d5a2314fd4d7bec3465f11d528152a10617b2b8de"
+    },
+    {
+      "path": "patches/Tubu Swirl.molgprog",
+      "url": "https://raw.githubusercontent.com/callimero/Monologue/e829a7fbcc15a2a3555f86625b8592d77e4e5b76/patches/Tubu%20Swirl.molgprog",
+      "bytes": 814,
+      "sha256": "e4f42e329b050252a1879bcebe0a6ce1810e8ad2ce7316e7289aad7429e97512"
+    },
+    {
+      "path": "patches/Twang.jpg",
+      "url": "https://raw.githubusercontent.com/callimero/Monologue/e829a7fbcc15a2a3555f86625b8592d77e4e5b76/patches/Twang.jpg",
+      "bytes": 91556,
+      "sha256": "cb23cfdc13e7fd2647eeed155657cdf945480de58b2457cf36524aa6afb590c0"
+    },
+    {
+      "path": "patches/Twang.molgprog",
+      "url": "https://raw.githubusercontent.com/callimero/Monologue/e829a7fbcc15a2a3555f86625b8592d77e4e5b76/patches/Twang.molgprog",
+      "bytes": 810,
+      "sha256": "0305f93af61ed9a9c246bcfa9682a6866e4914d6865c8e18511da5747e219f2d"
+    },
+    {
+      "path": "patches/Twang.wav",
+      "url": "https://raw.githubusercontent.com/callimero/Monologue/e829a7fbcc15a2a3555f86625b8592d77e4e5b76/patches/Twang.wav",
+      "bytes": 3175936,
+      "sha256": "5e20185850ceadf684df96d0c0e734183d61f8525a1525e72cedfbe7746e9242"
+    },
+    {
+      "path": "patches/Weinitz.molgprog",
+      "url": "https://raw.githubusercontent.com/callimero/Monologue/e829a7fbcc15a2a3555f86625b8592d77e4e5b76/patches/Weinitz.molgprog",
+      "bytes": 795,
+      "sha256": "e2eaae8cec4bcdfb91b005fd591674ede5ddadaed4ffaeadce28f1b6a187cb69"
+    },
+    {
+      "path": "patches/Wiff Wiff.molgprog",
+      "url": "https://raw.githubusercontent.com/callimero/Monologue/e829a7fbcc15a2a3555f86625b8592d77e4e5b76/patches/Wiff%20Wiff.molgprog",
+      "bytes": 817,
+      "sha256": "8a5db38d12d41b761d37e108982f57b798bcd965e1d3fc71da15ff9ec75f5596"
+    },
+    {
+      "path": "patches/Wong Weng.molgprog",
+      "url": "https://raw.githubusercontent.com/callimero/Monologue/e829a7fbcc15a2a3555f86625b8592d77e4e5b76/patches/Wong%20Weng.molgprog",
+      "bytes": 804,
+      "sha256": "153e3846794e5e0e23d63f3672f0268c692368770bd6456a59acdc6cc8657972"
+    },
+    {
+      "path": "patches/Wuai.molgprog",
+      "url": "https://raw.githubusercontent.com/callimero/Monologue/e829a7fbcc15a2a3555f86625b8592d77e4e5b76/patches/Wuai.molgprog",
+      "bytes": 733,
+      "sha256": "335d081cd64e47ff066a54a576e1788813c31bc5fb3fa6013b6b755f17f3042f"
+    },
+    {
+      "path": "patches/Zelda.molgprog",
+      "url": "https://raw.githubusercontent.com/callimero/Monologue/e829a7fbcc15a2a3555f86625b8592d77e4e5b76/patches/Zelda.molgprog",
+      "bytes": 796,
+      "sha256": "e61c2b8a2535271ab84891ea003235b36ab02810a6cbf63296cb1a1edbe4a83c"
+    }
+  ]
+}

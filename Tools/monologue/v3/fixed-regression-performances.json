@@ -1,0 +1,120 @@
+{
+  "source": "Frozen v2 final native-defaults selected performances",
+  "source_renderer_sha256": "02730e59367815dfdd0d9e27853c9f05cd1c9cf2d7fcdcd875d81c7ddbec8dcd",
+  "source_metrics_sha256": "1b68ef8af2697059b94df853cd9b46a291a0b6e9f53039d181ce5c65357bd5fb",
+  "note": "These are known controls. The same prior events and phase seeds are used for each new renderer; no selection uses new output.",
+  "cases": {
+    "s0s_triangle": {
+      "selected_velocity": 0.8,
+      "selected_gate_off": null,
+      "selected_oscillator_phases": null,
+      "selected_lfo_phase": 0,
+      "events": [
+        {
+          "time": 0.05,
+          "note": 88,
+          "velocity": 0.8,
+          "type": "on"
+        },
+        {
+          "time": 0.347,
+          "note": 88,
+          "velocity": 0,
+          "type": "off"
+        }
+      ]
+    },
+    "pinoesque": {
+      "selected_velocity": 1.0,
+      "selected_gate_off": 0.16,
+      "selected_oscillator_phases": [
+        0.137,
+        0.5
+      ],
+      "selected_lfo_phase": 0,
+      "events": [
+        {
+          "time": 0.05,
+          "note": 60,
+          "velocity": 1.0,
+          "type": "on"
+        },
+        {
+          "time": 0.16,
+          "note": 60,
+          "velocity": 0,
+          "type": "off"
+        }
+      ]
+    },
+    "gloeckchen_triangles": {
+      "selected_velocity": 0.4881889763779528,
+      "selected_gate_off": null,
+      "selected_oscillator_phases": [
+        0.137,
+        0.125
+      ],
+      "selected_lfo_phase": 0,
+      "events": [
+        {
+          "time": 0.05,
+          "note": 72,
+          "velocity": 0.4881889763779528,
+          "type": "on"
+        },
+        {
+          "time": 0.18194444444444446,
+          "note": 72,
+          "velocity": 0,
+          "type": "off"
+        }
+      ]
+    },
+    "duidui_saw_shape": {
+      "selected_velocity": 0.8,
+      "selected_gate_off": 0.15,
+      "selected_oscillator_phases": [
+        0.137,
+        0.5
+      ],
+      "selected_lfo_phase": 0,
+      "events": [
+        {
+          "time": 0.05,
+          "note": 52,
+          "velocity": 0.8,
+          "type": "on"
+        },
+        {
+          "time": 0.15,
+          "note": 52,
+          "velocity": 0,
+          "type": "off"
+        }
+      ]
+    },
+    "wuai_saw_filter": {
+      "selected_velocity": 0.8,
+      "selected_gate_off": 0.25,
+      "selected_oscillator_phases": [
+        0.137,
+        0.75
+      ],
+      "selected_lfo_phase": 0,
+      "events": [
+        {
+          "time": 0.05,
+          "note": 48,
+          "velocity": 0.8,
+          "type": "on"
+        },
+        {
+          "time": 0.25,
+          "note": 48,
+          "velocity": 0,
+          "type": "off"
+        }
+      ]
+    }
+  }
+}

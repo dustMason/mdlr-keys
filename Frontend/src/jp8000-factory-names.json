@@ -1,0 +1,1538 @@
+[
+  {
+    "kind": "patch",
+    "index": 0,
+    "bank": 0,
+    "slot": 0,
+    "label": "P:A11",
+    "name": "Spit'n Slide Bs"
+  },
+  {
+    "kind": "patch",
+    "index": 1,
+    "bank": 0,
+    "slot": 1,
+    "label": "P:A12",
+    "name": "Velo Decay Bass"
+  },
+  {
+    "kind": "patch",
+    "index": 2,
+    "bank": 0,
+    "slot": 2,
+    "label": "P:A13",
+    "name": "Wall Bob"
+  },
+  {
+    "kind": "patch",
+    "index": 3,
+    "bank": 0,
+    "slot": 3,
+    "label": "P:A14",
+    "name": "Juno Sub Bass"
+  },
+  {
+    "kind": "patch",
+    "index": 4,
+    "bank": 0,
+    "slot": 4,
+    "label": "P:A15",
+    "name": "Subsonic Bass"
+  },
+  {
+    "kind": "patch",
+    "index": 5,
+    "bank": 0,
+    "slot": 5,
+    "label": "P:A16",
+    "name": "Big & Dark"
+  },
+  {
+    "kind": "patch",
+    "index": 6,
+    "bank": 0,
+    "slot": 6,
+    "label": "P:A17",
+    "name": "Bass Flow"
+  },
+  {
+    "kind": "patch",
+    "index": 7,
+    "bank": 0,
+    "slot": 7,
+    "label": "P:A18",
+    "name": "Juno Bass Vel"
+  },
+  {
+    "kind": "patch",
+    "index": 8,
+    "bank": 0,
+    "slot": 8,
+    "label": "P:A21",
+    "name": "Dubb Bass"
+  },
+  {
+    "kind": "patch",
+    "index": 9,
+    "bank": 0,
+    "slot": 9,
+    "label": "P:A22",
+    "name": "Juice Bass"
+  },
+  {
+    "kind": "patch",
+    "index": 10,
+    "bank": 0,
+    "slot": 10,
+    "label": "P:A23",
+    "name": "Dreams Are Made"
+  },
+  {
+    "kind": "patch",
+    "index": 11,
+    "bank": 0,
+    "slot": 11,
+    "label": "P:A24",
+    "name": "Reso Bass Line"
+  },
+  {
+    "kind": "patch",
+    "index": 12,
+    "bank": 0,
+    "slot": 12,
+    "label": "P:A25",
+    "name": "Bass Pedals"
+  },
+  {
+    "kind": "patch",
+    "index": 13,
+    "bank": 0,
+    "slot": 13,
+    "label": "P:A26",
+    "name": "Hard Core Bass"
+  },
+  {
+    "kind": "patch",
+    "index": 14,
+    "bank": 0,
+    "slot": 14,
+    "label": "P:A27",
+    "name": "MC-202 Bass"
+  },
+  {
+    "kind": "patch",
+    "index": 15,
+    "bank": 0,
+    "slot": 15,
+    "label": "P:A28",
+    "name": "Rubber SH-2"
+  },
+  {
+    "kind": "patch",
+    "index": 16,
+    "bank": 0,
+    "slot": 16,
+    "label": "P:A31",
+    "name": "Raging Bass"
+  },
+  {
+    "kind": "patch",
+    "index": 17,
+    "bank": 0,
+    "slot": 17,
+    "label": "P:A32",
+    "name": "Blipper Bass"
+  },
+  {
+    "kind": "patch",
+    "index": 18,
+    "bank": 0,
+    "slot": 18,
+    "label": "P:A33",
+    "name": "JP-303"
+  },
+  {
+    "kind": "patch",
+    "index": 19,
+    "bank": 0,
+    "slot": 19,
+    "label": "P:A34",
+    "name": "Rave Time"
+  },
+  {
+    "kind": "patch",
+    "index": 20,
+    "bank": 0,
+    "slot": 20,
+    "label": "P:A35",
+    "name": "Fretless Bass"
+  },
+  {
+    "kind": "patch",
+    "index": 21,
+    "bank": 0,
+    "slot": 21,
+    "label": "P:A36",
+    "name": "Digi Strat"
+  },
+  {
+    "kind": "patch",
+    "index": 22,
+    "bank": 0,
+    "slot": 22,
+    "label": "P:A37",
+    "name": "Fire Wire"
+  },
+  {
+    "kind": "patch",
+    "index": 23,
+    "bank": 0,
+    "slot": 23,
+    "label": "P:A38",
+    "name": "Proflike Clavit"
+  },
+  {
+    "kind": "patch",
+    "index": 24,
+    "bank": 0,
+    "slot": 24,
+    "label": "P:A41",
+    "name": "Withmod Comp"
+  },
+  {
+    "kind": "patch",
+    "index": 25,
+    "bank": 0,
+    "slot": 25,
+    "label": "P:A42",
+    "name": "Juno Clav"
+  },
+  {
+    "kind": "patch",
+    "index": 26,
+    "bank": 0,
+    "slot": 26,
+    "label": "P:A43",
+    "name": "Gritty Power"
+  },
+  {
+    "kind": "patch",
+    "index": 27,
+    "bank": 0,
+    "slot": 27,
+    "label": "P:A44",
+    "name": "Separate ways"
+  },
+  {
+    "kind": "patch",
+    "index": 28,
+    "bank": 0,
+    "slot": 28,
+    "label": "P:A45",
+    "name": "For RPS"
+  },
+  {
+    "kind": "patch",
+    "index": 29,
+    "bank": 0,
+    "slot": 29,
+    "label": "P:A46",
+    "name": "Bread'n Butter"
+  },
+  {
+    "kind": "patch",
+    "index": 30,
+    "bank": 0,
+    "slot": 30,
+    "label": "P:A47",
+    "name": "Silk 5ths"
+  },
+  {
+    "kind": "patch",
+    "index": 31,
+    "bank": 0,
+    "slot": 31,
+    "label": "P:A48",
+    "name": "Ancient Asia"
+  },
+  {
+    "kind": "patch",
+    "index": 32,
+    "bank": 0,
+    "slot": 32,
+    "label": "P:A51",
+    "name": "Intervalic"
+  },
+  {
+    "kind": "patch",
+    "index": 33,
+    "bank": 0,
+    "slot": 33,
+    "label": "P:A52",
+    "name": "Squared Away"
+  },
+  {
+    "kind": "patch",
+    "index": 34,
+    "bank": 0,
+    "slot": 34,
+    "label": "P:A53",
+    "name": "Velo Syncoid"
+  },
+  {
+    "kind": "patch",
+    "index": 35,
+    "bank": 0,
+    "slot": 35,
+    "label": "P:A54",
+    "name": "Resonance Chord"
+  },
+  {
+    "kind": "patch",
+    "index": 36,
+    "bank": 0,
+    "slot": 36,
+    "label": "P:A55",
+    "name": "Resorelease"
+  },
+  {
+    "kind": "patch",
+    "index": 37,
+    "bank": 0,
+    "slot": 37,
+    "label": "P:A56",
+    "name": "Waspy Synth"
+  },
+  {
+    "kind": "patch",
+    "index": 38,
+    "bank": 0,
+    "slot": 38,
+    "label": "P:A57",
+    "name": "Euro SAW"
+  },
+  {
+    "kind": "patch",
+    "index": 39,
+    "bank": 0,
+    "slot": 39,
+    "label": "P:A58",
+    "name": "Dance Sweep"
+  },
+  {
+    "kind": "patch",
+    "index": 40,
+    "bank": 0,
+    "slot": 40,
+    "label": "P:A61",
+    "name": "Trance Food"
+  },
+  {
+    "kind": "patch",
+    "index": 41,
+    "bank": 0,
+    "slot": 41,
+    "label": "P:A62",
+    "name": "One Shot Reso"
+  },
+  {
+    "kind": "patch",
+    "index": 42,
+    "bank": 0,
+    "slot": 42,
+    "label": "P:A63",
+    "name": "The Fat Guy"
+  },
+  {
+    "kind": "patch",
+    "index": 43,
+    "bank": 0,
+    "slot": 43,
+    "label": "P:A64",
+    "name": "Spit Brass"
+  },
+  {
+    "kind": "patch",
+    "index": 44,
+    "bank": 0,
+    "slot": 44,
+    "label": "P:A65",
+    "name": "Poly Sync"
+  },
+  {
+    "kind": "patch",
+    "index": 45,
+    "bank": 0,
+    "slot": 45,
+    "label": "P:A66",
+    "name": "Rave 5th"
+  },
+  {
+    "kind": "patch",
+    "index": 46,
+    "bank": 0,
+    "slot": 46,
+    "label": "P:A67",
+    "name": "UK Shorty"
+  },
+  {
+    "kind": "patch",
+    "index": 47,
+    "bank": 0,
+    "slot": 47,
+    "label": "P:A68",
+    "name": "Old Rhodes"
+  },
+  {
+    "kind": "patch",
+    "index": 48,
+    "bank": 0,
+    "slot": 48,
+    "label": "P:A71",
+    "name": "Wurly Piano 1"
+  },
+  {
+    "kind": "patch",
+    "index": 49,
+    "bank": 0,
+    "slot": 49,
+    "label": "P:A72",
+    "name": "Wurly Piano 2"
+  },
+  {
+    "kind": "patch",
+    "index": 50,
+    "bank": 0,
+    "slot": 50,
+    "label": "P:A73",
+    "name": "Moody Organ"
+  },
+  {
+    "kind": "patch",
+    "index": 51,
+    "bank": 0,
+    "slot": 51,
+    "label": "P:A74",
+    "name": "Org/Rotary>Ribon"
+  },
+  {
+    "kind": "patch",
+    "index": 52,
+    "bank": 0,
+    "slot": 52,
+    "label": "P:A75",
+    "name": "VK09 PercEchoes"
+  },
+  {
+    "kind": "patch",
+    "index": 53,
+    "bank": 0,
+    "slot": 53,
+    "label": "P:A76",
+    "name": "Sine Lead"
+  },
+  {
+    "kind": "patch",
+    "index": 54,
+    "bank": 0,
+    "slot": 54,
+    "label": "P:A77",
+    "name": "Wichita Lead"
+  },
+  {
+    "kind": "patch",
+    "index": 55,
+    "bank": 0,
+    "slot": 55,
+    "label": "P:A78",
+    "name": "Creamy"
+  },
+  {
+    "kind": "patch",
+    "index": 56,
+    "bank": 0,
+    "slot": 56,
+    "label": "P:A81",
+    "name": "Smoothy"
+  },
+  {
+    "kind": "patch",
+    "index": 57,
+    "bank": 0,
+    "slot": 57,
+    "label": "P:A82",
+    "name": "Soaring Mini"
+  },
+  {
+    "kind": "patch",
+    "index": 58,
+    "bank": 0,
+    "slot": 58,
+    "label": "P:A83",
+    "name": "Ribn F/B Lead"
+  },
+  {
+    "kind": "patch",
+    "index": 59,
+    "bank": 0,
+    "slot": 59,
+    "label": "P:A84",
+    "name": "Sup-Jup Lead"
+  },
+  {
+    "kind": "patch",
+    "index": 60,
+    "bank": 0,
+    "slot": 60,
+    "label": "P:A85",
+    "name": "Modular Lead"
+  },
+  {
+    "kind": "patch",
+    "index": 61,
+    "bank": 0,
+    "slot": 61,
+    "label": "P:A86",
+    "name": "Syncrosolo"
+  },
+  {
+    "kind": "patch",
+    "index": 62,
+    "bank": 0,
+    "slot": 62,
+    "label": "P:A87",
+    "name": "Ripper"
+  },
+  {
+    "kind": "patch",
+    "index": 63,
+    "bank": 0,
+    "slot": 63,
+    "label": "P:A88",
+    "name": "Phantom Lead"
+  },
+  {
+    "kind": "patch",
+    "index": 64,
+    "bank": 1,
+    "slot": 0,
+    "label": "P:B11",
+    "name": "Whammy Mammy"
+  },
+  {
+    "kind": "patch",
+    "index": 65,
+    "bank": 1,
+    "slot": 1,
+    "label": "P:B12",
+    "name": "Wicked Lead"
+  },
+  {
+    "kind": "patch",
+    "index": 66,
+    "bank": 1,
+    "slot": 2,
+    "label": "P:B13",
+    "name": "Drefull Dr."
+  },
+  {
+    "kind": "patch",
+    "index": 67,
+    "bank": 1,
+    "slot": 3,
+    "label": "P:B14",
+    "name": "Wiggle Mod"
+  },
+  {
+    "kind": "patch",
+    "index": 68,
+    "bank": 1,
+    "slot": 4,
+    "label": "P:B15",
+    "name": "Feedback Lead"
+  },
+  {
+    "kind": "patch",
+    "index": 69,
+    "bank": 1,
+    "slot": 5,
+    "label": "P:B16",
+    "name": "Crunch"
+  },
+  {
+    "kind": "patch",
+    "index": 70,
+    "bank": 1,
+    "slot": 6,
+    "label": "P:B17",
+    "name": "Chaos Lead"
+  },
+  {
+    "kind": "patch",
+    "index": 71,
+    "bank": 1,
+    "slot": 7,
+    "label": "P:B18",
+    "name": "Out of Control"
+  },
+  {
+    "kind": "patch",
+    "index": 72,
+    "bank": 1,
+    "slot": 8,
+    "label": "P:B21",
+    "name": "String Machine"
+  },
+  {
+    "kind": "patch",
+    "index": 73,
+    "bank": 1,
+    "slot": 9,
+    "label": "P:B22",
+    "name": "Tron Vlns"
+  },
+  {
+    "kind": "patch",
+    "index": 74,
+    "bank": 1,
+    "slot": 10,
+    "label": "P:B23",
+    "name": "Luxury Symph"
+  },
+  {
+    "kind": "patch",
+    "index": 75,
+    "bank": 1,
+    "slot": 11,
+    "label": "P:B24",
+    "name": "Debussy"
+  },
+  {
+    "kind": "patch",
+    "index": 76,
+    "bank": 1,
+    "slot": 12,
+    "label": "P:B25",
+    "name": "BPF Velo Strings"
+  },
+  {
+    "kind": "patch",
+    "index": 77,
+    "bank": 1,
+    "slot": 13,
+    "label": "P:B26",
+    "name": "Detuned Str."
+  },
+  {
+    "kind": "patch",
+    "index": 78,
+    "bank": 1,
+    "slot": 14,
+    "label": "P:B27",
+    "name": "Juno B81 Pad"
+  },
+  {
+    "kind": "patch",
+    "index": 79,
+    "bank": 1,
+    "slot": 15,
+    "label": "P:B28",
+    "name": "Richland"
+  },
+  {
+    "kind": "patch",
+    "index": 80,
+    "bank": 1,
+    "slot": 16,
+    "label": "P:B31",
+    "name": "MOD Strings"
+  },
+  {
+    "kind": "patch",
+    "index": 81,
+    "bank": 1,
+    "slot": 17,
+    "label": "P:B32",
+    "name": "Jupiter Pad"
+  },
+  {
+    "kind": "patch",
+    "index": 82,
+    "bank": 1,
+    "slot": 18,
+    "label": "P:B33",
+    "name": "Soft Strings"
+  },
+  {
+    "kind": "patch",
+    "index": 83,
+    "bank": 1,
+    "slot": 19,
+    "label": "P:B34",
+    "name": "Shan-gri-la"
+  },
+  {
+    "kind": "patch",
+    "index": 84,
+    "bank": 1,
+    "slot": 20,
+    "label": "P:B35",
+    "name": "Fine Wine"
+  },
+  {
+    "kind": "patch",
+    "index": 85,
+    "bank": 1,
+    "slot": 21,
+    "label": "P:B36",
+    "name": "Glue Pad"
+  },
+  {
+    "kind": "patch",
+    "index": 86,
+    "bank": 1,
+    "slot": 22,
+    "label": "P:B37",
+    "name": "True Pad"
+  },
+  {
+    "kind": "patch",
+    "index": 87,
+    "bank": 1,
+    "slot": 23,
+    "label": "P:B38",
+    "name": "Foreboding"
+  },
+  {
+    "kind": "patch",
+    "index": 88,
+    "bank": 1,
+    "slot": 24,
+    "label": "P:B41",
+    "name": "Skreachea"
+  },
+  {
+    "kind": "patch",
+    "index": 89,
+    "bank": 1,
+    "slot": 25,
+    "label": "P:B42",
+    "name": "BPM Pulse 1"
+  },
+  {
+    "kind": "patch",
+    "index": 90,
+    "bank": 1,
+    "slot": 26,
+    "label": "P:B43",
+    "name": "BPM Pulse 2"
+  },
+  {
+    "kind": "patch",
+    "index": 91,
+    "bank": 1,
+    "slot": 27,
+    "label": "P:B44",
+    "name": "Hi-Pass Puls"
+  },
+  {
+    "kind": "patch",
+    "index": 92,
+    "bank": 1,
+    "slot": 28,
+    "label": "P:B45",
+    "name": "Sample&Hold Me"
+  },
+  {
+    "kind": "patch",
+    "index": 93,
+    "bank": 1,
+    "slot": 29,
+    "label": "P:B46",
+    "name": "MKS80 Space"
+  },
+  {
+    "kind": "patch",
+    "index": 94,
+    "bank": 1,
+    "slot": 30,
+    "label": "P:B47",
+    "name": "Arctic Sweep"
+  },
+  {
+    "kind": "patch",
+    "index": 95,
+    "bank": 1,
+    "slot": 31,
+    "label": "P:B48",
+    "name": "Replicant CS"
+  },
+  {
+    "kind": "patch",
+    "index": 96,
+    "bank": 1,
+    "slot": 32,
+    "label": "P:B51",
+    "name": "Stargate"
+  },
+  {
+    "kind": "patch",
+    "index": 97,
+    "bank": 1,
+    "slot": 33,
+    "label": "P:B52",
+    "name": "Lost in Time"
+  },
+  {
+    "kind": "patch",
+    "index": 98,
+    "bank": 1,
+    "slot": 34,
+    "label": "P:B53",
+    "name": "Circular"
+  },
+  {
+    "kind": "patch",
+    "index": 99,
+    "bank": 1,
+    "slot": 35,
+    "label": "P:B54",
+    "name": "Space Choir"
+  },
+  {
+    "kind": "patch",
+    "index": 100,
+    "bank": 1,
+    "slot": 36,
+    "label": "P:B55",
+    "name": "Hypass Sweep"
+  },
+  {
+    "kind": "patch",
+    "index": 101,
+    "bank": 1,
+    "slot": 37,
+    "label": "P:B56",
+    "name": "BPF Tides"
+  },
+  {
+    "kind": "patch",
+    "index": 102,
+    "bank": 1,
+    "slot": 38,
+    "label": "P:B57",
+    "name": "Matrix Sweep"
+  },
+  {
+    "kind": "patch",
+    "index": 103,
+    "bank": 1,
+    "slot": 39,
+    "label": "P:B58",
+    "name": "MKS80 Bells"
+  },
+  {
+    "kind": "patch",
+    "index": 104,
+    "bank": 1,
+    "slot": 40,
+    "label": "P:B61",
+    "name": "Tiny bells"
+  },
+  {
+    "kind": "patch",
+    "index": 105,
+    "bank": 1,
+    "slot": 41,
+    "label": "P:B62",
+    "name": "Chimey"
+  },
+  {
+    "kind": "patch",
+    "index": 106,
+    "bank": 1,
+    "slot": 42,
+    "label": "P:B63",
+    "name": "Juno Arp"
+  },
+  {
+    "kind": "patch",
+    "index": 107,
+    "bank": 1,
+    "slot": 43,
+    "label": "P:B64",
+    "name": "Sonar Ping"
+  },
+  {
+    "kind": "patch",
+    "index": 108,
+    "bank": 1,
+    "slot": 44,
+    "label": "P:B65",
+    "name": "Air Harp"
+  },
+  {
+    "kind": "patch",
+    "index": 109,
+    "bank": 1,
+    "slot": 45,
+    "label": "P:B66",
+    "name": "Velo FX Percs"
+  },
+  {
+    "kind": "patch",
+    "index": 110,
+    "bank": 1,
+    "slot": 46,
+    "label": "P:B67",
+    "name": "Quizzled"
+  },
+  {
+    "kind": "patch",
+    "index": 111,
+    "bank": 1,
+    "slot": 47,
+    "label": "P:B68",
+    "name": "Intermittent"
+  },
+  {
+    "kind": "patch",
+    "index": 112,
+    "bank": 1,
+    "slot": 48,
+    "label": "P:B71",
+    "name": "Brain Static"
+  },
+  {
+    "kind": "patch",
+    "index": 113,
+    "bank": 1,
+    "slot": 49,
+    "label": "P:B72",
+    "name": "Computone"
+  },
+  {
+    "kind": "patch",
+    "index": 114,
+    "bank": 1,
+    "slot": 50,
+    "label": "P:B73",
+    "name": "Pin Matrix"
+  },
+  {
+    "kind": "patch",
+    "index": 115,
+    "bank": 1,
+    "slot": 51,
+    "label": "P:B74",
+    "name": "Space Cheese"
+  },
+  {
+    "kind": "patch",
+    "index": 116,
+    "bank": 1,
+    "slot": 52,
+    "label": "P:B75",
+    "name": "Rough Day"
+  },
+  {
+    "kind": "patch",
+    "index": 117,
+    "bank": 1,
+    "slot": 53,
+    "label": "P:B76",
+    "name": "The Etruscan."
+  },
+  {
+    "kind": "patch",
+    "index": 118,
+    "bank": 1,
+    "slot": 54,
+    "label": "P:B77",
+    "name": "Varese"
+  },
+  {
+    "kind": "patch",
+    "index": 119,
+    "bank": 1,
+    "slot": 55,
+    "label": "P:B78",
+    "name": "Pipe Dream"
+  },
+  {
+    "kind": "patch",
+    "index": 120,
+    "bank": 1,
+    "slot": 56,
+    "label": "P:B81",
+    "name": "Meteor"
+  },
+  {
+    "kind": "patch",
+    "index": 121,
+    "bank": 1,
+    "slot": 57,
+    "label": "P:B82",
+    "name": "Snowman"
+  },
+  {
+    "kind": "patch",
+    "index": 122,
+    "bank": 1,
+    "slot": 58,
+    "label": "P:B83",
+    "name": "Space Ghost"
+  },
+  {
+    "kind": "patch",
+    "index": 123,
+    "bank": 1,
+    "slot": 59,
+    "label": "P:B84",
+    "name": "Ozone"
+  },
+  {
+    "kind": "patch",
+    "index": 124,
+    "bank": 1,
+    "slot": 60,
+    "label": "P:B85",
+    "name": "Cool-a little..."
+  },
+  {
+    "kind": "patch",
+    "index": 125,
+    "bank": 1,
+    "slot": 61,
+    "label": "P:B86",
+    "name": "Electro Gulls"
+  },
+  {
+    "kind": "patch",
+    "index": 126,
+    "bank": 1,
+    "slot": 62,
+    "label": "P:B87",
+    "name": "Template 1"
+  },
+  {
+    "kind": "patch",
+    "index": 127,
+    "bank": 1,
+    "slot": 63,
+    "label": "P:B88",
+    "name": "Template 2"
+  },
+  {
+    "kind": "performance",
+    "index": 0,
+    "bank": 2,
+    "slot": 0,
+    "label": "P:11",
+    "name": "Chariots"
+  },
+  {
+    "kind": "performance",
+    "index": 1,
+    "bank": 2,
+    "slot": 1,
+    "label": "P:12",
+    "name": "Fizzoid Bass"
+  },
+  {
+    "kind": "performance",
+    "index": 2,
+    "bank": 2,
+    "slot": 2,
+    "label": "P:13",
+    "name": "Skreachy"
+  },
+  {
+    "kind": "performance",
+    "index": 3,
+    "bank": 2,
+    "slot": 3,
+    "label": "P:14",
+    "name": "Feedback Lead"
+  },
+  {
+    "kind": "performance",
+    "index": 4,
+    "bank": 2,
+    "slot": 4,
+    "label": "P:15",
+    "name": "Trancer"
+  },
+  {
+    "kind": "performance",
+    "index": 5,
+    "bank": 2,
+    "slot": 5,
+    "label": "P:16",
+    "name": "Whisper"
+  },
+  {
+    "kind": "performance",
+    "index": 6,
+    "bank": 2,
+    "slot": 6,
+    "label": "P:17",
+    "name": "Dance Split"
+  },
+  {
+    "kind": "performance",
+    "index": 7,
+    "bank": 2,
+    "slot": 7,
+    "label": "P:18",
+    "name": "Comb Strings"
+  },
+  {
+    "kind": "performance",
+    "index": 8,
+    "bank": 2,
+    "slot": 8,
+    "label": "P:21",
+    "name": "Descender"
+  },
+  {
+    "kind": "performance",
+    "index": 9,
+    "bank": 2,
+    "slot": 9,
+    "label": "P:22",
+    "name": "Glass Columns"
+  },
+  {
+    "kind": "performance",
+    "index": 10,
+    "bank": 2,
+    "slot": 10,
+    "label": "P:23",
+    "name": "BPM Pulsating"
+  },
+  {
+    "kind": "performance",
+    "index": 11,
+    "bank": 2,
+    "slot": 11,
+    "label": "P:24",
+    "name": "1979!"
+  },
+  {
+    "kind": "performance",
+    "index": 12,
+    "bank": 2,
+    "slot": 12,
+    "label": "P:25",
+    "name": "Elliptical"
+  },
+  {
+    "kind": "performance",
+    "index": 13,
+    "bank": 2,
+    "slot": 13,
+    "label": "P:26",
+    "name": "MKS80 Bell/Space"
+  },
+  {
+    "kind": "performance",
+    "index": 14,
+    "bank": 2,
+    "slot": 14,
+    "label": "P:27",
+    "name": "Legato TB-303"
+  },
+  {
+    "kind": "performance",
+    "index": 15,
+    "bank": 2,
+    "slot": 15,
+    "label": "P:28",
+    "name": "Massive Pad"
+  },
+  {
+    "kind": "performance",
+    "index": 16,
+    "bank": 2,
+    "slot": 16,
+    "label": "P:31",
+    "name": "AKS Sweep"
+  },
+  {
+    "kind": "performance",
+    "index": 17,
+    "bank": 2,
+    "slot": 17,
+    "label": "P:32",
+    "name": "Sweepers"
+  },
+  {
+    "kind": "performance",
+    "index": 18,
+    "bank": 2,
+    "slot": 18,
+    "label": "P:33",
+    "name": "Juliano"
+  },
+  {
+    "kind": "performance",
+    "index": 19,
+    "bank": 2,
+    "slot": 19,
+    "label": "P:34",
+    "name": "Stargate"
+  },
+  {
+    "kind": "performance",
+    "index": 20,
+    "bank": 2,
+    "slot": 20,
+    "label": "P:35",
+    "name": "Dual Mini's"
+  },
+  {
+    "kind": "performance",
+    "index": 21,
+    "bank": 2,
+    "slot": 21,
+    "label": "P:36",
+    "name": "Spacescapes"
+  },
+  {
+    "kind": "performance",
+    "index": 22,
+    "bank": 2,
+    "slot": 22,
+    "label": "P:37",
+    "name": "Trance Floor"
+  },
+  {
+    "kind": "performance",
+    "index": 23,
+    "bank": 2,
+    "slot": 23,
+    "label": "P:38",
+    "name": "Arctic E-know"
+  },
+  {
+    "kind": "performance",
+    "index": 24,
+    "bank": 2,
+    "slot": 24,
+    "label": "P:41",
+    "name": "Smooth Split"
+  },
+  {
+    "kind": "performance",
+    "index": 25,
+    "bank": 2,
+    "slot": 25,
+    "label": "P:42",
+    "name": "Fanfare"
+  },
+  {
+    "kind": "performance",
+    "index": 26,
+    "bank": 2,
+    "slot": 26,
+    "label": "P:43",
+    "name": "Touchy Alarmist"
+  },
+  {
+    "kind": "performance",
+    "index": 27,
+    "bank": 2,
+    "slot": 27,
+    "label": "P:44",
+    "name": "Last Emperor"
+  },
+  {
+    "kind": "performance",
+    "index": 28,
+    "bank": 2,
+    "slot": 28,
+    "label": "P:45",
+    "name": "Euroneuro"
+  },
+  {
+    "kind": "performance",
+    "index": 29,
+    "bank": 2,
+    "slot": 29,
+    "label": "P:46",
+    "name": "Babylon"
+  },
+  {
+    "kind": "performance",
+    "index": 30,
+    "bank": 2,
+    "slot": 30,
+    "label": "P:47",
+    "name": "Str/Whistle"
+  },
+  {
+    "kind": "performance",
+    "index": 31,
+    "bank": 2,
+    "slot": 31,
+    "label": "P:48",
+    "name": "Back To The 60's"
+  },
+  {
+    "kind": "performance",
+    "index": 32,
+    "bank": 2,
+    "slot": 32,
+    "label": "P:51",
+    "name": "Wicked"
+  },
+  {
+    "kind": "performance",
+    "index": 33,
+    "bank": 2,
+    "slot": 33,
+    "label": "P:52",
+    "name": "Velo NRG"
+  },
+  {
+    "kind": "performance",
+    "index": 34,
+    "bank": 2,
+    "slot": 34,
+    "label": "P:53",
+    "name": "Circuit Bent"
+  },
+  {
+    "kind": "performance",
+    "index": 35,
+    "bank": 2,
+    "slot": 35,
+    "label": "P:54",
+    "name": "Arpegg<>Juno Pad"
+  },
+  {
+    "kind": "performance",
+    "index": 36,
+    "bank": 2,
+    "slot": 36,
+    "label": "P:55",
+    "name": "Didjeribbon"
+  },
+  {
+    "kind": "performance",
+    "index": 37,
+    "bank": 2,
+    "slot": 37,
+    "label": "P:56",
+    "name": "Faze Strings"
+  },
+  {
+    "kind": "performance",
+    "index": 38,
+    "bank": 2,
+    "slot": 38,
+    "label": "P:57",
+    "name": "Dual SynthKlavs"
+  },
+  {
+    "kind": "performance",
+    "index": 39,
+    "bank": 2,
+    "slot": 39,
+    "label": "P:58",
+    "name": "Pulsing Sweep"
+  },
+  {
+    "kind": "performance",
+    "index": 40,
+    "bank": 2,
+    "slot": 40,
+    "label": "P:61",
+    "name": "Mini 5th"
+  },
+  {
+    "kind": "performance",
+    "index": 41,
+    "bank": 2,
+    "slot": 41,
+    "label": "P:62",
+    "name": "Tubular"
+  },
+  {
+    "kind": "performance",
+    "index": 42,
+    "bank": 2,
+    "slot": 42,
+    "label": "P:63",
+    "name": "Synthboy Split"
+  },
+  {
+    "kind": "performance",
+    "index": 43,
+    "bank": 2,
+    "slot": 43,
+    "label": "P:64",
+    "name": "Water Orchestra"
+  },
+  {
+    "kind": "performance",
+    "index": 44,
+    "bank": 2,
+    "slot": 44,
+    "label": "P:65",
+    "name": "Split of 5ths"
+  },
+  {
+    "kind": "performance",
+    "index": 45,
+    "bank": 2,
+    "slot": 45,
+    "label": "P:66",
+    "name": "Road To Goa"
+  },
+  {
+    "kind": "performance",
+    "index": 46,
+    "bank": 2,
+    "slot": 46,
+    "label": "P:67",
+    "name": "Rain Drops"
+  },
+  {
+    "kind": "performance",
+    "index": 47,
+    "bank": 2,
+    "slot": 47,
+    "label": "P:68",
+    "name": "Wide Quark Rings"
+  },
+  {
+    "kind": "performance",
+    "index": 48,
+    "bank": 2,
+    "slot": 48,
+    "label": "P:71",
+    "name": "Tritouch Layer"
+  },
+  {
+    "kind": "performance",
+    "index": 49,
+    "bank": 2,
+    "slot": 49,
+    "label": "P:72",
+    "name": "Aquapeggios"
+  },
+  {
+    "kind": "performance",
+    "index": 50,
+    "bank": 2,
+    "slot": 50,
+    "label": "P:73",
+    "name": "OB Eight"
+  },
+  {
+    "kind": "performance",
+    "index": 51,
+    "bank": 2,
+    "slot": 51,
+    "label": "P:74",
+    "name": "Swynk"
+  },
+  {
+    "kind": "performance",
+    "index": 52,
+    "bank": 2,
+    "slot": 52,
+    "label": "P:75",
+    "name": "GR-300 Solo"
+  },
+  {
+    "kind": "performance",
+    "index": 53,
+    "bank": 2,
+    "slot": 53,
+    "label": "P:76",
+    "name": "Ring Split"
+  },
+  {
+    "kind": "performance",
+    "index": 54,
+    "bank": 2,
+    "slot": 54,
+    "label": "P:77",
+    "name": "Observatory"
+  },
+  {
+    "kind": "performance",
+    "index": 55,
+    "bank": 2,
+    "slot": 55,
+    "label": "P:78",
+    "name": "Tron Strings"
+  },
+  {
+    "kind": "performance",
+    "index": 56,
+    "bank": 2,
+    "slot": 56,
+    "label": "P:81",
+    "name": "Mirror Balls"
+  },
+  {
+    "kind": "performance",
+    "index": 57,
+    "bank": 2,
+    "slot": 57,
+    "label": "P:82",
+    "name": "Entropy"
+  },
+  {
+    "kind": "performance",
+    "index": 58,
+    "bank": 2,
+    "slot": 58,
+    "label": "P:83",
+    "name": "Template1"
+  },
+  {
+    "kind": "performance",
+    "index": 59,
+    "bank": 2,
+    "slot": 59,
+    "label": "P:84",
+    "name": "Template2"
+  },
+  {
+    "kind": "performance",
+    "index": 60,
+    "bank": 2,
+    "slot": 60,
+    "label": "P:85",
+    "name": "Template3"
+  },
+  {
+    "kind": "performance",
+    "index": 61,
+    "bank": 2,
+    "slot": 61,
+    "label": "P:86",
+    "name": "Template4"
+  },
+  {
+    "kind": "performance",
+    "index": 62,
+    "bank": 2,
+    "slot": 62,
+    "label": "P:87",
+    "name": "Template5"
+  },
+  {
+    "kind": "performance",
+    "index": 63,
+    "bank": 2,
+    "slot": 63,
+    "label": "P:88",
+    "name": "Template6"
+  }
+]

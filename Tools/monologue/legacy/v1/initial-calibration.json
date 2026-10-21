@@ -1,0 +1,9 @@
+{
+  "cutoff_curve": 1.0,
+  "filter_eg_octaves": 8.0,
+  "shape_amount": 2.0,
+  "drive_mix_curve": 1.0,
+  "drive_gain": 12.0,
+  "triangle_shape_amount": 4.0,
+  "triangle_shape_fall": 1.0
+}

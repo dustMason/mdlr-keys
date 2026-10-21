@@ -1,0 +1,14 @@
+{
+  "source_sha256": "edb0286fc5b2dd19a64b08ce1710e6b9fb9bf72b0f23b41a610f3b2d66059ae7",
+  "packaged_sha256": "5556bf7cc8d1e020b448dba9fb11e08166fd431d43bec95e9a864e5bbea52496",
+  "retained_function_asts_identical": true,
+  "removed": "Workspace-specific imports/path injection and standalone historical main/plot driver only.",
+  "functions": [
+    "harmonic_frames",
+    "shape_scores",
+    "compare_files",
+    "compare_harmonic_arrays",
+    "serial_frames",
+    "synthetic_audit"
+  ]
+}

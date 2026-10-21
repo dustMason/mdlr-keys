@@ -1,0 +1,7 @@
+{
+  "workspace_metric_sha256": "6760affc4c57c378306d8775cc7f6b28794979fd460f7a6096a0702410880d35",
+  "packaged_metric_sha256": "7c4b06a9a01c04e4cd1666cb1ac9513922c0b8e7313ce7652a75778eb33969bf",
+  "all_scoring_functions_ast_identical": true,
+  "source_assets": 23,
+  "bounded_bytes": 57039045
+}

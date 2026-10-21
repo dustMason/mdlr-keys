@@ -1,0 +1,43 @@
+{
+  "cases": [
+    {
+      "id": "s0s_triangle",
+      "same_physical_midi": 39.56165633568893,
+      "physical_midi_minus12": 1.0557444602627926,
+      "generous_register_profile": 1.0557444602627926,
+      "selected_transposition": -12
+    },
+    {
+      "id": "harpie_saw",
+      "same_physical_midi": 18.39462097807574,
+      "physical_midi_minus12": 7.340202503877895,
+      "generous_register_profile": 7.340202503877895,
+      "selected_transposition": -12
+    },
+    {
+      "id": "pinoesque",
+      "same_physical_midi": 17.824068435706582,
+      "physical_midi_minus12": 7.910582461495183,
+      "generous_register_profile": 7.910582461495183,
+      "selected_transposition": -12
+    },
+    {
+      "id": "duidui_saw_shape",
+      "same_physical_midi": 4.198768241847999,
+      "physical_midi_minus12": 8.909514387966883,
+      "generous_register_profile": 4.198768241847999,
+      "selected_transposition": 0
+    },
+    {
+      "id": "wuai_saw_filter",
+      "same_physical_midi": 3.690921544479063,
+      "physical_midi_minus12": 4.2453671269737345,
+      "generous_register_profile": 3.690921544479063,
+      "selected_transposition": 0
+    }
+  ],
+  "training_mean_same_physical_midi": 16.734007107159663,
+  "training_mean_minus12": 5.892282188115297,
+  "training_mean_generous_register_profile": 4.8392438423925865,
+  "warning": "Retrospective diagnostic only. Generous register profile changes played notes per case. It does not represent the old engine response to the same physical MIDI, and is not a hardware-fidelity percentage."
+}

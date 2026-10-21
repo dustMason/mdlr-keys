@@ -1,0 +1,136 @@
+{
+  "notes": [
+    "Diagnostic only; frozen primary scoring and nuisance selections unchanged.",
+    "A5ms RMS window is shorter than a55Hz period, so its error includes oscillator-phase and cycle-shape differences.",
+    "Longer windows smooth both cyclic differences and real onset/envelope transients; they do not isolate a uniquely correct circuit.",
+    "The same frozen fitted constant gain and bounded onset lag are retained at every window."
+  ],
+  "rows": [
+    {
+      "run": "ring-product-development",
+      "case": "harpie_saw",
+      "rms_window_errors_db": {
+        "5ms": 0.6541225972671678,
+        "20ms": 0.2716627077828459,
+        "50ms": 0.1695239424149389
+      }
+    },
+    {
+      "run": "ring-product-development",
+      "case": "string_hold",
+      "rms_window_errors_db": {
+        "5ms": 0.6532088843265415,
+        "20ms": 0.5709398736499418,
+        "50ms": 0.4749821894641278
+      }
+    },
+    {
+      "run": "ring-product-development",
+      "case": "deep_meow_ring",
+      "rms_window_errors_db": {
+        "5ms": 2.683099658727385,
+        "20ms": 0.8584195955320085,
+        "50ms": 0.9259497916381532
+      }
+    },
+    {
+      "run": "ring-bridge-development",
+      "case": "harpie_saw",
+      "rms_window_errors_db": {
+        "5ms": 0.6541225972671678,
+        "20ms": 0.2716627077828459,
+        "50ms": 0.1695239424149389
+      }
+    },
+    {
+      "run": "ring-bridge-development",
+      "case": "string_hold",
+      "rms_window_errors_db": {
+        "5ms": 1.3450038429760311,
+        "20ms": 1.2965590109904401,
+        "50ms": 1.1874063535091244
+      }
+    },
+    {
+      "run": "ring-bridge-development",
+      "case": "deep_meow_ring",
+      "rms_window_errors_db": {
+        "5ms": 2.524430649061224,
+        "20ms": 0.6174587010286297,
+        "50ms": 1.8666913307225756
+      }
+    },
+    {
+      "run": "ring-coupled-product-development",
+      "case": "harpie_saw",
+      "rms_window_errors_db": {
+        "5ms": 0.6535779663647799,
+        "20ms": 0.2715351561128756,
+        "50ms": 0.16951833749263376
+      }
+    },
+    {
+      "run": "ring-coupled-product-development",
+      "case": "string_hold",
+      "rms_window_errors_db": {
+        "5ms": 0.44500240810231473,
+        "20ms": 0.2936378259789496,
+        "50ms": 0.22316961911818212
+      }
+    },
+    {
+      "run": "ring-coupled-product-development",
+      "case": "deep_meow_ring",
+      "rms_window_errors_db": {
+        "5ms": 2.6953697976629716,
+        "20ms": 0.6136196968341336,
+        "50ms": 0.5690556736663098
+      }
+    },
+    {
+      "run": "ring-bridge-coupled-development",
+      "case": "harpie_saw",
+      "rms_window_errors_db": {
+        "5ms": 0.6535779663647799,
+        "20ms": 0.2715351561128756,
+        "50ms": 0.16951833749263376
+      }
+    },
+    {
+      "run": "ring-bridge-coupled-development",
+      "case": "string_hold",
+      "rms_window_errors_db": {
+        "5ms": 0.8757736731767466,
+        "20ms": 0.8432966075397165,
+        "50ms": 0.7846964992074243
+      }
+    },
+    {
+      "run": "ring-bridge-coupled-development",
+      "case": "deep_meow_ring",
+      "rms_window_errors_db": {
+        "5ms": 2.5486356012095888,
+        "20ms": 0.6179610717811758,
+        "50ms": 1.8704216038608332
+      }
+    },
+    {
+      "run": "warm-baseline-development",
+      "case": "harpie_saw",
+      "rms_window_errors_db": {
+        "5ms": 0.9929494141346176,
+        "20ms": 0.34680159901420526,
+        "50ms": 0.17136424150450266
+      }
+    },
+    {
+      "run": "warm-baseline-development",
+      "case": "string_hold",
+      "rms_window_errors_db": {
+        "5ms": 0.5889541136918265,
+        "20ms": 0.541250922272315,
+        "50ms": 0.47543832645301365
+      }
+    }
+  ]
+}

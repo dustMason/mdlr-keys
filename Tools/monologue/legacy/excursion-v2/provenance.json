@@ -1,0 +1,24 @@
+{
+  "captured_utc": "2026-10-21T21:37:56.152113+00:00",
+  "renderer": "/Users/jordans/Documents/Codex/2026-10-20/yamaha-reface-emulators/work/monologue/accuracy-v2/excursion-renderer",
+  "renderer_sha256": "07d8f7b7a762ed2828586ec8b00a1f40e8d96141c83d390547571ef7e2b69a7b",
+  "source_snapshots": {
+    "monologue-render.rs": "6e1693ab46c3c2e131757d7b847908faa31106085a2a38ea60526f7641aadcc4",
+    "monologue_fir.rs": "254bfa3a5c226924a38998d81587c955275e5ac63cd3af301bc1e76398e82840",
+    "Cargo.lock": "6141556e7f4bcd36992595cb64858fe4fcdfedb39919b936f0e07ca455cd4168",
+    "monologue_control.rs": "f9960ae114e568a498739224708560e94a47f40722a03de7725ec4c669591b25",
+    "monologue.rs": "4356eb5883fc14d08e5dc11804d72d4a9aa9f0d336fa4fbb0cdcae274df599aa"
+  },
+  "source_snapshot_confirmation": "Parent reports copied source and explicitly built renderer, with baseline tests passed; a regression test was added afterward without changing audio code.",
+  "python": "3.12.12 (main, Dec  2 2025, 22:26:15) [Clang 21.1.4 ]",
+  "platform": "macOS-26.7.1-arm64-arm-64bit",
+  "analysis_sha256": {
+    "calibrate_v2.py": "e2f7e7ab2de8d24ef5d5a4a8e0540df41f37fe526f1a7e56342698d89ae5cbaf",
+    "corpus-v2.json": "d8c52e3c2b8b01da0c048c04d601881f1c8dabbebfb053d7faff8fbfbf63e036",
+    "excursion-initial-v2.json": "0d1e912507670b88542681834aed996bb44e0463f1c32fd1b5a609c8836e8967",
+    "excursion-search-space-v2.json": "5942832e4367bc8a349038946d8a8e1c861b17bfbf330b07a516f9c8bafb706f",
+    "metric-audit-v2/metric_audit.py": "edb0286fc5b2dd19a64b08ce1710e6b9fb9bf72b0f23b41a610f3b2d66059ae7",
+    "metric-audit-v2/cached_metric.py": "d8eabcf3d8594864250bd3734f88771954a54354ffad2f2d5061b1bc945d1f81"
+  },
+  "protocol": "Five training cases only. Two passes and two coordinate cycles, at most 56 candidates; complete nuisance grids at baseline/pass boundaries/final. Firmware laws fixed. Only analog uncertainties fitted, including common high-frequency calibration excursion .78\u2013.88 supported by circuit RC and analog-switch resistance."
+}

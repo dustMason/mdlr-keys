@@ -1,0 +1,33 @@
+{
+  "cases": 3000,
+  "seed": 7341,
+  "method": "Exact two-point Gauss integration on every piecewise-linear oscillator segment with a triangular convolution kernel of radius 1 internal sample. Independent of BLEP/BLAMP event formulas.",
+  "rust_source_sha256": "e4d91d04f3a117a83d289af996d1abcabeea62b27c77aa80e197dd3981b1cb22",
+  "max_absolute_error": [
+    1.5473043357694394e-07,
+    1.3890136449923318e-06
+  ],
+  "failures_above_2e_minus5": 0,
+  "worst": {
+    "inputs": [
+      0.8128114938735962,
+      0.008030408062040806,
+      0.7186887860298157,
+      0.0022590437438338995,
+      0.42437419295310974,
+      -0.27018609642982483
+    ],
+    "rust": [
+      -0.8033358,
+      -0.7573544
+    ],
+    "reference": [
+      -0.8033357689418077,
+      -0.757355789013645
+    ]
+  },
+  "notes": [
+    "Float32 phase rounding can introduce sub-micro-unit discrepancies from the f64 continuous reference.",
+    "300 cases each use the nearest f32 values inside both threshold endpoints."
+  ]
+}

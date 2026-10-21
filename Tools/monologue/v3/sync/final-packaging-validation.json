@@ -1,0 +1,14 @@
+{
+  "lowband_case_metrics_and_wav_hashes_equal": true,
+  "cases": 5,
+  "source_renderer_sha256": {
+    "raw": "83b2b0879de9714a041129fe56c5393224041dd88852a5c9e7cb400f429bc7ad",
+    "aa": "83b2b0879de9714a041129fe56c5393224041dd88852a5c9e7cb400f429bc7ad"
+  },
+  "portable_renderer_sha256": {
+    "raw": "83b2b0879de9714a041129fe56c5393224041dd88852a5c9e7cb400f429bc7ad",
+    "aa": "83b2b0879de9714a041129fe56c5393224041dd88852a5c9e7cb400f429bc7ad"
+  },
+  "numeric_loop_asts_equal_after_removing_cache_guard": true,
+  "fir_sha256": "254bfa3a5c226924a38998d81587c955275e5ac63cd3af301bc1e76398e82840"
+}

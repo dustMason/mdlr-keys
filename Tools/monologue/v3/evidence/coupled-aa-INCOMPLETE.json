@@ -1,0 +1,10 @@
+{
+  "status": "incomplete, deliberately stopped before validation",
+  "stopped_utc": "2026-10-21T22:20:51.585169+00:00",
+  "reason": "Parent rejected coupled bridge as native default after full nominal warm development regression. AA does not plausibly repair its low-frequency operating-state discrepancy. Completed cases retained; Deep Meow grid interrupted.",
+  "completed_cases": [
+    "harpie_saw",
+    "string_hold"
+  ],
+  "stop_method": "SIGINT through owned exec session9455"
+}

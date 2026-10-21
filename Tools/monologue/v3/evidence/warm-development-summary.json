@@ -1,0 +1,257 @@
+{
+  "rows": [
+    {
+      "model": "baseline",
+      "case": "harpie_saw",
+      "objective": 5.87357960899162,
+      "v2_objective": 4.614544015593022,
+      "harmonic_mean_db": 5.575694784751235,
+      "harmonic_p90_db": 7.822706388343861,
+      "envelope_db": 0.9929494141346176,
+      "transport_cents": 193.82385247392517,
+      "transport_p90_cents": 333.8863298869177,
+      "h2_h1_trajectory_mae_db": 13.10485714161573,
+      "windows": {
+        "early": {
+          "frames": 5,
+          "mean_db": 4.26777995697601,
+          "p90_db": 4.353205595915207,
+          "reference_h2_h1_db": 1.6412736785184272,
+          "candidate_h2_h1_db": 4.840986171863209
+        },
+        "middle": {
+          "frames": 6,
+          "mean_db": 4.229089896279053,
+          "p90_db": 4.369320248140679,
+          "reference_h2_h1_db": 8.408302919918672,
+          "candidate_h2_h1_db": 14.732881273761942
+        },
+        "late": {
+          "frames": 9,
+          "mean_db": 7.200050725830037,
+          "p90_db": 11.89957852372275,
+          "reference_h2_h1_db": 13.844714536962961,
+          "candidate_h2_h1_db": 36.97261567502197
+        }
+      },
+      "selected_phase": null,
+      "selected_gate": null,
+      "selected_lfo_phase": 0,
+      "fitted_gain_db": -5.057386790686241,
+      "gate_at_boundary": false
+    },
+    {
+      "model": "baseline",
+      "case": "string_hold",
+      "objective": 3.24971337109049,
+      "v2_objective": 3.100553693672213,
+      "harmonic_mean_db": 3.073027136982942,
+      "harmonic_p90_db": 3.487369690388694,
+      "envelope_db": 0.5889541136918265,
+      "transport_cents": 489.5307660978399,
+      "transport_p90_cents": 624.2774753654451,
+      "h2_h1_trajectory_mae_db": 1.9444861594227276,
+      "windows": {
+        "early": {
+          "frames": 5,
+          "mean_db": 3.3005101687849923,
+          "p90_db": 3.3719968341399964,
+          "reference_h2_h1_db": -4.1585690371392525,
+          "candidate_h2_h1_db": -1.82393475881703
+        },
+        "middle": {
+          "frames": 6,
+          "mean_db": 2.7687719377359934,
+          "p90_db": 2.8788637977927958,
+          "reference_h2_h1_db": -3.1492962085121516,
+          "candidate_h2_h1_db": -1.845018098435648
+        },
+        "late": {
+          "frames": 21,
+          "mean_db": 3.1057945672911065,
+          "p90_db": 3.7716416688970744,
+          "reference_h2_h1_db": 1.196158996037754,
+          "candidate_h2_h1_db": -0.32562591086562054
+        }
+      },
+      "selected_phase": [
+        0.137,
+        0.75
+      ],
+      "selected_gate": 0.1,
+      "selected_lfo_phase": 0,
+      "fitted_gain_db": -7.980053532508054,
+      "gate_at_boundary": true
+    },
+    {
+      "model": "baseline",
+      "case": "deep_meow_ring",
+      "objective": 2.137734154733957,
+      "v2_objective": 2.0453275362518757,
+      "harmonic_mean_db": 1.7925126478379951,
+      "harmonic_p90_db": 1.8753461642374538,
+      "envelope_db": 1.1507383563198725,
+      "transport_cents": 346.1206111468353,
+      "transport_p90_cents": 366.53574869648395,
+      "h2_h1_trajectory_mae_db": 5.789471281257299,
+      "windows": {
+        "early": {
+          "frames": 5,
+          "mean_db": 1.8449610291646859,
+          "p90_db": 1.8956509531663994,
+          "reference_h2_h1_db": 9.434757771402143,
+          "candidate_h2_h1_db": 3.9992693731752262
+        },
+        "middle": {
+          "frames": 6,
+          "mean_db": 1.7325793811705905,
+          "p90_db": 1.7984711322602345,
+          "reference_h2_h1_db": 9.828360369305868,
+          "candidate_h2_h1_db": 4.05132702515304
+        },
+        "late": {
+          "frames": 13,
+          "mean_db": 1.8000017011742242,
+          "p90_db": 1.788601112690485,
+          "reference_h2_h1_db": 10.008523019807885,
+          "candidate_h2_h1_db": 4.077163889490685
+        }
+      },
+      "selected_phase": [
+        0.137,
+        0.875
+      ],
+      "selected_gate": 0.075,
+      "selected_lfo_phase": 0.0,
+      "fitted_gain_db": -5.023095984475782,
+      "gate_at_boundary": true
+    },
+    {
+      "model": "bridge-coupled",
+      "case": "harpie_saw",
+      "objective": 5.873463205604608,
+      "v2_objective": 4.614489325680429,
+      "harmonic_mean_db": 5.575642067201036,
+      "harmonic_p90_db": 7.822507063736313,
+      "envelope_db": 0.992737128011908,
+      "transport_cents": 193.80517656774717,
+      "transport_p90_cents": 333.86706381965496,
+      "h2_h1_trajectory_mae_db": 13.105398810692511,
+      "windows": {
+        "early": {
+          "frames": 5,
+          "mean_db": 4.2677792122113445,
+          "p90_db": 4.353244364837578,
+          "reference_h2_h1_db": 1.6412736785184272,
+          "candidate_h2_h1_db": 4.8412425854773415
+        },
+        "middle": {
+          "frames": 6,
+          "mean_db": 4.229092899008555,
+          "p90_db": 4.369329175956274,
+          "reference_h2_h1_db": 8.408302919918672,
+          "candidate_h2_h1_db": 14.733323492556861
+        },
+        "late": {
+          "frames": 9,
+          "mean_db": 7.199931987656963,
+          "p90_db": 11.899325269140894,
+          "reference_h2_h1_db": 13.844714536962961,
+          "candidate_h2_h1_db": 36.973382119543686
+        }
+      },
+      "selected_phase": null,
+      "selected_gate": null,
+      "selected_lfo_phase": 0,
+      "fitted_gain_db": -5.057381472490789,
+      "gate_at_boundary": false
+    },
+    {
+      "model": "bridge-coupled",
+      "case": "string_hold",
+      "objective": 4.598279295376049,
+      "v2_objective": 4.671109892471721,
+      "harmonic_mean_db": 4.126189325697478,
+      "harmonic_p90_db": 4.427487920985514,
+      "envelope_db": 1.573633232261901,
+      "transport_cents": 590.9406786938914,
+      "transport_p90_cents": 751.9298400342125,
+      "h2_h1_trajectory_mae_db": 8.635629342231583,
+      "windows": {
+        "early": {
+          "frames": 5,
+          "mean_db": 4.268770650404984,
+          "p90_db": 4.802997210213906,
+          "reference_h2_h1_db": -4.173632606212928,
+          "candidate_h2_h1_db": -11.723577876697467
+        },
+        "middle": {
+          "frames": 6,
+          "mean_db": 3.626110207527809,
+          "p90_db": 3.9521610035746333,
+          "reference_h2_h1_db": -3.0977161881529107,
+          "candidate_h2_h1_db": -12.366073395281477
+        },
+        "late": {
+          "frames": 21,
+          "mean_db": 4.235121139291788,
+          "p90_db": 4.396551638673602,
+          "reference_h2_h1_db": 1.2047994808358633,
+          "candidate_h2_h1_db": -7.340334854716479
+        }
+      },
+      "selected_phase": [
+        0.137,
+        0.25
+      ],
+      "selected_gate": 0.25,
+      "selected_lfo_phase": 0,
+      "fitted_gain_db": -8.541618784778048,
+      "gate_at_boundary": false
+    },
+    {
+      "model": "bridge-coupled",
+      "case": "deep_meow_ring",
+      "objective": 2.1989808378292963,
+      "v2_objective": 2.071314022220947,
+      "harmonic_mean_db": 1.8010470597567074,
+      "harmonic_p90_db": 1.9160127127620736,
+      "envelope_db": 1.326445926908629,
+      "transport_cents": 311.56969955731233,
+      "transport_p90_cents": 342.42855664565076,
+      "h2_h1_trajectory_mae_db": 2.6103567440199402,
+      "windows": {
+        "early": {
+          "frames": 5,
+          "mean_db": 1.8942924210612535,
+          "p90_db": 1.9329154611283843,
+          "reference_h2_h1_db": 9.434757771402143,
+          "candidate_h2_h1_db": 12.349924741840614
+        },
+        "middle": {
+          "frames": 6,
+          "mean_db": 1.7463087688080277,
+          "p90_db": 1.813547297617036,
+          "reference_h2_h1_db": 9.828360369305868,
+          "candidate_h2_h1_db": 12.460647336871363
+        },
+        "late": {
+          "frames": 13,
+          "mean_db": 1.7904472858466571,
+          "p90_db": 1.668146636504818,
+          "reference_h2_h1_db": 10.008523019807885,
+          "candidate_h2_h1_db": 12.491523419722752
+        }
+      },
+      "selected_phase": [
+        0.137,
+        0.75
+      ],
+      "selected_gate": 0.075,
+      "selected_lfo_phase": 0.0,
+      "fitted_gain_db": -5.789448662856925,
+      "gate_at_boundary": true
+    }
+  ],
+  "note": "Full v3.1 development comparison with fixed12-second gate-low settling. The coupled bridge was rejected for native adoption because of the String Hold regression; no validation result influenced that decision."
+}

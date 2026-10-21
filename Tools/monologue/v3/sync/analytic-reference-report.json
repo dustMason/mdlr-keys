@@ -1,0 +1,448 @@
+{
+  "scope": "Independent f64 oscillator-only implementation of current phase-BLEP behavior and event-based proposals, with original RC/fold ordering; not the Rust integration and not a hardware-fidelity claim",
+  "base_internal_rate": 192000,
+  "reference_internal_rate": 3072000,
+  "reference_method": "Exact piecewise-linear Fourier coefficients, continuous analog RC, continuous triangle fold on262144-point periodic grid; final FIR response retained.16x event-corrected rendering independently checks convergence.",
+  "output_rate": 48000,
+  "analysis_window_s": [
+    0.2,
+    0.95
+  ],
+  "analysis_upper_hz": 16000,
+  "reference_downsampler": "2049-tap Kaiser beta12 lowpass80k, then down16; common production127-tap FIR then down4",
+  "source_sha256": "875edbdee4a5c901c96811c552cf91b4f61febd28ec1e60ce726a5b34e861b34",
+  "script_sha256": "ebb57f15005f1692dbf4fc16e5cc7987183720bf1e32e6c0a588ecc00d9eecb7",
+  "cases": [
+    {
+      "case": "saw_plain",
+      "master_hz": 997.3,
+      "ratio": 2.375,
+      "initial_phases": [
+        0.137,
+        0.731
+      ],
+      "kind": 0,
+      "shape": 0.0,
+      "high_rate_convergence": {
+        "off_harmonic_16k_db": -86.13873191230432,
+        "reference_off_harmonic_16k_db": -86.27203236426148,
+        "coherent_error_16k_db": -89.64924131808225
+      },
+      "results": {
+        "current_phase_blep": {
+          "off_harmonic_16k_db": -40.80690290311441,
+          "reference_off_harmonic_16k_db": -86.27203236426148,
+          "coherent_error_16k_db": -33.88212229430269
+        },
+        "event_blep": {
+          "off_harmonic_16k_db": -77.74492016687832,
+          "reference_off_harmonic_16k_db": -86.27203236426148,
+          "coherent_error_16k_db": -41.71988976444457
+        },
+        "event_blep_blamp": {
+          "off_harmonic_16k_db": -77.74492016687832,
+          "reference_off_harmonic_16k_db": -86.27203236426148,
+          "coherent_error_16k_db": -41.71988976444457
+        }
+      }
+    },
+    {
+      "case": "saw_shaped",
+      "master_hz": 997.3,
+      "ratio": 2.375,
+      "initial_phases": [
+        0.137,
+        0.731
+      ],
+      "kind": 0,
+      "shape": 0.7992187500000001,
+      "high_rate_convergence": {
+        "off_harmonic_16k_db": -86.1958220844609,
+        "reference_off_harmonic_16k_db": -86.28818208501406,
+        "coherent_error_16k_db": -90.03832031639905
+      },
+      "results": {
+        "current_phase_blep": {
+          "off_harmonic_16k_db": -40.93875221126551,
+          "reference_off_harmonic_16k_db": -86.28818208501406,
+          "coherent_error_16k_db": -33.457879411736535
+        },
+        "event_blep": {
+          "off_harmonic_16k_db": -64.94023423049343,
+          "reference_off_harmonic_16k_db": -86.28818208501406,
+          "coherent_error_16k_db": -42.026939518079296
+        },
+        "event_blep_blamp": {
+          "off_harmonic_16k_db": -74.72776069892826,
+          "reference_off_harmonic_16k_db": -86.28818208501406,
+          "coherent_error_16k_db": -42.016227513311165
+        }
+      }
+    },
+    {
+      "case": "saw_shaped_lowratio",
+      "master_hz": 997.3,
+      "ratio": 0.73,
+      "initial_phases": [
+        0.137,
+        0.731
+      ],
+      "kind": 0,
+      "shape": 0.7992187500000001,
+      "high_rate_convergence": {
+        "off_harmonic_16k_db": -86.27011611327625,
+        "reference_off_harmonic_16k_db": -86.30427369162355,
+        "coherent_error_16k_db": -94.9681888362116
+      },
+      "results": {
+        "current_phase_blep": {
+          "off_harmonic_16k_db": -48.01875625670963,
+          "reference_off_harmonic_16k_db": -86.30427369162355,
+          "coherent_error_16k_db": -35.86375556434347
+        },
+        "event_blep": {
+          "off_harmonic_16k_db": -78.81162952916269,
+          "reference_off_harmonic_16k_db": -86.30427369162355,
+          "coherent_error_16k_db": -46.9936217702523
+        },
+        "event_blep_blamp": {
+          "off_harmonic_16k_db": -81.24764317399908,
+          "reference_off_harmonic_16k_db": -86.30427369162355,
+          "coherent_error_16k_db": -46.9943229256135
+        }
+      }
+    },
+    {
+      "case": "saw_shaped_nearint",
+      "master_hz": 997.3,
+      "ratio": 3.995,
+      "initial_phases": [
+        0.137,
+        0.731
+      ],
+      "kind": 0,
+      "shape": 0.7992187500000001,
+      "high_rate_convergence": {
+        "off_harmonic_16k_db": -86.0109696630033,
+        "reference_off_harmonic_16k_db": -86.25985895038323,
+        "coherent_error_16k_db": -88.2393497202297
+      },
+      "results": {
+        "current_phase_blep": {
+          "off_harmonic_16k_db": -41.929996715691445,
+          "reference_off_harmonic_16k_db": -86.25985895038323,
+          "coherent_error_16k_db": -36.621743144205595
+        },
+        "event_blep": {
+          "off_harmonic_16k_db": -58.22911242787029,
+          "reference_off_harmonic_16k_db": -86.25985895038323,
+          "coherent_error_16k_db": -40.556989345572234
+        },
+        "event_blep_blamp": {
+          "off_harmonic_16k_db": -72.7270113425409,
+          "reference_off_harmonic_16k_db": -86.25985895038323,
+          "coherent_error_16k_db": -40.42918000437918
+        }
+      }
+    },
+    {
+      "case": "saw_shaped_aboveint",
+      "master_hz": 997.3,
+      "ratio": 4.005,
+      "initial_phases": [
+        0.137,
+        0.731
+      ],
+      "kind": 0,
+      "shape": 0.7992187500000001,
+      "high_rate_convergence": {
+        "off_harmonic_16k_db": -86.01003776764598,
+        "reference_off_harmonic_16k_db": -86.25988948049483,
+        "coherent_error_16k_db": -88.2405055839782
+      },
+      "results": {
+        "current_phase_blep": {
+          "off_harmonic_16k_db": -42.10070563058781,
+          "reference_off_harmonic_16k_db": -86.25988948049483,
+          "coherent_error_16k_db": -36.54691027618591
+        },
+        "event_blep": {
+          "off_harmonic_16k_db": -58.233665883456396,
+          "reference_off_harmonic_16k_db": -86.25988948049483,
+          "coherent_error_16k_db": -40.55482045442545
+        },
+        "event_blep_blamp": {
+          "off_harmonic_16k_db": -72.64031672154958,
+          "reference_off_harmonic_16k_db": -86.25988948049483,
+          "coherent_error_16k_db": -40.432168636417025
+        }
+      }
+    },
+    {
+      "case": "triangle_plain",
+      "master_hz": 997.3,
+      "ratio": 2.375,
+      "initial_phases": [
+        0.137,
+        0.731
+      ],
+      "kind": 1,
+      "shape": 0.0,
+      "high_rate_convergence": {
+        "off_harmonic_16k_db": -86.30545972299808,
+        "reference_off_harmonic_16k_db": -86.31703474285133,
+        "coherent_error_16k_db": -95.12592563191993
+      },
+      "results": {
+        "current_phase_blep": {
+          "off_harmonic_16k_db": -33.51140079248504,
+          "reference_off_harmonic_16k_db": -86.31703474285133,
+          "coherent_error_16k_db": -33.30519845950788
+        },
+        "event_blep": {
+          "off_harmonic_16k_db": -68.58388607477596,
+          "reference_off_harmonic_16k_db": -86.31703474285133,
+          "coherent_error_16k_db": -46.846116586052055
+        },
+        "event_blep_blamp": {
+          "off_harmonic_16k_db": -83.360023185176,
+          "reference_off_harmonic_16k_db": -86.31703474285133,
+          "coherent_error_16k_db": -46.98028325749097
+        }
+      }
+    },
+    {
+      "case": "triangle_folded",
+      "master_hz": 997.3,
+      "ratio": 2.375,
+      "initial_phases": [
+        0.137,
+        0.731
+      ],
+      "kind": 1,
+      "shape": 0.7992187500000001,
+      "high_rate_convergence": {
+        "off_harmonic_16k_db": -86.07770855392737,
+        "reference_off_harmonic_16k_db": -86.29776410462854,
+        "coherent_error_16k_db": -88.70259258237242
+      },
+      "results": {
+        "current_phase_blep": {
+          "off_harmonic_16k_db": -33.90785476955631,
+          "reference_off_harmonic_16k_db": -86.29776410462854,
+          "coherent_error_16k_db": -32.54433793470008
+        },
+        "event_blep": {
+          "off_harmonic_16k_db": -50.826822431689834,
+          "reference_off_harmonic_16k_db": -86.29776410462854,
+          "coherent_error_16k_db": -40.422156840189196
+        },
+        "event_blep_blamp": {
+          "off_harmonic_16k_db": -51.90859233756314,
+          "reference_off_harmonic_16k_db": -86.29776410462854,
+          "coherent_error_16k_db": -40.553313669313404
+        }
+      }
+    },
+    {
+      "case": "saw_shaped_high",
+      "master_hz": 3989.2,
+      "ratio": 2.375,
+      "initial_phases": [
+        0.137,
+        0.731
+      ],
+      "kind": 0,
+      "shape": 0.7992187500000001,
+      "high_rate_convergence": {
+        "off_harmonic_16k_db": -85.82412848346075,
+        "reference_off_harmonic_16k_db": -86.31096293262381,
+        "coherent_error_16k_db": -87.89198142731742
+      },
+      "results": {
+        "current_phase_blep": {
+          "off_harmonic_16k_db": -30.37016501328143,
+          "reference_off_harmonic_16k_db": -86.31096293262381,
+          "coherent_error_16k_db": -23.26982994379346
+        },
+        "event_blep": {
+          "off_harmonic_16k_db": -41.05998447713767,
+          "reference_off_harmonic_16k_db": -86.31096293262381,
+          "coherent_error_16k_db": -33.6275079307741
+        },
+        "event_blep_blamp": {
+          "off_harmonic_16k_db": -62.79571594490635,
+          "reference_off_harmonic_16k_db": -86.31096293262381,
+          "coherent_error_16k_db": -40.40657696883913
+        }
+      }
+    },
+    {
+      "case": "triangle_high",
+      "master_hz": 3989.2,
+      "ratio": 2.375,
+      "initial_phases": [
+        0.137,
+        0.731
+      ],
+      "kind": 1,
+      "shape": 0.0,
+      "high_rate_convergence": {
+        "off_harmonic_16k_db": -86.25978221842334,
+        "reference_off_harmonic_16k_db": -86.31634703516565,
+        "coherent_error_16k_db": -87.72201968305527
+      },
+      "results": {
+        "current_phase_blep": {
+          "off_harmonic_16k_db": -26.33938269493607,
+          "reference_off_harmonic_16k_db": -86.31634703516565,
+          "coherent_error_16k_db": -26.108406949716848
+        },
+        "event_blep": {
+          "off_harmonic_16k_db": -49.043144878913466,
+          "reference_off_harmonic_16k_db": -86.31634703516565,
+          "coherent_error_16k_db": -38.770835937159596
+        },
+        "event_blep_blamp": {
+          "off_harmonic_16k_db": -79.20919839967395,
+          "reference_off_harmonic_16k_db": -86.31634703516565,
+          "coherent_error_16k_db": -39.562178301217365
+        }
+      }
+    },
+    {
+      "case": "saw_reset_fraction_0.125",
+      "master_hz": 1000.0,
+      "ratio": 2.375,
+      "initial_phases": [
+        0.9993489583333334,
+        0.731
+      ],
+      "kind": 0,
+      "shape": 0.7992187500000001,
+      "high_rate_convergence": {
+        "off_harmonic_16k_db": -86.31811150498993,
+        "reference_off_harmonic_16k_db": -86.31811139073747,
+        "coherent_error_16k_db": -90.16506520432984
+      },
+      "results": {
+        "current_phase_blep": {
+          "off_harmonic_16k_db": -86.31805257086117,
+          "reference_off_harmonic_16k_db": -86.31811139073747,
+          "coherent_error_16k_db": -37.93047034194231
+        },
+        "event_blep": {
+          "off_harmonic_16k_db": -86.31816824291218,
+          "reference_off_harmonic_16k_db": -86.31811139073747,
+          "coherent_error_16k_db": -42.02381163091417
+        },
+        "event_blep_blamp": {
+          "off_harmonic_16k_db": -86.31815615866577,
+          "reference_off_harmonic_16k_db": -86.31811139073747,
+          "coherent_error_16k_db": -42.11698414828851
+        }
+      }
+    },
+    {
+      "case": "saw_reset_fraction_0.5",
+      "master_hz": 1000.0,
+      "ratio": 2.375,
+      "initial_phases": [
+        0.9973958333333334,
+        0.731
+      ],
+      "kind": 0,
+      "shape": 0.7992187500000001,
+      "high_rate_convergence": {
+        "off_harmonic_16k_db": -86.3181115085128,
+        "reference_off_harmonic_16k_db": -86.31811137174586,
+        "coherent_error_16k_db": -90.25490820084039
+      },
+      "results": {
+        "current_phase_blep": {
+          "off_harmonic_16k_db": -86.31801827627362,
+          "reference_off_harmonic_16k_db": -86.31811137174586,
+          "coherent_error_16k_db": -36.48525716260676
+        },
+        "event_blep": {
+          "off_harmonic_16k_db": -86.31815903167235,
+          "reference_off_harmonic_16k_db": -86.31811137174586,
+          "coherent_error_16k_db": -42.36472537980666
+        },
+        "event_blep_blamp": {
+          "off_harmonic_16k_db": -86.31815689125568,
+          "reference_off_harmonic_16k_db": -86.31811137174586,
+          "coherent_error_16k_db": -42.1648848657304
+        }
+      }
+    },
+    {
+      "case": "saw_reset_fraction_0.875",
+      "master_hz": 1000.0,
+      "ratio": 2.375,
+      "initial_phases": [
+        0.9954427083333334,
+        0.731
+      ],
+      "kind": 0,
+      "shape": 0.7992187500000001,
+      "high_rate_convergence": {
+        "off_harmonic_16k_db": -86.31811152489895,
+        "reference_off_harmonic_16k_db": -86.31811135217974,
+        "coherent_error_16k_db": -90.33790568229774
+      },
+      "results": {
+        "current_phase_blep": {
+          "off_harmonic_16k_db": -86.31782594718112,
+          "reference_off_harmonic_16k_db": -86.31811135217974,
+          "coherent_error_16k_db": -30.026823943858844
+        },
+        "event_blep": {
+          "off_harmonic_16k_db": -86.31816534300187,
+          "reference_off_harmonic_16k_db": -86.31811135217974,
+          "coherent_error_16k_db": -42.075144136651005
+        },
+        "event_blep_blamp": {
+          "off_harmonic_16k_db": -86.3181564567272,
+          "reference_off_harmonic_16k_db": -86.31811135217974,
+          "coherent_error_16k_db": -42.16940619542014
+        }
+      }
+    }
+  ],
+  "fractional_ordering_examples": [
+    {
+      "master_phase": 0.96,
+      "master_increment": 0.08,
+      "slave_phase": 0.3,
+      "slave_increment": 0.1,
+      "event_pre_correction": -0.1749999999999997,
+      "next_carry": 0.17500000000000035,
+      "next_phase": 0.04999999999999996
+    },
+    {
+      "master_phase": 0.96,
+      "master_increment": 0.08,
+      "slave_phase": 0.94,
+      "slave_increment": 0.1,
+      "event_pre_correction": -0.24499999999999955,
+      "next_carry": 0.24500000000000044,
+      "next_phase": 0.04999999999999996
+    },
+    {
+      "master_phase": 0.96,
+      "master_increment": 0.08,
+      "slave_phase": 0.97,
+      "slave_increment": 0.1,
+      "event_pre_correction": -0.4999999999999996,
+      "next_carry": 0.10000000000000019,
+      "next_phase": 0.04999999999999996
+    }
+  ],
+  "limitations": [
+    "Analytic reference retains the same modeled waveform/RC and reset-to-zero assumption; no hardware reset parameter is fitted.",
+    "Prototype uses f64 to separate timing/event errors from f32 phase drift.",
+    "Small residual magnitude differences include low-order polynomial smoothing and RC prewarping; off-harmonic energy and coherent error are both reported.",
+    "Triangle folding remains after RC and can itself alias; input-step correction cannot eliminate every nonlinear artifact."
+  ]
+}

@@ -1,0 +1,423 @@
+{
+  "version": 2,
+  "sample_rate": 48000,
+  "reference_repository": "https://github.com/callimero/Monologue",
+  "reference_commit": "e829a7fbcc15a2a3555f86625b8592d77e4e5b76",
+  "license": "MIT (see callimero/LICENSE)",
+  "warnings": [
+    "Physical MIDI notes follow firmware-confirmed 8-foot triangle/divider phase one octave below MIDI; raw saw is twice that frequency. Observed lower component is not always the played MIDI note.",
+    "Note onsets are inferred from audio with roughly 2ms uncertainty; unknown manual gate-off, velocity and relative oscillator phase are explicitly profiled, not recovered as facts.",
+    "Original Pinoesque excerpt contained a second same-note attack near0.895s; v2 stops at0.840s and includes release.",
+    "Harpie first release is inferred from its sequence step and amplitude trajectory. String Hold and Pinoesque manual release times remain nuisance parameters.",
+    "String Hold is ring-modulated by muted square VCO1; Harpie is hard-synced to muted VCO1. Muted oscillator levels do not remove modulation sources.",
+    "Gloeckchen is reserved as new validation; no engine score was used to choose it. Its first four sounding pitches and0.5s step spacing match the stored sequence.",
+    "Gain, oscillator phase, analog drift and recording transfer remain unobserved. No pitch/time warping; small corpus does not identify every analog parameter."
+  ],
+  "cases": [
+    {
+      "id": "s0s_triangle",
+      "split": "train",
+      "program": "../references/callimero/patches/S0S.prog_bin",
+      "reference": "corpus/s0s_triangle.reference.wav",
+      "events": "corpus/s0s_triangle.events.json",
+      "duration": 0.403,
+      "source_audio": "../references/callimero/patches/S0S.wav",
+      "source_crop_seconds": [
+        1.222,
+        1.625
+      ],
+      "sounding_note": 76,
+      "velocity": 0.8,
+      "velocity_confidence": "assumed; decoded amplitude/filter velocity sensitivities both 0",
+      "amp_velocity_raw": 0,
+      "cutoff_velocity_raw": 0,
+      "notes": "Clean open-filter triangles; recorded note88 sounds76. First three source events faded, so excluded.",
+      "physical_midi_note": 88,
+      "observed_base_note": 76,
+      "pitch_confidence": "Matched stored sequence",
+      "spectral_end_seconds": 0.33,
+      "program_sha256": "5614dc5158df2e393c265c30dc57819d2309610d3a06b4604be5586cfe20f4ca",
+      "reference_sha256": "8b23b3feb37fa27b2879aff1d80443d75e09da71ac393b062bd16b5c8bc23903",
+      "events_sha256": "9f1d03b12e1d62523307d0b23532620d70a72172681372b1cb58b9d3e03c7ba3",
+      "source_audio_sha256": "66450b8219472f7fd1ff4eb00390fd19a4708043588d0444372aff5bd68c1ac6"
+    },
+    {
+      "id": "harpie_saw",
+      "split": "train",
+      "program": "../references/callimero/patches/Harpie.prog_bin",
+      "reference": "corpus/harpie_saw.reference.wav",
+      "events": "corpus/harpie_saw.events.json",
+      "duration": 0.599,
+      "source_audio": "../references/callimero/patches/Harpie.wav",
+      "source_crop_seconds": [
+        0.146,
+        0.745
+      ],
+      "sounding_note": 48,
+      "velocity": 0.8,
+      "velocity_confidence": "assumed; decoded amplitude/filter velocity sensitivities both 0",
+      "amp_velocity_raw": 0,
+      "cutoff_velocity_raw": 0,
+      "notes": "Hard-synced saw; muted VCO1 remains sync master. Sourceonset0.196; inferred release0.346 matches next disabled sequence step.",
+      "physical_midi_note": 60,
+      "observed_base_note": 48,
+      "pitch_confidence": "Matched stored sequence",
+      "program_sha256": "55d4f1b5633489b58b701c2b0ea7a19fe31efd1c58b29796041b903bdf8df0aa",
+      "reference_sha256": "97ca71b9b6e9e98b9d01e1f3a2973377bdaa33e3767f116c2bd1799ab87e463d",
+      "events_sha256": "3c6b64901796d4c20787947a48032fc0f21c1b9a6baa5712c73fd33e13356966",
+      "source_audio_sha256": "682e201ffa2967a10daa8b3e6bd9ada2d3b05cef57f8c40fc7e43c1c27e7bcdd"
+    },
+    {
+      "id": "pinoesque",
+      "split": "train",
+      "program": "../references/callimero/patches/Pinoesque.prog_bin",
+      "reference": "corpus/pinoesque.reference.wav",
+      "events": "corpus/pinoesque.events.json",
+      "duration": 0.43,
+      "source_audio": "../references/callimero/patches/Pinoesque.wav",
+      "source_crop_seconds": [
+        0.41,
+        0.84
+      ],
+      "sounding_note": 48,
+      "velocity": 0.8,
+      "velocity_confidence": "unknown and profiled; amplitude and filter velocity sensitivities enabled",
+      "amp_velocity_raw": 50,
+      "cutoff_velocity_raw": 1,
+      "notes": "Manual C4 physical note; triangle dividerC3. Sourceonset0.460; shortened before repeated C4 attackaround0.895. Manual release unknown; profile relativecroptimes0.16..0.32.",
+      "velocity_candidates": [
+        0.007874015748031496,
+        0.12598425196850394,
+        0.25196850393700787,
+        0.3779527559055118,
+        0.5039370078740157,
+        0.6299212598425197,
+        0.7559055118110236,
+        0.8818897637795275,
+        1.0
+      ],
+      "physical_midi_note": 60,
+      "observed_base_note": 48,
+      "pitch_confidence": "Inferred physical MIDI from observed divider/base and patch octaves",
+      "gate_off_candidates": [
+        0.16,
+        0.2,
+        0.24,
+        0.28,
+        0.32
+      ],
+      "oscillator_phase_candidates": [
+        [
+          0.137,
+          0.0
+        ],
+        [
+          0.137,
+          0.125
+        ],
+        [
+          0.137,
+          0.25
+        ],
+        [
+          0.137,
+          0.375
+        ],
+        [
+          0.137,
+          0.5
+        ],
+        [
+          0.137,
+          0.625
+        ],
+        [
+          0.137,
+          0.75
+        ],
+        [
+          0.137,
+          0.875
+        ]
+      ],
+      "program_sha256": "9fa6b74173b62e28d04005feda6be2e46d239fcba8cdbd12dd8b19027ba3b429",
+      "reference_sha256": "e90828991ed142d2c034402ab347aada684a0d6efc171cb54535f559683ee2ec",
+      "events_sha256": "34ae133ed1c85b2bcdeacbafa26ccfab4c9f117f8415300ca3f4fe8d8ec888ab",
+      "source_audio_sha256": "8e153023f6362ba1f538ae1d0e443ac25e3deaf93662ad49a3fab6db95eb6232"
+    },
+    {
+      "id": "string_hold",
+      "split": "held_out",
+      "program": "../references/callimero/patches/String Hold.prog_bin",
+      "reference": "corpus/string_hold.reference.wav",
+      "events": "corpus/string_hold.events.json",
+      "duration": 0.8820000000000001,
+      "source_audio": "../references/callimero/patches/String Hold.wav",
+      "source_crop_seconds": [
+        0.418,
+        1.3
+      ],
+      "sounding_note": 57,
+      "velocity": 0.8,
+      "velocity_confidence": "assumed; decoded amplitude/filter velocity sensitivities both 0",
+      "amp_velocity_raw": 0,
+      "cutoff_velocity_raw": 0,
+      "notes": "Ring-modulated VCO2saw, with muted square VCO1 carrier; sourcefirston0.468. Manual release unknown; profile relativecroptimes0.10..0.30.",
+      "physical_midi_note": 69,
+      "observed_base_note": 57,
+      "pitch_confidence": "Inferred physical MIDI from observed divider/base and patch octaves",
+      "gate_off_candidates": [
+        0.1,
+        0.15,
+        0.2,
+        0.25,
+        0.3
+      ],
+      "oscillator_phase_candidates": [
+        [
+          0.137,
+          0.0
+        ],
+        [
+          0.137,
+          0.125
+        ],
+        [
+          0.137,
+          0.25
+        ],
+        [
+          0.137,
+          0.375
+        ],
+        [
+          0.137,
+          0.5
+        ],
+        [
+          0.137,
+          0.625
+        ],
+        [
+          0.137,
+          0.75
+        ],
+        [
+          0.137,
+          0.875
+        ]
+      ],
+      "program_sha256": "e77c49abcb33170346b491e80c10c39f96a43cec6118d92366fe78e82a84caf2",
+      "reference_sha256": "68b6becccd703fe0240d24a94e5b1ac572c513c141d3a7a31c888c1f97cffe9c",
+      "events_sha256": "51669fc86971bbd84c92573d071e50fcdd005b95c6db808a919c850400aacdaf",
+      "source_audio_sha256": "4af72f2407bafe1b37c6c13c3b6d7a6e4173bd295d7408a5cb5b8059b60b7513"
+    },
+    {
+      "id": "gloeckchen_triangles",
+      "split": "held_out",
+      "validation_status": "new_unscored",
+      "program": "../references/callimero/patches/Gloeckchen.prog_bin",
+      "reference": "corpus/gloeckchen_triangles.reference.wav",
+      "events": "corpus/gloeckchen_triangles.events.json",
+      "duration": 0.5,
+      "source_audio": "sources/patches/Gloeckchen.wav",
+      "source_crop_seconds": [
+        0.305,
+        0.805
+      ],
+      "sounding_note": 60,
+      "physical_midi_note": 72,
+      "observed_base_note": 60,
+      "velocity": 0.4881889763779528,
+      "amp_velocity_raw": 0,
+      "cutoff_velocity_raw": 0,
+      "velocity_confidence": "Stored sequence firststep62; both velocity sensitivitieszero",
+      "pitch_confidence": "Sequencefirstnote72; measuredtrianglebaseC4 and nextF4/E4/C4 match firstfour sequencenotes\u221212",
+      "notes": "Openfilter/nores/no drive unsyncedtriangles8/4foot with shapeLFO. Firston\u22480.355,nexton\u22480.855;0.5s step,rawgate19/72 givesoff0.486944. Unknown oscillator relativephase.",
+      "oscillator_phase_candidates": [
+        [
+          0.137,
+          0.0
+        ],
+        [
+          0.137,
+          0.125
+        ],
+        [
+          0.137,
+          0.25
+        ],
+        [
+          0.137,
+          0.375
+        ],
+        [
+          0.137,
+          0.5
+        ],
+        [
+          0.137,
+          0.625
+        ],
+        [
+          0.137,
+          0.75
+        ],
+        [
+          0.137,
+          0.875
+        ]
+      ],
+      "program_sha256": "46a36c1cd9e66c8819605bf5683c58d7a95b964a26eb1b8fbc742afc67f2fccd",
+      "reference_sha256": "cd13d9dab082c5dc461539c389ffab18b53c402083d0ff9d12924d43832f4384",
+      "events_sha256": "b24c64c494f45b3a13ae4408589fdefa088727db4d9bf9230c77867b0089667d",
+      "source_audio_sha256": "f55ca895487aa38f2125f086cf407bbbb10cdcc41c70ac4b383ac6b58c74ce9f"
+    },
+    {
+      "id": "duidui_saw_shape",
+      "split": "train",
+      "program": "../references/callimero/patches/DuiDui.prog_bin",
+      "reference": "corpus/duidui_saw_shape.reference.wav",
+      "events": "corpus/duidui_saw_shape.events.json",
+      "duration": 0.5000000000000001,
+      "source_audio": "sources/patches/DuiDui.wav",
+      "source_crop_seconds": [
+        0.5379999999999999,
+        1.038
+      ],
+      "sounding_note": 40,
+      "physical_midi_note": 52,
+      "observed_base_note": 40,
+      "divider_note": 40,
+      "velocity": 0.8,
+      "amp_velocity_raw": 0,
+      "cutoff_velocity_raw": 0,
+      "velocity_confidence": "Unknown performance velocity; both sensitivities are zero",
+      "gate_off_candidates": [
+        0.075,
+        0.1,
+        0.15,
+        0.2,
+        0.25
+      ],
+      "pitch_confidence": "Raw saw carrier and half-rate shape products measured; physical MIDI follows firmware oscillator convention",
+      "notes": "Dominant saw VCO1 plus quieter octave-up saw VCO2. One-shot positive shape sweep; measured raw saw E3 and lower shape products E2. First note begins after silence; excerpt ends before next note.",
+      "oscillator_phase_candidates": [
+        [
+          0.137,
+          0.0
+        ],
+        [
+          0.137,
+          0.125
+        ],
+        [
+          0.137,
+          0.25
+        ],
+        [
+          0.137,
+          0.375
+        ],
+        [
+          0.137,
+          0.5
+        ],
+        [
+          0.137,
+          0.625
+        ],
+        [
+          0.137,
+          0.75
+        ],
+        [
+          0.137,
+          0.875
+        ]
+      ],
+      "program_sha256": "cf131bb286ce9f24856389d5833f43820539770bdb169492bf9974f81e462ced",
+      "reference_sha256": "49436381a576fe7ffbd6a0349bcb953376635caf2aded026d486ad917d16c072",
+      "events_sha256": "7799d7505c91b64f47c3164a02b46348f06603fc1af2d4e4dafba93252d0c7e1",
+      "source_audio_sha256": "73ac1945758ab2df7eada38fc0f34ce4ce1ae33ed2fef0be0500023424157a4d"
+    },
+    {
+      "id": "wuai_saw_filter",
+      "split": "train",
+      "program": "../references/callimero/patches/Wuai.prog_bin",
+      "reference": "corpus/wuai_saw_filter.reference.wav",
+      "events": "corpus/wuai_saw_filter.events.json",
+      "duration": 0.5000000000000001,
+      "source_audio": "sources/patches/Wuai.wav",
+      "source_crop_seconds": [
+        0.5399999999999999,
+        1.04
+      ],
+      "sounding_note": 48,
+      "physical_midi_note": 48,
+      "observed_base_note": 48,
+      "divider_note": 36,
+      "velocity": 0.8,
+      "amp_velocity_raw": 0,
+      "cutoff_velocity_raw": 0,
+      "velocity_confidence": "Unknown performance velocity; both sensitivities are zero",
+      "gate_off_candidates": [
+        0.075,
+        0.1,
+        0.15,
+        0.2,
+        0.25
+      ],
+      "pitch_confidence": "Raw saw carrier and half-rate shape products measured; physical MIDI follows firmware oscillator convention",
+      "notes": "Same saw oscillator settings as DuiDui except a different played note; shapes are zero and LFO targets cutoff. Raw saw fundamental C3; lower divider C2 is not audible. First note begins after silence. Manual release is profiled.",
+      "oscillator_phase_candidates": [
+        [
+          0.137,
+          0.0
+        ],
+        [
+          0.137,
+          0.125
+        ],
+        [
+          0.137,
+          0.25
+        ],
+        [
+          0.137,
+          0.375
+        ],
+        [
+          0.137,
+          0.5
+        ],
+        [
+          0.137,
+          0.625
+        ],
+        [
+          0.137,
+          0.75
+        ],
+        [
+          0.137,
+          0.875
+        ]
+      ],
+      "program_sha256": "3840e79caa33aad3f29961ba6fac2096b97a536774f0c3155fa3e6113915fc25",
+      "reference_sha256": "e3cd5e9b312178996b7997bc96f54bb8c6268b617f6c8e024000488f79a8abbf",
+      "events_sha256": "1ae0d8fa101e653f22ef8b3c0e78085e6ed52dba75a294025ef1d0c4603bb260",
+      "source_audio_sha256": "372f8703729796cf7e4d20a9ead26b0b13beea5952a258f8f5464b5650997b86"
+    }
+  ],
+  "analysis_protocol": {
+    "objective": "local_harmonic_band_power_v2_plus_0.3_rms_envelope",
+    "harmonic_bands": 64,
+    "maximum_frequency_hz": 12000,
+    "max_alignment_ms": 4,
+    "analysis_start_seconds": 0.075,
+    "recording_gain_fitted": true,
+    "legacy_full_spectrum_diagnostics": true,
+    "search_nuisance_protocol": "Full frozen grids for baseline/pass boundaries/final; adjacent grid values during each global search pass"
+  }
+}

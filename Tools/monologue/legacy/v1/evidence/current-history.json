@@ -1,0 +1,42 @@
+[
+  {
+    "label": "baseline",
+    "calibration": {
+      "cutoff_curve": 1.0,
+      "filter_eg_octaves": 8.0,
+      "shape_amount": 2.0,
+      "drive_mix_curve": 1.0,
+      "drive_gain": 12.0,
+      "triangle_shape_amount": 4.0,
+      "triangle_shape_fall": 1.0
+    },
+    "scores": {
+      "train": 11.934394211016034,
+      "held_out": 8.98126108586121
+    }
+  },
+  {
+    "label": "best",
+    "calibration": {
+      "cutoff_curve": 1.2,
+      "filter_eg_octaves": 6.0,
+      "shape_amount": 0.875,
+      "drive_mix_curve": 0.5499999999999999,
+      "drive_gain": 18.0,
+      "triangle_shape_amount": 7.0,
+      "triangle_shape_fall": 0.25
+    },
+    "scores": {
+      "train": 10.606141753456725,
+      "held_out": 8.959664444670224
+    }
+  },
+  {
+    "label": "native-defaults",
+    "calibration": {},
+    "scores": {
+      "train": 10.606141753456725,
+      "held_out": 8.959664444670224
+    }
+  }
+]

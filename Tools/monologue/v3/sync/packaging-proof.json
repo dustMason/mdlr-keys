@@ -1,0 +1,22 @@
+{
+  "method": "All non-main function ASTs in portable audit.py match the frozen independent numerical audit exactly; only CLI/output/source-provenance paths changed.",
+  "functions": [
+    "threshold",
+    "raw",
+    "slope",
+    "blep",
+    "legacy",
+    "correction",
+    "segment",
+    "event_step",
+    "render",
+    "sha",
+    "spectrum",
+    "metric",
+    "canonical_coefficients",
+    "analytic_reference"
+  ],
+  "frozen_audit_sha256": "ebb57f15005f1692dbf4fc16e5cc7987183720bf1e32e6c0a588ecc00d9eecb7",
+  "portable_audit_sha256": "111c725bf99f803704560760bfed16cc8c6c1e9eb70f9c37761dc8c155061c43",
+  "analytic_report_sha256": "77553851a99482b8ff225f95fa148467ceac24959c650b9f73c30b17ba6dc23c"
+}

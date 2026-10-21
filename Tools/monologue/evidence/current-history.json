@@ -1,0 +1,2855 @@
+{
+  "structural_training": [
+    {
+      "label": "baseline",
+      "calibration": {
+        "cutoff_min": 19.445436,
+        "cutoff_max": 19380.219,
+        "cutoff_curve": 1,
+        "resonance_curve": 1.35,
+        "resonance_max": 2.1,
+        "filter_saturation": 0.5,
+        "vca_curve": 1,
+        "saw_shape_scale": 1.2929688,
+        "triangle_fold_slope": 2.7,
+        "triangle_shape_depth": 0.7272949,
+        "drive_gain": 18,
+        "drive_mix_curve": 0.55,
+        "drive_bass": 0.8,
+        "output_gain": 0.5
+      },
+      "scores": {
+        "train": 5.508471354252157
+      }
+    },
+    {
+      "label": "trial-001",
+      "calibration": {
+        "cutoff_min": 19.445436,
+        "cutoff_max": 19380.219,
+        "cutoff_curve": 1,
+        "resonance_curve": 0.8500000000000001,
+        "resonance_max": 2.1,
+        "filter_saturation": 0.5,
+        "vca_curve": 1,
+        "saw_shape_scale": 1.2929688,
+        "triangle_fold_slope": 2.7,
+        "triangle_shape_depth": 0.7272949,
+        "drive_gain": 18,
+        "drive_mix_curve": 0.55,
+        "drive_bass": 0.8,
+        "output_gain": 0.5
+      },
+      "scores": {
+        "train": 5.09034117334601
+      }
+    },
+    {
+      "label": "trial-002",
+      "calibration": {
+        "cutoff_min": 19.445436,
+        "cutoff_max": 19380.219,
+        "cutoff_curve": 1,
+        "resonance_curve": 1.85,
+        "resonance_max": 2.1,
+        "filter_saturation": 0.5,
+        "vca_curve": 1,
+        "saw_shape_scale": 1.2929688,
+        "triangle_fold_slope": 2.7,
+        "triangle_shape_depth": 0.7272949,
+        "drive_gain": 18,
+        "drive_mix_curve": 0.55,
+        "drive_bass": 0.8,
+        "output_gain": 0.5
+      },
+      "scores": {
+        "train": 5.834879604112325
+      }
+    },
+    {
+      "label": "trial-003",
+      "calibration": {
+        "cutoff_min": 19.445436,
+        "cutoff_max": 19380.219,
+        "cutoff_curve": 1,
+        "resonance_curve": 0.8500000000000001,
+        "resonance_max": 1.9000000000000001,
+        "filter_saturation": 0.5,
+        "vca_curve": 1,
+        "saw_shape_scale": 1.2929688,
+        "triangle_fold_slope": 2.7,
+        "triangle_shape_depth": 0.7272949,
+        "drive_gain": 18,
+        "drive_mix_curve": 0.55,
+        "drive_bass": 0.8,
+        "output_gain": 0.5
+      },
+      "scores": {
+        "train": 5.448747223227864
+      }
+    },
+    {
+      "label": "trial-004",
+      "calibration": {
+        "cutoff_min": 19.445436,
+        "cutoff_max": 19380.219,
+        "cutoff_curve": 1,
+        "resonance_curve": 0.8500000000000001,
+        "resonance_max": 2.3000000000000003,
+        "filter_saturation": 0.5,
+        "vca_curve": 1,
+        "saw_shape_scale": 1.2929688,
+        "triangle_fold_slope": 2.7,
+        "triangle_shape_depth": 0.7272949,
+        "drive_gain": 18,
+        "drive_mix_curve": 0.55,
+        "drive_bass": 0.8,
+        "output_gain": 0.5
+      },
+      "scores": {
+        "train": 4.721632120109886
+      }
+    },
+    {
+      "label": "trial-005",
+      "calibration": {
+        "cutoff_min": 19.445436,
+        "cutoff_max": 19380.219,
+        "cutoff_curve": 1,
+        "resonance_curve": 0.8500000000000001,
+        "resonance_max": 2.3000000000000003,
+        "filter_saturation": 0.25,
+        "vca_curve": 1,
+        "saw_shape_scale": 1.2929688,
+        "triangle_fold_slope": 2.7,
+        "triangle_shape_depth": 0.7272949,
+        "drive_gain": 18,
+        "drive_mix_curve": 0.55,
+        "drive_bass": 0.8,
+        "output_gain": 0.5
+      },
+      "scores": {
+        "train": 4.7432110882790735
+      }
+    },
+    {
+      "label": "trial-006",
+      "calibration": {
+        "cutoff_min": 19.445436,
+        "cutoff_max": 19380.219,
+        "cutoff_curve": 1,
+        "resonance_curve": 0.8500000000000001,
+        "resonance_max": 2.3000000000000003,
+        "filter_saturation": 0.75,
+        "vca_curve": 1,
+        "saw_shape_scale": 1.2929688,
+        "triangle_fold_slope": 2.7,
+        "triangle_shape_depth": 0.7272949,
+        "drive_gain": 18,
+        "drive_mix_curve": 0.55,
+        "drive_bass": 0.8,
+        "output_gain": 0.5
+      },
+      "scores": {
+        "train": 4.721255146778182
+      }
+    },
+    {
+      "label": "trial-007",
+      "calibration": {
+        "cutoff_min": 19.445436,
+        "cutoff_max": 19380.219,
+        "cutoff_curve": 1,
+        "resonance_curve": 0.8500000000000001,
+        "resonance_max": 2.3000000000000003,
+        "filter_saturation": 0.75,
+        "vca_curve": 1,
+        "saw_shape_scale": 1.2929688,
+        "triangle_fold_slope": 2.7,
+        "triangle_shape_depth": 0.7272949,
+        "drive_gain": 10.0,
+        "drive_mix_curve": 0.55,
+        "drive_bass": 0.8,
+        "output_gain": 0.5
+      },
+      "scores": {
+        "train": 4.765730480284119
+      }
+    },
+    {
+      "label": "trial-008",
+      "calibration": {
+        "cutoff_min": 19.445436,
+        "cutoff_max": 19380.219,
+        "cutoff_curve": 1,
+        "resonance_curve": 0.8500000000000001,
+        "resonance_max": 2.3000000000000003,
+        "filter_saturation": 0.75,
+        "vca_curve": 1,
+        "saw_shape_scale": 1.2929688,
+        "triangle_fold_slope": 2.7,
+        "triangle_shape_depth": 0.7272949,
+        "drive_gain": 26.0,
+        "drive_mix_curve": 0.55,
+        "drive_bass": 0.8,
+        "output_gain": 0.5
+      },
+      "scores": {
+        "train": 4.709206307162598
+      }
+    },
+    {
+      "label": "trial-009",
+      "calibration": {
+        "cutoff_min": 19.445436,
+        "cutoff_max": 19380.219,
+        "cutoff_curve": 1,
+        "resonance_curve": 0.8500000000000001,
+        "resonance_max": 2.3000000000000003,
+        "filter_saturation": 0.75,
+        "vca_curve": 1,
+        "saw_shape_scale": 1.2929688,
+        "triangle_fold_slope": 2.7,
+        "triangle_shape_depth": 0.7272949,
+        "drive_gain": 26.0,
+        "drive_mix_curve": 0.30000000000000004,
+        "drive_bass": 0.8,
+        "output_gain": 0.5
+      },
+      "scores": {
+        "train": 4.713346696582926
+      }
+    },
+    {
+      "label": "trial-010",
+      "calibration": {
+        "cutoff_min": 19.445436,
+        "cutoff_max": 19380.219,
+        "cutoff_curve": 1,
+        "resonance_curve": 0.8500000000000001,
+        "resonance_max": 2.3000000000000003,
+        "filter_saturation": 0.75,
+        "vca_curve": 1,
+        "saw_shape_scale": 1.2929688,
+        "triangle_fold_slope": 2.7,
+        "triangle_shape_depth": 0.7272949,
+        "drive_gain": 26.0,
+        "drive_mix_curve": 0.8,
+        "drive_bass": 0.8,
+        "output_gain": 0.5
+      },
+      "scores": {
+        "train": 4.7570965871089195
+      }
+    },
+    {
+      "label": "trial-011",
+      "calibration": {
+        "cutoff_min": 19.445436,
+        "cutoff_max": 19380.219,
+        "cutoff_curve": 1,
+        "resonance_curve": 0.8500000000000001,
+        "resonance_max": 2.3000000000000003,
+        "filter_saturation": 0.75,
+        "vca_curve": 1,
+        "saw_shape_scale": 1.2929688,
+        "triangle_fold_slope": 2.7,
+        "triangle_shape_depth": 0.7272949,
+        "drive_gain": 26.0,
+        "drive_mix_curve": 0.55,
+        "drive_bass": 0.4,
+        "output_gain": 0.5
+      },
+      "scores": {
+        "train": 4.605340066020184
+      }
+    },
+    {
+      "label": "trial-012",
+      "calibration": {
+        "cutoff_min": 19.445436,
+        "cutoff_max": 19380.219,
+        "cutoff_curve": 1,
+        "resonance_curve": 0.8500000000000001,
+        "resonance_max": 2.3000000000000003,
+        "filter_saturation": 0.75,
+        "vca_curve": 1,
+        "saw_shape_scale": 1.2929688,
+        "triangle_fold_slope": 2.7,
+        "triangle_shape_depth": 0.7272949,
+        "drive_gain": 26.0,
+        "drive_mix_curve": 0.55,
+        "drive_bass": 1.2000000000000002,
+        "output_gain": 0.5
+      },
+      "scores": {
+        "train": 4.8128655793168305
+      }
+    },
+    {
+      "label": "trial-013",
+      "calibration": {
+        "cutoff_min": 19.445436,
+        "cutoff_max": 19380.219,
+        "cutoff_curve": 1,
+        "resonance_curve": 0.4,
+        "resonance_max": 2.3000000000000003,
+        "filter_saturation": 0.75,
+        "vca_curve": 1,
+        "saw_shape_scale": 1.2929688,
+        "triangle_fold_slope": 2.7,
+        "triangle_shape_depth": 0.7272949,
+        "drive_gain": 26.0,
+        "drive_mix_curve": 0.55,
+        "drive_bass": 0.4,
+        "output_gain": 0.5
+      },
+      "scores": {
+        "train": 6.120841075238555
+      }
+    },
+    {
+      "label": "trial-014",
+      "calibration": {
+        "cutoff_min": 19.445436,
+        "cutoff_max": 19380.219,
+        "cutoff_curve": 1,
+        "resonance_curve": 1.35,
+        "resonance_max": 2.3000000000000003,
+        "filter_saturation": 0.75,
+        "vca_curve": 1,
+        "saw_shape_scale": 1.2929688,
+        "triangle_fold_slope": 2.7,
+        "triangle_shape_depth": 0.7272949,
+        "drive_gain": 26.0,
+        "drive_mix_curve": 0.55,
+        "drive_bass": 0.4,
+        "output_gain": 0.5
+      },
+      "scores": {
+        "train": 5.105957157818979
+      }
+    },
+    {
+      "label": "trial-015",
+      "calibration": {
+        "cutoff_min": 19.445436,
+        "cutoff_max": 19380.219,
+        "cutoff_curve": 1,
+        "resonance_curve": 0.8500000000000001,
+        "resonance_max": 2.1,
+        "filter_saturation": 0.75,
+        "vca_curve": 1,
+        "saw_shape_scale": 1.2929688,
+        "triangle_fold_slope": 2.7,
+        "triangle_shape_depth": 0.7272949,
+        "drive_gain": 26.0,
+        "drive_mix_curve": 0.55,
+        "drive_bass": 0.4,
+        "output_gain": 0.5
+      },
+      "scores": {
+        "train": 5.002646502119961
+      }
+    },
+    {
+      "label": "trial-016",
+      "calibration": {
+        "cutoff_min": 19.445436,
+        "cutoff_max": 19380.219,
+        "cutoff_curve": 1,
+        "resonance_curve": 0.8500000000000001,
+        "resonance_max": 2.4,
+        "filter_saturation": 0.75,
+        "vca_curve": 1,
+        "saw_shape_scale": 1.2929688,
+        "triangle_fold_slope": 2.7,
+        "triangle_shape_depth": 0.7272949,
+        "drive_gain": 26.0,
+        "drive_mix_curve": 0.55,
+        "drive_bass": 0.4,
+        "output_gain": 0.5
+      },
+      "scores": {
+        "train": 4.94618545205653
+      }
+    },
+    {
+      "label": "trial-017",
+      "calibration": {
+        "cutoff_min": 19.445436,
+        "cutoff_max": 19380.219,
+        "cutoff_curve": 1,
+        "resonance_curve": 0.8500000000000001,
+        "resonance_max": 2.3000000000000003,
+        "filter_saturation": 0.5,
+        "vca_curve": 1,
+        "saw_shape_scale": 1.2929688,
+        "triangle_fold_slope": 2.7,
+        "triangle_shape_depth": 0.7272949,
+        "drive_gain": 26.0,
+        "drive_mix_curve": 0.55,
+        "drive_bass": 0.4,
+        "output_gain": 0.5
+      },
+      "scores": {
+        "train": 4.605631365178015
+      }
+    },
+    {
+      "label": "trial-018",
+      "calibration": {
+        "cutoff_min": 19.445436,
+        "cutoff_max": 19380.219,
+        "cutoff_curve": 1,
+        "resonance_curve": 0.8500000000000001,
+        "resonance_max": 2.3000000000000003,
+        "filter_saturation": 1.0,
+        "vca_curve": 1,
+        "saw_shape_scale": 1.2929688,
+        "triangle_fold_slope": 2.7,
+        "triangle_shape_depth": 0.7272949,
+        "drive_gain": 26.0,
+        "drive_mix_curve": 0.55,
+        "drive_bass": 0.4,
+        "output_gain": 0.5
+      },
+      "scores": {
+        "train": 4.597776875542993
+      }
+    },
+    {
+      "label": "trial-019",
+      "calibration": {
+        "cutoff_min": 19.445436,
+        "cutoff_max": 19380.219,
+        "cutoff_curve": 1,
+        "resonance_curve": 0.8500000000000001,
+        "resonance_max": 2.3000000000000003,
+        "filter_saturation": 1.0,
+        "vca_curve": 1,
+        "saw_shape_scale": 1.2929688,
+        "triangle_fold_slope": 2.7,
+        "triangle_shape_depth": 0.7272949,
+        "drive_gain": 18.0,
+        "drive_mix_curve": 0.55,
+        "drive_bass": 0.4,
+        "output_gain": 0.5
+      },
+      "scores": {
+        "train": 4.594508456111842
+      }
+    },
+    {
+      "label": "trial-020",
+      "calibration": {
+        "cutoff_min": 19.445436,
+        "cutoff_max": 19380.219,
+        "cutoff_curve": 1,
+        "resonance_curve": 0.8500000000000001,
+        "resonance_max": 2.3000000000000003,
+        "filter_saturation": 1.0,
+        "vca_curve": 1,
+        "saw_shape_scale": 1.2929688,
+        "triangle_fold_slope": 2.7,
+        "triangle_shape_depth": 0.7272949,
+        "drive_gain": 34.0,
+        "drive_mix_curve": 0.55,
+        "drive_bass": 0.4,
+        "output_gain": 0.5
+      },
+      "scores": {
+        "train": 4.583701594341305
+      }
+    },
+    {
+      "label": "trial-021",
+      "calibration": {
+        "cutoff_min": 19.445436,
+        "cutoff_max": 19380.219,
+        "cutoff_curve": 1,
+        "resonance_curve": 0.8500000000000001,
+        "resonance_max": 2.3000000000000003,
+        "filter_saturation": 1.0,
+        "vca_curve": 1,
+        "saw_shape_scale": 1.2929688,
+        "triangle_fold_slope": 2.7,
+        "triangle_shape_depth": 0.7272949,
+        "drive_gain": 34.0,
+        "drive_mix_curve": 0.30000000000000004,
+        "drive_bass": 0.4,
+        "output_gain": 0.5
+      },
+      "scores": {
+        "train": 4.592641166571114
+      }
+    },
+    {
+      "label": "trial-022",
+      "calibration": {
+        "cutoff_min": 19.445436,
+        "cutoff_max": 19380.219,
+        "cutoff_curve": 1,
+        "resonance_curve": 0.8500000000000001,
+        "resonance_max": 2.3000000000000003,
+        "filter_saturation": 1.0,
+        "vca_curve": 1,
+        "saw_shape_scale": 1.2929688,
+        "triangle_fold_slope": 2.7,
+        "triangle_shape_depth": 0.7272949,
+        "drive_gain": 34.0,
+        "drive_mix_curve": 0.8,
+        "drive_bass": 0.4,
+        "output_gain": 0.5
+      },
+      "scores": {
+        "train": 4.641140296184072
+      }
+    },
+    {
+      "label": "trial-023",
+      "calibration": {
+        "cutoff_min": 19.445436,
+        "cutoff_max": 19380.219,
+        "cutoff_curve": 1,
+        "resonance_curve": 0.8500000000000001,
+        "resonance_max": 2.3000000000000003,
+        "filter_saturation": 1.0,
+        "vca_curve": 1,
+        "saw_shape_scale": 1.2929688,
+        "triangle_fold_slope": 2.7,
+        "triangle_shape_depth": 0.7272949,
+        "drive_gain": 34.0,
+        "drive_mix_curve": 0.55,
+        "drive_bass": 0,
+        "output_gain": 0.5
+      },
+      "scores": {
+        "train": 4.491134291147713
+      }
+    },
+    {
+      "label": "trial-024",
+      "calibration": {
+        "cutoff_min": 19.445436,
+        "cutoff_max": 19380.219,
+        "cutoff_curve": 1,
+        "resonance_curve": 0.8500000000000001,
+        "resonance_max": 2.3000000000000003,
+        "filter_saturation": 1.0,
+        "vca_curve": 1,
+        "saw_shape_scale": 1.2929688,
+        "triangle_fold_slope": 2.7,
+        "triangle_shape_depth": 0.7272949,
+        "drive_gain": 34.0,
+        "drive_mix_curve": 0.55,
+        "drive_bass": 0.8,
+        "output_gain": 0.5
+      },
+      "scores": {
+        "train": 4.703144675804978
+      }
+    },
+    {
+      "label": "reprofile-1",
+      "calibration": {
+        "cutoff_min": 19.445436,
+        "cutoff_max": 19380.219,
+        "cutoff_curve": 1,
+        "resonance_curve": 0.8500000000000001,
+        "resonance_max": 2.3000000000000003,
+        "filter_saturation": 1.0,
+        "vca_curve": 1,
+        "saw_shape_scale": 1.2929688,
+        "triangle_fold_slope": 2.7,
+        "triangle_shape_depth": 0.7272949,
+        "drive_gain": 34.0,
+        "drive_mix_curve": 0.55,
+        "drive_bass": 0,
+        "output_gain": 0.5
+      },
+      "scores": {
+        "train": 4.4789805641791345
+      }
+    },
+    {
+      "label": "trial-025",
+      "calibration": {
+        "cutoff_min": 19.445436,
+        "cutoff_max": 19380.219,
+        "cutoff_curve": 1,
+        "resonance_curve": 0.6000000000000001,
+        "resonance_max": 2.3000000000000003,
+        "filter_saturation": 1.0,
+        "vca_curve": 1,
+        "saw_shape_scale": 1.2929688,
+        "triangle_fold_slope": 2.7,
+        "triangle_shape_depth": 0.7272949,
+        "drive_gain": 34.0,
+        "drive_mix_curve": 0.55,
+        "drive_bass": 0,
+        "output_gain": 0.5
+      },
+      "scores": {
+        "train": 4.8683646528384745
+      }
+    },
+    {
+      "label": "trial-026",
+      "calibration": {
+        "cutoff_min": 19.445436,
+        "cutoff_max": 19380.219,
+        "cutoff_curve": 1,
+        "resonance_curve": 1.1,
+        "resonance_max": 2.3000000000000003,
+        "filter_saturation": 1.0,
+        "vca_curve": 1,
+        "saw_shape_scale": 1.2929688,
+        "triangle_fold_slope": 2.7,
+        "triangle_shape_depth": 0.7272949,
+        "drive_gain": 34.0,
+        "drive_mix_curve": 0.55,
+        "drive_bass": 0,
+        "output_gain": 0.5
+      },
+      "scores": {
+        "train": 4.766031743843156
+      }
+    },
+    {
+      "label": "trial-027",
+      "calibration": {
+        "cutoff_min": 19.445436,
+        "cutoff_max": 19380.219,
+        "cutoff_curve": 1,
+        "resonance_curve": 0.8500000000000001,
+        "resonance_max": 2.2,
+        "filter_saturation": 1.0,
+        "vca_curve": 1,
+        "saw_shape_scale": 1.2929688,
+        "triangle_fold_slope": 2.7,
+        "triangle_shape_depth": 0.7272949,
+        "drive_gain": 34.0,
+        "drive_mix_curve": 0.55,
+        "drive_bass": 0,
+        "output_gain": 0.5
+      },
+      "scores": {
+        "train": 4.699005887361906
+      }
+    },
+    {
+      "label": "trial-028",
+      "calibration": {
+        "cutoff_min": 19.445436,
+        "cutoff_max": 19380.219,
+        "cutoff_curve": 1,
+        "resonance_curve": 0.8500000000000001,
+        "resonance_max": 2.4,
+        "filter_saturation": 1.0,
+        "vca_curve": 1,
+        "saw_shape_scale": 1.2929688,
+        "triangle_fold_slope": 2.7,
+        "triangle_shape_depth": 0.7272949,
+        "drive_gain": 34.0,
+        "drive_mix_curve": 0.55,
+        "drive_bass": 0,
+        "output_gain": 0.5
+      },
+      "scores": {
+        "train": 4.72739026040947
+      }
+    },
+    {
+      "label": "trial-029",
+      "calibration": {
+        "cutoff_min": 19.445436,
+        "cutoff_max": 19380.219,
+        "cutoff_curve": 1,
+        "resonance_curve": 0.8500000000000001,
+        "resonance_max": 2.3000000000000003,
+        "filter_saturation": 0.875,
+        "vca_curve": 1,
+        "saw_shape_scale": 1.2929688,
+        "triangle_fold_slope": 2.7,
+        "triangle_shape_depth": 0.7272949,
+        "drive_gain": 34.0,
+        "drive_mix_curve": 0.55,
+        "drive_bass": 0,
+        "output_gain": 0.5
+      },
+      "scores": {
+        "train": 4.475939250875861
+      }
+    },
+    {
+      "label": "trial-030",
+      "calibration": {
+        "cutoff_min": 19.445436,
+        "cutoff_max": 19380.219,
+        "cutoff_curve": 1,
+        "resonance_curve": 0.8500000000000001,
+        "resonance_max": 2.3000000000000003,
+        "filter_saturation": 1.125,
+        "vca_curve": 1,
+        "saw_shape_scale": 1.2929688,
+        "triangle_fold_slope": 2.7,
+        "triangle_shape_depth": 0.7272949,
+        "drive_gain": 34.0,
+        "drive_mix_curve": 0.55,
+        "drive_bass": 0,
+        "output_gain": 0.5
+      },
+      "scores": {
+        "train": 4.495007332300939
+      }
+    },
+    {
+      "label": "trial-031",
+      "calibration": {
+        "cutoff_min": 19.445436,
+        "cutoff_max": 19380.219,
+        "cutoff_curve": 1,
+        "resonance_curve": 0.8500000000000001,
+        "resonance_max": 2.3000000000000003,
+        "filter_saturation": 0.875,
+        "vca_curve": 1,
+        "saw_shape_scale": 1.2929688,
+        "triangle_fold_slope": 2.7,
+        "triangle_shape_depth": 0.7272949,
+        "drive_gain": 30.0,
+        "drive_mix_curve": 0.55,
+        "drive_bass": 0,
+        "output_gain": 0.5
+      },
+      "scores": {
+        "train": 4.473115798315373
+      }
+    },
+    {
+      "label": "trial-032",
+      "calibration": {
+        "cutoff_min": 19.445436,
+        "cutoff_max": 19380.219,
+        "cutoff_curve": 1,
+        "resonance_curve": 0.8500000000000001,
+        "resonance_max": 2.3000000000000003,
+        "filter_saturation": 0.875,
+        "vca_curve": 1,
+        "saw_shape_scale": 1.2929688,
+        "triangle_fold_slope": 2.7,
+        "triangle_shape_depth": 0.7272949,
+        "drive_gain": 38.0,
+        "drive_mix_curve": 0.55,
+        "drive_bass": 0,
+        "output_gain": 0.5
+      },
+      "scores": {
+        "train": 4.4798283112384665
+      }
+    },
+    {
+      "label": "trial-033",
+      "calibration": {
+        "cutoff_min": 19.445436,
+        "cutoff_max": 19380.219,
+        "cutoff_curve": 1,
+        "resonance_curve": 0.8500000000000001,
+        "resonance_max": 2.3000000000000003,
+        "filter_saturation": 0.875,
+        "vca_curve": 1,
+        "saw_shape_scale": 1.2929688,
+        "triangle_fold_slope": 2.7,
+        "triangle_shape_depth": 0.7272949,
+        "drive_gain": 30.0,
+        "drive_mix_curve": 0.42500000000000004,
+        "drive_bass": 0,
+        "output_gain": 0.5
+      },
+      "scores": {
+        "train": 4.470190145790723
+      }
+    },
+    {
+      "label": "trial-034",
+      "calibration": {
+        "cutoff_min": 19.445436,
+        "cutoff_max": 19380.219,
+        "cutoff_curve": 1,
+        "resonance_curve": 0.8500000000000001,
+        "resonance_max": 2.3000000000000003,
+        "filter_saturation": 0.875,
+        "vca_curve": 1,
+        "saw_shape_scale": 1.2929688,
+        "triangle_fold_slope": 2.7,
+        "triangle_shape_depth": 0.7272949,
+        "drive_gain": 30.0,
+        "drive_mix_curve": 0.675,
+        "drive_bass": 0,
+        "output_gain": 0.5
+      },
+      "scores": {
+        "train": 4.501690426037774
+      }
+    },
+    {
+      "label": "trial-035",
+      "calibration": {
+        "cutoff_min": 19.445436,
+        "cutoff_max": 19380.219,
+        "cutoff_curve": 1,
+        "resonance_curve": 0.8500000000000001,
+        "resonance_max": 2.3000000000000003,
+        "filter_saturation": 0.875,
+        "vca_curve": 1,
+        "saw_shape_scale": 1.2929688,
+        "triangle_fold_slope": 2.7,
+        "triangle_shape_depth": 0.7272949,
+        "drive_gain": 30.0,
+        "drive_mix_curve": 0.42500000000000004,
+        "drive_bass": 0.2,
+        "output_gain": 0.5
+      },
+      "scores": {
+        "train": 4.522601865826207
+      }
+    },
+    {
+      "label": "trial-036",
+      "calibration": {
+        "cutoff_min": 19.445436,
+        "cutoff_max": 19380.219,
+        "cutoff_curve": 1,
+        "resonance_curve": 0.6000000000000001,
+        "resonance_max": 2.3000000000000003,
+        "filter_saturation": 0.875,
+        "vca_curve": 1,
+        "saw_shape_scale": 1.2929688,
+        "triangle_fold_slope": 2.7,
+        "triangle_shape_depth": 0.7272949,
+        "drive_gain": 30.0,
+        "drive_mix_curve": 0.42500000000000004,
+        "drive_bass": 0,
+        "output_gain": 0.5
+      },
+      "scores": {
+        "train": 4.903078434952378
+      }
+    },
+    {
+      "label": "trial-037",
+      "calibration": {
+        "cutoff_min": 19.445436,
+        "cutoff_max": 19380.219,
+        "cutoff_curve": 1,
+        "resonance_curve": 1.1,
+        "resonance_max": 2.3000000000000003,
+        "filter_saturation": 0.875,
+        "vca_curve": 1,
+        "saw_shape_scale": 1.2929688,
+        "triangle_fold_slope": 2.7,
+        "triangle_shape_depth": 0.7272949,
+        "drive_gain": 30.0,
+        "drive_mix_curve": 0.42500000000000004,
+        "drive_bass": 0,
+        "output_gain": 0.5
+      },
+      "scores": {
+        "train": 4.742382494422517
+      }
+    },
+    {
+      "label": "trial-038",
+      "calibration": {
+        "cutoff_min": 19.445436,
+        "cutoff_max": 19380.219,
+        "cutoff_curve": 1,
+        "resonance_curve": 0.8500000000000001,
+        "resonance_max": 2.2,
+        "filter_saturation": 0.875,
+        "vca_curve": 1,
+        "saw_shape_scale": 1.2929688,
+        "triangle_fold_slope": 2.7,
+        "triangle_shape_depth": 0.7272949,
+        "drive_gain": 30.0,
+        "drive_mix_curve": 0.42500000000000004,
+        "drive_bass": 0,
+        "output_gain": 0.5
+      },
+      "scores": {
+        "train": 4.674774812267041
+      }
+    },
+    {
+      "label": "trial-039",
+      "calibration": {
+        "cutoff_min": 19.445436,
+        "cutoff_max": 19380.219,
+        "cutoff_curve": 1,
+        "resonance_curve": 0.8500000000000001,
+        "resonance_max": 2.4,
+        "filter_saturation": 0.875,
+        "vca_curve": 1,
+        "saw_shape_scale": 1.2929688,
+        "triangle_fold_slope": 2.7,
+        "triangle_shape_depth": 0.7272949,
+        "drive_gain": 30.0,
+        "drive_mix_curve": 0.42500000000000004,
+        "drive_bass": 0,
+        "output_gain": 0.5
+      },
+      "scores": {
+        "train": 4.74491751161557
+      }
+    },
+    {
+      "label": "trial-040",
+      "calibration": {
+        "cutoff_min": 19.445436,
+        "cutoff_max": 19380.219,
+        "cutoff_curve": 1,
+        "resonance_curve": 0.8500000000000001,
+        "resonance_max": 2.3000000000000003,
+        "filter_saturation": 0.75,
+        "vca_curve": 1,
+        "saw_shape_scale": 1.2929688,
+        "triangle_fold_slope": 2.7,
+        "triangle_shape_depth": 0.7272949,
+        "drive_gain": 30.0,
+        "drive_mix_curve": 0.42500000000000004,
+        "drive_bass": 0,
+        "output_gain": 0.5
+      },
+      "scores": {
+        "train": 4.4809464990096926
+      }
+    },
+    {
+      "label": "trial-041",
+      "calibration": {
+        "cutoff_min": 19.445436,
+        "cutoff_max": 19380.219,
+        "cutoff_curve": 1,
+        "resonance_curve": 0.8500000000000001,
+        "resonance_max": 2.3000000000000003,
+        "filter_saturation": 1.0,
+        "vca_curve": 1,
+        "saw_shape_scale": 1.2929688,
+        "triangle_fold_slope": 2.7,
+        "triangle_shape_depth": 0.7272949,
+        "drive_gain": 30.0,
+        "drive_mix_curve": 0.42500000000000004,
+        "drive_bass": 0,
+        "output_gain": 0.5
+      },
+      "scores": {
+        "train": 4.473284859458332
+      }
+    },
+    {
+      "label": "trial-042",
+      "calibration": {
+        "cutoff_min": 19.445436,
+        "cutoff_max": 19380.219,
+        "cutoff_curve": 1,
+        "resonance_curve": 0.8500000000000001,
+        "resonance_max": 2.3000000000000003,
+        "filter_saturation": 0.875,
+        "vca_curve": 1,
+        "saw_shape_scale": 1.2929688,
+        "triangle_fold_slope": 2.7,
+        "triangle_shape_depth": 0.7272949,
+        "drive_gain": 26.0,
+        "drive_mix_curve": 0.42500000000000004,
+        "drive_bass": 0,
+        "output_gain": 0.5
+      },
+      "scores": {
+        "train": 4.465076797233068
+      }
+    },
+    {
+      "label": "trial-043",
+      "calibration": {
+        "cutoff_min": 19.445436,
+        "cutoff_max": 19380.219,
+        "cutoff_curve": 1,
+        "resonance_curve": 0.8500000000000001,
+        "resonance_max": 2.3000000000000003,
+        "filter_saturation": 0.875,
+        "vca_curve": 1,
+        "saw_shape_scale": 1.2929688,
+        "triangle_fold_slope": 2.7,
+        "triangle_shape_depth": 0.7272949,
+        "drive_gain": 34.0,
+        "drive_mix_curve": 0.42500000000000004,
+        "drive_bass": 0,
+        "output_gain": 0.5
+      },
+      "scores": {
+        "train": 4.473173023586152
+      }
+    },
+    {
+      "label": "trial-044",
+      "calibration": {
+        "cutoff_min": 19.445436,
+        "cutoff_max": 19380.219,
+        "cutoff_curve": 1,
+        "resonance_curve": 0.8500000000000001,
+        "resonance_max": 2.3000000000000003,
+        "filter_saturation": 0.875,
+        "vca_curve": 1,
+        "saw_shape_scale": 1.2929688,
+        "triangle_fold_slope": 2.7,
+        "triangle_shape_depth": 0.7272949,
+        "drive_gain": 26.0,
+        "drive_mix_curve": 0.30000000000000004,
+        "drive_bass": 0,
+        "output_gain": 0.5
+      },
+      "scores": {
+        "train": 4.469716893909894
+      }
+    },
+    {
+      "label": "trial-045",
+      "calibration": {
+        "cutoff_min": 19.445436,
+        "cutoff_max": 19380.219,
+        "cutoff_curve": 1,
+        "resonance_curve": 0.8500000000000001,
+        "resonance_max": 2.3000000000000003,
+        "filter_saturation": 0.875,
+        "vca_curve": 1,
+        "saw_shape_scale": 1.2929688,
+        "triangle_fold_slope": 2.7,
+        "triangle_shape_depth": 0.7272949,
+        "drive_gain": 26.0,
+        "drive_mix_curve": 0.55,
+        "drive_bass": 0,
+        "output_gain": 0.5
+      },
+      "scores": {
+        "train": 4.465786380350907
+      }
+    },
+    {
+      "label": "trial-046",
+      "calibration": {
+        "cutoff_min": 19.445436,
+        "cutoff_max": 19380.219,
+        "cutoff_curve": 1,
+        "resonance_curve": 0.8500000000000001,
+        "resonance_max": 2.3000000000000003,
+        "filter_saturation": 0.875,
+        "vca_curve": 1,
+        "saw_shape_scale": 1.2929688,
+        "triangle_fold_slope": 2.7,
+        "triangle_shape_depth": 0.7272949,
+        "drive_gain": 26.0,
+        "drive_mix_curve": 0.42500000000000004,
+        "drive_bass": 0.2,
+        "output_gain": 0.5
+      },
+      "scores": {
+        "train": 4.515443372832523
+      }
+    },
+    {
+      "label": "reprofile-2",
+      "calibration": {
+        "cutoff_min": 19.445436,
+        "cutoff_max": 19380.219,
+        "cutoff_curve": 1,
+        "resonance_curve": 0.8500000000000001,
+        "resonance_max": 2.3000000000000003,
+        "filter_saturation": 0.875,
+        "vca_curve": 1,
+        "saw_shape_scale": 1.2929688,
+        "triangle_fold_slope": 2.7,
+        "triangle_shape_depth": 0.7272949,
+        "drive_gain": 26.0,
+        "drive_mix_curve": 0.42500000000000004,
+        "drive_bass": 0,
+        "output_gain": 0.5
+      },
+      "scores": {
+        "train": 4.465076797233068
+      }
+    },
+    {
+      "label": "trial-047",
+      "calibration": {
+        "cutoff_min": 19.445436,
+        "cutoff_max": 19380.219,
+        "cutoff_curve": 1,
+        "resonance_curve": 0.7250000000000001,
+        "resonance_max": 2.3000000000000003,
+        "filter_saturation": 0.875,
+        "vca_curve": 1,
+        "saw_shape_scale": 1.2929688,
+        "triangle_fold_slope": 2.7,
+        "triangle_shape_depth": 0.7272949,
+        "drive_gain": 26.0,
+        "drive_mix_curve": 0.42500000000000004,
+        "drive_bass": 0,
+        "output_gain": 0.5
+      },
+      "scores": {
+        "train": 4.538917217594949
+      }
+    },
+    {
+      "label": "trial-048",
+      "calibration": {
+        "cutoff_min": 19.445436,
+        "cutoff_max": 19380.219,
+        "cutoff_curve": 1,
+        "resonance_curve": 0.9750000000000001,
+        "resonance_max": 2.3000000000000003,
+        "filter_saturation": 0.875,
+        "vca_curve": 1,
+        "saw_shape_scale": 1.2929688,
+        "triangle_fold_slope": 2.7,
+        "triangle_shape_depth": 0.7272949,
+        "drive_gain": 26.0,
+        "drive_mix_curve": 0.42500000000000004,
+        "drive_bass": 0,
+        "output_gain": 0.5
+      },
+      "scores": {
+        "train": 4.586789289563997
+      }
+    },
+    {
+      "label": "trial-049",
+      "calibration": {
+        "cutoff_min": 19.445436,
+        "cutoff_max": 19380.219,
+        "cutoff_curve": 1,
+        "resonance_curve": 0.8500000000000001,
+        "resonance_max": 2.2500000000000004,
+        "filter_saturation": 0.875,
+        "vca_curve": 1,
+        "saw_shape_scale": 1.2929688,
+        "triangle_fold_slope": 2.7,
+        "triangle_shape_depth": 0.7272949,
+        "drive_gain": 26.0,
+        "drive_mix_curve": 0.42500000000000004,
+        "drive_bass": 0,
+        "output_gain": 0.5
+      },
+      "scores": {
+        "train": 4.550802839938098
+      }
+    },
+    {
+      "label": "trial-050",
+      "calibration": {
+        "cutoff_min": 19.445436,
+        "cutoff_max": 19380.219,
+        "cutoff_curve": 1,
+        "resonance_curve": 0.8500000000000001,
+        "resonance_max": 2.35,
+        "filter_saturation": 0.875,
+        "vca_curve": 1,
+        "saw_shape_scale": 1.2929688,
+        "triangle_fold_slope": 2.7,
+        "triangle_shape_depth": 0.7272949,
+        "drive_gain": 26.0,
+        "drive_mix_curve": 0.42500000000000004,
+        "drive_bass": 0,
+        "output_gain": 0.5
+      },
+      "scores": {
+        "train": 4.5307817628385205
+      }
+    },
+    {
+      "label": "trial-051",
+      "calibration": {
+        "cutoff_min": 19.445436,
+        "cutoff_max": 19380.219,
+        "cutoff_curve": 1,
+        "resonance_curve": 0.8500000000000001,
+        "resonance_max": 2.3000000000000003,
+        "filter_saturation": 0.8125,
+        "vca_curve": 1,
+        "saw_shape_scale": 1.2929688,
+        "triangle_fold_slope": 2.7,
+        "triangle_shape_depth": 0.7272949,
+        "drive_gain": 26.0,
+        "drive_mix_curve": 0.42500000000000004,
+        "drive_bass": 0,
+        "output_gain": 0.5
+      },
+      "scores": {
+        "train": 4.480870941239461
+      }
+    },
+    {
+      "label": "trial-052",
+      "calibration": {
+        "cutoff_min": 19.445436,
+        "cutoff_max": 19380.219,
+        "cutoff_curve": 1,
+        "resonance_curve": 0.8500000000000001,
+        "resonance_max": 2.3000000000000003,
+        "filter_saturation": 0.9375,
+        "vca_curve": 1,
+        "saw_shape_scale": 1.2929688,
+        "triangle_fold_slope": 2.7,
+        "triangle_shape_depth": 0.7272949,
+        "drive_gain": 26.0,
+        "drive_mix_curve": 0.42500000000000004,
+        "drive_bass": 0,
+        "output_gain": 0.5
+      },
+      "scores": {
+        "train": 4.464707858731802
+      }
+    },
+    {
+      "label": "trial-053",
+      "calibration": {
+        "cutoff_min": 19.445436,
+        "cutoff_max": 19380.219,
+        "cutoff_curve": 1,
+        "resonance_curve": 0.8500000000000001,
+        "resonance_max": 2.3000000000000003,
+        "filter_saturation": 0.9375,
+        "vca_curve": 1,
+        "saw_shape_scale": 1.2929688,
+        "triangle_fold_slope": 2.7,
+        "triangle_shape_depth": 0.7272949,
+        "drive_gain": 24.0,
+        "drive_mix_curve": 0.42500000000000004,
+        "drive_bass": 0,
+        "output_gain": 0.5
+      },
+      "scores": {
+        "train": 4.4615292910125035
+      }
+    },
+    {
+      "label": "trial-054",
+      "calibration": {
+        "cutoff_min": 19.445436,
+        "cutoff_max": 19380.219,
+        "cutoff_curve": 1,
+        "resonance_curve": 0.8500000000000001,
+        "resonance_max": 2.3000000000000003,
+        "filter_saturation": 0.9375,
+        "vca_curve": 1,
+        "saw_shape_scale": 1.2929688,
+        "triangle_fold_slope": 2.7,
+        "triangle_shape_depth": 0.7272949,
+        "drive_gain": 28.0,
+        "drive_mix_curve": 0.42500000000000004,
+        "drive_bass": 0,
+        "output_gain": 0.5
+      },
+      "scores": {
+        "train": 4.467074991582306
+      }
+    },
+    {
+      "label": "trial-055",
+      "calibration": {
+        "cutoff_min": 19.445436,
+        "cutoff_max": 19380.219,
+        "cutoff_curve": 1,
+        "resonance_curve": 0.8500000000000001,
+        "resonance_max": 2.3000000000000003,
+        "filter_saturation": 0.9375,
+        "vca_curve": 1,
+        "saw_shape_scale": 1.2929688,
+        "triangle_fold_slope": 2.7,
+        "triangle_shape_depth": 0.7272949,
+        "drive_gain": 24.0,
+        "drive_mix_curve": 0.36250000000000004,
+        "drive_bass": 0,
+        "output_gain": 0.5
+      },
+      "scores": {
+        "train": 4.458325472825992
+      }
+    },
+    {
+      "label": "trial-056",
+      "calibration": {
+        "cutoff_min": 19.445436,
+        "cutoff_max": 19380.219,
+        "cutoff_curve": 1,
+        "resonance_curve": 0.8500000000000001,
+        "resonance_max": 2.3000000000000003,
+        "filter_saturation": 0.9375,
+        "vca_curve": 1,
+        "saw_shape_scale": 1.2929688,
+        "triangle_fold_slope": 2.7,
+        "triangle_shape_depth": 0.7272949,
+        "drive_gain": 24.0,
+        "drive_mix_curve": 0.48750000000000004,
+        "drive_bass": 0,
+        "output_gain": 0.5
+      },
+      "scores": {
+        "train": 4.459714325398426
+      }
+    },
+    {
+      "label": "trial-057",
+      "calibration": {
+        "cutoff_min": 19.445436,
+        "cutoff_max": 19380.219,
+        "cutoff_curve": 1,
+        "resonance_curve": 0.8500000000000001,
+        "resonance_max": 2.3000000000000003,
+        "filter_saturation": 0.9375,
+        "vca_curve": 1,
+        "saw_shape_scale": 1.2929688,
+        "triangle_fold_slope": 2.7,
+        "triangle_shape_depth": 0.7272949,
+        "drive_gain": 24.0,
+        "drive_mix_curve": 0.36250000000000004,
+        "drive_bass": 0.1,
+        "output_gain": 0.5
+      },
+      "scores": {
+        "train": 4.484005131603207
+      }
+    },
+    {
+      "label": "trial-058",
+      "calibration": {
+        "cutoff_min": 19.445436,
+        "cutoff_max": 19380.219,
+        "cutoff_curve": 1,
+        "resonance_curve": 0.7250000000000001,
+        "resonance_max": 2.3000000000000003,
+        "filter_saturation": 0.9375,
+        "vca_curve": 1,
+        "saw_shape_scale": 1.2929688,
+        "triangle_fold_slope": 2.7,
+        "triangle_shape_depth": 0.7272949,
+        "drive_gain": 24.0,
+        "drive_mix_curve": 0.36250000000000004,
+        "drive_bass": 0,
+        "output_gain": 0.5
+      },
+      "scores": {
+        "train": 4.528755029417603
+      }
+    },
+    {
+      "label": "trial-059",
+      "calibration": {
+        "cutoff_min": 19.445436,
+        "cutoff_max": 19380.219,
+        "cutoff_curve": 1,
+        "resonance_curve": 0.9750000000000001,
+        "resonance_max": 2.3000000000000003,
+        "filter_saturation": 0.9375,
+        "vca_curve": 1,
+        "saw_shape_scale": 1.2929688,
+        "triangle_fold_slope": 2.7,
+        "triangle_shape_depth": 0.7272949,
+        "drive_gain": 24.0,
+        "drive_mix_curve": 0.36250000000000004,
+        "drive_bass": 0,
+        "output_gain": 0.5
+      },
+      "scores": {
+        "train": 4.5898761304422395
+      }
+    },
+    {
+      "label": "trial-060",
+      "calibration": {
+        "cutoff_min": 19.445436,
+        "cutoff_max": 19380.219,
+        "cutoff_curve": 1,
+        "resonance_curve": 0.8500000000000001,
+        "resonance_max": 2.2500000000000004,
+        "filter_saturation": 0.9375,
+        "vca_curve": 1,
+        "saw_shape_scale": 1.2929688,
+        "triangle_fold_slope": 2.7,
+        "triangle_shape_depth": 0.7272949,
+        "drive_gain": 24.0,
+        "drive_mix_curve": 0.36250000000000004,
+        "drive_bass": 0,
+        "output_gain": 0.5
+      },
+      "scores": {
+        "train": 4.553562193766546
+      }
+    },
+    {
+      "label": "trial-061",
+      "calibration": {
+        "cutoff_min": 19.445436,
+        "cutoff_max": 19380.219,
+        "cutoff_curve": 1,
+        "resonance_curve": 0.8500000000000001,
+        "resonance_max": 2.35,
+        "filter_saturation": 0.9375,
+        "vca_curve": 1,
+        "saw_shape_scale": 1.2929688,
+        "triangle_fold_slope": 2.7,
+        "triangle_shape_depth": 0.7272949,
+        "drive_gain": 24.0,
+        "drive_mix_curve": 0.36250000000000004,
+        "drive_bass": 0,
+        "output_gain": 0.5
+      },
+      "scores": {
+        "train": 4.525182883174567
+      }
+    },
+    {
+      "label": "trial-062",
+      "calibration": {
+        "cutoff_min": 19.445436,
+        "cutoff_max": 19380.219,
+        "cutoff_curve": 1,
+        "resonance_curve": 0.8500000000000001,
+        "resonance_max": 2.3000000000000003,
+        "filter_saturation": 0.875,
+        "vca_curve": 1,
+        "saw_shape_scale": 1.2929688,
+        "triangle_fold_slope": 2.7,
+        "triangle_shape_depth": 0.7272949,
+        "drive_gain": 24.0,
+        "drive_mix_curve": 0.36250000000000004,
+        "drive_bass": 0,
+        "output_gain": 0.5
+      },
+      "scores": {
+        "train": 4.458709135218499
+      }
+    },
+    {
+      "label": "trial-063",
+      "calibration": {
+        "cutoff_min": 19.445436,
+        "cutoff_max": 19380.219,
+        "cutoff_curve": 1,
+        "resonance_curve": 0.8500000000000001,
+        "resonance_max": 2.3000000000000003,
+        "filter_saturation": 1.0,
+        "vca_curve": 1,
+        "saw_shape_scale": 1.2929688,
+        "triangle_fold_slope": 2.7,
+        "triangle_shape_depth": 0.7272949,
+        "drive_gain": 24.0,
+        "drive_mix_curve": 0.36250000000000004,
+        "drive_bass": 0,
+        "output_gain": 0.5
+      },
+      "scores": {
+        "train": 4.461752363457473
+      }
+    },
+    {
+      "label": "trial-064",
+      "calibration": {
+        "cutoff_min": 19.445436,
+        "cutoff_max": 19380.219,
+        "cutoff_curve": 1,
+        "resonance_curve": 0.8500000000000001,
+        "resonance_max": 2.3000000000000003,
+        "filter_saturation": 0.9375,
+        "vca_curve": 1,
+        "saw_shape_scale": 1.2929688,
+        "triangle_fold_slope": 2.7,
+        "triangle_shape_depth": 0.7272949,
+        "drive_gain": 22.0,
+        "drive_mix_curve": 0.36250000000000004,
+        "drive_bass": 0,
+        "output_gain": 0.5
+      },
+      "scores": {
+        "train": 4.452091858422991
+      }
+    },
+    {
+      "label": "trial-065",
+      "calibration": {
+        "cutoff_min": 19.445436,
+        "cutoff_max": 19380.219,
+        "cutoff_curve": 1,
+        "resonance_curve": 0.8500000000000001,
+        "resonance_max": 2.3000000000000003,
+        "filter_saturation": 0.9375,
+        "vca_curve": 1,
+        "saw_shape_scale": 1.2929688,
+        "triangle_fold_slope": 2.7,
+        "triangle_shape_depth": 0.7272949,
+        "drive_gain": 26.0,
+        "drive_mix_curve": 0.36250000000000004,
+        "drive_bass": 0,
+        "output_gain": 0.5
+      },
+      "scores": {
+        "train": 4.463690035260261
+      }
+    },
+    {
+      "label": "trial-066",
+      "calibration": {
+        "cutoff_min": 19.445436,
+        "cutoff_max": 19380.219,
+        "cutoff_curve": 1,
+        "resonance_curve": 0.8500000000000001,
+        "resonance_max": 2.3000000000000003,
+        "filter_saturation": 0.9375,
+        "vca_curve": 1,
+        "saw_shape_scale": 1.2929688,
+        "triangle_fold_slope": 2.7,
+        "triangle_shape_depth": 0.7272949,
+        "drive_gain": 22.0,
+        "drive_mix_curve": 0.30000000000000004,
+        "drive_bass": 0,
+        "output_gain": 0.5
+      },
+      "scores": {
+        "train": 4.458016348329533
+      }
+    },
+    {
+      "label": "trial-067",
+      "calibration": {
+        "cutoff_min": 19.445436,
+        "cutoff_max": 19380.219,
+        "cutoff_curve": 1,
+        "resonance_curve": 0.8500000000000001,
+        "resonance_max": 2.3000000000000003,
+        "filter_saturation": 0.9375,
+        "vca_curve": 1,
+        "saw_shape_scale": 1.2929688,
+        "triangle_fold_slope": 2.7,
+        "triangle_shape_depth": 0.7272949,
+        "drive_gain": 22.0,
+        "drive_mix_curve": 0.42500000000000004,
+        "drive_bass": 0,
+        "output_gain": 0.5
+      },
+      "scores": {
+        "train": 4.456373195136063
+      }
+    },
+    {
+      "label": "trial-068",
+      "calibration": {
+        "cutoff_min": 19.445436,
+        "cutoff_max": 19380.219,
+        "cutoff_curve": 1,
+        "resonance_curve": 0.8500000000000001,
+        "resonance_max": 2.3000000000000003,
+        "filter_saturation": 0.9375,
+        "vca_curve": 1,
+        "saw_shape_scale": 1.2929688,
+        "triangle_fold_slope": 2.7,
+        "triangle_shape_depth": 0.7272949,
+        "drive_gain": 22.0,
+        "drive_mix_curve": 0.36250000000000004,
+        "drive_bass": 0.1,
+        "output_gain": 0.5
+      },
+      "scores": {
+        "train": 4.477709930119339
+      }
+    },
+    {
+      "label": "reprofile-3",
+      "calibration": {
+        "cutoff_min": 19.445436,
+        "cutoff_max": 19380.219,
+        "cutoff_curve": 1,
+        "resonance_curve": 0.8500000000000001,
+        "resonance_max": 2.3000000000000003,
+        "filter_saturation": 0.9375,
+        "vca_curve": 1,
+        "saw_shape_scale": 1.2929688,
+        "triangle_fold_slope": 2.7,
+        "triangle_shape_depth": 0.7272949,
+        "drive_gain": 22.0,
+        "drive_mix_curve": 0.36250000000000004,
+        "drive_bass": 0,
+        "output_gain": 0.5
+      },
+      "scores": {
+        "train": 4.452091858422991
+      }
+    },
+    {
+      "label": "best",
+      "calibration": {
+        "cutoff_min": 19.445436,
+        "cutoff_max": 19380.219,
+        "cutoff_curve": 1,
+        "resonance_curve": 0.8500000000000001,
+        "resonance_max": 2.3000000000000003,
+        "filter_saturation": 0.9375,
+        "vca_curve": 1,
+        "saw_shape_scale": 1.2929688,
+        "triangle_fold_slope": 2.7,
+        "triangle_shape_depth": 0.7272949,
+        "drive_gain": 22.0,
+        "drive_mix_curve": 0.36250000000000004,
+        "drive_bass": 0,
+        "output_gain": 0.5
+      },
+      "scores": {
+        "train": 4.452091858422991
+      }
+    }
+  ],
+  "excursion_followup": [
+    {
+      "label": "baseline",
+      "calibration": {
+        "cutoff_min": 19.445436,
+        "cutoff_max": 19380.219,
+        "cutoff_curve": 1,
+        "resonance_curve": 0.8500000000000001,
+        "resonance_max": 2.3000000000000003,
+        "filter_saturation": 0.9375,
+        "vca_curve": 1,
+        "saw_shape_scale": 1.2929688,
+        "triangle_fold_slope": 2.7,
+        "triangle_shape_depth": 0.7272949,
+        "drive_gain": 22.0,
+        "drive_mix_curve": 0.36250000000000004,
+        "drive_bass": 0,
+        "output_gain": 0.5,
+        "shape_calibration_peak": 0.84
+      },
+      "scores": {
+        "train": 2.6535303149815865
+      }
+    },
+    {
+      "label": "trial-001",
+      "calibration": {
+        "cutoff_min": 19.445436,
+        "cutoff_max": 19380.219,
+        "cutoff_curve": 1,
+        "resonance_curve": 0.8500000000000001,
+        "resonance_max": 2.3000000000000003,
+        "filter_saturation": 0.9375,
+        "vca_curve": 1,
+        "saw_shape_scale": 1.2929688,
+        "triangle_fold_slope": 2.7,
+        "triangle_shape_depth": 0.7272949,
+        "drive_gain": 22.0,
+        "drive_mix_curve": 0.36250000000000004,
+        "drive_bass": 0,
+        "output_gain": 0.5,
+        "shape_calibration_peak": 0.7999999999999999
+      },
+      "scores": {
+        "train": 2.298793161174354
+      }
+    },
+    {
+      "label": "trial-002",
+      "calibration": {
+        "cutoff_min": 19.445436,
+        "cutoff_max": 19380.219,
+        "cutoff_curve": 1,
+        "resonance_curve": 0.8500000000000001,
+        "resonance_max": 2.3000000000000003,
+        "filter_saturation": 0.9375,
+        "vca_curve": 1,
+        "saw_shape_scale": 1.2929688,
+        "triangle_fold_slope": 2.7,
+        "triangle_shape_depth": 0.7272949,
+        "drive_gain": 22.0,
+        "drive_mix_curve": 0.36250000000000004,
+        "drive_bass": 0,
+        "output_gain": 0.5,
+        "shape_calibration_peak": 0.88
+      },
+      "scores": {
+        "train": 3.0230710772823493
+      }
+    },
+    {
+      "label": "trial-003",
+      "calibration": {
+        "cutoff_min": 19.445436,
+        "cutoff_max": 19380.219,
+        "cutoff_curve": 1,
+        "resonance_curve": 0.6000000000000001,
+        "resonance_max": 2.3000000000000003,
+        "filter_saturation": 0.9375,
+        "vca_curve": 1,
+        "saw_shape_scale": 1.2929688,
+        "triangle_fold_slope": 2.7,
+        "triangle_shape_depth": 0.7272949,
+        "drive_gain": 22.0,
+        "drive_mix_curve": 0.36250000000000004,
+        "drive_bass": 0,
+        "output_gain": 0.5,
+        "shape_calibration_peak": 0.7999999999999999
+      },
+      "scores": {
+        "train": 2.723078238556627
+      }
+    },
+    {
+      "label": "trial-004",
+      "calibration": {
+        "cutoff_min": 19.445436,
+        "cutoff_max": 19380.219,
+        "cutoff_curve": 1,
+        "resonance_curve": 1.1,
+        "resonance_max": 2.3000000000000003,
+        "filter_saturation": 0.9375,
+        "vca_curve": 1,
+        "saw_shape_scale": 1.2929688,
+        "triangle_fold_slope": 2.7,
+        "triangle_shape_depth": 0.7272949,
+        "drive_gain": 22.0,
+        "drive_mix_curve": 0.36250000000000004,
+        "drive_bass": 0,
+        "output_gain": 0.5,
+        "shape_calibration_peak": 0.7999999999999999
+      },
+      "scores": {
+        "train": 2.587514441965164
+      }
+    },
+    {
+      "label": "trial-005",
+      "calibration": {
+        "cutoff_min": 19.445436,
+        "cutoff_max": 19380.219,
+        "cutoff_curve": 1,
+        "resonance_curve": 0.8500000000000001,
+        "resonance_max": 2.2,
+        "filter_saturation": 0.9375,
+        "vca_curve": 1,
+        "saw_shape_scale": 1.2929688,
+        "triangle_fold_slope": 2.7,
+        "triangle_shape_depth": 0.7272949,
+        "drive_gain": 22.0,
+        "drive_mix_curve": 0.36250000000000004,
+        "drive_bass": 0,
+        "output_gain": 0.5,
+        "shape_calibration_peak": 0.7999999999999999
+      },
+      "scores": {
+        "train": 2.5024382876074727
+      }
+    },
+    {
+      "label": "trial-006",
+      "calibration": {
+        "cutoff_min": 19.445436,
+        "cutoff_max": 19380.219,
+        "cutoff_curve": 1,
+        "resonance_curve": 0.8500000000000001,
+        "resonance_max": 2.4,
+        "filter_saturation": 0.9375,
+        "vca_curve": 1,
+        "saw_shape_scale": 1.2929688,
+        "triangle_fold_slope": 2.7,
+        "triangle_shape_depth": 0.7272949,
+        "drive_gain": 22.0,
+        "drive_mix_curve": 0.36250000000000004,
+        "drive_bass": 0,
+        "output_gain": 0.5,
+        "shape_calibration_peak": 0.7999999999999999
+      },
+      "scores": {
+        "train": 2.52512401063969
+      }
+    },
+    {
+      "label": "trial-007",
+      "calibration": {
+        "cutoff_min": 19.445436,
+        "cutoff_max": 19380.219,
+        "cutoff_curve": 1,
+        "resonance_curve": 0.8500000000000001,
+        "resonance_max": 2.3000000000000003,
+        "filter_saturation": 0.8125,
+        "vca_curve": 1,
+        "saw_shape_scale": 1.2929688,
+        "triangle_fold_slope": 2.7,
+        "triangle_shape_depth": 0.7272949,
+        "drive_gain": 22.0,
+        "drive_mix_curve": 0.36250000000000004,
+        "drive_bass": 0,
+        "output_gain": 0.5,
+        "shape_calibration_peak": 0.7999999999999999
+      },
+      "scores": {
+        "train": 2.3173440339438995
+      }
+    },
+    {
+      "label": "trial-008",
+      "calibration": {
+        "cutoff_min": 19.445436,
+        "cutoff_max": 19380.219,
+        "cutoff_curve": 1,
+        "resonance_curve": 0.8500000000000001,
+        "resonance_max": 2.3000000000000003,
+        "filter_saturation": 1.0625,
+        "vca_curve": 1,
+        "saw_shape_scale": 1.2929688,
+        "triangle_fold_slope": 2.7,
+        "triangle_shape_depth": 0.7272949,
+        "drive_gain": 22.0,
+        "drive_mix_curve": 0.36250000000000004,
+        "drive_bass": 0,
+        "output_gain": 0.5,
+        "shape_calibration_peak": 0.7999999999999999
+      },
+      "scores": {
+        "train": 2.307056200395656
+      }
+    },
+    {
+      "label": "trial-009",
+      "calibration": {
+        "cutoff_min": 19.445436,
+        "cutoff_max": 19380.219,
+        "cutoff_curve": 1,
+        "resonance_curve": 0.8500000000000001,
+        "resonance_max": 2.3000000000000003,
+        "filter_saturation": 0.9375,
+        "vca_curve": 1,
+        "saw_shape_scale": 1.2929688,
+        "triangle_fold_slope": 2.7,
+        "triangle_shape_depth": 0.7272949,
+        "drive_gain": 18.0,
+        "drive_mix_curve": 0.36250000000000004,
+        "drive_bass": 0,
+        "output_gain": 0.5,
+        "shape_calibration_peak": 0.7999999999999999
+      },
+      "scores": {
+        "train": 2.3082635161670173
+      }
+    },
+    {
+      "label": "trial-010",
+      "calibration": {
+        "cutoff_min": 19.445436,
+        "cutoff_max": 19380.219,
+        "cutoff_curve": 1,
+        "resonance_curve": 0.8500000000000001,
+        "resonance_max": 2.3000000000000003,
+        "filter_saturation": 0.9375,
+        "vca_curve": 1,
+        "saw_shape_scale": 1.2929688,
+        "triangle_fold_slope": 2.7,
+        "triangle_shape_depth": 0.7272949,
+        "drive_gain": 26.0,
+        "drive_mix_curve": 0.36250000000000004,
+        "drive_bass": 0,
+        "output_gain": 0.5,
+        "shape_calibration_peak": 0.7999999999999999
+      },
+      "scores": {
+        "train": 2.2990979365522177
+      }
+    },
+    {
+      "label": "trial-011",
+      "calibration": {
+        "cutoff_min": 19.445436,
+        "cutoff_max": 19380.219,
+        "cutoff_curve": 1,
+        "resonance_curve": 0.8500000000000001,
+        "resonance_max": 2.3000000000000003,
+        "filter_saturation": 0.9375,
+        "vca_curve": 1,
+        "saw_shape_scale": 1.2929688,
+        "triangle_fold_slope": 2.7,
+        "triangle_shape_depth": 0.7272949,
+        "drive_gain": 22.0,
+        "drive_mix_curve": 0.23750000000000004,
+        "drive_bass": 0,
+        "output_gain": 0.5,
+        "shape_calibration_peak": 0.7999999999999999
+      },
+      "scores": {
+        "train": 2.3030560876007415
+      }
+    },
+    {
+      "label": "trial-012",
+      "calibration": {
+        "cutoff_min": 19.445436,
+        "cutoff_max": 19380.219,
+        "cutoff_curve": 1,
+        "resonance_curve": 0.8500000000000001,
+        "resonance_max": 2.3000000000000003,
+        "filter_saturation": 0.9375,
+        "vca_curve": 1,
+        "saw_shape_scale": 1.2929688,
+        "triangle_fold_slope": 2.7,
+        "triangle_shape_depth": 0.7272949,
+        "drive_gain": 22.0,
+        "drive_mix_curve": 0.48750000000000004,
+        "drive_bass": 0,
+        "output_gain": 0.5,
+        "shape_calibration_peak": 0.7999999999999999
+      },
+      "scores": {
+        "train": 2.3065158010485223
+      }
+    },
+    {
+      "label": "trial-013",
+      "calibration": {
+        "cutoff_min": 19.445436,
+        "cutoff_max": 19380.219,
+        "cutoff_curve": 1,
+        "resonance_curve": 0.8500000000000001,
+        "resonance_max": 2.3000000000000003,
+        "filter_saturation": 0.9375,
+        "vca_curve": 1,
+        "saw_shape_scale": 1.2929688,
+        "triangle_fold_slope": 2.7,
+        "triangle_shape_depth": 0.7272949,
+        "drive_gain": 22.0,
+        "drive_mix_curve": 0.36250000000000004,
+        "drive_bass": 0.2,
+        "output_gain": 0.5,
+        "shape_calibration_peak": 0.7999999999999999
+      },
+      "scores": {
+        "train": 2.32704488289705
+      }
+    },
+    {
+      "label": "trial-014",
+      "calibration": {
+        "cutoff_min": 19.445436,
+        "cutoff_max": 19380.219,
+        "cutoff_curve": 1,
+        "resonance_curve": 0.8500000000000001,
+        "resonance_max": 2.3000000000000003,
+        "filter_saturation": 0.9375,
+        "vca_curve": 1,
+        "saw_shape_scale": 1.2929688,
+        "triangle_fold_slope": 2.7,
+        "triangle_shape_depth": 0.7272949,
+        "drive_gain": 22.0,
+        "drive_mix_curve": 0.36250000000000004,
+        "drive_bass": 0,
+        "output_gain": 0.5,
+        "shape_calibration_peak": 0.78
+      },
+      "scores": {
+        "train": 2.2891232595586715
+      }
+    },
+    {
+      "label": "trial-015",
+      "calibration": {
+        "cutoff_min": 19.445436,
+        "cutoff_max": 19380.219,
+        "cutoff_curve": 1,
+        "resonance_curve": 0.8500000000000001,
+        "resonance_max": 2.3000000000000003,
+        "filter_saturation": 0.9375,
+        "vca_curve": 1,
+        "saw_shape_scale": 1.2929688,
+        "triangle_fold_slope": 2.7,
+        "triangle_shape_depth": 0.7272949,
+        "drive_gain": 22.0,
+        "drive_mix_curve": 0.36250000000000004,
+        "drive_bass": 0,
+        "output_gain": 0.5,
+        "shape_calibration_peak": 0.84
+      },
+      "scores": {
+        "train": 2.6535303149815865
+      }
+    },
+    {
+      "label": "trial-016",
+      "calibration": {
+        "cutoff_min": 19.445436,
+        "cutoff_max": 19380.219,
+        "cutoff_curve": 1,
+        "resonance_curve": 0.6000000000000001,
+        "resonance_max": 2.3000000000000003,
+        "filter_saturation": 0.9375,
+        "vca_curve": 1,
+        "saw_shape_scale": 1.2929688,
+        "triangle_fold_slope": 2.7,
+        "triangle_shape_depth": 0.7272949,
+        "drive_gain": 22.0,
+        "drive_mix_curve": 0.36250000000000004,
+        "drive_bass": 0,
+        "output_gain": 0.5,
+        "shape_calibration_peak": 0.78
+      },
+      "scores": {
+        "train": 2.7077170818529006
+      }
+    },
+    {
+      "label": "trial-017",
+      "calibration": {
+        "cutoff_min": 19.445436,
+        "cutoff_max": 19380.219,
+        "cutoff_curve": 1,
+        "resonance_curve": 1.1,
+        "resonance_max": 2.3000000000000003,
+        "filter_saturation": 0.9375,
+        "vca_curve": 1,
+        "saw_shape_scale": 1.2929688,
+        "triangle_fold_slope": 2.7,
+        "triangle_shape_depth": 0.7272949,
+        "drive_gain": 22.0,
+        "drive_mix_curve": 0.36250000000000004,
+        "drive_bass": 0,
+        "output_gain": 0.5,
+        "shape_calibration_peak": 0.78
+      },
+      "scores": {
+        "train": 2.5798340233170762
+      }
+    },
+    {
+      "label": "trial-018",
+      "calibration": {
+        "cutoff_min": 19.445436,
+        "cutoff_max": 19380.219,
+        "cutoff_curve": 1,
+        "resonance_curve": 0.8500000000000001,
+        "resonance_max": 2.2,
+        "filter_saturation": 0.9375,
+        "vca_curve": 1,
+        "saw_shape_scale": 1.2929688,
+        "triangle_fold_slope": 2.7,
+        "triangle_shape_depth": 0.7272949,
+        "drive_gain": 22.0,
+        "drive_mix_curve": 0.36250000000000004,
+        "drive_bass": 0,
+        "output_gain": 0.5,
+        "shape_calibration_peak": 0.78
+      },
+      "scores": {
+        "train": 2.4873821346987555
+      }
+    },
+    {
+      "label": "trial-019",
+      "calibration": {
+        "cutoff_min": 19.445436,
+        "cutoff_max": 19380.219,
+        "cutoff_curve": 1,
+        "resonance_curve": 0.8500000000000001,
+        "resonance_max": 2.4,
+        "filter_saturation": 0.9375,
+        "vca_curve": 1,
+        "saw_shape_scale": 1.2929688,
+        "triangle_fold_slope": 2.7,
+        "triangle_shape_depth": 0.7272949,
+        "drive_gain": 22.0,
+        "drive_mix_curve": 0.36250000000000004,
+        "drive_bass": 0,
+        "output_gain": 0.5,
+        "shape_calibration_peak": 0.78
+      },
+      "scores": {
+        "train": 2.5207111064195105
+      }
+    },
+    {
+      "label": "trial-020",
+      "calibration": {
+        "cutoff_min": 19.445436,
+        "cutoff_max": 19380.219,
+        "cutoff_curve": 1,
+        "resonance_curve": 0.8500000000000001,
+        "resonance_max": 2.3000000000000003,
+        "filter_saturation": 0.8125,
+        "vca_curve": 1,
+        "saw_shape_scale": 1.2929688,
+        "triangle_fold_slope": 2.7,
+        "triangle_shape_depth": 0.7272949,
+        "drive_gain": 22.0,
+        "drive_mix_curve": 0.36250000000000004,
+        "drive_bass": 0,
+        "output_gain": 0.5,
+        "shape_calibration_peak": 0.78
+      },
+      "scores": {
+        "train": 2.3011424714280264
+      }
+    },
+    {
+      "label": "trial-021",
+      "calibration": {
+        "cutoff_min": 19.445436,
+        "cutoff_max": 19380.219,
+        "cutoff_curve": 1,
+        "resonance_curve": 0.8500000000000001,
+        "resonance_max": 2.3000000000000003,
+        "filter_saturation": 1.0625,
+        "vca_curve": 1,
+        "saw_shape_scale": 1.2929688,
+        "triangle_fold_slope": 2.7,
+        "triangle_shape_depth": 0.7272949,
+        "drive_gain": 22.0,
+        "drive_mix_curve": 0.36250000000000004,
+        "drive_bass": 0,
+        "output_gain": 0.5,
+        "shape_calibration_peak": 0.78
+      },
+      "scores": {
+        "train": 2.2988128575268303
+      }
+    },
+    {
+      "label": "trial-022",
+      "calibration": {
+        "cutoff_min": 19.445436,
+        "cutoff_max": 19380.219,
+        "cutoff_curve": 1,
+        "resonance_curve": 0.8500000000000001,
+        "resonance_max": 2.3000000000000003,
+        "filter_saturation": 0.9375,
+        "vca_curve": 1,
+        "saw_shape_scale": 1.2929688,
+        "triangle_fold_slope": 2.7,
+        "triangle_shape_depth": 0.7272949,
+        "drive_gain": 18.0,
+        "drive_mix_curve": 0.36250000000000004,
+        "drive_bass": 0,
+        "output_gain": 0.5,
+        "shape_calibration_peak": 0.78
+      },
+      "scores": {
+        "train": 2.2986785293061476
+      }
+    },
+    {
+      "label": "trial-023",
+      "calibration": {
+        "cutoff_min": 19.445436,
+        "cutoff_max": 19380.219,
+        "cutoff_curve": 1,
+        "resonance_curve": 0.8500000000000001,
+        "resonance_max": 2.3000000000000003,
+        "filter_saturation": 0.9375,
+        "vca_curve": 1,
+        "saw_shape_scale": 1.2929688,
+        "triangle_fold_slope": 2.7,
+        "triangle_shape_depth": 0.7272949,
+        "drive_gain": 26.0,
+        "drive_mix_curve": 0.36250000000000004,
+        "drive_bass": 0,
+        "output_gain": 0.5,
+        "shape_calibration_peak": 0.78
+      },
+      "scores": {
+        "train": 2.285424401878927
+      }
+    },
+    {
+      "label": "trial-024",
+      "calibration": {
+        "cutoff_min": 19.445436,
+        "cutoff_max": 19380.219,
+        "cutoff_curve": 1,
+        "resonance_curve": 0.8500000000000001,
+        "resonance_max": 2.3000000000000003,
+        "filter_saturation": 0.9375,
+        "vca_curve": 1,
+        "saw_shape_scale": 1.2929688,
+        "triangle_fold_slope": 2.7,
+        "triangle_shape_depth": 0.7272949,
+        "drive_gain": 26.0,
+        "drive_mix_curve": 0.23750000000000004,
+        "drive_bass": 0,
+        "output_gain": 0.5,
+        "shape_calibration_peak": 0.78
+      },
+      "scores": {
+        "train": 2.2891409494163226
+      }
+    },
+    {
+      "label": "trial-025",
+      "calibration": {
+        "cutoff_min": 19.445436,
+        "cutoff_max": 19380.219,
+        "cutoff_curve": 1,
+        "resonance_curve": 0.8500000000000001,
+        "resonance_max": 2.3000000000000003,
+        "filter_saturation": 0.9375,
+        "vca_curve": 1,
+        "saw_shape_scale": 1.2929688,
+        "triangle_fold_slope": 2.7,
+        "triangle_shape_depth": 0.7272949,
+        "drive_gain": 26.0,
+        "drive_mix_curve": 0.48750000000000004,
+        "drive_bass": 0,
+        "output_gain": 0.5,
+        "shape_calibration_peak": 0.78
+      },
+      "scores": {
+        "train": 2.2846612109740505
+      }
+    },
+    {
+      "label": "trial-026",
+      "calibration": {
+        "cutoff_min": 19.445436,
+        "cutoff_max": 19380.219,
+        "cutoff_curve": 1,
+        "resonance_curve": 0.8500000000000001,
+        "resonance_max": 2.3000000000000003,
+        "filter_saturation": 0.9375,
+        "vca_curve": 1,
+        "saw_shape_scale": 1.2929688,
+        "triangle_fold_slope": 2.7,
+        "triangle_shape_depth": 0.7272949,
+        "drive_gain": 26.0,
+        "drive_mix_curve": 0.48750000000000004,
+        "drive_bass": 0.2,
+        "output_gain": 0.5,
+        "shape_calibration_peak": 0.78
+      },
+      "scores": {
+        "train": 2.3038206458729933
+      }
+    },
+    {
+      "label": "reprofile-1",
+      "calibration": {
+        "cutoff_min": 19.445436,
+        "cutoff_max": 19380.219,
+        "cutoff_curve": 1,
+        "resonance_curve": 0.8500000000000001,
+        "resonance_max": 2.3000000000000003,
+        "filter_saturation": 0.9375,
+        "vca_curve": 1,
+        "saw_shape_scale": 1.2929688,
+        "triangle_fold_slope": 2.7,
+        "triangle_shape_depth": 0.7272949,
+        "drive_gain": 26.0,
+        "drive_mix_curve": 0.48750000000000004,
+        "drive_bass": 0,
+        "output_gain": 0.5,
+        "shape_calibration_peak": 0.78
+      },
+      "scores": {
+        "train": 2.283587907289916
+      }
+    },
+    {
+      "label": "trial-027",
+      "calibration": {
+        "cutoff_min": 19.445436,
+        "cutoff_max": 19380.219,
+        "cutoff_curve": 1,
+        "resonance_curve": 0.8500000000000001,
+        "resonance_max": 2.3000000000000003,
+        "filter_saturation": 0.9375,
+        "vca_curve": 1,
+        "saw_shape_scale": 1.2929688,
+        "triangle_fold_slope": 2.7,
+        "triangle_shape_depth": 0.7272949,
+        "drive_gain": 26.0,
+        "drive_mix_curve": 0.48750000000000004,
+        "drive_bass": 0,
+        "output_gain": 0.5,
+        "shape_calibration_peak": 0.8
+      },
+      "scores": {
+        "train": 2.2932230916959364
+      }
+    },
+    {
+      "label": "trial-028",
+      "calibration": {
+        "cutoff_min": 19.445436,
+        "cutoff_max": 19380.219,
+        "cutoff_curve": 1,
+        "resonance_curve": 0.7250000000000001,
+        "resonance_max": 2.3000000000000003,
+        "filter_saturation": 0.9375,
+        "vca_curve": 1,
+        "saw_shape_scale": 1.2929688,
+        "triangle_fold_slope": 2.7,
+        "triangle_shape_depth": 0.7272949,
+        "drive_gain": 26.0,
+        "drive_mix_curve": 0.48750000000000004,
+        "drive_bass": 0,
+        "output_gain": 0.5,
+        "shape_calibration_peak": 0.78
+      },
+      "scores": {
+        "train": 2.3507592260547705
+      }
+    },
+    {
+      "label": "trial-029",
+      "calibration": {
+        "cutoff_min": 19.445436,
+        "cutoff_max": 19380.219,
+        "cutoff_curve": 1,
+        "resonance_curve": 0.9750000000000001,
+        "resonance_max": 2.3000000000000003,
+        "filter_saturation": 0.9375,
+        "vca_curve": 1,
+        "saw_shape_scale": 1.2929688,
+        "triangle_fold_slope": 2.7,
+        "triangle_shape_depth": 0.7272949,
+        "drive_gain": 26.0,
+        "drive_mix_curve": 0.48750000000000004,
+        "drive_bass": 0,
+        "output_gain": 0.5,
+        "shape_calibration_peak": 0.78
+      },
+      "scores": {
+        "train": 2.4060969401110244
+      }
+    },
+    {
+      "label": "trial-030",
+      "calibration": {
+        "cutoff_min": 19.445436,
+        "cutoff_max": 19380.219,
+        "cutoff_curve": 1,
+        "resonance_curve": 0.8500000000000001,
+        "resonance_max": 2.2500000000000004,
+        "filter_saturation": 0.9375,
+        "vca_curve": 1,
+        "saw_shape_scale": 1.2929688,
+        "triangle_fold_slope": 2.7,
+        "triangle_shape_depth": 0.7272949,
+        "drive_gain": 26.0,
+        "drive_mix_curve": 0.48750000000000004,
+        "drive_bass": 0,
+        "output_gain": 0.5,
+        "shape_calibration_peak": 0.78
+      },
+      "scores": {
+        "train": 2.3599594139222013
+      }
+    },
+    {
+      "label": "trial-031",
+      "calibration": {
+        "cutoff_min": 19.445436,
+        "cutoff_max": 19380.219,
+        "cutoff_curve": 1,
+        "resonance_curve": 0.8500000000000001,
+        "resonance_max": 2.35,
+        "filter_saturation": 0.9375,
+        "vca_curve": 1,
+        "saw_shape_scale": 1.2929688,
+        "triangle_fold_slope": 2.7,
+        "triangle_shape_depth": 0.7272949,
+        "drive_gain": 26.0,
+        "drive_mix_curve": 0.48750000000000004,
+        "drive_bass": 0,
+        "output_gain": 0.5,
+        "shape_calibration_peak": 0.78
+      },
+      "scores": {
+        "train": 2.3312316596917775
+      }
+    },
+    {
+      "label": "trial-032",
+      "calibration": {
+        "cutoff_min": 19.445436,
+        "cutoff_max": 19380.219,
+        "cutoff_curve": 1,
+        "resonance_curve": 0.8500000000000001,
+        "resonance_max": 2.3000000000000003,
+        "filter_saturation": 0.875,
+        "vca_curve": 1,
+        "saw_shape_scale": 1.2929688,
+        "triangle_fold_slope": 2.7,
+        "triangle_shape_depth": 0.7272949,
+        "drive_gain": 26.0,
+        "drive_mix_curve": 0.48750000000000004,
+        "drive_bass": 0,
+        "output_gain": 0.5,
+        "shape_calibration_peak": 0.78
+      },
+      "scores": {
+        "train": 2.2820839224974256
+      }
+    },
+    {
+      "label": "trial-033",
+      "calibration": {
+        "cutoff_min": 19.445436,
+        "cutoff_max": 19380.219,
+        "cutoff_curve": 1,
+        "resonance_curve": 0.8500000000000001,
+        "resonance_max": 2.3000000000000003,
+        "filter_saturation": 1.0,
+        "vca_curve": 1,
+        "saw_shape_scale": 1.2929688,
+        "triangle_fold_slope": 2.7,
+        "triangle_shape_depth": 0.7272949,
+        "drive_gain": 26.0,
+        "drive_mix_curve": 0.48750000000000004,
+        "drive_bass": 0,
+        "output_gain": 0.5,
+        "shape_calibration_peak": 0.78
+      },
+      "scores": {
+        "train": 2.287073514252674
+      }
+    },
+    {
+      "label": "trial-034",
+      "calibration": {
+        "cutoff_min": 19.445436,
+        "cutoff_max": 19380.219,
+        "cutoff_curve": 1,
+        "resonance_curve": 0.8500000000000001,
+        "resonance_max": 2.3000000000000003,
+        "filter_saturation": 0.875,
+        "vca_curve": 1,
+        "saw_shape_scale": 1.2929688,
+        "triangle_fold_slope": 2.7,
+        "triangle_shape_depth": 0.7272949,
+        "drive_gain": 24.0,
+        "drive_mix_curve": 0.48750000000000004,
+        "drive_bass": 0,
+        "output_gain": 0.5,
+        "shape_calibration_peak": 0.78
+      },
+      "scores": {
+        "train": 2.2852386814448105
+      }
+    },
+    {
+      "label": "trial-035",
+      "calibration": {
+        "cutoff_min": 19.445436,
+        "cutoff_max": 19380.219,
+        "cutoff_curve": 1,
+        "resonance_curve": 0.8500000000000001,
+        "resonance_max": 2.3000000000000003,
+        "filter_saturation": 0.875,
+        "vca_curve": 1,
+        "saw_shape_scale": 1.2929688,
+        "triangle_fold_slope": 2.7,
+        "triangle_shape_depth": 0.7272949,
+        "drive_gain": 28.0,
+        "drive_mix_curve": 0.48750000000000004,
+        "drive_bass": 0,
+        "output_gain": 0.5,
+        "shape_calibration_peak": 0.78
+      },
+      "scores": {
+        "train": 2.2790957242887218
+      }
+    },
+    {
+      "label": "trial-036",
+      "calibration": {
+        "cutoff_min": 19.445436,
+        "cutoff_max": 19380.219,
+        "cutoff_curve": 1,
+        "resonance_curve": 0.8500000000000001,
+        "resonance_max": 2.3000000000000003,
+        "filter_saturation": 0.875,
+        "vca_curve": 1,
+        "saw_shape_scale": 1.2929688,
+        "triangle_fold_slope": 2.7,
+        "triangle_shape_depth": 0.7272949,
+        "drive_gain": 28.0,
+        "drive_mix_curve": 0.42500000000000004,
+        "drive_bass": 0,
+        "output_gain": 0.5,
+        "shape_calibration_peak": 0.78
+      },
+      "scores": {
+        "train": 2.278635235172926
+      }
+    },
+    {
+      "label": "trial-037",
+      "calibration": {
+        "cutoff_min": 19.445436,
+        "cutoff_max": 19380.219,
+        "cutoff_curve": 1,
+        "resonance_curve": 0.8500000000000001,
+        "resonance_max": 2.3000000000000003,
+        "filter_saturation": 0.875,
+        "vca_curve": 1,
+        "saw_shape_scale": 1.2929688,
+        "triangle_fold_slope": 2.7,
+        "triangle_shape_depth": 0.7272949,
+        "drive_gain": 28.0,
+        "drive_mix_curve": 0.55,
+        "drive_bass": 0,
+        "output_gain": 0.5,
+        "shape_calibration_peak": 0.78
+      },
+      "scores": {
+        "train": 2.283994146544207
+      }
+    },
+    {
+      "label": "trial-038",
+      "calibration": {
+        "cutoff_min": 19.445436,
+        "cutoff_max": 19380.219,
+        "cutoff_curve": 1,
+        "resonance_curve": 0.8500000000000001,
+        "resonance_max": 2.3000000000000003,
+        "filter_saturation": 0.875,
+        "vca_curve": 1,
+        "saw_shape_scale": 1.2929688,
+        "triangle_fold_slope": 2.7,
+        "triangle_shape_depth": 0.7272949,
+        "drive_gain": 28.0,
+        "drive_mix_curve": 0.42500000000000004,
+        "drive_bass": 0.1,
+        "output_gain": 0.5,
+        "shape_calibration_peak": 0.78
+      },
+      "scores": {
+        "train": 2.289200237158629
+      }
+    },
+    {
+      "label": "trial-039",
+      "calibration": {
+        "cutoff_min": 19.445436,
+        "cutoff_max": 19380.219,
+        "cutoff_curve": 1,
+        "resonance_curve": 0.8500000000000001,
+        "resonance_max": 2.3000000000000003,
+        "filter_saturation": 0.875,
+        "vca_curve": 1,
+        "saw_shape_scale": 1.2929688,
+        "triangle_fold_slope": 2.7,
+        "triangle_shape_depth": 0.7272949,
+        "drive_gain": 28.0,
+        "drive_mix_curve": 0.42500000000000004,
+        "drive_bass": 0,
+        "output_gain": 0.5,
+        "shape_calibration_peak": 0.8
+      },
+      "scores": {
+        "train": 2.296193271329936
+      }
+    },
+    {
+      "label": "trial-040",
+      "calibration": {
+        "cutoff_min": 19.445436,
+        "cutoff_max": 19380.219,
+        "cutoff_curve": 1,
+        "resonance_curve": 0.7250000000000001,
+        "resonance_max": 2.3000000000000003,
+        "filter_saturation": 0.875,
+        "vca_curve": 1,
+        "saw_shape_scale": 1.2929688,
+        "triangle_fold_slope": 2.7,
+        "triangle_shape_depth": 0.7272949,
+        "drive_gain": 28.0,
+        "drive_mix_curve": 0.42500000000000004,
+        "drive_bass": 0,
+        "output_gain": 0.5,
+        "shape_calibration_peak": 0.78
+      },
+      "scores": {
+        "train": 2.3528349905365915
+      }
+    },
+    {
+      "label": "trial-041",
+      "calibration": {
+        "cutoff_min": 19.445436,
+        "cutoff_max": 19380.219,
+        "cutoff_curve": 1,
+        "resonance_curve": 0.9750000000000001,
+        "resonance_max": 2.3000000000000003,
+        "filter_saturation": 0.875,
+        "vca_curve": 1,
+        "saw_shape_scale": 1.2929688,
+        "triangle_fold_slope": 2.7,
+        "triangle_shape_depth": 0.7272949,
+        "drive_gain": 28.0,
+        "drive_mix_curve": 0.42500000000000004,
+        "drive_bass": 0,
+        "output_gain": 0.5,
+        "shape_calibration_peak": 0.78
+      },
+      "scores": {
+        "train": 2.3936271451923
+      }
+    },
+    {
+      "label": "trial-042",
+      "calibration": {
+        "cutoff_min": 19.445436,
+        "cutoff_max": 19380.219,
+        "cutoff_curve": 1,
+        "resonance_curve": 0.8500000000000001,
+        "resonance_max": 2.2500000000000004,
+        "filter_saturation": 0.875,
+        "vca_curve": 1,
+        "saw_shape_scale": 1.2929688,
+        "triangle_fold_slope": 2.7,
+        "triangle_shape_depth": 0.7272949,
+        "drive_gain": 28.0,
+        "drive_mix_curve": 0.42500000000000004,
+        "drive_bass": 0,
+        "output_gain": 0.5,
+        "shape_calibration_peak": 0.78
+      },
+      "scores": {
+        "train": 2.3489086583742753
+      }
+    },
+    {
+      "label": "trial-043",
+      "calibration": {
+        "cutoff_min": 19.445436,
+        "cutoff_max": 19380.219,
+        "cutoff_curve": 1,
+        "resonance_curve": 0.8500000000000001,
+        "resonance_max": 2.35,
+        "filter_saturation": 0.875,
+        "vca_curve": 1,
+        "saw_shape_scale": 1.2929688,
+        "triangle_fold_slope": 2.7,
+        "triangle_shape_depth": 0.7272949,
+        "drive_gain": 28.0,
+        "drive_mix_curve": 0.42500000000000004,
+        "drive_bass": 0,
+        "output_gain": 0.5,
+        "shape_calibration_peak": 0.78
+      },
+      "scores": {
+        "train": 2.3328962705867964
+      }
+    },
+    {
+      "label": "trial-044",
+      "calibration": {
+        "cutoff_min": 19.445436,
+        "cutoff_max": 19380.219,
+        "cutoff_curve": 1,
+        "resonance_curve": 0.8500000000000001,
+        "resonance_max": 2.3000000000000003,
+        "filter_saturation": 0.8125,
+        "vca_curve": 1,
+        "saw_shape_scale": 1.2929688,
+        "triangle_fold_slope": 2.7,
+        "triangle_shape_depth": 0.7272949,
+        "drive_gain": 28.0,
+        "drive_mix_curve": 0.42500000000000004,
+        "drive_bass": 0,
+        "output_gain": 0.5,
+        "shape_calibration_peak": 0.78
+      },
+      "scores": {
+        "train": 2.2923073278075337
+      }
+    },
+    {
+      "label": "trial-045",
+      "calibration": {
+        "cutoff_min": 19.445436,
+        "cutoff_max": 19380.219,
+        "cutoff_curve": 1,
+        "resonance_curve": 0.8500000000000001,
+        "resonance_max": 2.3000000000000003,
+        "filter_saturation": 0.9375,
+        "vca_curve": 1,
+        "saw_shape_scale": 1.2929688,
+        "triangle_fold_slope": 2.7,
+        "triangle_shape_depth": 0.7272949,
+        "drive_gain": 28.0,
+        "drive_mix_curve": 0.42500000000000004,
+        "drive_bass": 0,
+        "output_gain": 0.5,
+        "shape_calibration_peak": 0.78
+      },
+      "scores": {
+        "train": 2.280094275929161
+      }
+    },
+    {
+      "label": "trial-046",
+      "calibration": {
+        "cutoff_min": 19.445436,
+        "cutoff_max": 19380.219,
+        "cutoff_curve": 1,
+        "resonance_curve": 0.8500000000000001,
+        "resonance_max": 2.3000000000000003,
+        "filter_saturation": 0.875,
+        "vca_curve": 1,
+        "saw_shape_scale": 1.2929688,
+        "triangle_fold_slope": 2.7,
+        "triangle_shape_depth": 0.7272949,
+        "drive_gain": 26.0,
+        "drive_mix_curve": 0.42500000000000004,
+        "drive_bass": 0,
+        "output_gain": 0.5,
+        "shape_calibration_peak": 0.78
+      },
+      "scores": {
+        "train": 2.2803555459787517
+      }
+    },
+    {
+      "label": "trial-047",
+      "calibration": {
+        "cutoff_min": 19.445436,
+        "cutoff_max": 19380.219,
+        "cutoff_curve": 1,
+        "resonance_curve": 0.8500000000000001,
+        "resonance_max": 2.3000000000000003,
+        "filter_saturation": 0.875,
+        "vca_curve": 1,
+        "saw_shape_scale": 1.2929688,
+        "triangle_fold_slope": 2.7,
+        "triangle_shape_depth": 0.7272949,
+        "drive_gain": 30.0,
+        "drive_mix_curve": 0.42500000000000004,
+        "drive_bass": 0,
+        "output_gain": 0.5,
+        "shape_calibration_peak": 0.78
+      },
+      "scores": {
+        "train": 2.2796887051667842
+      }
+    },
+    {
+      "label": "trial-048",
+      "calibration": {
+        "cutoff_min": 19.445436,
+        "cutoff_max": 19380.219,
+        "cutoff_curve": 1,
+        "resonance_curve": 0.8500000000000001,
+        "resonance_max": 2.3000000000000003,
+        "filter_saturation": 0.875,
+        "vca_curve": 1,
+        "saw_shape_scale": 1.2929688,
+        "triangle_fold_slope": 2.7,
+        "triangle_shape_depth": 0.7272949,
+        "drive_gain": 28.0,
+        "drive_mix_curve": 0.36250000000000004,
+        "drive_bass": 0,
+        "output_gain": 0.5,
+        "shape_calibration_peak": 0.78
+      },
+      "scores": {
+        "train": 2.2825369317551685
+      }
+    },
+    {
+      "label": "trial-049",
+      "calibration": {
+        "cutoff_min": 19.445436,
+        "cutoff_max": 19380.219,
+        "cutoff_curve": 1,
+        "resonance_curve": 0.8500000000000001,
+        "resonance_max": 2.3000000000000003,
+        "filter_saturation": 0.875,
+        "vca_curve": 1,
+        "saw_shape_scale": 1.2929688,
+        "triangle_fold_slope": 2.7,
+        "triangle_shape_depth": 0.7272949,
+        "drive_gain": 28.0,
+        "drive_mix_curve": 0.48750000000000004,
+        "drive_bass": 0,
+        "output_gain": 0.5,
+        "shape_calibration_peak": 0.78
+      },
+      "scores": {
+        "train": 2.2790957242887218
+      }
+    },
+    {
+      "label": "trial-050",
+      "calibration": {
+        "cutoff_min": 19.445436,
+        "cutoff_max": 19380.219,
+        "cutoff_curve": 1,
+        "resonance_curve": 0.8500000000000001,
+        "resonance_max": 2.3000000000000003,
+        "filter_saturation": 0.875,
+        "vca_curve": 1,
+        "saw_shape_scale": 1.2929688,
+        "triangle_fold_slope": 2.7,
+        "triangle_shape_depth": 0.7272949,
+        "drive_gain": 28.0,
+        "drive_mix_curve": 0.42500000000000004,
+        "drive_bass": 0.1,
+        "output_gain": 0.5,
+        "shape_calibration_peak": 0.78
+      },
+      "scores": {
+        "train": 2.289200237158629
+      }
+    },
+    {
+      "label": "reprofile-2",
+      "calibration": {
+        "cutoff_min": 19.445436,
+        "cutoff_max": 19380.219,
+        "cutoff_curve": 1,
+        "resonance_curve": 0.8500000000000001,
+        "resonance_max": 2.3000000000000003,
+        "filter_saturation": 0.875,
+        "vca_curve": 1,
+        "saw_shape_scale": 1.2929688,
+        "triangle_fold_slope": 2.7,
+        "triangle_shape_depth": 0.7272949,
+        "drive_gain": 28.0,
+        "drive_mix_curve": 0.42500000000000004,
+        "drive_bass": 0,
+        "output_gain": 0.5,
+        "shape_calibration_peak": 0.78
+      },
+      "scores": {
+        "train": 2.2783169049403447
+      }
+    },
+    {
+      "label": "best",
+      "calibration": {
+        "cutoff_min": 19.445436,
+        "cutoff_max": 19380.219,
+        "cutoff_curve": 1,
+        "resonance_curve": 0.8500000000000001,
+        "resonance_max": 2.3000000000000003,
+        "filter_saturation": 0.875,
+        "vca_curve": 1,
+        "saw_shape_scale": 1.2929688,
+        "triangle_fold_slope": 2.7,
+        "triangle_shape_depth": 0.7272949,
+        "drive_gain": 28.0,
+        "drive_mix_curve": 0.42500000000000004,
+        "drive_bass": 0,
+        "output_gain": 0.5,
+        "shape_calibration_peak": 0.78
+      },
+      "scores": {
+        "train": 2.2783169049403447
+      }
+    }
+  ],
+  "note": "Only training cases were used. Final baseline/fitted validation was scored after these histories were complete."
+}

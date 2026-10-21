@@ -1,0 +1,103 @@
+{
+  "version": 1,
+  "sample_rate": 48000,
+  "reference_repository": "https://github.com/callimero/Monologue",
+  "reference_commit": "e829a7fbcc15a2a3555f86625b8592d77e4e5b76",
+  "license": "MIT (see callimero/LICENSE)",
+  "warnings": [
+    "Patch parameters are paired with source audio, but MIDI performance and recording gain were not published.",
+    "Note/gate timings and sounding MIDI pitch are inferred, not hardware-verified. Gain is fitted per excerpt.",
+    "Pinoesque amplitude velocity sensitivity is 50/127 and cutoff velocity sensitivity is 50%; its unknown performance velocity is profiled on a fixed grid. Earlier runs assumed 0.8.",
+    "No pitch/time warping in the objective; oscillator start phase is unobserved.",
+    "These four expressive patches do not identify every analog transfer function. Hold-out must never enter optimization."
+  ],
+  "cases": [
+    {
+      "id": "s0s_triangle",
+      "split": "train",
+      "program": "callimero/patches/S0S.prog_bin",
+      "reference": "corpus/s0s_triangle.reference.wav",
+      "events": "corpus/s0s_triangle.events.json",
+      "duration": 0.403,
+      "source_audio": "callimero/patches/S0S.wav",
+      "source_crop_seconds": [
+        1.222,
+        1.625
+      ],
+      "sounding_note": 76,
+      "velocity": 0.8,
+      "velocity_confidence": "assumed; decoded amplitude/filter velocity sensitivities both 0",
+      "amp_velocity_raw": 0,
+      "cutoff_velocity_raw": 0,
+      "notes": "Clean open-filter triangles; recorded note88 sounds76. First three source events faded, so excluded."
+    },
+    {
+      "id": "harpie_saw",
+      "split": "train",
+      "program": "callimero/patches/Harpie.prog_bin",
+      "reference": "corpus/harpie_saw.reference.wav",
+      "events": "corpus/harpie_saw.events.json",
+      "duration": 0.599,
+      "source_audio": "callimero/patches/Harpie.wav",
+      "source_crop_seconds": [
+        0.146,
+        0.745
+      ],
+      "sounding_note": 48,
+      "velocity": 0.8,
+      "velocity_confidence": "assumed; decoded amplitude/filter velocity sensitivities both 0",
+      "amp_velocity_raw": 0,
+      "cutoff_velocity_raw": 0,
+      "notes": "Single VCO2 saw with one-shot shape modulation; crop excludes next note. Recorded note60 sounds48."
+    },
+    {
+      "id": "pinoesque",
+      "split": "train",
+      "program": "callimero/patches/Pinoesque.prog_bin",
+      "reference": "corpus/pinoesque.reference.wav",
+      "events": "corpus/pinoesque.events.json",
+      "duration": 0.5900000000000001,
+      "source_audio": "callimero/patches/Pinoesque.wav",
+      "source_crop_seconds": [
+        0.41,
+        1.0
+      ],
+      "sounding_note": 48,
+      "velocity": 0.8,
+      "velocity_confidence": "unknown and profiled; amplitude and filter velocity sensitivities enabled",
+      "amp_velocity_raw": 50,
+      "cutoff_velocity_raw": 1,
+      "notes": "Two oscillators, post-VCA drive; manually played first C3 inferred from audio. Gate-off lies outside crop.",
+      "velocity_candidates": [
+        0.007874015748031496,
+        0.12598425196850394,
+        0.25196850393700787,
+        0.3779527559055118,
+        0.5039370078740157,
+        0.6299212598425197,
+        0.7559055118110236,
+        0.8818897637795275,
+        1.0
+      ]
+    },
+    {
+      "id": "string_hold",
+      "split": "held_out",
+      "program": "callimero/patches/String Hold.prog_bin",
+      "reference": "corpus/string_hold.reference.wav",
+      "events": "corpus/string_hold.events.json",
+      "duration": 0.8820000000000001,
+      "source_audio": "callimero/patches/String Hold.wav",
+      "source_crop_seconds": [
+        0.418,
+        1.3
+      ],
+      "sounding_note": 57,
+      "velocity": 0.8,
+      "velocity_confidence": "assumed; decoded amplitude/filter velocity sensitivities both 0",
+      "amp_velocity_raw": 0,
+      "cutoff_velocity_raw": 0,
+      "notes": "Single VCO2 saw plus stronger drive and shape modulation; first A3 inferred, gate-off outside crop."
+    }
+  ]
+}

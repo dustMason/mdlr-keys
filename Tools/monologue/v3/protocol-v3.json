@@ -1,0 +1,41 @@
+{
+  "version": 3,
+  "frozen_utc": "2026-10-21T22:03:35.627131+00:00",
+  "baseline_renderer_sha256": "02730e59367815dfdd0d9e27853c9f05cd1c9cf2d7fcdcd875d81c7ddbec8dcd",
+  "phase_baseline_renderer_sha256": "384bc34dc8994117cffc65c44c68faac26b27d1d3cc1cc72a8d2960acf7bbb9f",
+  "metric_sha256": "7c4b06a9a01c04e4cd1666cb1ac9513922c0b8e7313ce7652a75778eb33969bf",
+  "primary_objective": "Mean per-frame reference-weighted harmonic shape dB + 0.3 RMS-envelope dB; v2 median objective retained",
+  "secondary_diagnostics": [
+    "90th-percentile and worst frame harmonic error",
+    "Early/middle/late harmonic error and H2/H1",
+    "Full-spectrum 1D power transport in log-frequency cents, includes off-harmonic sidebands",
+    "v2 envelope, pitch, gain, harmonic coverage and alignment"
+  ],
+  "analysis": {
+    "sample_rate": 48000,
+    "harmonics": 64,
+    "max_frequency_hz": 12000,
+    "frame_seconds": 0.096,
+    "hop_seconds": 0.024,
+    "analysis_start_seconds": 0.075,
+    "max_alignment_ms": 4,
+    "fitted_recording_gain": true,
+    "no_pitch_or_time_warp": true,
+    "silence_floor_relative_to_reference_peak_db": -45
+  },
+  "selection_policy": "Split/crops/bounds frozen from source-only audition/analysis before candidate-engine evaluation. Existing seven v2 cases are all known; only the three new validation programs remain untouched. Use the same full nuisance grids for each reported renderer. No global analog constants are optimized. Calibration defaults remain the frozen v2 values.",
+  "validation_policy": "Do not render/score validation against any engine until root freezes the final structural candidate. Evaluate baseline and final once using frozen grids; do not tune to validation. All regression cases remain known controls.",
+  "nuisance_policy": "Unknown manual gate-off, initial relative oscillator phase and free-running LFO phase are profiled over explicit fixed lists. Velocity is either source sequence value or irrelevant because sensitivities are zero. Fitted gain and edge-bound winners are reported. Fine phase grids may miss the true performance.",
+  "multi_rate_tests": "Synthetic ring and sync patch controls rendered at44.1/48/96k, compare in common0..18k passband after proper resampling. Monitor pitch/reset event timing, sum/difference products, off-family leakage, DC/carrier leakage and high-frequency aliases. Differential rate agreement is a numerical consistency check, not hardware ground truth.",
+  "limits": [
+    "Only one recording artist/hardware unit; patch metadata does not prove recording-chain neutrality.",
+    "Manual notes and gate releases are not MIDI ground truth.",
+    "LFO phase is unobserved; nominal controls remain unchanged.",
+    "Median v2 score can hide time-local errors; new mean and tails are reported together.",
+    "96 ms analysis windows blur very short reset transients; event/alias tests remain necessary.",
+    "The v3 score does not measure hardware fidelity as a percentage."
+  ],
+  "original_workspace_protocol_sha256": "e6c1e490f7e0ede508a58b4deaa69b6c78b33dfd9b83d1cc567e8647cf67fac2",
+  "original_workspace_metric_sha256": "6760affc4c57c378306d8775cc7f6b28794979fd460f7a6096a0702410880d35",
+  "packaging_note": "Only import paths changed in the metric; scoring functions are AST-identical. The portable corpus changes data paths, not samples, events, notes or nuisance grids."
+}

@@ -12,13 +12,22 @@ unsafe impl GlobalAlloc for Counter {
 fn rendering_switching_and_midi_do_not_allocate(){
     let mut s=Synth::new();let(mut l,mut r)=([0.0;511],[0.0;511]);
     let before=ALLOCATIONS.load(Ordering::Relaxed);
-    for e in 0..4{
+    for e in 0..5{
       for mono in [false,true] {
         s.mono_output(mono);
         s.select(e);s.parameter(0,0.1);s.volume(0.5);
         for n in 48..60{s.midi(0x90,n,90);s.velocity_sensitivity(n%2==0);s.render(&mut l,&mut r,48000.0);}
         s.midi(0xb0,64,127);for n in 48..60{s.midi(0x80,n,0);}
         s.render(&mut l,&mut r,48000.0);s.midi(0xb0,64,0);s.panic();
+      }
+    }
+    // Exercise sync edge carries, diode-table lookup, mode transitions and
+    // coupling-coefficient changes inside callbacks of several lengths.
+    s.select(4);s.parameter(5,1.0);s.midi(0x90,60,100);
+    for rate in [44100.0,48000.0,96000.0] {
+      for mode in [0.0,1.0,2.0,1.0,0.0] {
+        s.parameter(8,mode);
+        for frames in [1,7,64,128,511] {s.render(&mut l[..frames],&mut r[..frames],rate);}
       }
     }
     assert_eq!(ALLOCATIONS.load(Ordering::Relaxed)-before,0);

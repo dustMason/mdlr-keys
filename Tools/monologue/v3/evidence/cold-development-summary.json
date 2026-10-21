@@ -1,0 +1,509 @@
+{
+  "rows": [
+    {
+      "model": "product",
+      "case": "harpie_saw",
+      "objective": 5.771441496023174,
+      "v2_objective": 4.512834679261761,
+      "harmonic_mean_db": 5.575204716843023,
+      "harmonic_p90_db": 7.8229258394510595,
+      "envelope_db": 0.6541225972671678,
+      "transport_cents": 193.85001927982353,
+      "transport_p90_cents": 333.88805862556995,
+      "h2_h1_trajectory_mae_db": 13.103033944659268,
+      "windows": {
+        "early": {
+          "frames": 5,
+          "mean_db": 4.265943999662892,
+          "p90_db": 4.347736252689579,
+          "reference_h2_h1_db": 1.6412736785184272,
+          "candidate_h2_h1_db": 4.834913743029913
+        },
+        "middle": {
+          "frames": 6,
+          "mean_db": 4.229130155314085,
+          "p90_db": 4.369382968814481,
+          "reference_h2_h1_db": 8.408302919918672,
+          "candidate_h2_h1_db": 14.732663146510651
+        },
+        "late": {
+          "frames": 9,
+          "mean_db": 7.199954822962392,
+          "p90_db": 11.899438027648943,
+          "reference_h2_h1_db": 13.844714536962961,
+          "candidate_h2_h1_db": 36.97208311597141
+        }
+      },
+      "selected_phase": null,
+      "selected_gate": null,
+      "selected_lfo_phase": 0,
+      "fitted_gain_db": -5.0583728303222975,
+      "gate_at_boundary": false
+    },
+    {
+      "model": "product",
+      "case": "string_hold",
+      "objective": 3.2695801370922677,
+      "v2_objective": 3.1201170574838115,
+      "harmonic_mean_db": 3.0736174717943054,
+      "harmonic_p90_db": 3.4874284453146833,
+      "envelope_db": 0.6532088843265415,
+      "transport_cents": 489.7239718052133,
+      "transport_p90_cents": 624.2510121232181,
+      "h2_h1_trajectory_mae_db": 1.9428365413270257,
+      "windows": {
+        "early": {
+          "frames": 5,
+          "mean_db": 3.304718502041726,
+          "p90_db": 3.372134359713279,
+          "reference_h2_h1_db": -4.1585690371392525,
+          "candidate_h2_h1_db": -1.836635443372908
+        },
+        "middle": {
+          "frames": 6,
+          "mean_db": 2.768156192501893,
+          "p90_db": 2.878096905897057,
+          "reference_h2_h1_db": -3.1492962085121516,
+          "candidate_h2_h1_db": -1.8454527002423327
+        },
+        "late": {
+          "frames": 21,
+          "mean_db": 3.105868068199894,
+          "p90_db": 3.772038524458745,
+          "reference_h2_h1_db": 1.196158996037754,
+          "candidate_h2_h1_db": -0.32523678606910994
+        }
+      },
+      "selected_phase": [
+        0.137,
+        0.75
+      ],
+      "selected_gate": 0.1,
+      "selected_lfo_phase": 0,
+      "fitted_gain_db": -7.9750657585079034,
+      "gate_at_boundary": true
+    },
+    {
+      "model": "product",
+      "case": "deep_meow_ring",
+      "objective": 2.6908689384786073,
+      "v2_objective": 2.5222820172525755,
+      "harmonic_mean_db": 1.885939040860392,
+      "harmonic_p90_db": 1.9049413124090677,
+      "envelope_db": 2.683099658727385,
+      "transport_cents": 351.20446370849425,
+      "transport_p90_cents": 377.88393266465124,
+      "h2_h1_trajectory_mae_db": 5.813787516349692,
+      "windows": {
+        "early": {
+          "frames": 5,
+          "mean_db": 1.8471906708161974,
+          "p90_db": 1.9049413124090677,
+          "reference_h2_h1_db": 9.434757771402143,
+          "candidate_h2_h1_db": 3.9629504966373417
+        },
+        "middle": {
+          "frames": 6,
+          "mean_db": 1.7391450528772852,
+          "p90_db": 1.8062059952290996,
+          "reference_h2_h1_db": 9.828360369305868,
+          "candidate_h2_h1_db": 4.034523871211936
+        },
+        "late": {
+          "frames": 14,
+          "mean_db": 1.962689453583222,
+          "p90_db": 3.2127847762563486,
+          "reference_h2_h1_db": 10.008604304253952,
+          "candidate_h2_h1_db": 4.064130550942901
+        }
+      },
+      "selected_phase": [
+        0.137,
+        0.875
+      ],
+      "selected_gate": 0.075,
+      "selected_lfo_phase": 0.0,
+      "fitted_gain_db": -5.0230629724259135,
+      "gate_at_boundary": true
+    },
+    {
+      "model": "bridge",
+      "case": "harpie_saw",
+      "objective": 5.771441496023174,
+      "v2_objective": 4.512834679261761,
+      "harmonic_mean_db": 5.575204716843023,
+      "harmonic_p90_db": 7.8229258394510595,
+      "envelope_db": 0.6541225972671678,
+      "transport_cents": 193.85001927982353,
+      "transport_p90_cents": 333.88805862556995,
+      "h2_h1_trajectory_mae_db": 13.103033944659268,
+      "windows": {
+        "early": {
+          "frames": 5,
+          "mean_db": 4.265943999662892,
+          "p90_db": 4.347736252689579,
+          "reference_h2_h1_db": 1.6412736785184272,
+          "candidate_h2_h1_db": 4.834913743029913
+        },
+        "middle": {
+          "frames": 6,
+          "mean_db": 4.229130155314085,
+          "p90_db": 4.369382968814481,
+          "reference_h2_h1_db": 8.408302919918672,
+          "candidate_h2_h1_db": 14.732663146510651
+        },
+        "late": {
+          "frames": 9,
+          "mean_db": 7.199954822962392,
+          "p90_db": 11.899438027648943,
+          "reference_h2_h1_db": 13.844714536962961,
+          "candidate_h2_h1_db": 36.97208311597141
+        }
+      },
+      "selected_phase": null,
+      "selected_gate": null,
+      "selected_lfo_phase": 0,
+      "fitted_gain_db": -5.0583728303222975,
+      "gate_at_boundary": false
+    },
+    {
+      "model": "bridge",
+      "case": "string_hold",
+      "objective": 3.4448792819846665,
+      "v2_objective": 3.357179713065347,
+      "harmonic_mean_db": 3.041378129091857,
+      "harmonic_p90_db": 3.6689401244909736,
+      "envelope_db": 1.3450038429760311,
+      "transport_cents": 406.16701341471304,
+      "transport_p90_cents": 566.7166081519274,
+      "h2_h1_trajectory_mae_db": 1.8811148586178712,
+      "windows": {
+        "early": {
+          "frames": 5,
+          "mean_db": 3.2150764171672868,
+          "p90_db": 3.267808239760211,
+          "reference_h2_h1_db": -4.1585690371392525,
+          "candidate_h2_h1_db": -1.8239649461241474
+        },
+        "middle": {
+          "frames": 6,
+          "mean_db": 2.8460452116852077,
+          "p90_db": 2.9021012166502875,
+          "reference_h2_h1_db": -3.1492962085121516,
+          "candidate_h2_h1_db": -1.8060224971205654
+        },
+        "late": {
+          "frames": 21,
+          "mean_db": 3.055830798809131,
+          "p90_db": 3.985715291891009,
+          "reference_h2_h1_db": 1.196158996037754,
+          "candidate_h2_h1_db": -0.4760430973753871
+        }
+      },
+      "selected_phase": [
+        0.137,
+        0.75
+      ],
+      "selected_gate": 0.1,
+      "selected_lfo_phase": 0,
+      "fitted_gain_db": -9.18029197365048,
+      "gate_at_boundary": true
+    },
+    {
+      "model": "bridge",
+      "case": "deep_meow_ring",
+      "objective": 2.5000766117597677,
+      "v2_objective": 2.372354995213042,
+      "harmonic_mean_db": 1.7427474170414003,
+      "harmonic_p90_db": 1.8746712546221116,
+      "envelope_db": 2.524430649061224,
+      "transport_cents": 308.7917751033768,
+      "transport_p90_cents": 341.00730549338516,
+      "h2_h1_trajectory_mae_db": 2.627020139720961,
+      "windows": {
+        "early": {
+          "frames": 5,
+          "mean_db": 1.8190894127425679,
+          "p90_db": 1.890690680384163,
+          "reference_h2_h1_db": 9.434757771402143,
+          "candidate_h2_h1_db": 12.45217629230001
+        },
+        "middle": {
+          "frames": 6,
+          "mean_db": 1.6928351196315645,
+          "p90_db": 1.7627677645445348,
+          "reference_h2_h1_db": 9.828360369305868,
+          "candidate_h2_h1_db": 12.45412232871251
+        },
+        "late": {
+          "frames": 13,
+          "mean_db": 1.7364215559608753,
+          "p90_db": 1.6090663967957801,
+          "reference_h2_h1_db": 10.008523019807885,
+          "candidate_h2_h1_db": 12.485970634605877
+        }
+      },
+      "selected_phase": [
+        0.137,
+        0.75
+      ],
+      "selected_gate": 0.075,
+      "selected_lfo_phase": 0.0,
+      "fitted_gain_db": -5.816653855736327,
+      "gate_at_boundary": true
+    },
+    {
+      "model": "coupled-product",
+      "case": "harpie_saw",
+      "objective": 5.771295083258936,
+      "v2_objective": 4.5126743371922435,
+      "harmonic_mean_db": 5.575221693349502,
+      "harmonic_p90_db": 7.822974262828148,
+      "envelope_db": 0.6535779663647799,
+      "transport_cents": 193.83872039530667,
+      "transport_p90_cents": 333.8717894720035,
+      "h2_h1_trajectory_mae_db": 13.10382410883937,
+      "windows": {
+        "early": {
+          "frames": 5,
+          "mean_db": 4.26593292332637,
+          "p90_db": 4.347695510198337,
+          "reference_h2_h1_db": 1.6412736785184272,
+          "candidate_h2_h1_db": 4.835128619012527
+        },
+        "middle": {
+          "frames": 6,
+          "mean_db": 4.229134034366806,
+          "p90_db": 4.369387945856351,
+          "reference_h2_h1_db": 8.408302919918672,
+          "candidate_h2_h1_db": 14.733327720534428
+        },
+        "late": {
+          "frames": 9,
+          "mean_db": 7.199996116017483,
+          "p90_db": 11.89944414922283,
+          "reference_h2_h1_db": 13.844714536962961,
+          "candidate_h2_h1_db": 36.973276611476564
+        }
+      },
+      "selected_phase": null,
+      "selected_gate": null,
+      "selected_lfo_phase": 0,
+      "fitted_gain_db": -5.058409249194426,
+      "gate_at_boundary": false
+    },
+    {
+      "model": "coupled-product",
+      "case": "string_hold",
+      "objective": 3.445092575763203,
+      "v2_objective": 3.457558276448445,
+      "harmonic_mean_db": 3.3115918533325086,
+      "harmonic_p90_db": 3.827944681608192,
+      "envelope_db": 0.44500240810231473,
+      "transport_cents": 530.1973653419152,
+      "transport_p90_cents": 666.0311617781072,
+      "h2_h1_trajectory_mae_db": 4.286869801823202,
+      "windows": {
+        "early": {
+          "frames": 5,
+          "mean_db": 3.142086209524091,
+          "p90_db": 3.266043373077669,
+          "reference_h2_h1_db": -4.1585690371392525,
+          "candidate_h2_h1_db": -2.2955896619182083
+        },
+        "middle": {
+          "frames": 6,
+          "mean_db": 2.5790051620157604,
+          "p90_db": 2.6816651418482094,
+          "reference_h2_h1_db": -3.1492962085121516,
+          "candidate_h2_h1_db": -2.6959071411136413
+        },
+        "late": {
+          "frames": 21,
+          "mean_db": 3.561260823186918,
+          "p90_db": 3.8981291600519734,
+          "reference_h2_h1_db": 1.196158996037754,
+          "candidate_h2_h1_db": -4.546162327331896
+        }
+      },
+      "selected_phase": [
+        0.137,
+        0.75
+      ],
+      "selected_gate": 0.15,
+      "selected_lfo_phase": 0,
+      "fitted_gain_db": -7.940706577528381,
+      "gate_at_boundary": false
+    },
+    {
+      "model": "coupled-product",
+      "case": "deep_meow_ring",
+      "objective": 2.7142229671701537,
+      "v2_objective": 2.5394918334710184,
+      "harmonic_mean_db": 1.9056120278712623,
+      "harmonic_p90_db": 1.936835022435344,
+      "envelope_db": 2.6953697976629716,
+      "transport_cents": 360.04962618664933,
+      "transport_p90_cents": 387.7470448301319,
+      "h2_h1_trajectory_mae_db": 5.882457892877723,
+      "windows": {
+        "early": {
+          "frames": 5,
+          "mean_db": 1.8744914509079837,
+          "p90_db": 1.936835022435344,
+          "reference_h2_h1_db": 9.434757771402143,
+          "candidate_h2_h1_db": 3.901265902454841
+        },
+        "middle": {
+          "frames": 6,
+          "mean_db": 1.762024210894662,
+          "p90_db": 1.8315482793745197,
+          "reference_h2_h1_db": 9.828360369305868,
+          "candidate_h2_h1_db": 3.9624505447502387
+        },
+        "late": {
+          "frames": 14,
+          "mean_db": 1.978264155490977,
+          "p90_db": 3.2234061971247847,
+          "reference_h2_h1_db": 10.008604304253952,
+          "candidate_h2_h1_db": 3.994423659263035
+        }
+      },
+      "selected_phase": [
+        0.137,
+        0.875
+      ],
+      "selected_gate": 0.075,
+      "selected_lfo_phase": 0.0,
+      "fitted_gain_db": -4.960545644995053,
+      "gate_at_boundary": true
+    },
+    {
+      "model": "bridge-coupled",
+      "case": "harpie_saw",
+      "objective": 5.771295083258936,
+      "v2_objective": 4.5126743371922435,
+      "harmonic_mean_db": 5.575221693349502,
+      "harmonic_p90_db": 7.822974262828148,
+      "envelope_db": 0.6535779663647799,
+      "transport_cents": 193.83872039530667,
+      "transport_p90_cents": 333.8717894720035,
+      "h2_h1_trajectory_mae_db": 13.10382410883937,
+      "windows": {
+        "early": {
+          "frames": 5,
+          "mean_db": 4.26593292332637,
+          "p90_db": 4.347695510198337,
+          "reference_h2_h1_db": 1.6412736785184272,
+          "candidate_h2_h1_db": 4.835128619012527
+        },
+        "middle": {
+          "frames": 6,
+          "mean_db": 4.229134034366806,
+          "p90_db": 4.369387945856351,
+          "reference_h2_h1_db": 8.408302919918672,
+          "candidate_h2_h1_db": 14.733327720534428
+        },
+        "late": {
+          "frames": 9,
+          "mean_db": 7.199996116017483,
+          "p90_db": 11.89944414922283,
+          "reference_h2_h1_db": 13.844714536962961,
+          "candidate_h2_h1_db": 36.973276611476564
+        }
+      },
+      "selected_phase": null,
+      "selected_gate": null,
+      "selected_lfo_phase": 0,
+      "fitted_gain_db": -5.058409249194426,
+      "gate_at_boundary": false
+    },
+    {
+      "model": "bridge-coupled",
+      "case": "string_hold",
+      "objective": 3.401465691732248,
+      "v2_objective": 3.358080998061368,
+      "harmonic_mean_db": 3.138733589779224,
+      "harmonic_p90_db": 3.6970417482312077,
+      "envelope_db": 0.8757736731767466,
+      "transport_cents": 417.66760721310595,
+      "transport_p90_cents": 532.5530307559579,
+      "h2_h1_trajectory_mae_db": 3.5555012943572857,
+      "windows": {
+        "early": {
+          "frames": 5,
+          "mean_db": 2.931331440269733,
+          "p90_db": 3.0849965475074224,
+          "reference_h2_h1_db": -4.1585690371392525,
+          "candidate_h2_h1_db": -2.279052599837155
+        },
+        "middle": {
+          "frames": 6,
+          "mean_db": 2.510095524119181,
+          "p90_db": 2.6175496450721276,
+          "reference_h2_h1_db": -3.1492962085121516,
+          "candidate_h2_h1_db": -2.3199317481097905
+        },
+        "late": {
+          "frames": 21,
+          "mean_db": 3.3677259298510203,
+          "p90_db": 3.8660081509958175,
+          "reference_h2_h1_db": 1.196158996037754,
+          "candidate_h2_h1_db": -3.429155674707577
+        }
+      },
+      "selected_phase": [
+        0.137,
+        0.75
+      ],
+      "selected_gate": 0.1,
+      "selected_lfo_phase": 0,
+      "fitted_gain_db": -9.033268543886868,
+      "gate_at_boundary": true
+    },
+    {
+      "model": "bridge-coupled",
+      "case": "deep_meow_ring",
+      "objective": 2.52810757746004,
+      "v2_objective": 2.400978794400795,
+      "harmonic_mean_db": 1.7635168970971637,
+      "harmonic_p90_db": 1.893540219585249,
+      "envelope_db": 2.5486356012095888,
+      "transport_cents": 309.6761610213957,
+      "transport_p90_cents": 342.00608910728647,
+      "h2_h1_trajectory_mae_db": 2.596759102632587,
+      "windows": {
+        "early": {
+          "frames": 5,
+          "mean_db": 1.8378932925527238,
+          "p90_db": 1.9097084654658025,
+          "reference_h2_h1_db": 9.434757771402143,
+          "candidate_h2_h1_db": 12.391574096381685
+        },
+        "middle": {
+          "frames": 6,
+          "mean_db": 1.7115096504062637,
+          "p90_db": 1.7811208999383799,
+          "reference_h2_h1_db": 9.828360369305868,
+          "candidate_h2_h1_db": 12.41614639613818
+        },
+        "late": {
+          "frames": 13,
+          "mean_db": 1.7589139357792865,
+          "p90_db": 1.6326347882134393,
+          "reference_h2_h1_db": 10.008523019807885,
+          "candidate_h2_h1_db": 12.470939994984077
+        }
+      },
+      "selected_phase": [
+        0.137,
+        0.75
+      ],
+      "selected_gate": 0.075,
+      "selected_lfo_phase": 0.0,
+      "fitted_gain_db": -5.821237069767466,
+      "gate_at_boundary": true
+    }
+  ],
+  "note": "Cold-start history, retained unchanged. A physically specified idle preconditioning amendment is under consideration before any validation evaluation; no numerical validation results have informed these models."
+}

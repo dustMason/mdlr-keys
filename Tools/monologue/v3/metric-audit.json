@@ -1,0 +1,52 @@
+{
+  "rows": [
+    {
+      "id": "identity",
+      "harmonic_mean_db": 0.0,
+      "harmonic_p90_db": 0.0,
+      "transport_cents": 0.0,
+      "transport_p90_cents": 0.0
+    },
+    {
+      "id": "gain_quarter",
+      "harmonic_mean_db": 0.0,
+      "harmonic_p90_db": 0.0,
+      "transport_cents": 0.0,
+      "transport_p90_cents": 0.0
+    },
+    {
+      "id": "phase_1_3",
+      "harmonic_mean_db": 1.0727144847687322e-05,
+      "harmonic_p90_db": 1.679130534521622e-05,
+      "transport_cents": 0.009946356713840431,
+      "transport_p90_cents": 0.014149454229331462
+    },
+    {
+      "id": "pitch_plus_10c",
+      "harmonic_mean_db": 1.3356324919881362e-05,
+      "harmonic_p90_db": 2.18634897316891e-05,
+      "transport_cents": 10.015877381631853,
+      "transport_p90_cents": 10.020438606096315
+    },
+    {
+      "id": "brief_h3_boost",
+      "harmonic_mean_db": 0.5499928283515275,
+      "harmonic_p90_db": 2.813998093423766,
+      "transport_cents": 120.80338978239298,
+      "transport_p90_cents": 625.1528939259807
+    },
+    {
+      "id": "inharmonic_sideband",
+      "harmonic_mean_db": 0.00034530423285709174,
+      "harmonic_p90_db": 0.0005545929213654203,
+      "transport_cents": 171.03351900638035,
+      "transport_p90_cents": 171.18883634443986
+    }
+  ],
+  "limits": [
+    "Mean/p90 keep brief errors visible; 96 ms windows still smear very short transients.",
+    "Transport includes sidebands and residual noise, but does not identify a circuit uniquely.",
+    "Transport is gain invariant; oscillator phase cancellation before nonlinear circuits remains a real nuisance.",
+    "A 10-cent pitch shift has about a 10-cent transport cost and is intentionally not removed."
+  ]
+}

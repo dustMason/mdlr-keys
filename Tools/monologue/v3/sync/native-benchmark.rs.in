@@ -1,0 +1,70 @@
+#![allow(dead_code)]
+mod modules {
+    pub const MAX_BLOCK_FRAMES: usize = 128;
+    pub type ModuleInputs = [[f32; MAX_BLOCK_FRAMES]; 15];
+    pub type ModuleOutputs = [[f32; MAX_BLOCK_FRAMES]; 4];
+    pub struct BlockContext {
+        pub sample_rate: f32,
+        pub frames: usize,
+        pub tempo_bpm: f32,
+        pub transport_sixteenth_position: f64,
+    }
+    pub trait ModuleProcessor {
+        fn set_float_param(&mut self, id: u32, value: f32);
+        fn process_block(&mut self, context: &BlockContext, inputs: &ModuleInputs, outputs: &mut ModuleOutputs);
+    }
+    #[path = "@SOURCE@"]
+    pub mod monologue;
+}
+use modules::{monologue::Monologue, BlockContext, ModuleProcessor};
+use std::{hint::black_box, time::Instant};
+pub trait Instrument: ModuleProcessor {
+    fn velocity(&mut self, voice: usize, value: f32);
+    fn silence(&mut self);
+    fn tuning_cents(&self, _note: u8) -> f32 { 0.0 }
+    fn midi_cc(&mut self, _cc: u8, _value: u8) {}
+    fn note_on(&mut self, _from_silence: bool) {}
+    fn key_note(&mut self, _voice: usize, _note: u8) {}
+}
+fn main() {
+    let args: Vec<_> = std::env::args().collect();
+    let rate: f32 = args[1].parse().unwrap();
+    let case: usize = args[2].parse().unwrap();
+    let iterations: usize = args[3].parse().unwrap();
+    let mut voice = Monologue::new();
+    let mut params = [0.0; 37];
+    for (i, v) in [(2,1.0),(9,1.0),(12,1.0),(14,0.25),(16,2.0),(17,1.0),(19,0.3),(23,0.25),(29,1.0),(33,120.0)] { params[i]=v; }
+    let changes: &[(usize, f32)] = match case {
+        0 => &[],
+        1 => &[(1,0.8),(4,0.7),(5,0.8),(6,1.0),(7,500.0),(8,1.0),(9,0.6),(10,0.9),(11,1.0),(18,1.0),(19,0.5),(20,0.5),(21,2.0)],
+        2 => &[(0,1.0),(1,0.8),(3,1.0),(4,0.8),(5,1.0),(6,2.0),(7,193.0),(8,2.0),(9,1.0),(10,0.8),(11,1.0)],
+        3 => &[(0,2.0),(1,0.6),(3,1.0),(4,0.8),(5,0.8),(7,700.0),(8,2.0),(9,0.85),(10,0.6),(11,0.5),(18,1.0),(19,1.0),(20,0.8),(21,1.0)],
+        _ => panic!("unknown patch"),
+    };
+    for &(i,v) in changes { params[i]=v; }
+    for (i,v) in params.iter().enumerate() { voice.set_float_param(i as u32, *v); }
+    voice.settle_parameters();
+    voice.set_velocity(1.0);
+    voice.set_key_note(84);
+    voice.note_on(true);
+    let mut inputs = [[0.0; 128]; 15];
+    let mut outputs = [[0.0; 128]; 4];
+    inputs[0].fill(3.0);
+    inputs[1].fill(1.0);
+    let context = BlockContext { sample_rate: rate, frames: 64, tempo_bpm: 120.0, transport_sixteenth_position: 0.0 };
+    let mut peak = 0.0_f32;
+    for _ in 0..(0.25 * rate / 64.0).ceil() as usize {
+        voice.process_block(&context, &inputs, &mut outputs);
+        for x in &outputs[0][..64] { peak=peak.max(x.abs()); }
+    }
+    assert!(peak > 1e-5 && peak < 0.999);
+    let mut timings = Vec::with_capacity(iterations);
+    for _ in 0..iterations {
+        let start = Instant::now();
+        black_box(&mut voice).process_block(black_box(&context), black_box(&inputs), &mut outputs);
+        black_box(&outputs);
+        timings.push(start.elapsed().as_secs_f64() * 1e6);
+    }
+    timings.sort_by(f64::total_cmp);
+    println!("{{\"sample_rate\":{},\"buffer_frames\":64,\"iterations\":{},\"peak\":{},\"deadline_us\":{},\"median_us\":{},\"p99_us\":{},\"max_us\":{}}}", rate, iterations, peak, 64e6/rate as f64, timings[iterations/2], timings[(iterations*99/100).min(iterations-1)], timings[iterations-1]);
+}

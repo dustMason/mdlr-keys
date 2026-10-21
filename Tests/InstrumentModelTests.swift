@@ -8,6 +8,15 @@ final class SynthBridge {
     var peak: Float = 0
     var droppedEvents = 0
     var engine = 0
+    var jpSnapshot = "{}"
+    var jpActions: [(String,Int)] = []
+    var midi: [(UInt8,UInt8,UInt8)] = []
+    func jpSelectPart(_ value: Int) { jpActions.append(("part",value)) }
+    func jpLoadPatch(_ value: Int) { jpActions.append(("patch",value)) }
+    func jpLoadPerformance(_ value: Int) { jpActions.append(("performance",value)) }
+    func jpPressPanel(_ value: Int) { jpActions.append(("panel",value)) }
+    func jpSavePatch() { jpActions.append(("save",0)) }
+    func jpRestorePatch() { jpActions.append(("load",0)) }
     var parameters: [Int:Float] = [:]
     var master: Float = 0
     var velocitySensitive = false
@@ -17,7 +26,7 @@ final class SynthBridge {
     func setMasterVolume(_ value: Float) { master = value }
     func setVelocitySensitive(_ enabled: Bool) { velocitySensitive = enabled }
     func setMonoOutput(_ enabled: Bool) { monoOutput = enabled }
-    func sendStatus(_ status: UInt8, data1: UInt8, data2: UInt8) {}
+    func sendStatus(_ status: UInt8, data1: UInt8, data2: UInt8) { midi.append((status,data1,data2)) }
     func panic() {}
     func start() -> Bool { running = true; return true }
     func stop() { running = false }
@@ -154,6 +163,71 @@ final class SynthBridge {
         assert(fallback.velocitySensitive && fallback.bridge.velocitySensitive)
         assert(!fallback.monoOutput && !fallback.bridge.monoOutput)
         for e in definitions { for p in e.params { assert(fallback.values[e.id]?[p.id] == p.defaultValue) } }
+        // The firmware engine restores complete native state, not synthetic defaults.
+        let jpURL = URL(fileURLWithPath:CommandLine.arguments[1]).deletingLastPathComponent().appendingPathComponent("JP8000Controls.json")
+        let jpDefinition = try JSONDecoder().decode(EngineDefinition.self,from:Data(contentsOf:jpURL))
+        let jpModel = InstrumentModel(defaults:defaults,definitions:definitions + [jpDefinition])
+        jpModel.select(4)
+        assert(jpModel.bridge.parameters.isEmpty, "Selecting JP must not overwrite its firmware state with UI defaults")
+        assert(jpModel.voiceCount == 8 && !jpModel.groups.isEmpty)
+        jpModel.bridge.jpSnapshot = "{\"ready\":true,\"part\":1,\"params\":{\"41\":73},\"midi_channels\":[4,7],\"patch_name\":\"Native patch\"}"
+        jpModel.refreshJP()
+        assert(jpModel.values[4]?[41] == 73 && jpModel.patchName == "Native patch")
+        jpModel.note(60,down:true); jpModel.note(60,down:false)
+        assert(jpModel.bridge.midi.suffix(2).map{$0.0} == [0x97,0x87], "Touch MIDI must follow the selected part's receive channel")
+        jpModel.jpAction("part",value:2)
+        jpModel.note(61,down:true); jpModel.note(61,down:false)
+        assert(jpModel.bridge.midi.suffix(4).map{$0.0} == [0x94,0x97,0x84,0x87], "BOTH must play both receive channels")
+        let actionCount = jpModel.bridge.jpActions.count
+        jpModel.jpAction("part",value:3); jpModel.jpAction("patch",value:128); jpModel.jpAction("panel",value:255)
+        assert(jpModel.bridge.jpActions.count == actionCount)
+        jpModel.preset(nil)
+        assert(jpModel.bridge.jpActions.last?.0 == "performance" && jpModel.bridge.parameters.isEmpty)
+        jpModel.save(); assert(jpModel.bridge.jpActions.last?.0 == "save")
+        jpModel.load(); assert(jpModel.bridge.jpActions.last?.0 == "load")
+        let jpRestored = InstrumentModel(defaults:defaults,definitions:definitions + [jpDefinition])
+        assert(jpRestored.selected == 4 && jpRestored.bridge.parameters.isEmpty)
+        let cutoff = jpDefinition.params.first{$0.id == 41}!
+        assert(!jpRestored.editsEnabled)
+        jpRestored.set(cutoff,91.8); jpRestored.jpAction("performance",value:0)
+        jpRestored.save(); jpRestored.load(); jpRestored.note(60,down:true)
+        jpRestored.setSustain(true)
+        assert(jpRestored.bridge.parameters.isEmpty && jpRestored.bridge.jpActions.isEmpty && jpRestored.bridge.midi.isEmpty, "Startup must reject edits, preset actions, storage actions and fresh notes at the model boundary")
+        jpRestored.bridge.jpSnapshot = jpModel.bridge.jpSnapshot
+        jpRestored.refreshJP(); assert(jpRestored.editsEnabled)
+        jpRestored.set(cutoff,91.8)
+        assert(jpRestored.bridge.parameters[41] == 92, "Firmware parameter bytes must be integers")
+        assert(jpDefinition.params.first{$0.id == 2022}!.display(4) == "Lower 2 · Upper 6")
+        let monoURL = jpURL.deletingLastPathComponent().appendingPathComponent("MonologueControls.json")
+        let monoDefinition = try JSONDecoder().decode(EngineDefinition.self,from:Data(contentsOf:monoURL))
+        let allDefinitions = definitions + [jpDefinition,monoDefinition]
+        let mono = InstrumentModel(defaults:defaults,definitions:allDefinitions)
+        mono.select(5)
+        assert(mono.engine.id == 5 && mono.bridge.engine == 5 && mono.voiceCount == 1 && !mono.isJP)
+        assert(monoDefinition.params.count == 48 && Set(monoDefinition.params.map(\.id)).count == 48)
+        for p in monoDefinition.params {
+            assert(mono.value(p) == p.defaultValue && mono.bridge.parameters[p.id] == Float(p.defaultValue))
+        }
+        let monoCutoff = monoDefinition.params.first{$0.id == 9}!
+        let octave2 = monoDefinition.params.first{$0.id == 6}!
+        let tuning = monoDefinition.params.first{$0.id == 59}!
+        assert(octave2.min == -1 && octave2.max == 2 && octave2.display(-1) == "16′")
+        mono.set(monoCutoff,2); assert(mono.value(monoCutoff) == 1)
+        mono.set(monoCutoff,.nan); assert(mono.value(monoCutoff) == 1)
+        mono.set(tuning,-12); mono.set(octave2,-1); mono.save()
+        let monoSaved = mono.values[5]
+        mono.preset(monoDefinition.presets[0]); assert(mono.patchName == "Round bass")
+        mono.load(); assert(mono.values[5] == monoSaved && mono.patchName == "My patch")
+        mono.note(60,down:true); mono.note(60,down:false)
+        assert(mono.bridge.midi.suffix(2).map{$0.0} == [0x9f,0x8f], "Monologue touch notes use the ordinary Rust MIDI route")
+        mono.select(4); mono.select(5)
+        assert(mono.values[5] == monoSaved && mono.bridge.parameters[59] == -12)
+        let monoRestored = InstrumentModel(defaults:defaults,definitions:allDefinitions)
+        assert(monoRestored.selected == 5 && monoRestored.values[5] == monoSaved && monoRestored.patchName == "My patch")
+        monoRestored.preset(nil)
+        for p in monoDefinition.params { assert(monoRestored.value(p) == p.defaultValue) }
+        print("PASS: monologue metadata, defaults, parameter bounds, touch MIDI, preset/save/load, engine switching and relaunch persistence.")
+        print("PASS: native JP state is preserved on selection/relaunch; metadata, touch MIDI parts, action validation and native Save/Load routing passed.")
         print("PASS: all 122 parameters and global velocity/mono-output options survive switching and relaunch; legacy saves preserve patches; normal voice counts, Save/Load, Init and corrupt-data fallback passed.")
     }
 }

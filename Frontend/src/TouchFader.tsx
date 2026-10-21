@@ -3,12 +3,12 @@ import type { ParamDefinition } from '../upstream/src/modules/types';
 import { useKnobControl } from './TouchKnob';
 
 /** The entire lane owns the gesture; there is no invisible native range thumb. */
-export function TouchFader({param,value,onChange,theme,label,className='',decoration,style}: {
+export function TouchFader({param,value,onChange,theme,label,className='',decoration,style,displayFormatter}: {
   param:ParamDefinition; value:number; onChange:(value:number)=>void;
   theme:'one'|'six'; label?:string; className?:string;
-  decoration?:ReactNode; style?:CSSProperties;
+  decoration?:ReactNode; style?:CSSProperties; displayFormatter?:(value:number)=>string;
 }) {
-  const control=useKnobControl({param,value,onChange});
+  const control=useKnobControl({param,value,onChange,displayFormatter});
   return <span {...control.faceProps}
     aria-orientation="vertical" data-param-id={param.id}
     className={`${theme}Fader touchFader ${className}`}

@@ -1,0 +1,24 @@
+{
+  "sources": [
+    {
+      "url": "https://www.synthxl.com/wp-content/uploads/2021/10/KORG-MONOLOGUE-Service-Manual.pdf",
+      "author": "Korg",
+      "location": "KLM3621 sheet4, printed page7, PDF index6",
+      "sha256": "1f8ed4017e4dba227b2f0cf66fd6ea59e68d458db8d0ec253837bc2ad2c17fe9"
+    },
+    {
+      "url": "https://media.digikey.com/pdf/Data%20Sheets/Rohm%20PDFs/1ss355.pdf",
+      "author": "ROHM",
+      "location": "page2 figure1, 25 C curve",
+      "sha256": "85a33606c48f855e87997bf742ae75eb35493454ed361e18573f6df51ef99a31",
+      "role": "Representative silicon diode assumption; NOT actual ring diode identification"
+    },
+    {
+      "url": "https://www.st.com/resource/en/datasheet/tl084c.pdf",
+      "author": "STMicroelectronics",
+      "location": "July2022 Rev8 pages5-6",
+      "role": "Quasi-static model frequency scale; stated parameters tested at +/-15V not synth +/-5V"
+    }
+  ],
+  "no_audio_fit": true
+}

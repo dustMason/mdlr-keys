@@ -73,20 +73,22 @@ export function useKnobControl({
   param,
   value,
   onChange,
-}: Pick<KnobRenderProps, "param" | "value" | "onChange">) {
+  displayFormatter,
+}: Pick<KnobRenderProps, "param" | "value" | "onChange"> & {displayFormatter?:(value:number)=>string}) {
   const inputId = useId();
   const faceRef = useRef<HTMLSpanElement | null>(null);
   const inputRef = useRef<HTMLInputElement | null>(null);
   const suppressClickRef = useRef(false);
   const gesture = useRef<{pointer:number;y:number;normalized:number;started:boolean}|null>(null);
   const lastTap = useRef(0);
+  const renderValue=(value:number)=>displayFormatter?.(value)??formatValue(value,param);
   function feedback(value:number|null) {
     // With several fingers down, only the control that last reported may clear the readout.
     if(value===null){if(readoutOwner!==inputId)return;readoutOwner=null;}
     else readoutOwner=inputId;
     const rect=faceRef.current?.getBoundingClientRect();
     window.dispatchEvent(new CustomEvent('mdlr-knob-feedback',{detail:value===null?null:{
-      label:param.label,value:formatValue(value,param),
+      label:param.label,value:renderValue(value),
       fraction:normalizeParamValue(value,param),
       x:rect?rect.left+rect.width/2:window.innerWidth/2,
     }}));
@@ -97,7 +99,7 @@ export function useKnobControl({
   const displayValue = clampParamValue(value, param);
   const normalized = normalizeParamValue(displayValue, param);
   const degrees = -132 + normalized * 264;
-  const display = formatValue(displayValue, param);
+  const display = renderValue(displayValue);
 
   // Relative vertical travel is measured in screen pixels, independent of panel zoom.
   // Pointer-down only grabs the current value; it never changes the sound.

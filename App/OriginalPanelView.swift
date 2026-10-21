@@ -49,7 +49,8 @@ struct OriginalPanelView: PanelRepresentable {
             self.zoom=zoom
             guard ready else{return}
             let parameters=Dictionary(uniqueKeysWithValues:model.engine.params.map{(String($0.id),model.value($0))})
-            let snapshot:[String:Any]=["engine":model.selected,"params":parameters,"zoom":zoom]
+            var snapshot:[String:Any]=["engine":model.selected,"params":parameters,"zoom":zoom]
+            if model.isJP { snapshot["jp"] = model.jpState }
             guard let data=try? JSONSerialization.data(withJSONObject:snapshot,options:.sortedKeys),let json=String(data:data,encoding:.utf8),json != previous else{return}
             previous=json
             view.evaluateJavaScript("window.mdlrPanel?.setState(\(json));") { [weak self] _,error in
@@ -59,6 +60,8 @@ struct OriginalPanelView: PanelRepresentable {
         func userContentController(_ controller:WKUserContentController,didReceive message:WKScriptMessage){
             guard message.frameInfo.isMainFrame,let url=message.frameInfo.request.url,allowed(url),let body=message.body as? [String:Any],let type=body["type"] as? String else{return}
             if type=="ready",let view=message.webView {ready=true;previous="";sync(view,zoom:zoom);return}
+            if type == "jpAction", let engine = body["engine"] as? Int, engine == model.selected, engine == 4,
+               let action = body["action"] as? String, let value = body["value"] as? Int { model.jpAction(action,value:value); return }
             guard type=="parameter",let engine=body["engine"] as? Int,engine==model.selected,let id=body["id"] as? Int,let value=body["value"] as? Double,value.isFinite,let parameter=model.engine.params.first(where:{$0.id==id}) else{return}
             model.set(parameter,min(parameter.max,max(parameter.min,value)))
         }

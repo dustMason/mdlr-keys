@@ -1,0 +1,40 @@
+{
+  "manifest_sha256": "d8c52e3c2b8b01da0c048c04d601881f1c8dabbebfb053d7faff8fbfbf63e036",
+  "packaged_module_hashes": {
+    "metric_audit.py": "5556bf7cc8d1e020b448dba9fb11e08166fd431d43bec95e9a864e5bbea52496",
+    "cached_metric.py": "d8eabcf3d8594864250bd3734f88771954a54354ffad2f2d5061b1bc945d1f81"
+  },
+  "five_training_reports_exactly_equal_to_frozen_scorer": true,
+  "rows": [
+    {
+      "id": "s0s_triangle",
+      "identical": true,
+      "candidate_sha256": "e9689f13f6554daa5a922d81f0826fde4bd6343d6effae17abe38bdaf3b7aac1",
+      "objective": 1.0389224141444091
+    },
+    {
+      "id": "harpie_saw",
+      "identical": true,
+      "candidate_sha256": "9ca36ca6aebf96d34f5e5f1d72b40eb1397ac97ec1109cb9dddfb65a55a51d69",
+      "objective": 6.228262525777375
+    },
+    {
+      "id": "pinoesque",
+      "identical": true,
+      "candidate_sha256": "07ecb5221a3c10053232863841ffb80aeb59355e72ef18f0368fc0eca5a2b780",
+      "objective": 4.175874927197996
+    },
+    {
+      "id": "duidui_saw_shape",
+      "identical": true,
+      "candidate_sha256": "4898feb45720275ca13ab4423ff699d9e1e5343b18f017be47e702797e53ef32",
+      "objective": 3.468040993147988
+    },
+    {
+      "id": "wuai_saw_filter",
+      "identical": true,
+      "candidate_sha256": "37fe24bc02cdd4bb7f522e24fafd73de55631dd8ad73746cbf2b449af3a1491f",
+      "objective": 3.4562114142808134
+    }
+  ]
+}

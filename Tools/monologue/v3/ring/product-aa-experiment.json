@@ -1,0 +1,156 @@
+{
+  "status": "analysis-only experiment, not adopted as native default",
+  "reason": "Small mixed-sign changes in off-family power in the tested 48 kHz cases; no established overall improvement.",
+  "audits": [
+    {
+      "renderer_sha256": {
+        "raw": "87a8e73756168b1aa349e3b86739177a3ea24278beb14ec273890e57c10c8500",
+        "aa": "87a8e73756168b1aa349e3b86739177a3ea24278beb14ec273890e57c10c8500"
+      },
+      "model_flags": {
+        "raw": "product",
+        "aa": "product-aa"
+      },
+      "script_sha256": "3b14aeac2016f15dc88ceeab16e8511dc369c3649b21e49c61049d7dc1752c94",
+      "analysis_window_s": [
+        1,
+        3.5
+      ],
+      "analysis_band_hz": [
+        40,
+        16000
+      ],
+      "family_half_width_hz": 12,
+      "notes": [
+        "All integer n*f1+m*f2 products lie on the declared family grid for the exact rational source ratio. This permits an off-family residual measure; arbitrary irrational ratios would make dense masks invalid.",
+        "Off-family energy misses aliases that land on valid families. Family amplitudes versus 192k output are also reported; no phase/time/pitch/gain fitting is applied.",
+        "The same FIR coefficients scale their physical passband with sample rate. Both raw family-amplitude error and a correction for its known linear magnitude response are reported.",
+        "Product paths use raw oscillator inputs without the experimental physical coupling. The one-second preroll settles envelope and filter state. No phase, pitch, or gain fitting is used.",
+        "Numerical rate consistency is not evidence of hardware parity. Cross-rate family amplitude differences can include accumulated float phase drift and coincident-family cancellation; they are diagnostics, not pure alias error. The same-rate raw/AA low-band comparison avoids that confound."
+      ],
+      "source": "work/monologue/accuracy-v3/sync-audit/product-aa-binary/report.json",
+      "source_sha256": "2459ebc6f4f6a896fdf01c18f73290c7cbc902e84100ea170196e912453449c0",
+      "cases": [
+        {
+          "case": "saw_saw_shaped",
+          "master_hz": 1123.45,
+          "slave_ratio": 2.375,
+          "sample_rate": 48000,
+          "raw_off_family_db": -64.1070647792027,
+          "aa_off_family_db": -64.2371570423437,
+          "delta_db_aa_minus_raw": -0.13009226314099465,
+          "raw_audio_sha256": "3adc0a11bafb532d161ddba42ddfdbb91947310f9449a679a5b8da4ce449465f",
+          "aa_audio_sha256": "d9b8b7d648b813cd3f04f2f91f78a40d061e252c7339d18cf1f969be040e25b4"
+        },
+        {
+          "case": "pulse_triangle",
+          "master_hz": 1123.45,
+          "slave_ratio": 2.375,
+          "sample_rate": 48000,
+          "raw_off_family_db": -67.86605973542738,
+          "aa_off_family_db": -67.9492482827799,
+          "delta_db_aa_minus_raw": -0.08318854735252046,
+          "raw_audio_sha256": "9cb6f07f57d4afc495f53ebbe2978731bf4f5c88476d341f56469769bb0dcdcd",
+          "aa_audio_sha256": "71ee621feaa239e370368e2e82497b44b46b702e47c2994b1bd1ad6d4001341a"
+        },
+        {
+          "case": "triangle_triangle_fold",
+          "master_hz": 1123.45,
+          "slave_ratio": 1.75,
+          "sample_rate": 48000,
+          "raw_off_family_db": -57.40910240643182,
+          "aa_off_family_db": -57.44715707269292,
+          "delta_db_aa_minus_raw": -0.03805466626109677,
+          "raw_audio_sha256": "258435a9126a7d7888bcc6f22363ab53430e193d001e6f7c664ab72aadf1614d",
+          "aa_audio_sha256": "3418e86ea5226acaf89f2fa7f4e6b0ba71a4255b7da6df006975310b3d8eec6d"
+        },
+        {
+          "case": "pulse_saw_shaped",
+          "master_hz": 1123.45,
+          "slave_ratio": 1.375,
+          "sample_rate": 48000,
+          "raw_off_family_db": -72.51951846202634,
+          "aa_off_family_db": -72.26573179634701,
+          "delta_db_aa_minus_raw": 0.2537866656793284,
+          "raw_audio_sha256": "de24564fea3c849a98f1734f8a35a18ca34c764e62a5c0ef21cc463e3ec910ea",
+          "aa_audio_sha256": "d21b5e8ee0572e68b6dd425f6d84138019ae72351808221e31eba4c7431caf38"
+        }
+      ]
+    },
+    {
+      "renderer_sha256": {
+        "raw": "87a8e73756168b1aa349e3b86739177a3ea24278beb14ec273890e57c10c8500",
+        "aa": "87a8e73756168b1aa349e3b86739177a3ea24278beb14ec273890e57c10c8500"
+      },
+      "model_flags": {
+        "raw": "product",
+        "aa": "product-aa"
+      },
+      "script_sha256": "3b14aeac2016f15dc88ceeab16e8511dc369c3649b21e49c61049d7dc1752c94",
+      "analysis_window_s": [
+        1,
+        3.5
+      ],
+      "analysis_band_hz": [
+        40,
+        16000
+      ],
+      "family_half_width_hz": 2.75,
+      "notes": [
+        "All integer n*f1+m*f2 products lie on the declared family grid for the exact rational source ratio. This permits an off-family residual measure; arbitrary irrational ratios would make dense masks invalid.",
+        "Off-family energy misses aliases that land on valid families. Family amplitudes versus 192k output are also reported; no phase/time/pitch/gain fitting is applied.",
+        "The same FIR coefficients scale their physical passband with sample rate. Both raw family-amplitude error and a correction for its known linear magnitude response are reported.",
+        "Product paths use raw oscillator inputs without the experimental physical coupling. The one-second preroll settles envelope and filter state. No phase, pitch, or gain fitting is used.",
+        "Numerical rate consistency is not evidence of hardware parity. Cross-rate family amplitude differences can include accumulated float phase drift and coincident-family cancellation; they are diagnostics, not pure alias error. The same-rate raw/AA low-band comparison avoids that confound."
+      ],
+      "source": "work/monologue/accuracy-v3/sync-audit/product-aa-low/report.json",
+      "source_sha256": "d83458596ef9d555ec0cf0780c7940d4226b874339815ed6b16206c6ad35ad38",
+      "cases": [
+        {
+          "case": "saw_saw_shaped",
+          "master_hz": 55.0,
+          "slave_ratio": 2.375,
+          "sample_rate": 48000,
+          "raw_off_family_db": -61.536771065459696,
+          "aa_off_family_db": -61.53703589133356,
+          "delta_db_aa_minus_raw": -0.00026482587386311707,
+          "raw_audio_sha256": "41cf4a8900565a7ba70d3bb883fc1dd77f84e61c159c96e8482f12c3fda1f127",
+          "aa_audio_sha256": "119000f43d858d03ef70be9c96124cf57dad8d195d5d1baa95be945b98111ce8"
+        },
+        {
+          "case": "pulse_triangle",
+          "master_hz": 55.0,
+          "slave_ratio": 2.375,
+          "sample_rate": 48000,
+          "raw_off_family_db": -61.57716177461402,
+          "aa_off_family_db": -61.577219873734705,
+          "delta_db_aa_minus_raw": -5.8099120685994876e-05,
+          "raw_audio_sha256": "73d75c171bf09bf142a91efce49b9439016bbb3aa265100a94808215ed22550b",
+          "aa_audio_sha256": "4bd5de0f18d5b8e0269c5fb7b9b93c8153bcef1efeace1ba04c42dfb19d4e305"
+        },
+        {
+          "case": "triangle_triangle_fold",
+          "master_hz": 55.0,
+          "slave_ratio": 1.75,
+          "sample_rate": 48000,
+          "raw_off_family_db": -76.89202367508607,
+          "aa_off_family_db": -76.89196980564267,
+          "delta_db_aa_minus_raw": 5.386944339136335e-05,
+          "raw_audio_sha256": "d4cd428cc52a805600b97e325d240da91edcc8a57b0929dd23d1aa4618158a43",
+          "aa_audio_sha256": "52e76ca9c561465429f0fc2d057be760bff8f7dc0a6409f9952b3fd8e0fd395b"
+        },
+        {
+          "case": "pulse_saw_shaped",
+          "master_hz": 55.0,
+          "slave_ratio": 1.375,
+          "sample_rate": 48000,
+          "raw_off_family_db": -61.51510167139081,
+          "aa_off_family_db": -61.51538033834066,
+          "delta_db_aa_minus_raw": -0.0002786669498533456,
+          "raw_audio_sha256": "7ba210efffbfe46af405fad500c9a914543fa1d00cb50f84c0bcf38b9a51b7d6",
+          "aa_audio_sha256": "20d48a89dfe67c6e794c38c6bcdc9e0cd4034bb64ca5c6b0ff7e1210ed9ac72e"
+        }
+      ]
+    }
+  ]
+}

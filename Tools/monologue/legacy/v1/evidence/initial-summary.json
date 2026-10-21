@@ -1,0 +1,25 @@
+{
+  "baseline": {
+    "train": 11.974470382489946,
+    "held_out": 9.125960363404587
+  },
+  "best": {
+    "train": 10.879869613841109,
+    "held_out": 8.889369282596796
+  },
+  "training_improvement_percent": 9.141120514602902,
+  "calibration": {
+    "cutoff_curve": 1.3,
+    "filter_eg_octaves": 6.0,
+    "shape_amount": 2.375,
+    "drive_mix_curve": 0.5499999999999999,
+    "drive_gain": 18.0
+  },
+  "held_out_used_for_optimization": false,
+  "limitations": [
+    "Patch parameters are paired with source audio, but MIDI performance and recording gain were not published.",
+    "Note/gate timings and sounding MIDI pitch are inferred, not hardware-verified. Gain is fitted per excerpt.",
+    "No pitch/time warping in the objective; oscillator start phase is unobserved.",
+    "These four expressive patches do not identify every analog transfer function. Hold-out must never enter optimization."
+  ]
+}

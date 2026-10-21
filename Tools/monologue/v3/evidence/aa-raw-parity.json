@@ -1,0 +1,21 @@
+{
+  "renderer_sha256": "5a1d87384c489018de041fb20f5bca334ff29be69529aeb7c0b8b2db3b137be1",
+  "cases": [
+    {
+      "case": "harpie_saw",
+      "bit_identical": true,
+      "wav_sha256": "346ac2a1ab7e8a5565c58ef1b2b11feb70f99a780e9f9b86e68c17b91b14d27a"
+    },
+    {
+      "case": "string_hold",
+      "bit_identical": true,
+      "wav_sha256": "0710abb0aa4dcea670470cd977dff884ccb43cc270bb1d0afed97c996536ca0a"
+    },
+    {
+      "case": "deep_meow_ring",
+      "bit_identical": true,
+      "wav_sha256": "5076e54a25ccc4c5f7b6c87cdbbdd80e41b52188f0d03391ffc48a45f805600a"
+    }
+  ],
+  "all_bit_identical": true
+}

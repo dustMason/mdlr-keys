@@ -1,0 +1,27 @@
+{
+  "renderer_sha256": "697c99ffa82c1117a9221debd072397f75ce582d969efb51a2d179f3f65af180",
+  "renderer_bytes": 545888,
+  "source_sha256": {
+    "Rust/src/modules/monologue.rs": "8cd7922b75491ee84ed99bc258e37aab07d42596191f27a1a15896240afffbd4",
+    "Rust/src/modules/monologue_control.rs": "25cf630bb6b61bd244205398b8bd04fc949c59fc5c4ad699c698306ef23e8dd2",
+    "Rust/src/bin/monologue-render.rs": "9276feaf5ad78b3faa89b24406b8dd56566874f1a9906d1ec0b711407c966be8",
+    "Rust/Cargo.lock": "6141556e7f4bcd36992595cb64858fe4fcdfedb39919b936f0e07ca455cd4168"
+  },
+  "corpus_manifest_sha256": "d1fc13075b6dbd1c5dab5417625080e58d60f89290d587835fe8814bf40ed1e2",
+  "revision": "Final firmware-audit corrections: signed LFO depth, all-target positive depth, fast BPMsync32, live envelope phase transitions; fitted analog defaults installed",
+  "comparison": "Explicit initial calibration vs fixed selected constants, plus native defaults. No additional search.",
+  "analysis_script_sha256": {
+    "decode_patch.py": "681187eb3ad1b099576ec66b9ad41c94ccacb88cb48bb36e80fe0be3f7f360b3",
+    "audio_compare.py": "0ab4ac4ff4a7b3262d8b744f1aaec253880bf06e6292dbea02215ea023361e96",
+    "calibrate.py": "a76c563ffca63b4b45fd9daecaf0a5667821ffe5946325fe8869007c269f8b88",
+    "build_corpus.py": "47802e5836c5f1fd6e3dd2e835a928455db5e0a240a7ac9f8c8a138eefc008fd",
+    "harmonic_report.py": "ebd58fbbde504027be0b5eb50e4637826e821c2f297e91515735163d7e60a4a5"
+  },
+  "analysis_runtime": {
+    "python": "3.12.12",
+    "machine": "arm64",
+    "numpy": "2.2.6",
+    "scipy": "1.16.2",
+    "soundfile": "0.13.1"
+  }
+}

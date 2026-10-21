@@ -1,0 +1,18 @@
+{
+  "monologue_Updater_0200_win.zip": {
+    "bytes": 1065543,
+    "sha256": "1756d1a72fa73992f49fa35c0c22c0aab41e007edc6ea002f85ec0c081ee2ea4"
+  },
+  "monologue_0200.vsb": {
+    "bytes": 262400,
+    "sha256": "4658d88ec0b898d84e1078ce721151d89ff626e74758fb67226d685733b90f3d"
+  },
+  "monologue_0200.bin": {
+    "bytes": 262144,
+    "sha256": "27ddc78d5076bd60145be952e91a0c3c048d016600343ee743a67fd8a32c60e6"
+  },
+  "midi-implementation.txt": {
+    "bytes": 66373,
+    "sha256": "139e399a493a964d67294eca4f937426fc3680f96f002c2379f4648c0658c3d2"
+  }
+}

@@ -1,0 +1,5 @@
+{
+  "sha256": "3eb821a7249e60f83cdb9eaa87e2ecc91a4c37957ac48ef2c14938c464b7b3f1",
+  "bytes": 545984,
+  "changes": "Firmware-derived envelope/LFO laws and shape magnitude folding, observed40kHz voice control rate."
+}

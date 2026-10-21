@@ -1,0 +1,33 @@
+{
+  "bit_identical": true,
+  "f32_samples": 368640,
+  "bytes": 1474560,
+  "sha256_native": "37b7d8eade6a517db07a37bdd0a289efcea57be1fbfef84935cc405b2dd464f8",
+  "sha256_analysis": "37b7d8eade6a517db07a37bdd0a289efcea57be1fbfef84935cc405b2dd464f8",
+  "scenarios": [
+    "sync",
+    "ring",
+    "off/sync/ring mode switching"
+  ],
+  "rates_hz": [
+    48000,
+    96000
+  ],
+  "mode_switch_rate_changes_hz": [
+    24000,
+    48000
+  ],
+  "includes_nonfinite_pitch_bend_inputs": true,
+  "compiled": "same source via separate rustc, default cfg versus feature=analysis",
+  "current_source_hashes": {
+    "monologue.rs": "6741a9101fc101deb0d37267304bf9d42195de20af651ddc39f5d574e6448022",
+    "monologue_control.rs": "e9a22671c9b1b8a6724dc4cdc6146c319d88e3bd0ed4b2e9bd326abe5c909c59",
+    "monologue_sync.rs": "0511ce301fe9060d27a7d24d484cb7dedcea7c2cb7f1c8b012fafcfc123fece1",
+    "monologue_ring.rs": "e6a8090d69f24937a36edafec86606ac39772a9cd9d3d0a8b47ae599e8f2293b",
+    "monologue_ring_aa.rs": "81eafcdf0f8d42e0b804fe2ee95404861667b1a279ad6b65fb0d191eb40aa76b",
+    "monologue_fir.rs": "254bfa3a5c226924a38998d81587c955275e5ac63cd3af301bc1e76398e82840"
+  },
+  "default_model": "product-aa (analysis mode5)",
+  "native_excludes_experimental_bridge": true,
+  "scope": "Standalone same-source build, not the app binary; no idle conditioning invoked."
+}

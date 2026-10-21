@@ -1,0 +1,36 @@
+{
+  "bit_identical": true,
+  "f32_samples": 368640,
+  "bytes": 1474560,
+  "sha256_native": "4b7ba2cb8af5481129896bed5da63860404126cd0339a10fc91db9b802156e39",
+  "sha256_analysis": "4b7ba2cb8af5481129896bed5da63860404126cd0339a10fc91db9b802156e39",
+  "scenarios": [
+    "sync",
+    "ring",
+    "off/sync/ring mode switching"
+  ],
+  "rates_hz": [
+    48000,
+    96000
+  ],
+  "mode_switch_rate_changes_hz": [
+    24000,
+    48000
+  ],
+  "includes_nonfinite_pitch_bend_inputs": true,
+  "compiled": "same source via separate rustc, default cfg versus feature=analysis",
+  "current_source_hashes": {
+    "monologue.rs": "fd655ee9043c8c72fc5c0bca2c6a5589e2c426d9c66f91c76c26e0975d739c8b",
+    "monologue_control.rs": "e9a22671c9b1b8a6724dc4cdc6146c319d88e3bd0ed4b2e9bd326abe5c909c59",
+    "monologue_sync.rs": "e4d91d04f3a117a83d289af996d1abcabeea62b27c77aa80e197dd3981b1cb22",
+    "monologue_ring.rs": "e6a8090d69f24937a36edafec86606ac39772a9cd9d3d0a8b47ae599e8f2293b",
+    "monologue_ring_aa.rs": "81eafcdf0f8d42e0b804fe2ee95404861667b1a279ad6b65fb0d191eb40aa76b",
+    "monologue_fir.rs": "254bfa3a5c226924a38998d81587c955275e5ac63cd3af301bc1e76398e82840"
+  },
+  "default_model": "product (analysis mode 0), free-triangle BLAMP and sync edge correction",
+  "native_excludes_experimental_bridge": true,
+  "scope": "Standalone same-source build, not the app binary; no idle conditioning invoked.",
+  "native_excludes_product_averaging": true,
+  "freeze_directory": "work/monologue/accuracy-v3/triangle-source",
+  "source_unchanged_during_compilations": true
+}

@@ -1,0 +1,131 @@
+.jpPanel{--jp-paint:#3d4b5e;--jp-ink:#f2f0e8;--jp-orange:#ffb17d;--jp-line:#87919d;--jp-dark:#202833;--jp-muted:#d2d7dc;--jp-gutter:12px;--jp-control-gap:8px;box-sizing:border-box;min-height:100%;padding:8px 16px;background:var(--jp-paint);color:var(--jp-ink);font-family:Arial,Helvetica,sans-serif;line-height:1.2;user-select:none;-webkit-user-select:none;}
+.jpPanel *{box-sizing:border-box}.jpPanel ::selection{color:#192331;background:var(--jp-orange)}
+.jpPanel button,.jpPanel select{font:inherit;color:inherit;min-height:44px;touch-action:manipulation;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.jpPanel button{border:1px solid #81909f;border-radius:3px;background:#273342;padding:8px 10px;font-size:11px;font-weight:700;letter-spacing:.02em;}
+.jpPanel button:hover:not(:disabled){background:#46576a}.jpPanel button:active:not(:disabled){background:#19242f}
+.jpPanel button:focus-visible,.jpPanel select:focus-visible,.jpDialFace:focus-visible{outline:2px solid #ffe4bb;outline-offset:3px}
+.jpPanel button[aria-pressed=true]{background:#16222d;color:#fff8ea;border-color:#ffb17d}
+.jpPanel button:disabled,.jpPanel select:disabled{cursor:default}.jpPanel fieldset{min-width:0;margin:0;padding:0;border:0}
+.jpHeader,.jpPresetBar{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--jp-gutter)}
+.jpHeader{align-items:center;min-height:60px;margin-bottom:8px}.jpIdentity{text-align:center;min-width:0}
+.jpIdentity h1{font-size:32px;font-weight:800;letter-spacing:-.035em;line-height:1;margin:0;color:#f5f5f0}
+.jpLCD{display:flex;flex-direction:column;justify-content:center;gap:3px;min-width:0;height:60px;padding:8px 12px;background:#5b5735;border:5px solid #18212a;border-radius:2px;color:#fff4b5;font:16px/1.1 'Courier New',monospace;box-shadow:inset 0 2px 4px #191b1880;}
+.jpLCD>span{display:block;white-space:pre;overflow:hidden;letter-spacing:.08em}
+.jpControlLabel{display:block;min-height:12px;font-size:10px;font-weight:700;line-height:1.2;color:var(--jp-ink);text-transform:uppercase;letter-spacing:.03em;text-align:center}
+.jpPartSelect>.jpControlLabel{margin-bottom:4px}.jpSegments{display:flex;gap:4px;min-width:0}.jpSegments>button{flex:1;min-width:44px;padding:7px 5px;}
+.jpPresetBar{align-items:end;margin-bottom:8px}
+.jpMenu{display:flex;flex-direction:column;gap:4px;min-width:0;}
+.jpMenu .jpControlLabel{text-align:left}.jpMenu select{width:100%;min-width:0;max-width:100%;height:44px;border:1px solid #85929f;border-radius:3px;background:#24303f;padding:0 26px 0 9px;font-size:11px;font-weight:600;text-overflow:ellipsis;}
+.jpKeyMode legend{margin-bottom:4px;text-align:left}.jpKeyMode .jpSegments{height:44px}
+.jpViews{display:flex;align-items:stretch;gap:4px;margin:0 0 8px;border-bottom:1px solid #8e98a4;min-height:44px}
+.jpViews>button{border:0;border-bottom:3px solid transparent;border-radius:0;background:transparent;text-transform:uppercase;min-width:100px;padding:9px 14px;font-size:11px;}
+.jpViews>button[aria-current=page]{color:var(--jp-orange);border-bottom-color:var(--jp-orange);background:#263343}
+.jpStatus{margin:auto 0 auto auto;padding:6px 2px 6px 16px;font-size:11px;color:var(--jp-muted);max-width:36%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.jpControls[inert],.jpControls [inert]{opacity:.56}.jpControls[disabled]{color:inherit}
+.jpSoundGrid{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));grid-template-rows:repeat(2,264px);gap:var(--jp-gutter);}
+.jpSection{position:relative;min-width:0;min-height:0;border:1px solid var(--jp-line);padding:20px 10px 12px;}
+.jpSection h2{position:absolute;top:-7px;left:10px;margin:0;padding:0 6px;background:var(--jp-paint);color:var(--jp-orange);font-size:12px;line-height:14px;font-weight:700;letter-spacing:.035em;white-space:nowrap;}
+.jpLfo{grid-column:span 2;display:flex;flex-direction:column;justify-content:space-between;gap:8px}
+.jpOscCommon{grid-column:span 4;display:flex;flex-direction:column;gap:var(--jp-control-gap)}
+.jpOscOne{grid-column:span 3;display:flex;flex-direction:column;gap:var(--jp-control-gap)}
+.jpOscTwo{grid-column:span 3;display:flex;flex-direction:column;gap:var(--jp-control-gap)}
+.jpFilter{grid-column:span 6;display:flex;flex-direction:column;gap:8px}
+.jpAmp{grid-column:span 3;display:flex;flex-direction:column;gap:8px}
+.jpEffects{grid-column:span 3;display:grid;grid-template-columns:1fr 1fr;grid-template-rows:60px 1fr 1fr;gap:var(--jp-control-gap);}
+.jpEffects>.jpKnobs{grid-column:1/-1}.jpEffects>.jpKnobs:nth-of-type(1){grid-row:2}.jpEffects>.jpKnobs:nth-of-type(2){grid-row:3}
+.jpEffects>.jpMenu{grid-row:1}.jpEffects>.jpMenu:first-of-type{grid-column:1}.jpEffects>.jpMenu:last-of-type{grid-column:2}
+.jpKnobs{display:flex;align-items:center;justify-content:space-around;gap:var(--jp-control-gap);min-width:0}
+.jpDial{display:flex;flex:1;flex-direction:column;align-items:center;justify-content:center;min-width:44px;gap:2px;}
+.jpDial>.jpControlLabel{font-size:9px;min-height:12px;display:flex;align-items:center;justify-content:center;max-width:92px}
+.jpDialFace{position:relative;display:block;flex-shrink:0;width:48px;height:48px;min-width:48px;touch-action:none;cursor:ns-resize;border-radius:3px;outline:none;}
+.jpDialFace>*{pointer-events:none}.jpDialTicks{position:absolute;inset:-4px;width:56px;height:56px;stroke:#e7e6e1;stroke-width:1;fill:none}
+.jpDialRotor{position:absolute;inset:4px;border-radius:50%;background:linear-gradient(145deg,#313640,#12161c 62%,#262b34);border:1px solid #10151a;box-shadow:0 2px 3px #0b111b80,inset 0 1px 1px #7b828b;transform:rotate(var(--jp-angle));}
+.jpDialRotor::before{content:'';position:absolute;left:calc(50% - 1px);top:2px;width:2px;height:15px;background:#f2f2e7;border-radius:1px;}
+.jpDialFace[data-active]{background:#17233055}.jpValue{display:block;min-height:12px;max-width:100%;font-size:10px;font-variant-numeric:tabular-nums;color:#e9e2d4;text-align:center;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.jpInline{display:flex;align-items:end;gap:8px;min-width:0}.jpInline>.jpMenu{flex:1}.jpInline>.jpSwitch{flex:0 0 62px;}
+.jpSwitch{display:flex;flex-direction:column;justify-content:center;align-items:center;gap:6px;min-width:58px;}
+.jpLed{width:24px;height:2px;background:#72504c;display:block}.jpSwitch[aria-pressed=true]>.jpLed{background:#ff6b50}
+.jpOscModulation{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));align-items:center;gap:var(--jp-control-gap)}.jpOscModulation>.jpSwitch{min-width:44px;padding:6px 3px}
+.jpPitchEnvelope{display:grid;grid-template-columns:1fr 1fr;gap:var(--jp-control-gap);flex:1;min-height:0}.jpPitchControls{display:flex;flex-direction:column;justify-content:space-between;gap:var(--jp-control-gap);min-width:0}.jpPitchControls>.jpDial{flex:0}
+.jpFaders{display:flex;align-items:stretch;gap:8px;min-height:0;flex:1;}
+.jpFaderWrap{display:flex;flex:1;min-width:44px;min-height:0;flex-direction:column;align-items:stretch;gap:4px;}
+.jpPanel .sixFader.jpFader{display:flex;flex:1;flex-direction:column;align-items:center;gap:8px;min-height:72px;min-width:44px;width:100%;padding:0;border-radius:0;touch-action:none;cursor:ns-resize;}
+.jpPanel .jpFader .sixFaderLabel{font-size:9px;font-weight:700;color:var(--jp-ink);line-height:1.1;text-align:center;min-height:24px;display:flex;align-items:center;justify-content:center;white-space:normal;}
+.jpPanel .jpFader .sixFaderTrack{position:relative;display:block;flex:1;width:44px;min-height:40px;max-width:100%;background:none;}
+.jpPanel .jpFader .sixFaderTrack::before{content:'';position:absolute;left:calc(50% - 3px);top:7px;bottom:7px;width:6px;border:1px solid #151b22;background:#161e29;}
+.jpPanel .jpFader .sixFaderTrack::after{content:'';position:absolute;inset:7px 0;background:repeating-linear-gradient(to top,#bac2c9 0 1px,transparent 1px 12px);mask:linear-gradient(90deg,#000 0 calc(50% - 3px),transparent calc(50% - 3px) calc(50% + 3px),#000 calc(50% + 3px) 100%);-webkit-mask:linear-gradient(90deg,#000 0 calc(50% - 3px),transparent calc(50% - 3px) calc(50% + 3px),#000 calc(50% + 3px) 100%);}
+.jpPanel .jpFader .sixFaderCap{position:absolute;z-index:1;left:50%;bottom:clamp(8px,var(--six-fader-fill),calc(100% - 8px));transform:translate(-50%,50%);width:36px;height:17px;border-radius:2px;border:1px solid #111a23;background:linear-gradient(#b4b8bc,#6f7882 44%,#242f3c 48%,#222c38 60%,#75808b);box-shadow:0 2px 3px #0c121990;}
+.jpPanel .jpFader .sixFaderCap::after{content:'';position:absolute;left:3px;right:3px;top:4px;height:2px;background:#e1e3e2;}
+.jpPanel .jpFader:focus-visible{outline:2px solid #ffe4bb;outline-offset:2px}.jpPanel .jpFader[data-active]{background:#17233044}
+.jpOscTwoBody{display:grid;grid-template-columns:minmax(48px,1fr) minmax(96px,2fr);flex:1;min-height:0;gap:var(--jp-control-gap)}.jpKnobColumn{display:flex;flex-direction:column;justify-content:space-between;min-width:0}.jpKnobColumn>.jpDial{flex:0}
+.jpFilterTop,.jpAmpTop{height:96px;flex:0 0 96px}
+.jpFilterTop{display:grid;grid-template-columns:minmax(135px,1.6fr) repeat(3,minmax(48px,1fr));gap:8px;align-items:center;}.jpFilterSwitches{display:flex;flex-direction:column;gap:var(--jp-control-gap)}.jpFilterSwitches .jpSegments{gap:4px}.jpFilterSwitches button{font-size:10px;padding:6px 3px;}
+.jpFaderDivider{width:1px;align-self:stretch;background:#85909c;margin:18px 3px 0}.jpFilterFaders{gap:var(--jp-control-gap)}
+.jpAmpTop{display:grid;grid-template-columns:1fr minmax(80px,1.2fr) 1fr;gap:4px;align-items:center}.jpAmpTop .jpMenu .jpControlLabel{text-align:center;font-size:9px}
+.jpPerformanceGrid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:var(--jp-gutter);min-height:540px}
+.jpPerformanceGrid>.jpSection{display:flex;flex-direction:column;gap:8px;justify-content:flex-start}
+.jpPerformanceTop{display:flex;flex-direction:column;justify-content:space-between;gap:var(--jp-control-gap);height:180px;flex:0 0 180px}.jpPerformanceTop>.jpKnobs{align-items:start}.jpMidi>.jpDial{flex:0}
+.jpPerformanceGrid .jpKnobs{min-height:80px}.jpMenuPair{display:grid;grid-template-columns:1fr 1fr;gap:var(--jp-control-gap)}.jpSwitchRow{display:flex;gap:6px}.jpSwitchRow>.jpSwitch{flex:1;min-width:44px;font-size:9px;padding:6px 3px;}
+.jpToggleColumn{display:flex;flex-direction:column;gap:var(--jp-control-gap);flex:1}.jpToggleColumn>.jpSwitch{flex-direction:row}
+/* Assignments are destination/amount rows, with a fixed navigation rail. */
+.jpAssignments{padding:4px 0 0}
+.jpAssignmentHeader{display:flex;gap:16px;align-items:center;margin-bottom:12px;min-height:44px}
+.jpAssignmentHeader>.jpSegments{width:260px;flex-shrink:0}.jpAssignmentHeader>.jpSwitch{margin-left:auto;min-width:120px;flex-direction:row}
+.jpAssignmentPart{display:flex;flex-direction:column;gap:4px;font-size:11px;color:var(--jp-muted)}
+.jpAssignmentWorkspace{display:grid;grid-template-columns:156px minmax(0,1fr);gap:24px;align-items:start}
+.jpAssignmentGroups{display:flex;flex-direction:column;gap:4px}
+.jpAssignmentGroups>button{display:flex;align-items:center;justify-content:space-between;gap:8px;border-color:transparent;background:transparent;text-align:left;font-size:12px;padding:10px 12px}
+.jpAssignmentGroups>button[aria-pressed=true]{background:#202c3a;border-color:var(--jp-line);color:var(--jp-orange)}
+.jpAssignmentGroups>.jpAssignedShortcut{margin-bottom:8px;border-bottom:1px solid var(--jp-line);border-radius:0}
+.jpAssignedCount{font-size:11px;font-variant-numeric:tabular-nums;color:var(--jp-muted)}
+.jpAssignmentEditor{min-width:0}
+.jpAssignmentHeading{height:36px;display:flex;align-items:center;justify-content:space-between;gap:12px;border-bottom:1px solid var(--jp-line)}
+.jpAssignmentHeading h2{margin:0;font-size:13px;font-weight:700;color:var(--jp-orange);text-transform:uppercase;letter-spacing:.03em}
+.jpAssignmentHeading>span{font-size:10px;color:var(--jp-muted)}
+.jpAssignmentRows{max-height:440px;overflow:auto;overscroll-behavior:contain;scrollbar-color:#8695a5 #293747;scrollbar-width:thin;}
+.jpAssignmentRow{display:grid;grid-template-columns:164px minmax(80px,1fr) 40px 48px;gap:12px;align-items:center;min-height:44px;height:44px;position:relative}.jpAssignmentRow::after{content:"";position:absolute;left:0;right:0;bottom:0;height:1px;background:#617083;pointer-events:none}
+.jpAssignmentRow>label{font-size:12px;line-height:1.2;min-width:0}
+.jpAssignmentRow>output{font-size:12px;font-weight:700;font-variant-numeric:tabular-nums;text-align:right;color:var(--jp-muted)}
+.jpAssignmentRow[data-assigned=true]>output{color:var(--jp-orange)}
+.jpAssignmentRow>button{min-height:44px;width:48px;padding:0;background:transparent;border-color:transparent;font-size:10px}
+.jpAssignmentRow>button:disabled{opacity:.42}
+.jpPanel .jpAssignments .jpAssignmentRow>input{appearance:none;-webkit-appearance:none;display:block;width:100%;height:44px;min-width:0;margin:0;cursor:ew-resize;touch-action:pan-y;background:linear-gradient(var(--jp-line),var(--jp-line)) center/1px 20px no-repeat}
+.jpAssignmentRow>input::-webkit-slider-runnable-track{height:6px;border-radius:1px;background:linear-gradient(90deg,#182331 0 var(--jp-amount-start),var(--jp-orange) var(--jp-amount-start) var(--jp-amount-end),#182331 var(--jp-amount-end) 100%)}
+.jpAssignmentRow>input::-webkit-slider-thumb{appearance:none;-webkit-appearance:none;width:24px;height:28px;margin-top:-11px;border:1px solid #101923;border-radius:2px;background:linear-gradient(90deg,#9fa8b1,#75818c 44%,#dce1e3 46% 54%,#64717e 56%,#929da8);box-shadow:0 2px 3px #0b121970}
+.jpAssignmentRow>input::-moz-range-track{height:6px;background:linear-gradient(90deg,#182331 0 var(--jp-amount-start),var(--jp-orange) var(--jp-amount-start) var(--jp-amount-end),#182331 var(--jp-amount-end) 100%)}
+.jpAssignmentRow>input::-moz-range-thumb{width:22px;height:26px;border:1px solid #101923;border-radius:2px;background:linear-gradient(90deg,#9fa8b1,#75818c 44%,#dce1e3 46% 54%,#64717e 56%,#929da8)}
+.jpAssignmentRow>input:focus-visible{outline:2px solid #ffe4bb;outline-offset:-2px}
+.jpAssignmentEmpty{padding:40px 12px;text-align:center}.jpAssignmentEmpty h3{font-size:15px;margin:0 0 8px}.jpAssignmentEmpty p{font-size:12px;line-height:1.5;margin:0 0 20px;color:var(--jp-muted)}
+.jpAssignmentNotice{font-size:11px;color:var(--jp-orange);line-height:1.4}
+.jpMidi .jpPerformanceTop{justify-content:flex-start}
+.jpHardwarePanel{display:grid;grid-template-columns:1fr 1fr;gap:24px var(--jp-gutter);padding-top:8px;min-height:498px;align-content:start}
+.jpPanelNavigation{display:grid;grid-template-columns:1fr 1fr;gap:12px}.jpPanelNavigation>button{min-height:52px}.jpPanelEditRow{display:grid;grid-template-columns:minmax(0,1fr) 100px;gap:24px;margin-top:12px}.jpPanelEditRow .jpSegments{gap:12px}.jpPanel button.jpStoreButton{color:var(--jp-orange)}.jpNumberButtons{display:grid;grid-template-columns:repeat(8,minmax(44px,1fr));gap:6px;margin-top:15px}.jpHardwarePanel>.jpSection:nth-child(3){grid-column:1/-1}
+.jpTriggerSettings{display:grid;grid-template-columns:100px repeat(3,1fr);gap:14px;align-items:end}
+@media(max-width:900px){
+ .jpPanel{padding:8px 14px}.jpIdentity h1{font-size:28px}.jpLCD{font-size:14px;padding:6px 8px;letter-spacing:0}
+ .jpViews>button{min-width:92px;padding:10px}.jpStatus{max-width:32%;font-size:10px;}
+ .jpSoundGrid{grid-template-rows:repeat(3,260px)}
+ .jpLfo{grid-column:span 3}.jpOscCommon{grid-column:span 5}.jpOscOne{grid-column:span 4}.jpOscTwo{grid-column:span 4}
+ .jpFilter{grid-column:span 8}.jpAmp{grid-column:span 6}.jpEffects{grid-column:span 6}
+ .jpAmpTop{grid-template-columns:1fr 1.2fr 1fr}.jpFilterTop{grid-template-columns:minmax(138px,1.5fr) repeat(3,1fr);gap:6px}
+ .jpPerformanceGrid{grid-template-columns:repeat(3,minmax(0,1fr));gap:20px 12px;}.jpPerformanceGrid>.jpSection{gap:8px}.jpPerformanceGrid>.jpMidi{grid-column:1/-1;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));align-items:center;gap:12px}
+ .jpMidi .jpPerformanceTop{display:contents}.jpMidi .jpMenu>.jpControlLabel{min-height:24px}
+ .jpAssignmentWorkspace{grid-template-columns:132px minmax(0,1fr);gap:16px}.jpAssignmentRow{grid-template-columns:144px minmax(80px,1fr) 36px 44px;gap:8px}.jpAssignmentRow>button{width:44px}.jpHardwarePanel{grid-template-columns:1fr}.jpHardwarePanel>.jpSection:nth-child(3){grid-column:auto}
+}
+@media(max-width:650px){
+ .jpPanel{padding:14px 10px}.jpHeader{grid-template-columns:1fr 1fr;gap:12px}.jpPartSelect{grid-column:1/-1}.jpIdentity{justify-self:end}.jpIdentity h1{font-size:25px}
+ .jpPresetBar{grid-template-columns:1fr 1fr}.jpKeyMode{grid-column:1/-1}.jpViews{flex-wrap:wrap}.jpViews>button{flex:1;min-width:70px;padding:8px 5px;font-size:10px}.jpStatus{max-width:100%;width:100%;padding:6px 0;text-align:center}
+ .jpSoundGrid{grid-template-columns:repeat(6,minmax(0,1fr));grid-template-rows:auto 280px 280px 260px 260px}
+ .jpLfo{grid-column:span 2}.jpOscCommon{grid-column:span 4}.jpOscOne,.jpOscTwo{grid-column:span 3}.jpFilter,.jpAmp,.jpEffects{grid-column:span 6}
+ .jpOscModulation{grid-template-columns:repeat(2,minmax(0,1fr))}.jpPitchControls>.jpDial{flex:0}.jpLfo .jpKnobs{flex-direction:column}.jpLfo,.jpOscCommon{min-height:310px}.jpLfo .jpMenu select{font-size:10px}.jpFilterTop{grid-template-columns:1.5fr 1fr 1fr 1fr}.jpFilterFaders{gap:2px}.jpFilter .jpFaderWrap{min-width:44px}
+ .jpPerformanceTop{height:auto;flex:none}
+ .jpAssignmentHeader{flex-wrap:wrap}.jpAssignmentPart{order:3;width:100%}.jpAssignmentWorkspace{grid-template-columns:1fr}.jpAssignmentGroups{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:4px}.jpAssignmentGroups>.jpAssignedShortcut{margin:0;border-radius:3px}.jpAssignmentRow{grid-template-columns:112px minmax(60px,1fr) 32px 44px;gap:6px}.jpAssignmentRow>label{font-size:11px}.jpAssignmentRows{max-height:440px}.jpPerformanceGrid{grid-template-columns:1fr}.jpPerformanceGrid>.jpMidi{grid-template-columns:repeat(2,minmax(0,1fr))}.jpAssignmentHeader{gap:10px}.jpAssignmentHeader .jpSegments{width:auto;min-width:0;flex:1}
+ .jpNumberButtons{grid-template-columns:repeat(4,minmax(44px,1fr))}.jpTriggerSettings{grid-template-columns:1fr 1fr}.jpHardwarePanel{min-height:0}
+}
+@media(prefers-reduced-motion:reduce){.jpPanel *{scroll-behavior:auto;transition:none!important}}
+
+/* Keep complete native option labels; the closed effects controls have short, distinct names. */
+.jpShortMenu{position:relative}.jpShortMenu select{color:transparent}.jpShortMenu select option{color:var(--jp-ink);background:#24303f}.jpClosedMenuLabel{position:absolute;bottom:0;left:9px;right:9px;height:44px;display:flex;align-items:center;pointer-events:none;white-space:nowrap;font-size:10px;font-weight:600;overflow:hidden;text-overflow:ellipsis;}
+
+/* Startup and error text must be readable without a hover-only tooltip. */
+.jpViewsExpanded{flex-wrap:wrap}.jpViewsExpanded>.jpStatus{flex:0 0 100%;max-width:none;width:100%;margin:0;padding:4px 0 10px;white-space:normal;overflow:visible;text-overflow:clip;overflow-wrap:anywhere;text-align:left;line-height:1.4;}

@@ -1,0 +1,32 @@
+{
+  "switch_onset_frames": [
+    963,
+    1032,
+    1006
+  ],
+  "boot_seconds": 0.615245,
+  "frames": 395648,
+  "callback_max_us": 1.209,
+  "callback_max_lateness_us": 3402.24,
+  "callback_allocations": 0,
+  "note_on_frame_upper_bound": 610,
+  "note_on_ms_upper_bound": 12.7083,
+  "background_peak": 1.6737e-05,
+  "stream_underruns": 0,
+  "peak": 0.0349086,
+  "disk_stall_ms": 500,
+  "drag_events_per_second": 1200,
+  "save_bytes": 625,
+  "cutoff_restored": 111,
+  "part_readback_tests": 3,
+  "platform": "macOS arm64",
+  "headless": true,
+  "date": "2026-10-21",
+  "native_archive_sha256": "0e35bab8381bc2cd8701ede2c50adad5af222ddf15187063a4bf52685ed1a545",
+  "static_kernel_count": 1269,
+  "native_realtime_factor": 8.238074,
+  "snapshot_max_us": 529.375,
+  "streaming_fallback_delta": 0,
+  "subsequent_load_panel_switch_fallback_delta": 5010,
+  "limitations": "Headless Mac software measurement; physical iPad/audio/MIDI performance not measured."
+}

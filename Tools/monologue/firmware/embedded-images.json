@@ -1,0 +1,20 @@
+[
+  {
+    "name": "voice",
+    "sqez_offset": "0x2b5fc",
+    "data_offset": "0x2b60a",
+    "compressed_size": 17588,
+    "original_size": 38912,
+    "crc16": "0x9da1",
+    "sha256": "114755a9617d85efaf445dd14dabbbcc2c40ae9c91624ef1518681f55b77d577"
+  },
+  {
+    "name": "panel",
+    "sqez_offset": "0x24f68",
+    "data_offset": "0x24f76",
+    "compressed_size": 26234,
+    "original_size": 50656,
+    "crc16": "0x251b",
+    "sha256": "ad4b07fc51066102ee7743ffc0a99907c25a18932aac08c5ffd16c8f81e9c698"
+  }
+]

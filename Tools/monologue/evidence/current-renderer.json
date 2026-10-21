@@ -1,0 +1,26 @@
+{
+  "frozen_before_validation_utc": "2026-10-21T21:42:53.612328+00:00",
+  "renderer_sha256": "02730e59367815dfdd0d9e27853c9f05cd1c9cf2d7fcdcd875d81c7ddbec8dcd",
+  "source_snapshots": {
+    "monologue-render.rs": "6e1693ab46c3c2e131757d7b847908faa31106085a2a38ea60526f7641aadcc4",
+    "monologue_fir.rs": "254bfa3a5c226924a38998d81587c955275e5ac63cd3af301bc1e76398e82840",
+    "Cargo.lock": "6141556e7f4bcd36992595cb64858fe4fcdfedb39919b936f0e07ca455cd4168",
+    "monologue_control.rs": "e9a22671c9b1b8a6724dc4cdc6146c319d88e3bd0ed4b2e9bd326abe5c909c59",
+    "monologue.rs": "22cddf4a5facf4c017c81aaf21dbfa682ba3edbc2b4d59aa9b5ad393ba58dbe6"
+  },
+  "source_confirmation": "Parent copied final source and explicitly built renderer after55unit+6MIDI+1allocation checks. Exact pitch-LFO encoding correction affects no corpus case. No tuning will follow held-out evaluation.",
+  "manifest_sha256": "d8c52e3c2b8b01da0c048c04d601881f1c8dabbebfb053d7faff8fbfbf63e036",
+  "calibration_sha256": "ef32ecbbe10d7467dc46ca4aee600994357a49f71a16a39b80e5db084c3621a8",
+  "initial_calibration_sha256": "6fe30a928a77143eb5cfaad887eac6d7a2cca1c2883d45367490f6172e84ad04",
+  "python": "3.12.12 (main, Dec  2 2025, 22:26:15) [Clang 21.1.4 ]",
+  "platform": "macOS-26.7.1-arm64-arm-64bit",
+  "analysis_sha256": {
+    "prepare_corpus_v2.py": "0cd7b9ac29362b2d22af03e5657f4443e49134c0fff5bc5db55dcbbe26bb263b",
+    "time_resolved_v2.py": "ccbec4e40621af3dfc2877734420d37ff4e765c0e5914f75e99c1dbaa19c4d54",
+    "calibrate_v2.py": "0cb3ade83956b8d9d036a6326f4e966b89572baf88d640dc5765d067dbf7f09b",
+    "cached_metric.py": "d8eabcf3d8594864250bd3734f88771954a54354ffad2f2d5061b1bc945d1f81",
+    "metric_audit.py": "5556bf7cc8d1e020b448dba9fb11e08166fd431d43bec95e9a864e5bbea52496",
+    "harmonic_report_v2.py": "e42ecbfb966db5fa47b03a44b98c9831fccbd11b4527908985fa05f5e9b02fc8"
+  },
+  "protocol": "5 training, 2 held-out; exact same complete performance grids and4ms alignment for initial/fitted. Gain and unknown performance variables are profiled on held-outs too; these are optimistic conditional comparisons, not measured performance recovery."
+}
