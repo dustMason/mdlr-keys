@@ -1,0 +1,60 @@
+{
+  "upstream_revision": "b8e1a28d4efaa3764d875eb3118d881dba672a70",
+  "firmware_sha256": "d2c7f2ccf457553c5c05b2095a187f700e481c67a4bbde1ef793f5241f7d3061",
+  "runtime_jit": false,
+  "kernels": 1269,
+  "kernel_code_bytes": 24517288,
+  "kernel_instructions": 6129322,
+  "apple_abi_audit": {
+    "errors": [],
+    "x18_uses": 0,
+    "simd_fp_register_uses": 0,
+    "x29_only_save_restore": true,
+    "callee_saved_gpr_preserved": true,
+    "stack_alignment_bytes": 16,
+    "external_or_indirect_calls": 0
+  },
+  "differential": {
+    "stereo_frames": 20366850,
+    "bytes": 162934800,
+    "sha256": "87b9fee0dbbc4c583d0b90b1e67fe43635668be2545e29147e7a4a1265e2c84c",
+    "reference": "pinned original unmodified ARM64 JIT core",
+    "byte_exact": true,
+    "settled_phases": 802,
+    "settled_fallback_phases": 0,
+    "transient_interpreter_fallback": true
+  },
+  "native_test": {
+    "boot_seconds": 0.591517959,
+    "coherent_snapshot_checks": 1114,
+    "restore_byte_exact": true,
+    "state_bytes": 625,
+    "native_render_seconds": 0.13814975,
+    "realtime_factor": 7.238521966199722,
+    "peak": 0.05881798267364502,
+    "aot_hits": 352800,
+    "fallbacks": 0,
+    "system_midi_validation": true
+  },
+  "ios_link": {
+    "target": "arm64-apple-ios16.0",
+    "all_load": true,
+    "bytes": 35890272,
+    "forbidden_imports": [],
+    "libraries": [
+      "libc++.1.dylib",
+      "libSystem.B.dylib"
+    ]
+  },
+  "archives": {
+    "macosx": {
+      "bytes": 36389432,
+      "sha256": "0e35bab8381bc2cd8701ede2c50adad5af222ddf15187063a4bf52685ed1a545"
+    },
+    "iphoneos": {
+      "bytes": 36384992,
+      "sha256": "16b11fdf770bffdf57abb20bd3d6b1e9f1cb4dbd9a3af91be610812384df79b9"
+    }
+  },
+  "scope": "Headless software checks on development Mac and iOS cross-link only; no physical iPad/audio/MIDI or hardware fidelity qualification."
+}

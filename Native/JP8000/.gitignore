@@ -1,0 +1,4 @@
+/Private/
+/Build/
+# Upstream generated hardware/firmware test fixtures are not used by this port.
+/vendor/gearmulator/source/ronaldo/custom_chips/esp/tests/fixtures/

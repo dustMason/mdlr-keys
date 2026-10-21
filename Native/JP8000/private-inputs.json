@@ -1,0 +1,12 @@
+{
+  "rom": {
+    "size": 524288,
+    "sha256": "d2c7f2ccf457553c5c05b2095a187f700e481c67a4bbde1ef793f5241f7d3061",
+    "name": "jp8000_v1.05.bin"
+  },
+  "ram": {
+    "size": 262144,
+    "sha256": "093c2f7ea581f7cf99fefb91ff80e73aef8c37fccb413634bf4870f9f56e9e9e",
+    "name": "ram_dump.bin"
+  }
+}

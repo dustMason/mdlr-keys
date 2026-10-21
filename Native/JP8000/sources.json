@@ -1,0 +1,21 @@
+[
+  "source/cpu/h8300h/adc.cpp",
+  "source/cpu/h8300h/cpu.cpp",
+  "source/cpu/h8300h/disasm.cpp",
+  "source/cpu/h8300h/exec.cpp",
+  "source/cpu/h8300h/periph.cpp",
+  "source/cpu/h8300h/periph2320.cpp",
+  "source/ronaldo/custom_chips/esp/esp.cpp",
+  "source/ronaldo/je8086/jeLib/je8086.cpp",
+  "source/ronaldo/je8086/jeLib/je8086devices.cpp",
+  "source/ronaldo/je8086/jeLib/jeLcd.cpp",
+  "source/framework/synthLib/midiBufferParser.cpp",
+  "source/framework/synthLib/midiRateLimiter.cpp",
+  "source/framework/synthLib/midiControllerThinner.cpp",
+  "source/framework/synthLib/frontPanelSysex.cpp",
+  "source/framework/synthLib/deviceException.cpp",
+  "source/framework/hardwareLib/hd44780.cpp",
+  "source/ronaldo/je8086/jeLib/rom.cpp",
+  "source/ronaldo/je8086/jeLib/state.cpp",
+  "source/ronaldo/common/storage.cpp"
+]

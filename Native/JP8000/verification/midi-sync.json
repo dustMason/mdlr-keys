@@ -1,0 +1,109 @@
+{
+  "passed": true,
+  "sample_rate": 88200,
+  "transport": "Start, Stop, Continue with newly pressed keys",
+  "clock_ppqn": 24,
+  "observations": [
+    {
+      "phase": 0,
+      "clock_bpm": null,
+      "frames": 176400,
+      "rms": 0.006787802092730999,
+      "transitions": [
+        {
+          "seconds": 0.023219954648526078,
+          "note": 60
+        },
+        {
+          "seconds": 0.818219954648526,
+          "note": 64
+        },
+        {
+          "seconds": 1.628219954648526,
+          "note": 67
+        }
+      ],
+      "median_step_seconds": 0.81
+    },
+    {
+      "phase": 1,
+      "clock_bpm": 120,
+      "frames": 176400,
+      "rms": 0.007179045584052801,
+      "transitions": [
+        {
+          "seconds": 0.023219954648526078,
+          "note": 60
+        },
+        {
+          "seconds": 0.4982199546485261,
+          "note": 64
+        },
+        {
+          "seconds": 0.9982199546485261,
+          "note": 67
+        },
+        {
+          "seconds": 1.498219954648526,
+          "note": 60
+        }
+      ],
+      "median_step_seconds": 0.49999999999999994
+    },
+    {
+      "phase": 2,
+      "clock_bpm": null,
+      "frames": 176400,
+      "rms": 1.2343885828158818e-05,
+      "transitions": [
+        {
+          "seconds": 0.023219954648526078,
+          "note": 60
+        }
+      ],
+      "median_step_seconds": null
+    },
+    {
+      "phase": 3,
+      "clock_bpm": 240,
+      "frames": 176400,
+      "rms": 0.006812116131186485,
+      "transitions": [
+        {
+          "seconds": 0.023219954648526078,
+          "note": 60
+        },
+        {
+          "seconds": 0.2532199546485261,
+          "note": 64
+        },
+        {
+          "seconds": 0.5082199546485261,
+          "note": 67
+        },
+        {
+          "seconds": 0.7532199546485261,
+          "note": 60
+        },
+        {
+          "seconds": 1.008219954648526,
+          "note": 64
+        },
+        {
+          "seconds": 1.258219954648526,
+          "note": 67
+        },
+        {
+          "seconds": 1.503219954648526,
+          "note": 60
+        },
+        {
+          "seconds": 1.753219954648526,
+          "note": 64
+        }
+      ],
+      "median_step_seconds": 0.25
+    }
+  ],
+  "scope": "Actual firmware audio response; no physical MIDI or audio device used."
+}
