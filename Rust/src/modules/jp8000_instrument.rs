@@ -64,6 +64,7 @@ struct PartState {
     last_velocity_code: i32,
     output: OutputPath,
     effects: super::effects::Effects,
+    shared_cache: super::effects::PartControlCache,
     lfo: Lfo,
     lfo2: Lfo,
 }
@@ -87,6 +88,7 @@ impl PartState {
             last_velocity_code: 0,
             output: OutputPath::new(),
             effects: super::effects::Effects::new(),
+            shared_cache: super::effects::PartControlCache::new(),
             lfo: Lfo::new(),
             lfo2: {
                 let mut l = Lfo::new();
@@ -247,7 +249,8 @@ impl Jp8000Instrument {
             until_tick: 0,
         };
         for p in 0..2 {
-            s.refresh_global_controls(p);
+            s.refresh_global_controls(p, true, true);
+            s.publish_settled_part_controls(p);
         }
         s
     }
@@ -634,7 +637,23 @@ impl Jp8000Instrument {
             }
         }
         for part in 0..2 {
-            self.refresh_global_controls(part);
+            // H8 748A effect-group cache refresh is distinct from 7172 rate/
+            // sync refresh. An unrelated edit must not restore a free Chorus
+            // step retained by SyncOff or flush pending targets into DSP state.
+            let effect_group = lists[part].0.iter().any(|&id| {
+                matches!(id, 59..=66)
+                    || super::control::assignment_destination(id)
+                        .is_some_and(|d| matches!(d, 59 | 60 | 62 | 64..=66))
+            });
+            let sync_group = common_ids.contains(&2034) || lists[part].0.iter().any(|&id| {
+                matches!(id, 16 | 17 | 19 | 1004..=1006)
+                    || super::control::assignment_destination(id)
+                        .is_some_and(|d| matches!(d, 17 | 19))
+            });
+            self.refresh_global_controls(part, effect_group, sync_group);
+            self.parts[part].effects.load_programs(
+                lists[part].0.contains(&63).then_some(params[part][63]),
+                lists[part].0.contains(&61).then_some(params[part][61]));
             // H8 0x7172 is an explicit shared LFO parameter event, even
             // when the stored value is unchanged. Broad refreshes stay inert.
             if lists[part].0.iter().any(|id| matches!(id, 16 | 17 | 19)) {
@@ -697,7 +716,12 @@ impl Jp8000Instrument {
         }
         self.order = [0, 1, 2, 3, 4, 5, 6, 7];
     }
-    fn refresh_global_controls(&mut self, part: usize) {
+    fn refresh_global_controls(
+        &mut self,
+        part: usize,
+        refresh_free_rates: bool,
+        refresh_synchronized_rates: bool,
+    ) {
         // Shared-rate getters read the part's most recently allocated velocity,
         // while each voice retains its own velocity for local destinations.
         let controls = super::control::effective_controls(
@@ -714,22 +738,29 @@ impl Jp8000Instrument {
             self.tempo_clock.pulses(),
         );
         self.parts[part].lfo2.configure_second(controls[19]);
-        self.parts[part].output.set_tone(controls[59], controls[60]);
-        self.parts[part].effects.configure(
+        let p = &mut self.parts[part];
+        p.shared_cache.refresh(
             &controls,
-            settings.delay_sync,
-            settings.tempo,
-            super::control::amp_lfo_depth(controls[52]),
-            self.parts[part].pan,
-            self.parts[part].lfo.value(),
+            settings,
+            p.lfo.increment(),
+            p.pan,
+            refresh_free_rates,
+            refresh_synchronized_rates,
         );
-        self.parts[part]
-            .effects
-            .configure_chorus_sync(match settings.chorus_sync {
-                0 => None,
-                23 => Some(self.parts[part].lfo.increment()),
-                sync => super::tempo::synced_lfo_increment(sync, settings.tempo),
-            });
+    }
+    // This is the state-0 publication action, not an emulation of recall's
+    // part+20 countdown. Future Trigger cache refresh uses the same cache and
+    // publisher; nonzero load states must select their own groups/program events.
+    fn publish_settled_part_controls(&mut self, part: usize) {
+        self.publish_part_controls(part, super::effects::PublicationGroups::SETTLED);
+    }
+    fn publish_part_controls(&mut self, part: usize, groups: super::effects::PublicationGroups) {
+        let p = &mut self.parts[part];
+        p.effects.publish_pan(&p.shared_cache, p.lfo.value());
+        if groups.eq {
+            p.output.eq.publish(p.shared_cache.eq);
+        }
+        p.effects.publish(&p.shared_cache, groups);
     }
     fn move_to_head(&mut self, slot: usize) {
         let at = self
@@ -904,7 +935,7 @@ impl Jp8000Instrument {
         } else {
             0
         };
-        self.refresh_global_controls(part);
+        self.refresh_global_controls(part, true, false);
         self.parts[part].lfo.retarget_note();
         self.parts[part].lfo2.retarget_note();
         self.voices[slot].morph = self.parts[part].morph;
@@ -1081,7 +1112,7 @@ impl Jp8000Instrument {
             return;
         }
         self.parts[part].morph = value;
-        self.refresh_global_controls(part);
+        self.refresh_global_controls(part, true, false);
         for (voice, slot) in self.voices.iter_mut().zip(&self.slots) {
             if slot.owner as usize == part {
                 voice
@@ -1439,7 +1470,7 @@ impl Jp8000Instrument {
                 64 => self.pedal(part, 1, channel, data2 >= 64),
                 10 => {
                     self.parts[part].pan = data2;
-                    self.refresh_global_controls(part);
+                    self.refresh_global_controls(part, false, false);
                 }
                 // Native channel-mode actions require a zero value. Keep this
                 // inside the existing direct route and its source-ownership guard.
@@ -1457,7 +1488,7 @@ impl Jp8000Instrument {
                     p.expression = 127;
                     p.morph = 0;
                     p.pan = 64;
-                    self.refresh_global_controls(part);
+                    self.refresh_global_controls(part, false, false);
                     for (v, s) in self.voices.iter_mut().zip(&self.slots) {
                         if s.owner as usize == part && s.assigned {
                             v.bend = 8192;
@@ -1629,7 +1660,8 @@ impl Jp8000Instrument {
             p.lfo2 = Lfo::new();
         }
         for p in 0..2 {
-            self.refresh_global_controls(p);
+            self.refresh_global_controls(p, true, true);
+            self.publish_settled_part_controls(p);
         }
     }
     pub fn next_sample(&mut self) -> f32 {
@@ -1644,10 +1676,10 @@ impl Jp8000Instrument {
             self.dispatch_arp_events(events);
         }
         if self.until_tick == 0 {
-            for p in &mut self.parts {
-                p.lfo.tick();
-                p.lfo2.tick();
-                p.effects.update_lfo(p.lfo.value());
+            for part in 0..2 {
+                self.parts[part].lfo.tick();
+                self.parts[part].lfo2.tick();
+                self.publish_settled_part_controls(part);
             }
             self.until_tick = 882;
         }
@@ -4819,5 +4851,318 @@ mod osc2_publication_instrument_tests {
         assert_eq!((states(&s),s.parts[0].params,s.common.performance),old);
         assert!(s.apply_performance(&[30,34],&[4,2],&[],&[],&[],&[]).is_err());
         assert_eq!((states(&s),s.parts[0].params,s.common.performance),old);
+    }
+}
+
+#[cfg(test)]
+mod shared_part_publication_tests {
+    use super::super::{chorus::Chorus, control, delay, output, pan, tempo};
+    use super::*;
+
+    #[derive(Clone, Copy, Debug, PartialEq, Eq)]
+    struct Published {
+        eq: [i64; 6],
+        delay: [i64; 4],
+        chorus: [i64; 3],
+        pan: [i64; 2],
+    }
+    fn published(p: &Jp8000Instrument, part: usize) -> Published {
+        let q = &p.parts[part];
+        let (delay, chorus, pan) = q.effects.shared_cache_test_targets();
+        Published {
+            eq: q.output.eq.shared_cache_test_coefficients(),
+            delay,
+            chorus,
+            pan,
+        }
+    }
+    // Functional control-law expectations, independent of the new cache type.
+    // These assertions test when values become installed, not new curve fitting.
+    fn expected(p: &Jp8000Instrument, part: usize) -> Published {
+        let q = &p.parts[part];
+        let c = control::effective_controls(&q.params, q.last_velocity_code, q.morph);
+        let curve = |v: u16| {
+            let r = i64::from(v);
+            32767 * r * r / 16129
+        };
+        let step = match q.settings.chorus_sync {
+            0 => Chorus::shared_cache_test_free_step(c[61]),
+            23 => i64::from(q.lfo.increment()) / (882 * 256),
+            s => i64::from(tempo::synced_lfo_increment(s, q.settings.tempo).unwrap()) / (882 * 256),
+        };
+        Published {
+            eq: output::tone_coefficients(c[59], c[60]),
+            delay: [
+                i64::from(c[63]),
+                if q.settings.delay_sync == 0 {
+                    delay::free_time_frames(c[64], c[63])
+                } else {
+                    delay::synced_time_frames(c[63], q.settings.delay_sync, q.settings.tempo)
+                } as i64,
+                (curve(c[65]) >> 1) << 9,
+                (curve(c[66]) >> 1) << 8,
+            ],
+            chorus: [i64::from(c[61]), step, (curve(c[62]) >> 1) << 9],
+            pan: pan::control_targets(
+                c[58],
+                c[52],
+                control::amp_lfo_depth(c[52]),
+                q.pan,
+                q.lfo.value(),
+            ),
+        }
+    }
+    const IDS: &[u16] = &[
+        30, 283, 16, 17, 284, 52, 58, 338, 59, 350, 60, 352, 61, 62, 354, 63, 64, 356, 65, 358, 66,
+        360,
+    ];
+    const VALUES: &[u16] = &[
+        5, 1, 0, 64, 180, 88, 1, 180, 90, 0, 100, 254, 0, 60, 0, 0, 70, 0, 80, 0, 90, 0,
+    ];
+    fn setup() -> Jp8000Instrument {
+        let mut p = Jp8000Instrument::new();
+        p.apply_patch(IDS, VALUES).unwrap();
+        p.next_stereo_sample();
+        assert_eq!(published(&p, 0), expected(&p, 0));
+        p
+    }
+    fn before_next_tick(p: &mut Jp8000Instrument, count: usize) {
+        assert_eq!(usize::from(p.until_tick), count);
+        for _ in 0..count {
+            p.next_stereo_sample();
+        }
+        assert_eq!(p.until_tick, 0);
+    }
+
+    #[test]
+    fn ordinary_note_changes_shared_lfo_now_but_installs_targets_on_next_tick() {
+        let mut p = setup();
+        p.set_control_phase(17).unwrap();
+        let before = published(&p, 0);
+        let history = p.parts[0].effects.shared_cache_test_history();
+        let eq_history = p.parts[0].output.eq.shared_cache_test_history();
+        let old_rate = p.parts[0].lfo.increment();
+        p.midi(0x90, 60, 100).unwrap();
+        assert_eq!(p.held_voice_count(), 1);
+        assert!(p.voices[0].gate);
+        assert_ne!(p.parts[0].lfo.increment(), old_rate);
+        assert_eq!(p.parts[0].last_velocity_code, 54);
+        assert_ne!(expected(&p, 0).eq, before.eq);
+        assert_ne!(expected(&p, 0).delay, before.delay);
+        assert_ne!(expected(&p, 0).chorus, before.chorus);
+        assert_eq!(
+            published(&p, 0),
+            before,
+            "CACHE_NOTE_INSTALL_BOUNDARY"
+        );
+        assert_eq!(p.parts[0].effects.shared_cache_test_history(), history);
+        assert_eq!(p.parts[0].output.eq.shared_cache_test_history(), eq_history);
+        before_next_tick(&mut p, 17);
+        assert_eq!(published(&p, 0), before);
+        let old_lfo = p.parts[0].lfo.value();
+        p.next_stereo_sample();
+        assert_eq!(published(&p, 0), expected(&p, 0));
+        let c = control::effective_controls(&p.parts[0].params, 54, 0);
+        assert_ne!(
+            published(&p, 0).pan,
+            pan::control_targets(c[58], c[52], control::amp_lfo_depth(c[52]), 64, old_lfo),
+            "pan must use the new held LFO value at this nonvacuous boundary"
+        );
+    }
+
+    #[test]
+    fn successive_notes_coalesce_latest_velocity_independently_per_part() {
+        let mut p = Jp8000Instrument::new();
+        p.apply_performance(IDS, VALUES, IDS, VALUES, &[2016], &[1])
+            .unwrap();
+        p.next_stereo_sample();
+        p.set_control_phase(19).unwrap();
+        let before = [published(&p, 0), published(&p, 1)];
+        p.midi(0x90, 60, 32).unwrap();
+        p.midi(0x90, 64, 100).unwrap();
+        p.midi(0x91, 67, 127).unwrap();
+        assert_eq!(
+            [p.parts[0].last_velocity_code, p.parts[1].last_velocity_code],
+            [54, 128]
+        );
+        assert_eq!([published(&p, 0), published(&p, 1)], before, "CACHE_PER_PART_COALESCING_BOUNDARY");
+        before_next_tick(&mut p, 19);
+        p.next_stereo_sample();
+        assert_eq!(published(&p, 0), expected(&p, 0));
+        assert_eq!(published(&p, 1), expected(&p, 1));
+        assert_ne!(published(&p, 0).eq, published(&p, 1).eq);
+    }
+
+    #[test]
+    fn no_voice_cache_refresh_is_published_without_an_active_voice_guard() {
+        let mut p = setup();
+        p.set_parameter(268, 0).unwrap(); // Morph -> bass, no note allocated.
+        p.next_stereo_sample();
+        p.set_control_phase(7).unwrap();
+        let before = published(&p, 0);
+        p.set_morph(0, 128);
+        assert_eq!(p.sounding_voice_count(), 0);
+        assert!(p.slots.iter().all(|s| s.status == Status::Free));
+        assert_ne!(expected(&p, 0).eq, before.eq);
+        assert_eq!(published(&p, 0), before, "CACHE_EMPTY_PART_INSTALL_BOUNDARY");
+        before_next_tick(&mut p, 7);
+        p.next_stereo_sample();
+        assert_eq!(published(&p, 0), expected(&p, 0));
+    }
+
+    #[test]
+    fn intervening_unrelated_and_shared_setters_do_not_flush_pending_values() {
+        let mut p = setup();
+        p.set_control_phase(13).unwrap();
+        let before = published(&p, 0);
+        p.midi(0x90, 60, 100).unwrap();
+        p.set_parameter(41, 87).unwrap(); // A voice filter parameter.
+        assert_eq!(published(&p, 0), before, "CACHE_INTERVENING_SETTER_BOUNDARY");
+        p.set_parameter(59, 110).unwrap(); // Replaces cached bass, still not published.
+        assert_eq!(published(&p, 0), before);
+        before_next_tick(&mut p, 13);
+        p.next_stereo_sample();
+        assert_eq!(published(&p, 0), expected(&p, 0));
+    }
+
+    #[test]
+    fn program_type_writes_are_immediate_and_separate_from_scalar_publication() {
+        let mut p = setup();
+        p.apply_patch(&[1004, 1006], &[7, 7]).unwrap();
+        p.set_control_phase(0).unwrap();
+        p.next_stereo_sample();
+        p.set_control_phase(9).unwrap();
+        let before = published(&p, 0);
+        let history = p.parts[0].effects.shared_cache_test_history();
+        p.set_parameter(61, 3).unwrap();
+        let after_type = published(&p, 0);
+        assert_eq!(
+            after_type.chorus,
+            [3, Chorus::shared_cache_test_free_step(3), before.chorus[2]],
+            "CACHE_TYPE_INSTALL_BOUNDARY"
+        );
+        assert_eq!(after_type.eq, before.eq);
+        assert_eq!(after_type.delay, before.delay);
+        assert_eq!(p.parts[0].effects.shared_cache_test_history(), history);
+        p.set_parameter(63, 2).unwrap();
+        assert_eq!(
+            published(&p, 0).delay,
+            [2, before.delay[1], before.delay[2], before.delay[3]]
+        );
+        assert_eq!(p.parts[0].effects.shared_cache_test_history(), history);
+        before_next_tick(&mut p, 9);
+        p.next_stereo_sample();
+        let mut wanted = expected(&p, 0);
+        assert_ne!(wanted.delay[1], before.delay[1]);
+        // 748A skips synchronized addresses. A type event does not synthesize
+        // a dedicated sync refresh; the old installed address remains cached.
+        wanted.delay[1] = before.delay[1];
+        assert_eq!(published(&p, 0), wanted);
+        p.set_control_phase(6).unwrap();
+        p.set_parameter(1004, 7).unwrap(); // Explicit equal-value sync event.
+        assert_eq!(published(&p, 0), wanted);
+        before_next_tick(&mut p, 6);
+        p.next_stereo_sample();
+        assert_eq!(published(&p, 0), expected(&p, 0));
+    }
+
+    #[test]
+    fn sync_off_retains_cached_rate_until_an_explicit_free_cache_refresh() {
+        let mut p = setup();
+        p.apply_patch(&[1004, 1006], &[7, 7]).unwrap();
+        p.set_control_phase(0).unwrap();
+        p.next_stereo_sample();
+        p.set_control_phase(11).unwrap();
+        let before = published(&p, 0);
+        p.apply_patch(&[1004, 1006], &[0, 0]).unwrap();
+        p.set_parameter(41, 80).unwrap(); // Must not masquerade as 6C92.
+        assert_eq!(published(&p, 0).delay, before.delay, "CACHE_SYNC_OFF_RETENTION_BOUNDARY");
+        before_next_tick(&mut p, 11);
+        p.next_stereo_sample();
+        assert_eq!(published(&p, 0).delay[1], before.delay[1]);
+        assert_eq!(published(&p, 0).chorus[1], before.chorus[1]);
+        p.set_control_phase(5).unwrap();
+        p.midi(0x90, 60, 100).unwrap(); // Ordinary allocation restores free caches.
+        assert_eq!(published(&p, 0).chorus[1], before.chorus[1]);
+        before_next_tick(&mut p, 5);
+        p.next_stereo_sample();
+        assert_eq!(published(&p, 0), expected(&p, 0));
+        assert_ne!(published(&p, 0).chorus[1], before.chorus[1]);
+    }
+
+    #[test]
+    fn rejected_transaction_neither_publishes_nor_discards_pending_note_cache() {
+        let mut p = setup();
+        p.set_control_phase(3).unwrap();
+        let before = published(&p, 0);
+        p.midi(0x90, 60, 100).unwrap();
+        assert!(p.apply_patch(&[59, 2029], &[40, 1]).is_err());
+        assert_eq!(p.parameter(59), Some(90));
+        assert_eq!(published(&p, 0), before, "CACHE_REJECTION_INSTALL_BOUNDARY");
+        before_next_tick(&mut p, 3);
+        p.next_stereo_sample();
+        assert_eq!(published(&p, 0), expected(&p, 0));
+        assert_eq!(p.parameter(2029), Some(0));
+    }
+}
+
+#[cfg(test)]
+mod part_publication_group_tests {
+    use super::super::effects::PublicationGroups;
+    use super::*;
+
+    #[test]
+    fn scalar_group_projection_does_not_claim_a_load_state_clock() {
+        let mut p = Jp8000Instrument::new();
+        p.apply_patch(&[59, 60, 62, 64, 65, 66], &[20, 100, 80, 110, 90, 100])
+            .unwrap();
+        let cache = p.parts[0].shared_cache;
+        let old = p.parts[0].effects.shared_cache_test_targets();
+        let history = p.parts[0].effects.shared_cache_test_history();
+        assert_ne!(cache.delay.time as i64, old.0[1]);
+        assert_ne!(cache.delay.level, old.0[3]);
+        // Scalar subset used by native state16. Program/type installation and
+        // the state transition are intentionally not simulated by this call.
+        let eq_chorus = PublicationGroups {
+            eq: true,
+            delay_time_and_feedback: false,
+            delay_level_shift: None,
+            chorus: true,
+        };
+        p.publish_part_controls(0, eq_chorus);
+        assert_eq!(
+            p.parts[0].output.eq.shared_cache_test_coefficients(),
+            cache.eq
+        );
+        assert_eq!(p.parts[0].effects.shared_cache_test_targets().0, old.0);
+        assert_eq!(
+            p.parts[0].effects.shared_cache_test_targets().1[2],
+            cache.chorus_level
+        );
+        // State4's scalar half level and state3's scalar full level retain
+        // the installed feedback/address. Neither is a native load countdown.
+        for shift in [1, 0] {
+            p.publish_part_controls(
+                0,
+                PublicationGroups {
+                    delay_level_shift: Some(shift),
+                    ..eq_chorus
+                },
+            );
+            let target = p.parts[0].effects.shared_cache_test_targets().0;
+            assert_eq!(target[1..3], old.0[1..3]);
+            assert_eq!(target[3], cache.delay.level >> shift);
+        }
+        p.publish_settled_part_controls(0);
+        let target = p.parts[0].effects.shared_cache_test_targets().0;
+        assert_eq!(
+            target[1..],
+            [
+                cache.delay.time as i64,
+                cache.delay.feedback,
+                cache.delay.level
+            ]
+        );
+        assert_eq!(p.parts[0].effects.shared_cache_test_history(), history);
     }
 }

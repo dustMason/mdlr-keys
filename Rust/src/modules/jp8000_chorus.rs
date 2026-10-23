@@ -114,9 +114,25 @@ impl Chorus {
     /// Keep the free-running phase and delay history when the controls change.
     pub(crate) fn configure(&mut self, kind: u16, level: u16) {
         let kind=kind.min(11);
-        if kind!=self.kind { self.settings=Settings::for_kind(kind); self.kind=kind; }
+        if kind!=self.kind {self.load_kind(kind);}
+        self.level_target=Self::level_target(level);
+    }
+    pub(crate) fn level_target(level: u16) -> i64 {
         let r = i64::from(level.min(127));
-        self.level_target = (32767 * r * r / 16129 / 2) * 512;
+        (32767 * r * r / 16129 / 2) * 512
+    }
+    pub(crate) fn free_step(kind: u16) -> i64 {
+        Settings::for_kind(kind.min(11)).step
+    }
+    // Native16272 is an explicit type-program event, including same-value writes.
+    // Only coefficients/rate change; histories and level target survive.
+    pub(crate) fn load_kind(&mut self, kind: u16) {
+        self.kind = kind.min(11);
+        self.settings = Settings::for_kind(self.kind);
+    }
+    pub(crate) fn publish(&mut self, level: i64, step: i64) {
+        self.level_target = level;
+        self.settings.step = step;
     }
     /// Convert the 100Hz controller's Q32 cycle increment to the DSP's Q24
     /// per-sample rate. Turning sync off retains the last rate until type changes.
@@ -215,5 +231,34 @@ mod tests {
             assert!(c.minimum >= 0);
             assert!((c.minimum + c.sweep + c.stereo_offset) / 4096 + 1 < HISTORY as i64);
         }
+    }
+}
+
+#[cfg(test)]
+impl Chorus {
+    pub(crate) fn shared_cache_test_targets(&self) -> [i64; 3] {
+        [i64::from(self.kind), self.settings.step, self.level_target]
+    }
+    pub(crate) fn shared_cache_test_free_step(kind: u16) -> i64 {
+        Settings::for_kind(kind).step
+    }
+    pub(crate) fn shared_cache_test_history(&self) -> [i64; 13] {
+        [
+            self.level,
+            self.position as i64,
+            self.input_lp,
+            self.feedback_lp,
+            self.feedback,
+            self.dc,
+            self.phase,
+            self.triangle,
+            self.wet[0],
+            self.wet[1],
+            self.return_lp[0],
+            self.return_lp[1],
+            self.history
+                .iter()
+                .fold(0i64, |a, &v| a.wrapping_mul(31).wrapping_add(i64::from(v))),
+        ]
     }
 }

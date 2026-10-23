@@ -149,3 +149,13 @@ mod tests {
         assert_eq!(dac_mix((Q - 1, -Q), (-(Q - 1), Q - 1)), (0, -1));
     }
 }
+
+#[cfg(test)]
+impl Pan {
+    pub(crate) fn shared_cache_test_targets(&self) -> [i64; 2] {
+        self.targets
+    }
+    pub(crate) fn shared_cache_test_gains(&self) -> [i64; 2] {
+        self.gains
+    }
+}

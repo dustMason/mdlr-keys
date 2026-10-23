@@ -89,6 +89,34 @@ pub(crate) fn synced_time_frames(kind: u16, division: u16, bpm: u16) -> usize {
     frames
 }
 
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
+pub(crate) struct Targets {
+    pub time: usize,
+    pub feedback: i64,
+    pub level: i64,
+}
+impl Targets {
+    pub(crate) fn calculate(
+        kind: u16,
+        time: u16,
+        feedback: u16,
+        level: u16,
+        sync: u16,
+        bpm: u16,
+    ) -> Self {
+        let kind = kind.min(4);
+        Self {
+            time: if sync == 0 {
+                free_time_frames(time, kind)
+            } else {
+                synced_time_frames(kind, sync, bpm)
+            },
+            feedback: (curve(feedback) >> 1) << 9,
+            level: (curve(level) >> 1) << 8,
+        }
+    }
+}
+
 pub(crate) struct Delay {
     history: Box<[i32]>,
     cursor: usize,
@@ -133,14 +161,27 @@ impl Delay {
         sync: u16,
         bpm: u16,
     ) {
+        self.select_kind(kind);
+        self.publish(Targets::calculate(kind,time,feedback,level,sync,bpm),true,Some(0));
+    }
+
+    // Native16208 installs routing/damping words separately from scalar caches.
+    pub(crate) fn select_kind(&mut self, kind: u16) {
         self.kind = kind.min(4);
-        self.time = if sync == 0 {
-            free_time_frames(time, self.kind)
-        } else {
-            synced_time_frames(self.kind, sync, bpm)
-        };
-        self.feedback_target = (curve(feedback) >> 1) << 9;
-        self.level_target = (curve(level) >> 1) << 8;
+    }
+    pub(crate) fn publish(
+        &mut self,
+        t: Targets,
+        time_and_feedback: bool,
+        level_shift: Option<u32>,
+    ) {
+        if time_and_feedback {
+            self.time = t.time;
+            self.feedback_target = t.feedback;
+        }
+        if let Some(shift) = level_shift {
+            self.level_target = t.level >> shift;
+        }
     }
 
     /// Clear the existing storage in place; retain the configured controls.
@@ -238,5 +279,31 @@ mod tests {
         for _ in 0..20000 {
             assert_eq!(delay.process(0), (0, 0));
         }
+    }
+}
+
+#[cfg(test)]
+impl Delay {
+    pub(crate) fn shared_cache_test_targets(&self) -> [i64; 4] {
+        [
+            i64::from(self.kind),
+            self.time as i64,
+            self.feedback_target,
+            self.level_target,
+        ]
+    }
+    pub(crate) fn shared_cache_test_history(&self) -> [i64; 8] {
+        [
+            self.cursor as i64,
+            self.feedback,
+            self.level,
+            self.lowpass,
+            self.dc,
+            self.wet_long,
+            self.wet_short,
+            self.history
+                .iter()
+                .fold(0i64, |a, &v| a.wrapping_mul(31).wrapping_add(i64::from(v))),
+        ]
     }
 }

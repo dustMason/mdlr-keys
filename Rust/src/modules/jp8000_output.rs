@@ -42,6 +42,10 @@ impl ToneEq {
         self.coefficients = tone_coefficients(bass, treble);
     }
 
+    pub(super) fn publish(&mut self, coefficients: [i64; 6]) {
+        self.coefficients = coefficients;
+    }
+
     pub(super) fn process(&mut self, input: i64) -> i64 {
         let [zero_b, pole_b, zero_t, pole_t, gain_b, gain_t] = self.coefficients;
         let [x_prev, a_prev, middle_prev, middle_prev2, b_prev] = self.history;
@@ -58,5 +62,15 @@ impl ToneEq {
         let middle = sat24(extended_multiply(a, gain_b, 6));
         self.history = [input, a, middle, middle_prev, b];
         sat24(extended_multiply(b, gain_t, 6))
+    }
+}
+
+#[cfg(test)]
+impl ToneEq {
+    pub(crate) fn shared_cache_test_coefficients(&self) -> [i64; 6] {
+        self.coefficients
+    }
+    pub(crate) fn shared_cache_test_history(&self) -> [i64; 5] {
+        self.history
     }
 }

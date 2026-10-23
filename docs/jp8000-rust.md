@@ -65,8 +65,21 @@ are not a measurement of end-to-end MIDI-to-speaker latency.
 
 ## Validation
 
-The current integrated core passed 443 release tests and a 524,288-frame
-zero-allocation workload. Filter damping now retains its installed rate until
+The current integrated core passed 451 release tests and a 524,288-frame
+zero-allocation workload. Shared EQ, Delay, Chorus and pan controls now refresh
+per-part caches, then install their values on the existing controller tick.
+Accepted notes still start their voices immediately; this change adds no audio
+buffer, worker queue or controller clock. Eight focused tests cover publication
+timing, coalescing, empty parts, intervening edits, synchronized rates and history
+preservation.
+
+A fixed 60-case comparison preserved exact audio in 58 cases. Glass Columns
+velocity and Circuit Bent held-note output changed slightly, with mixed numerical
+score changes. This establishes bounded regression coverage, not a claim of
+complete factory parity. The native patch-recall countdown and some synchronized
+Chorus event ordering remain unfinished. Individual Trigger stays disabled.
+
+The preceding filter correction retains its installed damping rate until
 the controller publishes a replacement. Allocation installs the fast rate;
 qualified control ticks install the normal rate at loader stage 1. Idle or
 invalid-owner slots can consume that stage without publishing, so elapsed DSP
