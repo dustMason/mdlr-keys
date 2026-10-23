@@ -2,8 +2,9 @@
 
 A standalone iPad instrument built from the Rust synth engines and panels in
 [mdlr](https://github.com/dustMason/mdlr), with an Apple Silicon Mac preview.
-The JP-8000 engine runs original firmware in a native C++ emulator alongside the
-five Rust engines. Audio and MIDI run natively; the React controls run offline
+JP-8000 offers a firmware-free Rust engine for auditioning, alongside the existing
+native firmware emulator. The default build selects the emulator; the Rust-only
+build described below omits its library and firmware resources. Audio and MIDI run natively; the React controls run offline
 in a bundled WebKit view. No web server or account is needed to play.
 
 ## Engines and controls
@@ -62,7 +63,8 @@ iPad audio route. Keyboard power requirements depend on the adapter and keyboard
 
 Requirements: macOS with full Xcode and the relevant platform SDK, Node.js 22.12+
 (or a compatible newer version), npm, Python 3, CMake, and Rust installed with rustup.
-The JP-8000 engine requires a private copy of the verified v1.05 ROM.
+The default JP-8000 emulator build requires a private copy of the verified v1.05 ROM.
+The Rust-only build requires no ROM or firmware preparation.
 The iPad deployment target is iPadOS 16; the native Mac preview requires macOS 13
 and Apple Silicon.
 
@@ -95,7 +97,24 @@ For Xcode's graphical build workflow, first run
 `bash Scripts/prepare-assets.sh`, then open `MDLR.xcodeproj`, select the MDLR
 scheme and your destination, and configure your own signing team for a device.
 
-### Install on your iPad
+### Firmware-free JP-8000 on iPad
+
+Use the current Rust engine with the same controls and the other instruments:
+
+```sh
+rustup target add aarch64-apple-ios
+MDLR_JP8000_RUST_ONLY=1 MDLR_DEVICE='Your iPad' MDLR_APPLE_TEAM='YOUR_TEAM_ID' \
+  bash Scripts/install-ipad.sh
+```
+
+This builds a Release app, signs it with your development team, installs and
+launches it. No `prepare.py` or firmware files are needed. Select **JP-8000** in
+the app; its LCD shows **JP-8000 RUST / EXPERIMENTAL**. This version has editable
+Upper/Lower parts and eight voices, but factory bank loading, performance
+Save/Load and hardware panel-button emulation remain unavailable. Sound parity
+is still being refined. See the [Rust engine guide](docs/jp8000-rust.md).
+
+### Install the default emulator build on your iPad
 
 Connect and unlock the iPad, trust the Mac, and enable Developer Mode. Use your
 own development team and device name or identifier:
@@ -123,7 +142,7 @@ development build expires and must be signed again periodically.
 
 ```sh
 cargo test --release --manifest-path Rust/Cargo.toml
-xcrun swiftc -parse-as-library App/InstrumentModel.swift Tests/InstrumentModelTests.swift -o /tmp/mdlr-model-tests
+xcrun swiftc -parse-as-library App/InstrumentModel.swift App/PianoKeyboard.swift Tests/InstrumentModelTests.swift -o /tmp/mdlr-model-tests
 /tmp/mdlr-model-tests App/Engines.json
 clang++ -std=c++17 -O2 Tests/SynthRoutingTests.cpp -o /tmp/mdlr-routing-tests
 /tmp/mdlr-routing-tests

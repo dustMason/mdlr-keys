@@ -11,6 +11,7 @@ export type JPPart = 0 | 1 | 2;
 export type JPAction = {type:'jpAction';engine:4;action:'part'|'patch'|'performance'|'panel';value:number};
 export type JP8000State = {
   ready:boolean;status:string;lcd:string[];part:JPPart;params:Record<number,number>;
+  backend?:string;supported_parameter_ids?:number[];supported_parameter_values?:Record<number,number[]>;supported_waveforms?:number[];supported_edit_parts?:number[];
   patch_name?:string|{upper?:string;lower?:string};midi_channels?:number[];
 };
 export type JPParam=ParamDefinition & {group:string;labels?:string[]};
@@ -36,12 +37,12 @@ function JPModule(props:ModuleRenderProps){
   return <JP8000Panel params={props.module.params} onParameter={(id,value)=>props.onParamChange(props.module.id,id,value)} onAction={()=>{}}/>;
 }
 type Props={native?:boolean;state?:JP8000State;params:Record<number,number>;onParameter:(id:number,value:number)=>void;onAction:(message:JPAction)=>void};
-type ControlProps={param:JPParam;value:number;onChange:(value:number)=>void;label?:string};
+type ControlProps={param:JPParam;value:number;onChange:(value:number)=>void;label?:string;disabled?:boolean};
 
-function Dial({param,value,onChange,label}:ControlProps){
+function Dial({param,value,onChange,label,disabled=false}:ControlProps){
   const named={...param,label:label??param.label};
   const control=useKnobControl({param:named,value,onChange,displayFormatter:next=>display(param,next)});
-  return <div className="jpDial" data-control={param.key}>
+  return <div className={`jpDial ${disabled?'jpUnsupported':''}`} inert={disabled} aria-disabled={disabled||undefined} data-control={param.key}>
     <span className="jpControlLabel">{label??param.label}</span>
     <span {...control.faceProps} className="jpDialFace"
       data-param-id={param.id} style={{'--jp-angle':`${control.degrees}deg`} as CSSProperties}>
@@ -52,8 +53,8 @@ function Dial({param,value,onChange,label}:ControlProps){
     <output className="jpValue" aria-hidden="true">{display(param,value)}</output>
   </div>;
 }
-function Fader({param,value,onChange,label}:ControlProps){
-  return <div className="jpFaderWrap" data-control={param.key}>
+function Fader({param,value,onChange,label,disabled=false}:ControlProps){
+  return <div className={`jpFaderWrap ${disabled?'jpUnsupported':''}`} inert={disabled} aria-disabled={disabled||undefined} data-control={param.key}>
     <TouchFader param={{...param,label:label??param.label}} value={value} onChange={onChange}
       theme="six" label={label??param.label} className="jpFader" displayFormatter={next=>display(param,next)}/>
     <output className="jpValue" aria-hidden="true">{display(param,value)}</output>
@@ -67,24 +68,30 @@ export function JP8000Panel({native=false,state,params,onParameter,onAction}:Pro
   const [view,setView]=useState<'sound'|'perform'|'assign'|'panel'>('sound');
   const [assignment,setAssignment]=useState<'ribbon'|'velocity'>('ribbon');
   const ready=state?.ready===true, part=state?.part??0;
+  const experimental=state?.backend==='rust-experimental';
+  const allowed=(key:string)=>!experimental||(state?.supported_parameter_ids??[]).includes(p(key).id);
+  const valueAllowed=(key:string,next:number)=>!experimental||(key==='Osc1Waveform'?state?.supported_waveforms?.includes(next)===true:
+    state?.supported_parameter_values?.[p(key).id]?.includes(next)??true);
   const statusText=ready?(state?.status||'Ready'):(native?(state?.status||'Starting JP-8000...'):'Visual preview · audio in the native app.');
-  const expandedStatus=!ready||/\b(error|failed|failure|unavailable|missing)\b/i.test(statusText);
+  const expandedStatus=experimental||!ready||/\b(error|failed|failure|unavailable|missing)\b/i.test(statusText);
   const values={...params,...state?.params};
   const value=(key:string)=>values[p(key).id]??p(key).defaultValue;
-  const change=(key:string,next:number)=>{if(ready)onParameter(p(key).id,Math.round(next));};
-  const action=(name:JPAction['action'],next:number)=>{if(ready)onAction({type:'jpAction',engine:4,action:name,value:next});};
-  const control=(key:string,label?:string):ControlProps=>({param:p(key),value:value(key),label,onChange:next=>change(key,next)});
+  const change=(key:string,next:number)=>{if(ready&&allowed(key)&&valueAllowed(key,Math.round(next)))onParameter(p(key).id,Math.round(next));};
+  const partAllowed=(next:number)=>!experimental||(state?.supported_edit_parts??[]).includes(next);
+  const action=(name:JPAction['action'],next:number)=>{if(ready&&(!experimental||(name==='part'&&partAllowed(next))))onAction({type:'jpAction',engine:4,action:name,value:next});};
+  const control=(key:string,label?:string):ControlProps=>({param:p(key),value:value(key),label,disabled:!allowed(key),onChange:next=>change(key,next)});
   const dial=(key:string,label?:string)=><Dial key={key} {...control(key,label)}/>;
   const fader=(key:string,label?:string)=><Fader key={key} {...control(key,label)}/>;
   const menu=(key:string,label?:string)=><label className={`jpMenu ${closedMenuLabels[key]?'jpShortMenu':''}`} key={key}>
     <span className="jpControlLabel">{label??p(key).label}</span>
-    <select aria-label={label??p(key).label} title={display(p(key),value(key))} value={value(key)} onChange={e=>change(key,Number(e.target.value))}>
-      {Array.from({length:p(key).max-p(key).min+1},(_,i)=>i+p(key).min).map(v=><option key={v} value={v}>{display(p(key),v)}</option>)}
+    <select disabled={!allowed(key)} aria-label={label??p(key).label} title={display(p(key),value(key))} value={value(key)} onChange={e=>change(key,Number(e.target.value))}>
+      {Array.from({length:p(key).max-p(key).min+1},(_,i)=>i+p(key).min).map(v=><option key={v} value={v} disabled={!valueAllowed(key,v)}>{display(p(key),v)}</option>)}
     </select>{closedMenuLabels[key]&&<span className="jpClosedMenuLabel" aria-hidden="true">{closedMenuLabels[key][value(key)]??display(p(key),value(key))}</span>}</label>;
-  const toggle=(key:string,label?:string)=><button key={key} className="jpSwitch" aria-pressed={value(key)!==0}
+  const arpReady=valueAllowed('ArpMode',value('ArpMode'))&&valueAllowed('ArpBeatPattern',value('ArpBeatPattern'));
+  const toggle=(key:string,label?:string)=><button key={key} disabled={!allowed(key)||(key==='ArpSwitch'&&value(key)===0&&!arpReady)} className="jpSwitch" aria-pressed={value(key)!==0}
     onClick={()=>change(key,value(key)===0?1:0)}><span className="jpLed" aria-hidden="true"/>{label??p(key).label}</button>;
   const buttons=(key:string,labels?:string[])=><div className="jpSegments" role="group" aria-label={p(key).label}>
-    {(labels??p(key).labels??[]).map((label,i)=><button key={i} aria-pressed={value(key)===i+p(key).min}
+    {(labels??p(key).labels??[]).map((label,i)=><button key={i} disabled={!allowed(key)} aria-pressed={value(key)===i+p(key).min}
       onClick={()=>change(key,i+p(key).min)}>{label}</button>)}</div>;
   const osc=oscLabels[Math.max(0,Math.min(6,Math.round(value('Osc1Waveform'))))];
   const patchName=typeof state?.patch_name==='string'?state.patch_name:
@@ -100,23 +107,23 @@ export function JP8000Panel({native=false,state,params,onParameter,onAction}:Pro
       <div className="jpIdentity"><h1>JP-8000</h1></div>
       <div className="jpPartSelect"><span className="jpControlLabel">PANEL SELECT</span>
         <div className="jpSegments" role="group" aria-label="Panel edit part">
-          {(['UPPER','LOWER','BOTH'] as const).map((name,i)=><button key={name} disabled={!ready} aria-pressed={part===i} onClick={()=>action('part',i)}>{name}</button>)}
+          {(['UPPER','LOWER','BOTH'] as const).map((name,i)=><button key={name} disabled={!ready||!partAllowed(i)} aria-pressed={part===i} onClick={()=>action('part',i)}>{name}</button>)}
         </div>
       </div>
     </header>
     <div className="jpPresetBar">
       <label className="jpMenu jpPreset"><span className="jpControlLabel">FACTORY PERFORMANCE</span>
-        <select aria-label="Factory performance" disabled={!ready} value="" onChange={e=>action('performance',Number(e.target.value))}>
+        <select aria-label="Factory performance" disabled={!ready||experimental} value="" onChange={e=>action('performance',Number(e.target.value))}>
           <option value="" disabled>{state?.lcd?.[0]?.includes('PERFORM')?state.lcd[1]?.trim()||'Choose a performance':'Choose a performance'}</option>{factoryPerformances.map(x=><option value={x.index} key={x.index}>{x.label} · {x.name}</option>)}
         </select></label>
       <label className="jpMenu jpPreset"><span className="jpControlLabel">{part===2?'PATCH · BOTH PARTS':`PATCH · ${part===0?'UPPER':'LOWER'}`}</span>
-        <select aria-label="Factory patch" disabled={!ready} value="" onChange={e=>action('patch',Number(e.target.value))}>
+        <select aria-label="Factory patch" disabled={!ready||experimental} value="" onChange={e=>action('patch',Number(e.target.value))}>
           <option value="" disabled>{patchName||'Choose a patch'}</option>{factoryPatches.map(x=><option value={x.index} key={x.index}>{x.label} · {x.name}</option>)}
         </select></label>
       <fieldset className="jpKeyMode" disabled={!ready}><legend className="jpControlLabel">KEY MODE</legend>{buttons('KeyMode')}</fieldset>
     </div>
     <nav className={`jpViews ${expandedStatus?'jpViewsExpanded':''}`} aria-label="JP-8000 control views">
-      {([['sound','Sound'],['perform','Performance'],['assign','Assignments'],['panel','Panel']] as const).map(([id,label])=><button key={id} aria-current={view===id?'page':undefined} onClick={()=>setView(id)}>{label}</button>)}
+      {([['sound','Sound'],['perform','Performance'],['assign','Assignments'],['panel','Panel']] as const).map(([id,label])=><button key={id} disabled={experimental&&(id==='assign'||id==='panel')} aria-current={view===id?'page':undefined} onClick={()=>setView(id)}>{label}</button>)}
       {expandedStatus&&<span className="jpStatus" role="status">{statusText}</span>}
     </nav>
     <fieldset className="jpControls" disabled={!ready}><div inert={!ready}>
@@ -162,6 +169,7 @@ export function JP8000Panel({native=false,state,params,onParameter,onAction}:Pro
       <Section title="ARPEGGIATOR / RPS" className="jpArpeggio">
         <div className="jpPerformanceTop"><div className="jpKnobs">{dial('Tempo','TEMPO')}<div className="jpToggleColumn">{toggle('ArpSwitch','ON / OFF')}{toggle('ArpHold','HOLD')}</div></div>{menu('MidiSync','CLOCK SOURCE')}</div>
         {menu('ArpMode','MODE')}{menu('ArpRange','OCTAVE RANGE')}{menu('ArpBeatPattern','BEAT PATTERN')}{menu('ArpDestination','DESTINATION')}
+        {experimental&&<small className="jpControlLabel">{!arpReady?'Choose a supported mode and beat pattern to enable Arp.':'Touch keys play Arp. External MIDI uses the Remote Control Channel.'}</small>}
       </Section>
       <Section title="KEYBOARD" className="jpKeyboardSettings">
         <div className="jpPerformanceTop"><div className="jpSwitchRow">{toggle('PortamentoSwitch','PORTAMENTO')}{toggle('MonoSwitch','MONO')}{toggle('LegatoSwitch','LEGATO')}</div>
@@ -183,7 +191,7 @@ export function JP8000Panel({native=false,state,params,onParameter,onAction}:Pro
     {view==='assign'&&<JP8000Assignments source={assignment} onSourceChange={setAssignment}
       parameters={assignmentParams} values={values} oscLabels={osc} part={part}
       enableControl={assignment==='velocity'?toggle('VelocitySwitch','VELOCITY'):toggle('MorphBendAssign','MORPH BEND')}
-      velocityEnabled={value('VelocitySwitch')!==0} onParameter={(id,next)=>{if(ready)onParameter(id,next);}}/>}
+      velocityEnabled={value('VelocitySwitch')!==0} onParameter={(id,next)=>{if(ready&&!experimental)onParameter(id,next);}}/>}
     {view==='panel'&&<div className="jpHardwarePanel">
       <Section title="DISPLAY / PATCH SELECTION">
         <div className="jpPanelNavigation">

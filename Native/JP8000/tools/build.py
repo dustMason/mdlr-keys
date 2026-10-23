@@ -21,8 +21,10 @@ for mode in ['runtime','export']:
  else:
   shutil.copy2(N/'patches/esp-export-arm64.h',d/'esp_jit_arm64.h');shutil.copy2(N/'patches/esp-export-emitter.h',d/'esp_jit_emitter.h')
 base=['-std=c++20','-O3','-DNDEBUG','-fvisibility=hidden','-Wno-deprecated-anon-enum-enum-conversion','-I'+str(N/'src')]
-for p in [S,S/'cpu',S/'ronaldo',S/'framework',S/'cpu/dsp56300/source',S/'ronaldo/je8086',N/'include']:base+=['-I'+str(p)]
+for p in [S,S/'cpu',S/'ronaldo',S/'framework',S/'cpu/dsp56300/source',S/'ronaldo/je8086',S/'ronaldo/je8086/jeLib',N/'include']:base+=['-I'+str(p)]
 sources=[V/p for p in json.loads((N/'sources.json').read_text())]
+# Keep hash-listed upstream code intact; use the reviewed keyboard idle-input overlay.
+sources=[N/'patches/je8086-idle-ribbon.cpp' if p.name=='je8086.cpp' else p for p in sources]
 sources += [N/'src/logging_adapter.cpp',N/'src/filesystem_adapter.cpp']
 macsdk=subprocess.check_output(['xcrun','--sdk','macosx','--show-sdk-path'],text=True).strip()
 mac=['-target','arm64-apple-macos13.0','-isysroot',macsdk]
@@ -32,7 +34,7 @@ for p in sorted(N.rglob('*')):
  if not p.is_file() or any(x in p.relative_to(N).parts for x in ['Build','Private']):continue
  if p.suffix not in ['.cpp','.h','.hpp','.inc'] and p.name!='sources.json':continue
  fingerprint.update(str(p.relative_to(N)).encode());fingerprint.update(p.read_bytes())
- if p.relative_to(N).parts[0]=='vendor' or p.name.startswith('esp-export-') or p.name in ['aot_export.cpp','aot_key.h','sources.json']:exportprint.update(str(p.relative_to(N)).encode());exportprint.update(p.read_bytes())
+ if p.relative_to(N).parts[0]=='vendor' or p.name.startswith('esp-export-') or p.name in ['aot_export.cpp','aot_key.h','sources.json','je8086-idle-ribbon.cpp']:exportprint.update(str(p.relative_to(N)).encode());exportprint.update(p.read_bytes())
 version=fingerprint.hexdigest()
 def compile_set(mode,flags,extra):
  d=B/(mode+'-objects');d.mkdir(exist_ok=True);objs=[]

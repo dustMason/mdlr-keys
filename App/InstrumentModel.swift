@@ -76,10 +76,17 @@ private struct LastInstrumentState: Codable {
     private var jpPending: [Int:(value:Double, until:Date)] = [:]
     private var jpPendingPart: (value:Int, until:Date)?
     private var jpOperationStatus = ""
-    private var heldTouchChannels: [Int:[UInt8]] = [:]
-    private var touchSustainChannels: [UInt8] = []
+    private enum TouchRoute { case channels([UInt8]), experimentalJP }
+    private var heldTouchRoutes: [Int:TouchRoute] = [:]
+    private var touchSustainRoute: TouchRoute?
     var isJP: Bool { engine.id == 4 }
     var editsEnabled: Bool { !isJP || jpState["ready"] as? Bool == true }
+    var isExperimentalJP: Bool { isJP && jpState["backend"] as? String == "rust-experimental" }
+    func parameterEnabled(_ p: Parameter) -> Bool {
+        guard editsEnabled else { return false }
+        guard isExperimentalJP else { return true }
+        return (jpState["supported_parameter_ids"] as? [Int] ?? []).contains(p.id)
+    }
     private var poll: AnyCancellable?
     private let defaults: UserDefaults
     private let stateKey = "mdlr-last-instrument-state-v1"
@@ -177,6 +184,8 @@ private struct LastInstrumentState: Codable {
     }
     func jpAction(_ action: String, value: Int) {
         guard isJP, editsEnabled else { return }
+        let scopedPart = action == "part" && (jpState["supported_edit_parts"] as? [Int] ?? []).contains(value)
+        guard !isExperimentalJP || scopedPart else { notice = "Firmware banks and panel actions are unavailable in experimental Rust."; return }
         switch action {
         case "part" where (0...2).contains(value):
             releaseTouchNotes(); jpPending.removeAll()
@@ -215,8 +224,12 @@ private struct LastInstrumentState: Codable {
     }
     func value(_ p: Parameter) -> Double {values[selected]?[p.id] ?? p.defaultValue}
     func set(_ p: Parameter, _ v: Double) {
-        guard v.isFinite, editsEnabled else { return }
+        guard v.isFinite, parameterEnabled(p) else { return }
         let clamped = min(p.max,max(p.min,isJP ? v.rounded():v))
+        if isExperimentalJP {
+            if p.id == 30, let waves = jpState["supported_waveforms"] as? [Int], !waves.contains(Int(clamped)) { return }
+            if let choices = (jpState["supported_parameter_values"] as? [String:[Int]])?[String(p.id)], !choices.contains(Int(clamped)) { return }
+        }
         values[selected]?[p.id]=clamped
         if isJP { jpPending[p.id] = (clamped,Date().addingTimeInterval(0.5)) }
         bridge.setParameter(p.id,value:Float(clamped)); rememberPatch("Edited")
@@ -231,12 +244,14 @@ private struct LastInstrumentState: Codable {
         pushParameters(); rememberPatch(preset?.name ?? "Init")
     }
     func save() {
+        guard !isExperimentalJP else { notice = "Firmware performance saving is unavailable in experimental Rust."; return }
         guard editsEnabled else { notice = jpState["status"] as? String ?? "JP-8000 is not ready."; return }
         if isJP { bridge.jpSavePatch(); notice = "Saving JP-8000 performance…"; return }
         let data = try? JSONEncoder().encode(values[selected] ?? [:])
         defaults.set(data,forKey:"patch-\(selected)");notice="Saved this engine’s patch on this device."
     }
     func load() {
+        guard !isExperimentalJP else { notice = "Firmware performance loading is unavailable in experimental Rust."; return }
         guard editsEnabled else { notice = jpState["status"] as? String ?? "JP-8000 is not ready."; return }
         if isJP { panic(); jpPending.removeAll(); bridge.jpRestorePatch(); notice = "Loading JP-8000 performance…"; return }
         guard let data=defaults.data(forKey:"patch-\(selected)"), let saved=try? JSONDecoder().decode([Int:Double].self,from:data) else {notice="No saved patch for this engine yet.";return}
@@ -254,25 +269,47 @@ private struct LastInstrumentState: Codable {
             return UInt8(channels[index])
         })).sorted()
     }
+    private var touchRoute: TouchRoute { isExperimentalJP ? .experimentalJP : .channels(touchChannels) }
+    @discardableResult private func sendTouch(_ route: TouchRoute, status: UInt8, data1: UInt8, data2: UInt8) -> Bool {
+        switch route {
+        case .experimentalJP:
+            // The audio owner resolves committed Arp/Remote/part controls in
+            // queue order. No wait for the UI's pending-value reconciliation.
+            let accepted = bridge.sendJPTouchStatus(status,data1:data1,data2:data2)
+            if !accepted { notice = "Touch input was not queued. Release and try again." }
+            return accepted
+        case .channels(let channels):
+            for channel in channels { bridge.sendStatus(status | channel,data1:data1,data2:data2) }
+            return true
+        }
+    }
     func note(_ note: Int, down: Bool) {
         guard (0...127).contains(note), !down || editsEnabled else { return }
-        let channels = down ? touchChannels : heldTouchChannels.removeValue(forKey:note) ?? []
-        if down { heldTouchChannels[note] = channels }
-        for channel in channels { bridge.sendStatus((down ? 0x90:0x80) | channel,data1:UInt8(note),data2:down ? 100:0) }
+        if down {
+            guard heldTouchRoutes[note] == nil else { return }
+            let route = touchRoute
+            if sendTouch(route,status:0x90,data1:UInt8(note),data2:100) { heldTouchRoutes[note] = route }
+        } else if let route = heldTouchRoutes.removeValue(forKey:note) {
+            sendTouch(route,status:0x80,data1:UInt8(note),data2:0)
+        }
     }
     func setSustain(_ enabled: Bool) {
         guard !enabled || editsEnabled else { sustain = false; return }
-        let channels = enabled ? touchChannels : touchSustainChannels
-        touchSustainChannels = enabled ? channels : []
-        for channel in channels { bridge.sendStatus(0xb0 | channel,data1:64,data2:enabled ? 127:0) }
+        if enabled {
+            guard touchSustainRoute == nil else { return }
+            let route = touchRoute
+            if sendTouch(route,status:0xb0,data1:64,data2:127) { touchSustainRoute = route }
+            else { sustain = false }
+        } else if let route = touchSustainRoute {
+            touchSustainRoute = nil
+            sendTouch(route,status:0xb0,data1:64,data2:0)
+        }
     }
     private func releaseTouchNotes() {
-        for (note,channels) in heldTouchChannels {
-            for channel in channels { bridge.sendStatus(0x80 | channel,data1:UInt8(note),data2:0) }
-        }
-        heldTouchChannels.removeAll(); setSustain(false); sustain = false
+        for (note,route) in heldTouchRoutes { sendTouch(route,status:0x80,data1:UInt8(note),data2:0) }
+        heldTouchRoutes.removeAll(); setSustain(false); sustain = false
     }
-    func panic(){bridge.panic();heldTouchChannels.removeAll();touchSustainChannels.removeAll();sustain=false}
+    func panic(){bridge.panic();heldTouchRoutes.removeAll();touchSustainRoute=nil;sustain=false}
     func startAudio(){if !bridge.running {_=bridge.start()};running=bridge.running;status=bridge.status}
     func toggleAudio(){if bridge.running {bridge.stop();running=bridge.running;status=bridge.status} else {startAudio()}}
 }

@@ -1,4 +1,14 @@
 import SwiftUI
+// A displayed octave can change while a mouse gesture is held. Release the
+// pitch pressed at its start, and emit at most one down/up per gesture.
+struct TouchKeyOrigin {
+    private var pitch:Int?
+    var isHeld:Bool { pitch != nil }
+    mutating func press(_ note:Int) -> Int? {
+        guard pitch == nil else { return nil };pitch=note;return note
+    }
+    mutating func release() -> Int? { defer { pitch=nil };return pitch }
+}
 #if os(iOS)
 import UIKit
 struct PianoKeyboard: UIViewRepresentable {
@@ -43,8 +53,8 @@ private struct MacKey:View{
     let note:Int
     let accent:Color
     let changed:(Int,Bool)->Void
-    @State private var held=false
+    @State private var origin=TouchKeyOrigin()
     private var black:Bool{[1,3,6,8,10].contains(note%12)}
-    var body:some View{RoundedRectangle(cornerRadius:4).fill(held ? accent:black ? Color(white:0.17):Color(white:0.87)).overlay(alignment:.bottom){Text(note%12==0 ? "C\(note/12-1)":"").font(.caption).foregroundStyle(.gray).padding(.bottom,8)}.gesture(DragGesture(minimumDistance:0).onChanged{_ in if !held{held=true;changed(note,true)}}.onEnded{_ in held=false;changed(note,false)}).onDisappear{if held{changed(note,false)}}}
+    var body:some View{RoundedRectangle(cornerRadius:4).fill(origin.isHeld ? accent:black ? Color(white:0.17):Color(white:0.87)).overlay(alignment:.bottom){Text(note%12==0 ? "C\(note/12-1)":"").font(.caption).foregroundStyle(.gray).padding(.bottom,8)}.gesture(DragGesture(minimumDistance:0).onChanged{_ in if let held=origin.press(note){changed(held,true)}}.onEnded{_ in if let held=origin.release(){changed(held,false)}}).onDisappear{if let held=origin.release(){changed(held,false)}}}
 }
 #endif

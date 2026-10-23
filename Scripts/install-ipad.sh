@@ -3,6 +3,11 @@ set -euo pipefail
 PROJECT_ROOT="$(cd "$(dirname "$0")/.." && pwd)"
 DEVICE="${MDLR_DEVICE:?Set MDLR_DEVICE to your connected iPad name or identifier}"
 TEAM="${MDLR_APPLE_TEAM:?Set MDLR_APPLE_TEAM to your own Xcode development team ID}"
+RUST_ONLY="${MDLR_JP8000_RUST_ONLY:-0}"
+case "$RUST_ONLY" in
+    0|1) ;;
+    *) echo "MDLR_JP8000_RUST_ONLY must be 0 or 1" >&2; exit 2 ;;
+esac
 # Connect, unlock, trust this Mac, and enable Developer Mode before running.
 DETAILS="$(mktemp)"
 trap 'rm -f "$DETAILS"' EXIT
@@ -19,6 +24,7 @@ bash "$PROJECT_ROOT/Scripts/prepare-assets.sh"
 xcodebuild -project "$PROJECT_ROOT/MDLR.xcodeproj" -scheme MDLR -sdk iphoneos -configuration Release \
     -destination "platform=iOS,id=$DEVICE_UDID" -destination-timeout 30 \
     SYMROOT="$PROJECT_ROOT/Build/Signed" OBJROOT="$PROJECT_ROOT/Build/SignedIntermediates" \
+    MDLR_JP8000_RUST_ONLY="$RUST_ONLY" \
     DEVELOPMENT_TEAM="$TEAM" -allowProvisioningUpdates -allowProvisioningDeviceRegistration build
 APP="$PROJECT_ROOT/Build/Signed/Release-iphoneos/MDLR.app"
 codesign --verify --deep --strict "$APP"

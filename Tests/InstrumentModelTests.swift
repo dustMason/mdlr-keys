@@ -11,6 +11,11 @@ final class SynthBridge {
     var jpSnapshot = "{}"
     var jpActions: [(String,Int)] = []
     var midi: [(UInt8,UInt8,UInt8)] = []
+    var touchMidi: [(UInt8,UInt8,UInt8)] = []
+    var acceptTouch = true
+    func sendJPTouchStatus(_ status:UInt8,data1:UInt8,data2:UInt8) -> Bool {
+        guard acceptTouch else { return false };touchMidi.append((status,data1,data2));return true
+    }
     func jpSelectPart(_ value: Int) { jpActions.append(("part",value)) }
     func jpLoadPatch(_ value: Int) { jpActions.append(("patch",value)) }
     func jpLoadPerformance(_ value: Int) { jpActions.append(("performance",value)) }
@@ -198,6 +203,80 @@ final class SynthBridge {
         jpRestored.set(cutoff,91.8)
         assert(jpRestored.bridge.parameters[41] == 92, "Firmware parameter bytes must be integers")
         assert(jpDefinition.params.first{$0.id == 2022}!.display(4) == "Lower 2 · Upper 6")
+        jpRestored.bridge.jpSnapshot = "{\"ready\":true,\"backend\":\"rust-experimental\",\"part\":0,\"params\":{\"41\":73,\"30\":5},\"supported_parameter_ids\":[30,41],\"supported_waveforms\":[0,5],\"midi_channels\":[0,16]}"
+        jpRestored.refreshJP()
+        let effect = jpDefinition.params.first{$0.id == 61}!
+        let wave = jpDefinition.params.first{$0.id == 30}!
+        assert(jpRestored.isExperimentalJP && jpRestored.parameterEnabled(cutoff) && !jpRestored.parameterEnabled(effect))
+        let beforeRustValues = jpRestored.bridge.parameters
+        let beforeRustActions = jpRestored.bridge.jpActions.count
+        jpRestored.set(effect,1); jpRestored.set(wave,1)
+        jpRestored.jpAction("patch",value:0); jpRestored.save(); jpRestored.load()
+        assert(jpRestored.bridge.parameters == beforeRustValues && jpRestored.bridge.jpActions.count == beforeRustActions, "Experimental UI rejects unsupported controls, waves and firmware actions")
+        jpRestored.set(wave,0)
+        assert(jpRestored.bridge.parameters[30] == 0)
+        let osc2 = jpDefinition.params.first{$0.id == 33}!
+        assert(!jpRestored.parameterEnabled(osc2))
+        jpRestored.bridge.jpSnapshot = #"{"ready":true,"backend":"rust-experimental","part":0,"params":{"41":73,"30":5,"33":0},"supported_parameter_ids":[30,33,34,41],"supported_waveforms":[0,1,2,3,4,5,6],"midi_channels":[0,16]}"#
+        jpRestored.refreshJP()
+        assert(jpRestored.parameterEnabled(osc2) && !jpRestored.parameterEnabled(effect))
+        jpRestored.set(osc2,2); jpRestored.set(wave,4)
+        assert(jpRestored.bridge.parameters[33] == 2 && jpRestored.bridge.parameters[30] == 4, "New ABI capabilities and waveforms must enable controls without a hardcoded UI list")
+        jpRestored.bridge.jpSnapshot = #"{"ready":true,"backend":"rust-experimental","part":0,"params":{"2024":3,"2025":51},"supported_parameter_ids":[2023,2024,2025,2026,2027],"supported_parameter_values":{"2024":[0,1,2],"2025":[4]},"midi_channels":[0,1]}"#
+        jpRestored.refreshJP()
+        let arpMode = jpDefinition.params.first{$0.id == 2024}!
+        let arpPattern = jpDefinition.params.first{$0.id == 2025}!
+        let beforeEnumChanges = jpRestored.bridge.parameters
+        jpRestored.set(arpMode,3); jpRestored.set(arpMode,4); jpRestored.set(arpPattern,51)
+        assert(jpRestored.bridge.parameters == beforeEnumChanges)
+        assert(jpRestored.value(arpMode) == 3 && jpRestored.value(arpPattern) == 51, "Unsupported stored values stay visible until an accepted edit")
+        jpRestored.set(arpMode,2); jpRestored.set(arpPattern,4)
+        assert(jpRestored.bridge.parameters[2024] == 2 && jpRestored.bridge.parameters[2025] == 4)
+        jpRestored.bridge.jpSnapshot = #"{"ready":true,"backend":"rust-experimental","part":0,"params":{"2024":2,"2025":4},"supported_parameter_ids":[2023,2024,2025,2026,2027],"supported_parameter_values":{"2024":[0,1,2,3],"2025":[4]},"midi_channels":[0,1]}"#
+        jpRestored.refreshJP();jpRestored.set(arpMode,3)
+        assert(jpRestored.bridge.parameters[2024] == 3 && jpRestored.value(arpMode) == 3, "Random becomes editable from the engine value capability snapshot")
+        print("PASS: experimental JP capabilities reject unsupported controls and enum values, preserve readback, and react to updated ABI coverage.")
+        // Experimental touch events carry no guessed MIDI channel. The host
+        // resolves controls in the same queue, including pending/rejected edits.
+        let touchDefaults=UserDefaults(suiteName:"touch-routing-"+UUID().uuidString)!
+        let touch=InstrumentModel(defaults:touchDefaults,definitions:definitions+[jpDefinition])
+        touch.select(4)
+        touch.bridge.jpSnapshot = #"{"ready":true,"backend":"rust-experimental","part":0,"params":{"2023":0,"3009":2},"supported_parameter_ids":[2023,3009,2018],"supported_edit_parts":[0,1,2],"midi_channels":[0,1]}"#
+        touch.refreshJP()
+        let arpSwitch=jpDefinition.params.first{$0.id==2023}!
+        let remoteChannel=jpDefinition.params.first{$0.id==3009}!
+        touch.set(arpSwitch,1);touch.set(remoteChannel,5)
+        touch.note(60,down:true);touch.note(60,down:true)
+        assert(touch.bridge.midi.isEmpty && touch.bridge.touchMidi.count==1)
+        assert(touch.bridge.touchMidi[0].0==0x90 && touch.bridge.touchMidi[0].1==60)
+        // Even incomplete snapshots and rejected optimistic values cannot
+        // overwrite a gesture's release route.
+        touch.bridge.jpSnapshot = #"{"ready":true,"backend":"rust-experimental","state_syncing":true}"#
+        touch.refreshJP();touch.note(60,down:false);touch.note(60,down:false)
+        assert(touch.bridge.touchMidi.count==2 && touch.bridge.touchMidi.last!.0==0x80)
+        touch.setSustain(true);touch.setSustain(true)
+        assert(touch.bridge.touchMidi.count==3 && touch.bridge.touchMidi.last!.2==127)
+        touch.bridge.jpSnapshot = #"{"ready":false,"status":"Audio changing"}"#
+        touch.refreshJP();touch.setSustain(false)
+        assert(touch.bridge.touchMidi.count==4 && touch.bridge.touchMidi.last!.2==0)
+        touch.bridge.jpSnapshot = #"{"ready":true,"backend":"rust-experimental","part":0,"supported_edit_parts":[0,1,2]}"#
+        touch.refreshJP();touch.bridge.acceptTouch=false
+        touch.note(61,down:true);touch.note(61,down:false);touch.setSustain(true)
+        assert(touch.bridge.touchMidi.count==4 && !touch.sustain && !touch.notice.isEmpty)
+        touch.bridge.acceptTouch=true;touch.note(61,down:true);touch.setSustain(true)
+        touch.jpAction("part",value:1)
+        assert(touch.bridge.touchMidi.suffix(2).map{$0.0}==[0x80,0xb0])
+        assert(touch.bridge.jpActions.last!.0=="part")
+        let beforePanic=touch.bridge.touchMidi.count
+        touch.note(62,down:true);touch.panic();touch.note(62,down:false)
+        assert(touch.bridge.touchMidi.count==beforePanic+1)
+        touch.note(-1,down:true);touch.note(128,down:true)
+        assert(touch.bridge.touchMidi.count==beforePanic+1)
+        var key=TouchKeyOrigin()
+        assert(key.press(60)==60 && key.press(72)==nil)
+        assert(key.release()==60 && key.release()==nil)
+        assert(key.press(72)==72 && key.release()==72)
+        print("PASS: typed touch queue, pending/syncing snapshots, original release route, duplicate gestures, fail-fast errors, part edits, panic and octave changes.")
         let monoURL = jpURL.deletingLastPathComponent().appendingPathComponent("MonologueControls.json")
         let monoDefinition = try JSONDecoder().decode(EngineDefinition.self,from:Data(contentsOf:monoURL))
         let allDefinitions = definitions + [jpDefinition,monoDefinition]

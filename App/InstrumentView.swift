@@ -30,7 +30,7 @@ struct InstrumentView: View {
                     ScrollView {
                         LazyVGrid(columns:[GridItem(.adaptive(minimum:geometry.size.width<700 ? 160:205),spacing:12)],spacing:12) {
                             ForEach(model.engine.params.filter{$0.group==model.section}) { p in
-                                ParameterControl(parameter:p,value:Binding(get:{model.value(p)},set:{model.set(p,$0)}),accent:accent)
+                                ParameterControl(parameter:p,value:Binding(get:{model.value(p)},set:{model.set(p,$0)}),accent:accent).disabled(!model.parameterEnabled(p))
                             }
                         }.padding(8).disabled(!model.editsEnabled)
                     }.frame(maxHeight:.infinity)
