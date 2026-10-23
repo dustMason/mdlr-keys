@@ -47,6 +47,9 @@ struct RenderCore {
     BOOL _wanted;
     BOOL _monoOutput;
     NSString *_jpSavedPatch;
+#if TARGET_OS_IOS
+    NSUInteger _audioConfigurationLogCount;
+#endif
 }
 - (instancetype)init {
     if((self=[super init])) {
@@ -117,6 +120,31 @@ struct RenderCore {
     _connected=std::move(sources);
     _midiSources=names.count?[names componentsJoinedByString:@" · "]:@"No MIDI keyboard connected";
 }
+#if TARGET_OS_IOS
+// Control-thread diagnostics only: no work is added to the render block.
+- (void)logAudioConfiguration:(NSString *)reason {
+    if(!NSThread.isMainThread){
+        dispatch_async(dispatch_get_main_queue(),^{[self logAudioConfiguration:reason];});return;
+    }
+    if(_audioConfigurationLogCount>=32)return;
+    ++_audioConfigurationLogCount;
+    AVAudioSession *session=AVAudioSession.sharedInstance;
+    AVAudioFormat *sourceFormat=[_source outputFormatForBus:0];
+    NSArray<AVAudioSessionPortDescription *> *outputs=session.currentRoute.outputs;
+    NSMutableString *ports=[NSMutableString string];
+    for(NSUInteger i=0;i<MIN(outputs.count,8u);++i){
+        NSString *type=outputs[i].portType;
+        if(type.length>48)type=[type substringToIndex:48];
+        [ports appendFormat:@"%@%@",i?@",":@"",type];
+    }
+    if(outputs.count>8)[ports appendString:@",..."];
+    // Session output latency is a route property, not measured MIDI-to-speaker latency.
+    NSLog(@"[MDLR Audio] event=%@ requested_rate=48000 requested_frames=128 requested_io_ms=2.667 actual_rate=%.0f actual_io_ms=%.3f session_output_latency_ms=%.3f source_rate=%.0f source_channels=%u source_format=%lu source_interleaved=%d ports=[%@] running=%d log=%lu/32",
+          reason,session.sampleRate,session.IOBufferDuration*1000,session.outputLatency*1000,
+          sourceFormat.sampleRate,(unsigned)sourceFormat.channelCount,(unsigned long)sourceFormat.commonFormat,
+          sourceFormat.isInterleaved,ports,_audio.isRunning,(unsigned long)_audioConfigurationLogCount);
+}
+#endif
 - (BOOL)start {
     _wanted=YES;if(_audio.isRunning)return YES;NSError *error=nil;
 #if TARGET_OS_IOS
@@ -129,11 +157,20 @@ struct RenderCore {
     [_audio prepare];
     _core->jp->setActive(_core->routing.selectedEngine()==4);
     if(![_audio startAndReturnError:&error]){_core->jp->setActive(false);_status=error.localizedDescription;return NO;}
-    _status=@"Playing · 48 kHz stereo";return YES;
+    _status=@"Playing · 48 kHz stereo";
+#if TARGET_OS_IOS
+    [self logAudioConfiguration:@"start"];
+#endif
+    return YES;
 }
 - (void)stop { _wanted=NO;[self panic];[_audio stop];_core->jp->setActive(false);_status=@"Audio stopped"; }
 - (void)audioChanged:(NSNotification *)n {
-    dispatch_async(dispatch_get_main_queue(),^{if(self->_wanted){[self->_audio stop];self->_core->jp->setActive(false);[self panic];[self start];}});
+    dispatch_async(dispatch_get_main_queue(),^{
+        if(self->_wanted){[self->_audio stop];self->_core->jp->setActive(false);[self panic];[self start];}
+#if TARGET_OS_IOS
+        [self logAudioConfiguration:@"configuration-change"];
+#endif
+    });
 }
 #if TARGET_OS_IOS
 - (void)interrupted:(NSNotification *)n {
@@ -144,8 +181,11 @@ struct RenderCore {
     });
 }
 - (void)routeChanged:(NSNotification *)n {
-    if([n.userInfo[AVAudioSessionRouteChangeReasonKey] unsignedIntegerValue]==AVAudioSessionRouteChangeReasonOldDeviceUnavailable)
-        dispatch_async(dispatch_get_main_queue(),^{[self stop];});
+    const auto reason=[n.userInfo[AVAudioSessionRouteChangeReasonKey] unsignedIntegerValue];
+    dispatch_async(dispatch_get_main_queue(),^{
+        if(reason==AVAudioSessionRouteChangeReasonOldDeviceUnavailable)[self stop];
+        [self logAudioConfiguration:@"route-change"];
+    });
 }
 #endif
 - (BOOL)running{return _audio.isRunning;}

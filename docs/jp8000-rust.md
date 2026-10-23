@@ -56,6 +56,13 @@ runs at 88.2 kHz and a causal resampler feeds the 48 kHz app stream with a nomin
 0.720 ms group delay. There is no future-audio worker queue. This is not a
 measurement of iPad MIDI-to-speaker latency.
 
+For device checks, look for `[MDLR Audio]` in the Xcode console. On startup and
+audio configuration or route changes, the app logs the requested and actual
+sample rate and buffer duration, source format, output port types and the
+session output-latency property. Logging runs on the main thread and stops after
+32 records. These values describe the audio configuration; they
+are not a measurement of end-to-end MIDI-to-speaker latency.
+
 ## Validation
 
 The current integrated core passed 436 release tests and a 524,288-frame
