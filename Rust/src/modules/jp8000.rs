@@ -295,7 +295,8 @@ struct DspFilter {
     damping_target: i64,
     cutoff_rate: i64,
     cutoff_fast: u16,
-    damping_fast: u16,
+    // Installed by controller publication; elapsed samples do not change it.
+    damping_rate: u16,
 }
 impl DspFilter {
     fn new() -> Self {
@@ -309,7 +310,7 @@ impl DspFilter {
             damping_target: 4194304,
             cutoff_rate: 8,
             cutoff_fast: 0,
-            damping_fast: 0,
+            damping_rate: 0x40,
         }
     }
     fn process(&mut self, input: i64, filter_type: u16, slope: u16) -> i64 {
@@ -326,14 +327,12 @@ impl DspFilter {
             self.cutoff_fast -= 1;
         }
         let damping_delta = sat24(self.damping_target - self.damping);
-        self.damping += if self.damping_fast > 0 {
+        self.damping += if self.damping_rate == 0x7000 {
             (damping_delta * 112) >> 7
         } else {
+            debug_assert_eq!(self.damping_rate, 0x40);
             damping_delta >> 9
         };
-        if self.damping_fast > 0 {
-            self.damping_fast -= 1;
-        }
         let [old_l1, old_b1, old_l2, old_b2] = self.state;
         let l1 = sat24(old_l1 + qmul(old_b1, self.cutoff, 7));
         let h1 = sat24(input - sat24(l1 + qmul(old_b1, self.damping, 6)));
@@ -966,7 +965,7 @@ impl Jp8000Voice {
             // control tick; the native engine adds no UART delay to notes.
             self.filter.cutoff_fast = next_tick;
             self.coefficient_fast = next_tick + 882;
-            self.filter.damping_fast = self.coefficient_fast;
+            self.publish_filter_damping_rate();
             self.amp_scheduler.full_allocation(Destination::Amp);
             self.filter_scheduler.full_allocation(Destination::Filter);
             self.amp.on();
@@ -1243,7 +1242,10 @@ impl Jp8000Voice {
             {
                 self.update_modulation();
             }
-            if owner_valid && periodic_voice_active { self.publish_osc2_ratio_rate(); }
+            if owner_valid && periodic_voice_active {
+                self.publish_filter_damping_rate();
+                self.publish_osc2_ratio_rate();
+            }
             self.commit_amp_target();
             if periodic_voice_active {
                 self.commit_filter_target();
@@ -1639,6 +1641,16 @@ impl Jp8000Voice {
     }
     fn refresh_osc2_ratio_rate_cache(&mut self) {
         self.osc2_ratio_rate_cache = if matches!(self.controls[35], 0 | 50) { 0x40 } else { 0x80 };
+    }
+    // The H8 B5 loader byte also controls the filter damping-rate writer.
+    // Allocation and qualified periodic updates publish; other stages retain.
+    // Future selected/waiting filter starts must call this at their own boundary.
+    fn publish_filter_damping_rate(&mut self) {
+        match self.osc2_loader_stage {
+            3 => self.filter.damping_rate = 0x7000,
+            1 => self.filter.damping_rate = 0x40,
+            _ => {},
+        }
     }
     fn publish_osc2_ratio_rate(&mut self) {
         match self.osc2_loader_stage {
@@ -2502,7 +2514,7 @@ mod tests {
         let loaders = (
             v.coefficient_fast,
             v.filter.cutoff_fast,
-            v.filter.damping_fast,
+            v.filter.damping_rate,
         );
         v.note_on(67, 100);
         assert_eq!(
@@ -2517,7 +2529,7 @@ mod tests {
             (
                 v.coefficient_fast,
                 v.filter.cutoff_fast,
-                v.filter.damping_fast
+                v.filter.damping_rate
             ),
             loaders
         );
@@ -4689,4 +4701,79 @@ mod osc2_publication_tests {
         assert!(v.apply_patch(&[30,34], &[4,2]).is_err());
         assert_eq!((rate(&v),v.params,v.controls,v.amp.until_tick),before);
     }
+}
+
+#[cfg(test)]
+mod filter_damping_publication_tests {
+    use super::*;
+    fn held() -> Jp8000Voice {
+        let mut v=Jp8000Voice::new_pre_output();
+        v.apply_patch(&[30,54,55,56,57], &[5,0,0,127,0]).unwrap();
+        v.note_on(60,100); v
+    }
+    fn tick(v: &mut Jp8000Voice, owner: bool) {
+        v.amp.until_tick=0;
+        v.next_voice_frame_for_owner(None,None,false,owner);
+    }
+    #[test]
+    fn ordinary_allocation_and_active_controller_publish_fast_then_normal() {
+        let mut v=held();
+        assert_eq!((v.osc2_loader_stage,v.filter.damping_rate),(3,0x7000));
+        tick(&mut v,true);assert_eq!((v.osc2_loader_stage,v.filter.damping_rate),(2,0x7000));
+        tick(&mut v,true);assert_eq!((v.osc2_loader_stage,v.filter.damping_rate),(1,0x40));
+        tick(&mut v,true);assert_eq!((v.osc2_loader_stage,v.filter.damping_rate),(0,0x40));
+    }
+    #[test]
+    fn idle_consumes_normal_publication_before_later_amp_start() {
+        let mut v=held();v.trigger_amp_release(80);
+        tick(&mut v,true);assert_eq!(v.amp.stage,Stage::Idle);
+        tick(&mut v,true);tick(&mut v,true);
+        assert_eq!((v.osc2_loader_stage,v.filter.damping_rate),(0,0x7000));
+        v.trigger_amp_start_after_cache();tick(&mut v,true);
+        assert_ne!(v.amp.stage,Stage::Idle);
+        assert_eq!(v.filter.damping_rate,0x7000);
+    }
+    #[test]
+    fn invalid_owner_consumes_stage_without_publishing() {
+        let mut v=held();tick(&mut v,false);tick(&mut v,false);tick(&mut v,false);
+        assert_eq!((v.osc2_loader_stage,v.filter.damping_rate),(0,0x7000));
+        tick(&mut v,true);assert_eq!(v.filter.damping_rate,0x7000);
+    }
+    #[test]
+    fn explicit_waveform_rearm_waits_for_qualified_periodic_writer() {
+        let mut v=held();v.set_parameter(30,5).unwrap();
+        assert_eq!((v.osc2_loader_stage,v.filter.damping_rate),(2,0x7000));
+        tick(&mut v,true);
+        assert_eq!((v.osc2_loader_stage,v.filter.damping_rate),(1,0x40));
+    }
+    #[test]
+    fn elapsed_dsp_frames_do_not_expire_installed_damping_rate() {
+        let mut f=DspFilter::new();f.damping_rate=0x7000;
+        for _ in 0..4096 {f.process(0,2,1);}
+        assert_eq!(f.damping_rate,0x7000);
+    }
+    #[test]
+    fn both_installed_rates_preserve_exact_integer_recurrence() {
+        for rate in [0x40,0x7000] {
+            for current in [-8_388_608,-2049,0,4096,8_388_607] {
+                for target in [-8_388_608,-127,0,4194304,8_388_607] {
+                    let mut f=DspFilter::new();f.damping=current;f.damping_target=target;f.damping_rate=rate;
+                    let delta=sat24(target-current);
+                    let expected=current+if rate==0x7000 {(delta*112)>>7}else{delta>>9};
+                    f.process(0,2,1);assert_eq!(f.damping,expected);
+                }
+            }
+        }
+    }
+    #[test]
+    fn normal_publication_uses_controller_phase_including_immediate_tick() {
+        for phase in [0,1,314,881] {
+            let mut v=held();v.set_control_phase(phase).unwrap();
+            for _ in 0..usize::from(phase)+882 {v.next_sample(RenderTap::Output);}
+            assert_eq!(v.filter.damping_rate,0x7000);
+            v.next_sample(RenderTap::Output);
+            assert_eq!((v.osc2_loader_stage,v.filter.damping_rate),(1,0x40));
+        }
+    }
+
 }

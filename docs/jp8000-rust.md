@@ -65,20 +65,27 @@ are not a measurement of end-to-end MIDI-to-speaker latency.
 
 ## Validation
 
-The current integrated core passed 436 release tests and a 524,288-frame
-zero-allocation workload. The OSC2 timing correction matched 169 checked native
-controller fields and five ordered coefficient updates. All 15 selected factory
-recordings remained byte-identical to the previous Rust core; nine separate
-corrected-input comparisons also stayed unchanged. This correction covers live
-oscillator-control updates and preserves the existing audio buffer size.
+The current integrated core passed 443 release tests and a 524,288-frame
+zero-allocation workload. Filter damping now retains its installed rate until
+the controller publishes a replacement. Allocation installs the fast rate;
+qualified control ticks install the normal rate at loader stage 1. Idle or
+invalid-owner slots can consume that stage without publishing, so elapsed DSP
+samples alone cannot expire the fast rate. The earlier OSC2 correction matched
+169 checked native controller fields and five ordered coefficient updates.
 
-A fresh host callback comparison exercised 33 configurations and 198,000
+All 15 selected factory recordings remained byte-identical after the damping
+change; nine separate corrected-input comparisons also stayed unchanged.
+These captures verify preserved output, not an audible parity improvement.
+The change adds no buffering. Future selected/waiting filter starts still need
+their own publication boundaries before Individual Trigger can be enabled.
+
+Before the damping change, a host callback comparison exercised 33 configurations and 198,000
 callbacks per version. Both versions had zero callback render-budget overruns
 and zero observed C++ callback allocations. At 64-frame/48 kHz blocks, the
 candidate's largest per-configuration 99th percentile was 0.080 ms against a 1.333 ms block budget. These are software
 callback measurements on the development Mac, not iPad MIDI-to-speaker latency.
 
-A separate matched dry-Saw comparison used the current Rust and firmware app
+A separate matched dry-Saw comparison used the preceding Rust and firmware app
 hosts, immediate MIDI, and a fixed firmware/Rust/Rust/firmware order. At both
 64- and 128-frame blocks, all 16 onset trials per engine qualified: median Rust
 onset was 0.750 ms versus 9.094 and 9.083 ms for firmware, respectively. Onset is

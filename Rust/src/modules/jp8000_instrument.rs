@@ -2122,7 +2122,7 @@ mod tests {
         let windows = [
             v.coefficient_fast,
             v.filter.cutoff_fast,
-            v.filter.damping_fast,
+            v.filter.damping_rate,
         ];
         p.midi(0x90, 67, 100).unwrap();
         let v = &p.voices[0];
@@ -2141,7 +2141,7 @@ mod tests {
             [
                 v.coefficient_fast,
                 v.filter.cutoff_fast,
-                v.filter.damping_fast
+                v.filter.damping_rate
             ],
             windows
         );
