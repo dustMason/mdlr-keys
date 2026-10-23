@@ -66,10 +66,28 @@ corrected-input comparisons also stayed unchanged. This correction covers live
 oscillator-control updates and preserves the existing audio buffer size.
 
 A fresh host callback comparison exercised 33 configurations and 198,000
-callbacks per version. Both versions had zero deadline misses and zero observed C++ callback
-allocations. At 64-frame/48 kHz blocks, the candidate's largest per-configuration
-99th percentile was 0.080 ms against a 1.333 ms block budget. These are software
+callbacks per version. Both versions had zero callback render-budget overruns
+and zero observed C++ callback allocations. At 64-frame/48 kHz blocks, the
+candidate's largest per-configuration 99th percentile was 0.080 ms against a 1.333 ms block budget. These are software
 callback measurements on the development Mac, not iPad MIDI-to-speaker latency.
+
+A separate matched dry-Saw comparison used the current Rust and firmware app
+hosts, immediate MIDI, and a fixed firmware/Rust/Rust/firmware order. At both
+64- and 128-frame blocks, all 16 onset trials per engine qualified: median Rust
+onset was 0.750 ms versus 9.094 and 9.083 ms for firmware, respectively. Onset is
+the first output sample above 1e-4, measured on the output sample timeline from
+the first post-enqueue callback. It excludes physical audio-device latency.
+The 256-frame firmware cohort had one underflow, preventing a qualified
+comparison for that buffer size.
+
+That paced desktop driver also recorded 21 Rust render-duration overruns and
+188 returns later than the nominal next-block deadline across 13,140 Rust
+callbacks. All 21 overruns consumed less than their block budget in measured
+thread CPU; the largest took 14.972 ms elapsed versus 0.177 ms thread CPU.
+Both caller and firmware worker requested interactive QoS, but the driver did
+not request realtime scheduling. These results require device-level follow-up;
+they do not establish glitch-free iPad playback. CPU varied between repetitions,
+so this comparison does not establish a general CPU-speed advantage.
 
 The Rust-only iOS Release build was validated on October 22, 2026. Successful
 rendering, test results and low aggregate errors do not establish complete sound
