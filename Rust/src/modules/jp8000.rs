@@ -447,6 +447,11 @@ pub struct Jp8000Voice {
     saw_phase: i32,
     other_oscillator: oscillators::Oscillator,
     oscillator_2: oscillators::Oscillator2,
+    // Semantic normal-rate cache (H8 B6), separate from OSC2's installed
+    // arithmetic. Cache refresh alone must not change the running smoother.
+    osc2_ratio_rate_cache: u16,
+    // H8 B5: consumed on physical controller passes, not sample-count expiry.
+    osc2_loader_stage: u8,
     previous_oscillator_1: i64,
     previous_oscillator_2: i64,
     previous_cross_tap: i64,
@@ -544,6 +549,8 @@ impl Jp8000Voice {
             saw_phase: 0,
             other_oscillator: oscillators::Oscillator::new(),
             oscillator_2: oscillators::Oscillator2::new(),
+            osc2_ratio_rate_cache: 0x80,
+            osc2_loader_stage: 0,
             previous_oscillator_1: 0,
             previous_oscillator_2: 0,
             previous_cross_tap: 0,
@@ -621,6 +628,7 @@ impl Jp8000Voice {
         self.saw_phase = 0;
         self.other_oscillator.reset();
         self.oscillator_2.reset();
+        self.osc2_loader_stage = 0;
         self.previous_oscillator_1 = 0;
         self.previous_oscillator_2 = 0;
         self.previous_cross_tap = 0;
@@ -803,6 +811,12 @@ impl Jp8000Voice {
         Ok(())
     }
     pub fn set_parameter(&mut self, id: u16, value: u16) -> Result<(), ParameterError> {
+        self.set_parameter_dispatch(id, value, true)
+    }
+    // Ownership reload reuses program loading but is not an explicit raw
+    // 30/33/34 event. Instrument dispatches the accepted input IDs separately.
+    fn set_parameter_dispatch(&mut self, id: u16, value: u16,
+        explicit_loader_event: bool) -> Result<(), ParameterError> {
         self.validate_parameter(id, value)?;
         if id as usize >= PARAM_COUNT {
             self.effect_settings.set(id, value);
@@ -822,6 +836,9 @@ impl Jp8000Voice {
             self.refresh_amplitude_base();
         }
         self.recalculate();
+        if explicit_loader_event && matches!(id, 30 | 33 | 34) {
+            self.osc2_loader_stage = 2;
+        }
         // H8 0x7172 refreshes both LFO phases on explicit raw 16/17/19
         // events at their fastest free rate, including equal-value writes.
         if matches!(id, 16 | 17 | 19) {
@@ -864,6 +881,9 @@ impl Jp8000Voice {
             self.refresh_amplitude_base();
         }
         self.recalculate();
+        if ids.iter().any(|id| matches!(id, 30 | 33 | 34)) {
+            self.osc2_loader_stage = 2;
+        }
         if ids.iter().any(|id| matches!(id, 16 | 17 | 19)) {
             self.lfo.retarget_note();
             self.lfo2.retarget_note();
@@ -932,10 +952,11 @@ impl Jp8000Voice {
         if !legato {
             self.fade.allocate();
             self.lfo_value = self.fade.scale(self.raw_lfo_value);
-            // Full allocation latches OSC2 wide tuning, restarts the controller
-            // envelopes and takes the initial glide tick. ESP histories survive.
-            self.oscillator_2
-                .set_ratio_wide(matches!(self.controls[35], 0 | 50));
+            // Full allocation publishes fast immediately (B5=3). Subsequent
+            // controller passes decrement before the active-oscillator gate.
+            // ESP histories survive allocation.
+            self.osc2_loader_stage = 3;
+            self.publish_osc2_ratio_rate();
             let next_tick = if self.amp.until_tick == 0 {
                 882
             } else {
@@ -1162,12 +1183,22 @@ impl Jp8000Voice {
     }
     fn next_voice_frame_with_history(&mut self, external_lfo: Option<(i32, bool, i32)>,
         shared: Option<(&SharedOscillatorHistory, usize)>, previous_balance: bool) -> (i64, i64) {
+        self.next_voice_frame_for_owner(external_lfo, shared, previous_balance, true)
+    }
+    // Current Instrument ownership maps contain only valid parts. Keep the
+    // ratio-publication owner gate explicit, independent of Free/assigned.
+    fn next_voice_frame_for_owner(&mut self, external_lfo: Option<(i32, bool, i32)>,
+        shared: Option<(&SharedOscillatorHistory, usize)>, previous_balance: bool,
+        owner_valid: bool) -> (i64, i64) {
         if external_lfo.is_none() {
             if let Some(pulse) = self.tempo_clock.native_sample() {
                 self.lfo.clock_pulse(pulse);
             }
         }
         if self.amp.until_tick == 0 {
+            // 155E0 precedes owner and post-advance amp checks. Idle/unowned
+            // slots consume stage1 too; a later start must not replay it.
+            if (1..=3).contains(&self.osc2_loader_stage) { self.osc2_loader_stage -= 1; }
             if let Some((value, edge, second)) = external_lfo {
                 self.raw_lfo_value = value;
                 self.lfo_edge = edge;
@@ -1212,6 +1243,7 @@ impl Jp8000Voice {
             {
                 self.update_modulation();
             }
+            if owner_valid && periodic_voice_active { self.publish_osc2_ratio_rate(); }
             self.commit_amp_target();
             if periodic_voice_active {
                 self.commit_filter_target();
@@ -1222,10 +1254,9 @@ impl Jp8000Voice {
             self.lfo_edge = edge;
             self.lfo2_value = second;
         }
-        self.oscillator_2.set_loading_modes(
-            self.coefficient_fast > 0,
-            self.coefficient_fast > 0 || self.osc2_generic_program,
-        );
+        // Width retains its existing loader approximation. Ratio rate changes
+        // only at qualified publication events; elapsed samples cannot end it.
+        self.oscillator_2.set_shape_loading(self.coefficient_fast > 0 || self.osc2_generic_program);
         let osc2 = self.oscillator_2.next_sample_with_sync(
             self.previous_master_frequency,
             self.previous_master_export,
@@ -1599,7 +1630,59 @@ impl Jp8000Voice {
     fn refresh_controls(&mut self) {
         self.controls = control::effective_controls(&self.params, self.velocity_code, self.morph);
         self.refresh_release_controls();
+        // Semantic normal-rate refresh, including full init, legato, Morph and
+        // owner patch refresh. No loader rearm or installed-rate mutation.
+        // The host constructor performs this refresh; it does not expose the
+        // earlier native cold-clear interval where B6 is zero.
+        self.refresh_osc2_ratio_rate_cache();
         self.fade.configure(self.controls[18]);
+    }
+    fn refresh_osc2_ratio_rate_cache(&mut self) {
+        self.osc2_ratio_rate_cache = if matches!(self.controls[35], 0 | 50) { 0x40 } else { 0x80 };
+    }
+    fn publish_osc2_ratio_rate(&mut self) {
+        match self.osc2_loader_stage {
+            3 => self.oscillator_2.install_ratio_rate(0x7000),
+            1 => self.oscillator_2.install_ratio_rate(self.osc2_ratio_rate_cache),
+            _ => {},
+        }
+    }
+    // Unwired selected-release primitives. The caller has already normalized
+    // the event and selected incoming velocity or fixed 80 for this part.
+    // E3CC writes common code38, not pending raw27; other envelope caches and
+    // all DSP targets remain untouched until their own source-defined update.
+    fn trigger_filter_release(&mut self, effective_velocity: u8) {
+        debug_assert!(effective_velocity <= 127);
+        self.release_velocity_code = control::velocity_code(effective_velocity);
+        let held = control::effective_controls(&self.params, self.velocity_code, self.morph);
+        self.controls[46..50].copy_from_slice(&held[46..50]);
+        self.controls[50] = control::effective_value(self.params[50],
+            self.release_velocity_code, self.morph, self.params[334], self.params[124], false);
+        self.filter_envelope.configure(self.controls[47], self.controls[48],
+            self.controls[49], self.controls[50]);
+        self.filter_envelope.sustain = if self.controls[49] == 127 { 16384 }
+            else { 129 * i32::from(self.controls[49]) };
+        self.filter_envelope.off();
+    }
+    // E492 changes only amp caches and stage, retaining raw27 and held36.
+    // In particular, a prior filter-only release may have a different cached
+    // release rate even though both destinations share the latest code38.
+    fn trigger_amp_release(&mut self, effective_velocity: u8) {
+        debug_assert!(effective_velocity <= 127);
+        self.release_velocity_code = control::velocity_code(effective_velocity);
+        let held = control::effective_controls(&self.params, self.velocity_code, self.morph);
+        self.controls[54..57].copy_from_slice(&held[54..57]);
+        self.controls[57] = control::effective_value(self.params[57],
+            self.release_velocity_code, self.morph, self.params[348], self.params[266], false);
+        self.amp.configure(self.controls[54], self.controls[55], self.controls[56], self.controls[57]);
+        self.amp.off();
+    }
+    // 1CC52 envelope/commit portion only. The future Trigger On caller must
+    // first apply E5C4 caches and retarget the amp scheduler to selector4.
+    // It must not use this as a substitute for that still-unwired cache path.
+    fn trigger_amp_start_after_cache(&mut self) {
+        self.amp.on();
+        self.commit_amp_target();
     }
     fn refresh_release_controls(&mut self) {
         // Ordinary release getters61e6/63c6 use code38; all other getters keep36.
@@ -4255,5 +4338,355 @@ mod ss_zero_boundary_tests {
         v.set_parameter(30, 0).unwrap();
         assert_eq!((v.supersaw_detune_state, v.supersaw_side_state, v.supersaw_phases,
                     v.previous_master_export, v.previous_oscillator_2), before);
+    }
+}
+
+#[cfg(test)]
+mod selected_trigger_current_tests {
+    use super::*;
+
+    fn voice() -> Jp8000Voice {
+        let mut v = Jp8000Voice::new_pre_output();
+        v.apply_patch(&[30, 283, 35, 47, 48, 49, 50, 54, 55, 56, 57],
+            &[5, 1, 25, 64, 64, 64, 64, 64, 64, 64, 64]).unwrap();
+        v.note_on(60, 127);
+        for id in [46, 47, 48, 49, 50, 54, 55, 56, 57] {
+            v.params[id as usize] = 64;
+            let i = control::ASSIGNMENT_DESTINATIONS.iter().position(|&d| d == id).unwrap();
+            v.params[284 + 2 * i] = 167;
+        }
+        v.recalculate();
+        v.coefficient_fast = 0;
+        v.oscillator_2.set_loading_modes(false, false);
+        v.amp.level = 7000;
+        v.amp.stage = Stage::Sustain;
+        v.amp.value = 76543;
+        v.amp.target = 45678;
+        v.amp.until_tick = 137;
+        v.filter_envelope.level = 8191;
+        v.filter_envelope.stage = Stage::Sustain;
+        v.filter.cutoff_target = 87654;
+        v.filter.damping_target = 54321;
+        v.glide.start(700);
+        v.saw_phase = 765432;
+        v.previous_oscillator_1 = 3210;
+        v.previous_oscillator_2 = -2110;
+        v
+    }
+    fn envelope(e: &Envelope) -> (Stage, i32, i64, i64, i64, [i32; 3], i32, i32, i32, i32, u16) {
+        (e.stage, e.level, e.value, e.target, e.committed_rate, e.rates, e.sustain,
+            e.amplitude, e.smoothing, e.modulation_smoothing, e.until_tick)
+    }
+    fn histories(v: &Jp8000Voice) -> [i64; 27] {
+        [i64::from(v.note), v.gate as i64, v.allocated as i64, v.controller_assigned as i64,
+            i64::from(v.saw_phase), i64::from(v.glide.initial_cents), i64::from(v.glide.offset_cents),
+            i64::from(v.glide.remaining), i64::from(v.frequency_word), v.previous_oscillator_1,
+            v.previous_oscillator_2, v.previous_master_export, v.previous_master_frequency,
+            v.last_dc_mixed, v.balance, v.balance_target, v.cross, v.cross_target,
+            v.filter.cutoff_target, v.filter.damping_target, v.filter.cutoff_rate,
+            i64::from(v.coefficient_fast), i64::from(v.release_velocity_raw), i64::from(v.velocity_code),
+            i64::from(v.amp.until_tick), i64::from(v.glide_rate), v.glide_enabled as i64]
+    }
+
+    #[test]
+    fn trigger_rate_cache_refresh_does_not_install_or_change_osc2_history() {
+        for wide in [false, true] {
+            for loading in [false, true] {
+                let mut v = voice();
+                v.oscillator_2.set_ratio_wide(wide);
+                v.oscillator_2.set_loading_modes(loading, false);
+                let installed = if loading { 0x7000 } else if wide { 0x40 } else { 0x80 };
+                for range in [0, 25, 50, 50, 25] {
+                    let mut peer = v.oscillator_2.clone();
+                    v.params[35] = range;
+                    v.refresh_controls();
+                    assert_eq!(v.osc2_ratio_rate_cache, if range == 25 { 0x80 } else { 0x40 });
+                    assert_eq!(v.oscillator_2.ratio_smoothing_rate(), installed);
+                    for _ in 0..64 {
+                        let a = v.oscillator_2.next_sample(24883);
+                        let b = peer.next_sample(24883);
+                        assert_eq!((a.audio, a.cross), (b.audio, b.cross));
+                    }
+                }
+            }
+        }
+    }
+    #[test]
+    fn normal_allocation_installs_fast_then_cached_rate_while_legato_preserves_it() {
+        for range in 0..=50 {
+            let mut v = Jp8000Voice::new_pre_output();
+            v.set_parameter(35, range).unwrap();
+            v.note_on(60, 100);
+            let expected = if range == 0 || range == 50 { 0x40 } else { 0x80 };
+            assert_eq!((v.osc2_loader_stage, v.osc2_ratio_rate_cache,
+                v.oscillator_2.ratio_smoothing_rate()), (3, expected, 0x7000));
+            for _ in 0..2 {
+                v.amp.until_tick = 0;
+                v.next_sample(RenderTap::Output);
+            }
+            assert_eq!(v.oscillator_2.ratio_smoothing_rate(), expected);
+            v.apply_patch(&[71, 72, 35], &[1, 1, if range == 25 { 0 } else { 25 }]).unwrap();
+            v.note_on(67, 100);
+            assert_eq!(v.oscillator_2.ratio_smoothing_rate(), expected);
+            assert_eq!(v.osc2_ratio_rate_cache, if range == 25 { 0x40 } else { 0x80 });
+        }
+    }
+    #[test]
+    fn selected_filter_release_updates_code_and_only_filter_caches() {
+        let mut v = voice();
+        let before = (envelope(&v.amp), histories(&v), v.filter_scheduler, v.amp_scheduler, v.controls);
+        v.trigger_filter_release(16);
+        assert_eq!(v.release_velocity_code, -104);
+        assert_eq!(v.filter_envelope.rates, [envelope_rate(104), envelope_rate(104), envelope_rate(31)]);
+        assert_eq!((v.filter_envelope.sustain, v.filter_envelope.level, v.filter_envelope.stage),
+            (129 * 104, 8191, Stage::Release));
+        let mut expected_controls = before.4;
+        expected_controls[46..50].fill(104);
+        expected_controls[50] = 31;
+        assert_eq!(v.controls, expected_controls);
+        assert_eq!((envelope(&v.amp), histories(&v), v.filter_scheduler, v.amp_scheduler),
+            (before.0, before.1, before.2, before.3));
+    }
+    #[test]
+    fn selected_amp_release_updates_code_without_committing_or_releasing_keys() {
+        let mut v = voice();
+        let before = (envelope(&v.filter_envelope), histories(&v), v.amp.value, v.amp.target,
+            v.amp.committed_rate, v.amp_scheduler, v.filter_scheduler, v.controls);
+        v.trigger_amp_release(16);
+        assert_eq!(v.release_velocity_code, -104);
+        assert_eq!(v.amp.rates, [envelope_rate(104), envelope_rate(104), envelope_rate(31)]);
+        assert_eq!((v.amp.level, v.amp.stage), (7000, Stage::Release));
+        let mut expected_controls = before.7;
+        expected_controls[54..57].fill(104);
+        expected_controls[57] = 31;
+        assert_eq!(v.controls, expected_controls);
+        assert_eq!((envelope(&v.filter_envelope), histories(&v), v.amp.value, v.amp.target,
+            v.amp.committed_rate, v.amp_scheduler, v.filter_scheduler),
+            (before.0, before.1, before.2, before.3, before.4, before.5, before.6));
+    }
+    #[test]
+    fn each_selected_release_keeps_the_other_cached_rate_until_its_refresh() {
+        let mut v = voice();
+        v.trigger_filter_release(16);
+        let filter = envelope(&v.filter_envelope);
+        v.trigger_amp_release(127);
+        assert_eq!(v.release_velocity_code, 128);
+        assert_eq!(v.amp.rates[2], envelope_rate(104));
+        assert_eq!(envelope(&v.filter_envelope), filter);
+        v.set_parameter(334, 254).unwrap();
+        // A later explicit release-parameter handler consumes the common new
+        // code38; the earlier selected release does not preempt that event.
+        assert_eq!(v.filter_envelope.rates[2], envelope_rate(127));
+        assert_eq!(v.release_velocity_raw, 127);
+    }
+    #[test]
+    fn pending_pedal_release_raw_survives_selected_release_code_change() {
+        let mut v = voice();
+        v.retain_release_velocity(64);
+        v.trigger_filter_release(0);
+        assert_eq!((v.release_velocity_raw, v.release_velocity_code), (64, -128));
+        assert!(v.gate);
+        v.release_retained_velocity(60);
+        assert_eq!((v.release_velocity_raw, v.release_velocity_code), (64, -26));
+        assert_eq!((v.filter_envelope.stage, v.amp.stage), (Stage::Release, Stage::Release));
+        assert!(!v.gate);
+    }
+    #[test]
+    fn selected_release_uses_current_morph_and_already_normalized_velocity() {
+        let mut v = voice();
+        v.params[124] = 159; // Morph sensitivity +32 for Filter Release.
+        v.morph = 64;
+        v.trigger_filter_release(16);
+        // 64 + floor((-104*40 + 64*32)/128) = 47.
+        assert_eq!(v.controls[50], 47);
+        assert_eq!(v.filter_envelope.rates[2], envelope_rate(47));
+        v.params[283] = 0;
+        v.trigger_amp_release(80); // Dispatcher supplies fixed80; helper does not resample the switch.
+        assert_eq!(v.release_velocity_code, 0);
+        assert_eq!(v.amp.rates[2], envelope_rate(64));
+        assert_eq!((v.velocity_code, v.release_velocity_raw), (128, 127));
+    }
+    #[test]
+    fn selected_amp_start_preserves_existing_clock_gain_and_filter_history() {
+        let mut v = voice();
+        v.amp_scheduler.retarget();
+        let before = (envelope(&v.filter_envelope), v.filter_scheduler, histories(&v), v.amp.value);
+        v.trigger_amp_start_after_cache();
+        assert_eq!(v.amp.stage, Stage::Attack);
+        assert!(v.amp.level > 0);
+        assert_eq!(v.amp.committed_rate, 144);
+        assert_eq!(v.amp_scheduler.selector(), 13);
+        assert_eq!((envelope(&v.filter_envelope), v.filter_scheduler, histories(&v), v.amp.value), before);
+    }
+    #[test]
+    fn selected_filter_release_publication_waits_for_an_active_controller_tick() {
+        let mut v = voice();
+        v.amp.stage = Stage::Idle;
+        v.amp.until_tick = 0;
+        v.filter_scheduler = SmoothingScheduler::default();
+        let before = (v.filter_envelope.level, v.filter.cutoff_target, v.filter.damping_target);
+        v.trigger_filter_release(16);
+        assert_eq!((v.filter_envelope.level, v.filter.cutoff_target, v.filter.damping_target), before);
+        v.next_sample(RenderTap::Output);
+        assert_eq!((v.filter_envelope.level, v.filter.cutoff_target, v.filter.damping_target), before);
+        v.amp.stage = Stage::Sustain;
+        v.amp.until_tick = 0;
+        v.next_sample(RenderTap::Output);
+        assert!(v.filter_envelope.level < before.0);
+        assert_ne!(v.filter.cutoff_target, before.1);
+        assert_eq!(v.release_velocity_code, -104);
+        assert!(v.gate);
+    }
+}
+
+#[cfg(test)]
+mod osc2_publication_tests {
+    use super::*;
+    fn rate(v: &Jp8000Voice) -> (u8, u16, u16) {
+        (v.osc2_loader_stage, v.osc2_ratio_rate_cache, v.oscillator_2.ratio_smoothing_rate())
+    }
+    fn tick(v: &mut Jp8000Voice, owner: bool) {
+        v.amp.until_tick = 0;
+        v.next_voice_frame_for_owner(None, None, false, owner);
+    }
+    fn frames(v: &mut Jp8000Voice, n: usize) { for _ in 0..n { v.next_sample(RenderTap::Output); } }
+    fn held(range: u16) -> Jp8000Voice {
+        let mut v = Jp8000Voice::new_pre_output();
+        v.apply_patch(&[30, 33, 34, 35, 36, 54, 55, 56, 57, 283],
+            &[5, 0, 0, range, 50, 0, 0, 127, 0, 1]).unwrap();
+        v.note_on(60, 80);
+        v
+    }
+    // Only the proved ratio-cache subset of E5C4. This is not a Trigger
+    // dispatcher or a claim that all other E5C4 caches/publications are wired.
+    fn trigger_ratio_cache(v: &mut Jp8000Voice, velocity: u8) {
+        v.velocity_code = control::velocity_code(velocity);
+        v.release_velocity_raw = velocity;
+        v.release_velocity_code = v.velocity_code;
+        v.refresh_controls();
+    }
+    #[test]
+    fn retained_thirteen_event_ratio_contract_with_unwired_trigger_primitives() {
+        let mut v = held(25);
+        v.set_parameter(308, 152).unwrap(); // authored coarse velocity sensitivity +25
+        assert_eq!(rate(&v), (3, 128, 0x7000));
+        frames(&mut v, 8820); assert_eq!(rate(&v), (0, 128, 128)); // step0
+        trigger_ratio_cache(&mut v, 127); assert_eq!(rate(&v), (0, 64, 128));
+        frames(&mut v, 8820); assert_eq!(rate(&v), (0, 64, 128)); // step1
+        v.set_parameter(30, 5).unwrap(); assert_eq!(rate(&v), (2, 64, 128));
+        frames(&mut v, 8820); assert_eq!(rate(&v), (0, 64, 64)); // step2
+        v.set_parameter(35, 0).unwrap(); frames(&mut v, 8820);
+        assert_eq!(rate(&v), (0, 128, 64)); // step3 effective range25
+        v.set_parameter(33, 0).unwrap(); frames(&mut v, 8820);
+        assert_eq!(rate(&v), (0, 128, 128)); // step4
+        v.set_parameter(34, 0).unwrap(); assert_eq!(rate(&v), (2, 128, 128));
+        frames(&mut v, 8820); assert_eq!(rate(&v), (0, 128, 128)); // step5
+        v.set_parameter(35, 25).unwrap(); frames(&mut v, 8820);
+        assert_eq!(rate(&v), (0, 64, 128)); // step6 effective range50
+        frames(&mut v, 8820); assert_eq!(rate(&v), (0, 64, 128)); // step7 selector has no ratio event
+        v.trigger_amp_release(80); frames(&mut v, 8820);
+        assert_eq!(v.amp.stage, Stage::Idle); assert!(v.gate);
+        assert_eq!(rate(&v), (0, 64, 128)); // step8 still held
+        v.set_parameter(30, 5).unwrap(); frames(&mut v, 8820);
+        assert_eq!(rate(&v), (0, 64, 128)); // step9 consumed while Idle
+        trigger_ratio_cache(&mut v, 127); v.trigger_amp_start_after_cache();
+        frames(&mut v, 8820); assert_ne!(v.amp.stage, Stage::Idle);
+        assert_eq!(rate(&v), (0, 64, 128)); // step10 no rearm/replay
+        v.note_off_with_velocity(60, 0); frames(&mut v, 8820);
+        assert!(!v.gate); assert_eq!(v.amp.stage, Stage::Idle);
+        v.set_controller_assigned(false); assert_eq!(rate(&v), (0, 64, 128)); // step11
+        v.set_parameter(30, 5).unwrap(); frames(&mut v, 8820);
+        assert_eq!(rate(&v), (0, 64, 128)); // step12 owned idle/free-equivalent
+    }
+    #[test]
+    fn allocation_publication_follows_existing_clock_phase_not_sample_count() {
+        for phase in [0, 1, 137, 881] {
+            for range in [0, 1, 25, 49, 50] {
+                let mut v = held(range);
+                v.amp.until_tick = phase;
+                let normal = if matches!(range, 0 | 50) {64} else {128};
+                assert_eq!(rate(&v), (3, normal, 0x7000));
+                frames(&mut v, phase as usize);
+                assert_eq!(rate(&v), (3, normal, 0x7000));
+                frames(&mut v, 1); assert_eq!(rate(&v), (2, normal, 0x7000));
+                frames(&mut v, 881); assert_eq!(rate(&v), (2, normal, 0x7000));
+                frames(&mut v, 1); assert_eq!(rate(&v), (1, normal, normal));
+                frames(&mut v, 882); assert_eq!(rate(&v), (0, normal, normal));
+            }
+        }
+    }
+    #[test]
+    fn stage_one_uses_latest_cache_even_after_legato_and_live_range_fine() {
+        let mut v = held(25);
+        tick(&mut v, true); assert_eq!(rate(&v), (2, 128, 0x7000));
+        v.set_parameter(35, 50).unwrap(); v.set_parameter(36, 100).unwrap();
+        v.apply_patch(&[71,72], &[1,1]).unwrap(); v.note_on(67, 127);
+        assert_eq!(rate(&v), (2, 64, 0x7000));
+        tick(&mut v, true); assert_eq!(rate(&v), (1, 64, 64));
+        tick(&mut v, true);
+        v.set_parameter(35, 25).unwrap(); v.note_on(69, 80);
+        assert_eq!(rate(&v), (0, 128, 64));
+        tick(&mut v, true); assert_eq!(rate(&v), (0, 128, 64));
+        v.set_parameter(72, 0).unwrap(); v.note_on(72,80);
+        assert_eq!(rate(&v), (3, 128, 0x7000));
+    }
+    #[test]
+    fn resulting_amp_idle_consumes_stage_one_but_silent_sustain_publishes() {
+        let mut v = held(0);
+        tick(&mut v, true); tick(&mut v, true); tick(&mut v, true);
+        v.set_parameter(35, 25).unwrap(); v.set_parameter(34,0).unwrap();
+        v.trigger_amp_release(80); v.amp.level = 0;
+        assert_eq!(v.amp.stage, Stage::Release);
+        tick(&mut v, true);
+        assert_eq!((v.amp.stage, rate(&v)), (Stage::Idle, (1,128,64)));
+        v.trigger_amp_start_after_cache(); tick(&mut v, true);
+        assert_eq!(rate(&v), (0,128,64));
+        v.set_parameter(34,0).unwrap(); v.amp.stage=Stage::Sustain;v.amp.level=0;
+        v.amp.sustain=0;v.set_controller_assigned(false);
+        tick(&mut v, true); assert_eq!(rate(&v), (1,128,128));
+    }
+    #[test]
+    fn unowned_tick_consumes_stage_one_without_ratio_publication() {
+        let mut v=held(0);tick(&mut v,true);tick(&mut v,true);tick(&mut v,true);
+        v.set_parameter(35,25).unwrap();v.set_parameter(30,5).unwrap();
+        tick(&mut v,false);assert_eq!(rate(&v),(1,128,64));
+        tick(&mut v,true);assert_eq!(rate(&v),(0,128,64));
+        // This private owner flag gates only the scoped ratio destination;
+        // unsupported owner-FF routing of the whole Instrument is not claimed.
+    }
+    #[test]
+    fn idle_can_leave_fast_installed_after_other_sample_countdowns_expire() {
+        let mut v=held(25);v.clear_controller_amp();
+        frames(&mut v, 8820);
+        assert_eq!(v.coefficient_fast,0); assert_eq!(rate(&v),(0,128,0x7000));
+        v.trigger_amp_start_after_cache();frames(&mut v,1764);
+        assert_eq!(rate(&v),(0,128,0x7000));
+    }
+    #[test]
+    fn equal_and_changed_wave_events_rearm_once_without_immediate_install() {
+        let mut v=held(0);frames(&mut v,8820);
+        v.set_parameter(35,25).unwrap();
+        for (id,value) in [(30,5),(30,4),(33,0),(33,1),(34,0),(34,1)] {
+            v.set_parameter(id,value).unwrap(); assert_eq!(rate(&v),(2,128,64));
+        }
+        v.apply_patch(&[30,33,34], &[4,1,1]).unwrap();assert_eq!(rate(&v),(2,128,64));
+        tick(&mut v,true);assert_eq!(rate(&v),(1,128,128));
+    }
+    #[test]
+    fn morph_cache_refresh_and_hard_reset_are_distinct_from_silence() {
+        let mut v=held(25);frames(&mut v,8820);
+        let i=control::ASSIGNMENT_DESTINATIONS.iter().position(|&x|x==35).unwrap();
+        v.set_parameter(control::CONTROL_ASSIGNMENTS[i],152).unwrap();
+        v.set_morph(128).unwrap();assert_eq!(rate(&v),(0,64,128));
+        v.set_parameter(30,5).unwrap();v.silence();assert_eq!(rate(&v),(2,64,128));
+        v.reset();assert_eq!(rate(&v),(0,128,128)); // Morph resets to0 and patch cache refreshes.
+        assert!(!v.gate);assert!(!v.controller_assigned);
+    }
+    #[test]
+    fn rejected_voice_transaction_preserves_pending_publication() {
+        let mut v=held(0);frames(&mut v,8820);v.set_parameter(35,25).unwrap();
+        let before=(rate(&v),v.params,v.controls,v.amp.until_tick);
+        assert!(v.apply_patch(&[30,34], &[4,2]).is_err());
+        assert_eq!((rate(&v),v.params,v.controls,v.amp.until_tick),before);
     }
 }

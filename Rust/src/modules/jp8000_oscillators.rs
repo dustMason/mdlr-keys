@@ -560,7 +560,7 @@ pub struct Oscillator2 {
     frequency_state: i64,
     // Physical I0x0c: written only by Sync Saw. Other waveforms preserve it.
     sync_base_frequency: i64,
-    loading: bool,
+    ratio_rate: u16,
     shape_loading: bool,
 }
 impl Default for Oscillator2 {
@@ -584,7 +584,7 @@ impl Oscillator2 {
             sync_edge: 0,
             frequency_state: 0,
             sync_base_frequency: 0,
-            loading: false,
+            ratio_rate: 0x80,
             shape_loading: true,
         }
     }
@@ -598,7 +598,7 @@ impl Oscillator2 {
         self.set_loading_modes(loading, loading);
     }
     pub fn set_loading_modes(&mut self, ratio_fast: bool, width_fast: bool) {
-        self.loading = ratio_fast;
+        self.ratio_rate = if ratio_fast { 0x7000 } else if self.ratio_wide { 0x40 } else { 0x80 };
         self.shape_loading = width_fast;
     }
     pub fn set_phase(&mut self, phase: i64) {
@@ -617,7 +617,16 @@ impl Oscillator2 {
     /// smoother. A later held-note range edit changes its target, not this rate.
     pub fn set_ratio_wide(&mut self, wide: bool) {
         self.ratio_wide = wide;
+        if self.ratio_rate != 0x7000 { self.ratio_rate = if wide { 0x40 } else { 0x80 }; }
     }
+    pub(super) fn set_shape_loading(&mut self, loading: bool) { self.shape_loading = loading; }
+    // Installed DSP coefficient, separate from the controller's normal cache.
+    pub(super) fn install_ratio_rate(&mut self, rate: u16) {
+        debug_assert!(matches!(rate, 0x40 | 0x80 | 0x7000));
+        self.ratio_rate = rate;
+    }
+    #[cfg(test)]
+    pub(super) fn ratio_smoothing_rate(&self) -> u16 { self.ratio_rate }
     pub fn set_tuning(&mut self, range: u8, fine: u8) {
         self.set_tuning_cents(
             (i32::from(range.clamp(1, 49)) - 25) * 100 + i32::from(fine.min(100)) - 50,
@@ -658,10 +667,10 @@ impl Oscillator2 {
         let previous_ratio = self.ratio;
         let ratio_delta = sat(self.ratio_target - self.ratio);
         self.ratio = sat(self.ratio
-            + if self.loading {
+            + if self.ratio_rate == 0x7000 {
                 (ratio_delta * 112) >> 7
             } else {
-                ratio_delta >> if self.ratio_wide { 9 } else { 8 }
+                ratio_delta >> if self.ratio_rate == 0x40 { 9 } else { 8 }
             });
         let frequency = mul(base_frequency, previous_ratio, 3);
         let frequency = if self.wave == 2 {

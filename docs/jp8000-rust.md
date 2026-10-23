@@ -58,10 +58,22 @@ measurement of iPad MIDI-to-speaker latency.
 
 ## Validation
 
-The current integrated core passed 414 release tests, including allocation
-checks, and the Rust-only iOS Release build compiled successfully on October 22,
-2026. The refreshed factory comparison is still in progress; neither successful
-rendering nor a low aggregate score establishes sound parity.
+The current integrated core passed 436 release tests and a 524,288-frame
+zero-allocation workload. The OSC2 timing correction matched 169 checked native
+controller fields and five ordered coefficient updates. All 15 selected factory
+recordings remained byte-identical to the previous Rust core; nine separate
+corrected-input comparisons also stayed unchanged. This correction covers live
+oscillator-control updates and preserves the existing audio buffer size.
+
+A fresh host callback comparison exercised 33 configurations and 198,000
+callbacks per version. Both versions had zero deadline misses and zero observed C++ callback
+allocations. At 64-frame/48 kHz blocks, the candidate's largest per-configuration
+99th percentile was 0.080 ms against a 1.333 ms block budget. These are software
+callback measurements on the development Mac, not iPad MIDI-to-speaker latency.
+
+The Rust-only iOS Release build was validated on October 22, 2026. Successful
+rendering, test results and low aggregate errors do not establish complete sound
+parity; the remaining unsupported features and audible differences still apply.
 
 ```sh
 cargo test --locked --release --manifest-path Rust/Cargo.toml --features analysis

@@ -618,15 +618,20 @@ impl Jp8000Instrument {
                 voice.refresh_amplitude_base();
             }
             if reset || lists[part].0.contains(&30) {
-                voice.set_parameter(30, params[part][30])?;
+                voice.set_parameter_dispatch(30, params[part][30], false)?;
             }
             // 0x1648a IDs130/132/136 ->0x16340 reload both oscillator
             // blocks for every newly owned slot, even when controller-free.
             if reset || lists[part].0.contains(&33) || lists[part].0.contains(&34) {
-                voice.set_parameter(33, params[part][33])?;
-                voice.set_parameter(34, params[part][34])?;
+                voice.set_parameter_dispatch(33, params[part][33], false)?;
+                voice.set_parameter_dispatch(34, params[part][34], false)?;
             }
             voice.recalculate();
+            // Owner handlers include Free slots. Only actual accepted input IDs
+            // rearm B5; internal ownership/program reloads above do not.
+            if lists[part].0.iter().any(|id| matches!(id, 30 | 33 | 34)) {
+                voice.osc2_loader_stage = 2;
+            }
         }
         for part in 0..2 {
             self.refresh_global_controls(part);
@@ -1651,8 +1656,8 @@ impl Jp8000Instrument {
         for (index, (v, s)) in self.voices.iter_mut().zip(&self.slots).enumerate() {
             let p = &self.parts[s.owner as usize];
             sums[s.owner as usize] += v
-                .next_voice_frame_with_history(Some((p.lfo.value(), p.lfo.edge(), p.lfo2.value())),
-                    Some((&self.oscillator_history, index)), matches!(index, 2 | 5)).1;
+                .next_voice_frame_for_owner(Some((p.lfo.value(), p.lfo.edge(), p.lfo2.value())),
+                    Some((&self.oscillator_history, index)), matches!(index, 2 | 5), s.owner < 2).1;
             if let Some(writes) = v.oscillator_tail_writes() {
                 self.oscillator_history.publish(index, writes);
             }
@@ -4745,5 +4750,74 @@ mod pedal11_midi_domain_tests {
         for value in [0, 1, 2, 4, 12, 44, 45] {
             assert_eq!(Jp8000Instrument::parameter_value_capability(2028, value), 0);
         }
+    }
+}
+
+#[cfg(test)]
+mod osc2_publication_instrument_tests {
+    use super::*;
+    fn states(s:&Jp8000Instrument)->[(u8,u16,u16);8] {
+        std::array::from_fn(|i|(s.voices[i].osc2_loader_stage,s.voices[i].osc2_ratio_rate_cache,
+            s.voices[i].oscillator_2.ratio_smoothing_rate()))
+    }
+    #[test]
+    fn explicit_equal_wave_setters_rearm_every_owned_free_slot_only() {
+        let mut s=Jp8000Instrument::new();
+        s.apply_performance(&[],&[],&[],&[],&[2016,2022],&[1,2]).unwrap();
+        for part in 0..2 {
+            for id in [30,33,34] {
+                for v in &mut s.voices {v.osc2_loader_stage=0;}
+                let value=s.part_parameter(part,id).unwrap();
+                s.set_part_parameter(part,id,value).unwrap();
+                for i in 0..8 {
+                    assert_eq!(s.slots[i].status,Status::Free);
+                    assert!(!s.voices[i].controller_assigned);
+                    assert_eq!(s.voices[i].osc2_loader_stage,if usize::from(s.slots[i].owner)==part {2}else{0});
+                    assert_eq!(s.voices[i].oscillator_2.ratio_smoothing_rate(),128);
+                }
+                s.next_stereo_sample();
+                // Every physical voice advances even when Free/Idle. No install.
+                for i in 0..8 {assert_eq!(s.voices[i].oscillator_2.ratio_smoothing_rate(),128);}
+            }
+        }
+    }
+    #[test]
+    fn ownership_reload_refreshes_cache_without_rearming_or_installing() {
+        let mut s=Jp8000Instrument::new();
+        s.apply_performance(&[35],&[0],&[35],&[25],&[],&[]).unwrap();
+        for (i,v) in s.voices.iter_mut().enumerate() {
+            v.osc2_loader_stage=(i%4) as u8;
+            v.oscillator_2.install_ratio_rate(if i%2==0 {0x40}else{0x7000});
+        }
+        let old=states(&s);
+        s.apply_performance(&[],&[],&[],&[],&[2016,2022],&[1,2]).unwrap();
+        for i in 0..8 {
+            assert_eq!(s.voices[i].osc2_loader_stage,old[i].0);
+            assert_eq!(s.voices[i].oscillator_2.ratio_smoothing_rate(),old[i].2);
+            assert_eq!(s.voices[i].osc2_ratio_rate_cache,if s.slots[i].owner==0 {64}else{128});
+        }
+        // A real waveform ID in the same atomic ownership change is dispatched.
+        s.apply_performance(&[30],&[5],&[],&[],&[2016],&[0]).unwrap();
+        assert!(s.voices.iter().all(|v|v.osc2_loader_stage==2));
+    }
+    #[test]
+    fn ordinary_free_preserves_loader_cache_rate_and_ownership() {
+        let mut s=Jp8000Instrument::new();s.apply_performance(&[35],&[0],&[],&[],&[],&[]).unwrap();
+        s.midi(0x90,60,80).unwrap();
+        let i=s.slots.iter().position(|s|s.status==Status::Held).unwrap();
+        let old=(states(&s)[i],s.slots[i].owner);
+        s.clear_mono_slot(i);
+        assert_eq!((states(&s)[i],s.slots[i].owner),old);
+        assert_eq!(s.slots[i].status,Status::Free);
+        assert!(!s.voices[i].controller_assigned);
+    }
+    #[test]
+    fn rejected_performance_and_trigger_admission_preserve_rate_state() {
+        let mut s=Jp8000Instrument::new();s.set_parameter(35,0).unwrap();
+        let old=(states(&s),s.parts[0].params,s.common.performance);
+        assert!(s.apply_performance(&[30],&[4],&[],&[],&[2029],&[1]).is_err());
+        assert_eq!((states(&s),s.parts[0].params,s.common.performance),old);
+        assert!(s.apply_performance(&[30,34],&[4,2],&[],&[],&[],&[]).is_err());
+        assert_eq!((states(&s),s.parts[0].params,s.common.performance),old);
     }
 }
